@@ -7,7 +7,7 @@ export const GameSummarySection = () => {
           Void Count is a strategy game that challenges your perception of reality. 
           Navigate through abstract landscapes, solve puzzles, and uncover the secrets hidden within the void. 
           <br /><br />
-          <span className="text-indigo-400 font-semibold">Every count matters. Every choice has a consequence.</span>
+          <span className="text-indigo-400 font-semibold">Every point matters. Every choice has a consequence.</span>
         </p>
       </div>
     </section>

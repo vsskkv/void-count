@@ -9,6 +9,7 @@ import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { GameCard } from "@/components/3d/GameCard";
+import { WaitlistSection } from "@/components/home/WaitlistSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,10 +48,13 @@ export default function HomePage() {
       sections.forEach((section, i) => {
         // Push content further out: -100 for left, 100 for right
         // Only applies to the first 3 sections which alternate
-        const isCTA = i === 3; 
-        const direction = i % 2 === 0 ? -100 : 100; 
+        // Intro (0), Void (1), Mechanics (2)
         
-        if (!isCTA) {
+        // Waitlist section (which might be index 3 now) should fade up
+        const isSideSection = i < 3; 
+        
+        if (isSideSection) {
+          const direction = i % 2 === 0 ? -100 : 100; 
           gsap.fromTo(section, 
             {
               opacity: 0,
@@ -69,7 +73,7 @@ export default function HomePage() {
             }
           );
         } else {
-          // CTA fades up from bottom
+          // Bottom sections fade up
           gsap.fromTo(section,
             {
               opacity: 0,
@@ -107,7 +111,7 @@ export default function HomePage() {
         ref={cardContainerRef}
         className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
       >
-        <GameCard ref={cardRef} className="transform-gpu scale-75 md:scale-100" />
+        <GameCard ref={cardRef} variant="hero" className="transform-gpu" />
       </div>
 
       {/* Scrollable Content Sections */}
@@ -116,20 +120,26 @@ export default function HomePage() {
         
         {/* Section 1: Intro - Left aligned */}
         <section className="content-section min-h-screen flex flex-col justify-center items-start pt-32 pointer-events-auto">
-          <div className="max-w-md md:max-w-lg backdrop-blur-sm bg-slate-950/40 p-8 rounded-2xl border border-slate-800/50">
-            <div className="mb-6">
+          <div className="max-w-md md:max-w-lg backdrop-blur-sm bg-slate-950/40 p-8 rounded-2xl border border-slate-800/50 overflow-hidden relative">
+            {/* Subtle internal glow for card */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent pointer-events-none" />
+            
+            <div className="relative mb-8">
+               {/* Logo Glow Effect */}
+               <div className="absolute -inset-8 bg-indigo-500/30 blur-2xl rounded-full opacity-60 mix-blend-screen pointer-events-none" />
                <Image
                   src="/void-count-logo.png"
                   alt="Void Count logo"
-                  width={150}
-                  height={150}
+                  width={160}
+                  height={160}
                   priority
+                  className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]"
                 />
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
+            <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
               A Cosmic Card Game of Risk and Timing
             </h1>
-            <p className="text-xl text-slate-300 mb-8">
+            <p className="relative z-10 text-xl text-slate-300 mb-8">
               Scroll to explore the Void.
             </p>
           </div>
@@ -168,7 +178,8 @@ export default function HomePage() {
         </section>
 
         {/* Section 4: CTA - Centered / Bottom */}
-        <section className="content-section min-h-[80vh] flex flex-col items-center justify-center text-center pb-32 pointer-events-auto">
+        {/* HIDDEN FOR WAITLIST FOCUS */}
+        {/* <section className="content-section min-h-[50vh] flex flex-col items-center justify-center text-center pt-32 pb-10 pointer-events-auto">
            <div className="max-w-2xl backdrop-blur-md bg-slate-950/60 p-10 rounded-3xl border border-indigo-500/30 shadow-[0_0_50px_rgba(79,70,229,0.2)]">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Ready to Enter?
@@ -185,7 +196,10 @@ export default function HomePage() {
               </PrimaryButton>
             </div>
           </div>
-        </section>
+        </section> */}
+
+        {/* Section 5: Waitlist - Centered / Bottom */}
+        <WaitlistSection />
 
         {/* Footer - Inside the scroll container at the very end */}
         <div className="pointer-events-auto mt-auto">

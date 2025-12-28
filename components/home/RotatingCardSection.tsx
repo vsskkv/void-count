@@ -30,12 +30,10 @@ export const RotatingCardSection = () => {
           The Void is counting down.
         </h2>
         <p className="text-slate-200 mb-3 leading-relaxed">
-          Every game of Void Count is a race against an invisible threat. Play
-          safe, or feed the Void with high-risk cards that might take everyone
-          out.
+          Every game of Void Count is a test of nerve. Keep your hand value low, sabotage your opponents, and call Count before they do.
         </p>
         <p className="text-slate-400 text-sm">
-          2–4 players · ~25 minutes · Easy to learn, endlessly replayable.
+          2–8 players · Ages 7+ · Easy to learn, endlessly replayable.
         </p>
       </div>
 

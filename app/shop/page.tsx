@@ -1,29 +1,62 @@
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { ProductCarousel } from "@/components/shop/ProductCarousel";
 
 export default function ShopPage() {
   return (
-    <main className="p-8 min-h-screen max-w-5xl mx-auto flex flex-col items-center pt-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white">Shop</h1>
-      <div className="grid md:grid-cols-1 gap-8 w-full max-w-2xl">
-        <div className="bg-slate-900/80 border border-indigo-500/30 rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center shadow-[0_0_40px_rgba(79,70,229,0.1)]">
-           {/* Placeholder for product image */}
-          <div className="w-full md:w-64 h-64 bg-indigo-950/50 rounded-xl border border-indigo-500/20 flex items-center justify-center text-slate-500">
-            Product Image
+    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
+      <SiteHeader />
+      
+      <div className="flex-1 flex flex-col items-center justify-center pt-32 pb-20 px-6">
+        <h1 className="text-5xl md:text-6xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200">
+          Shop
+        </h1>
+
+        <div className="grid md:grid-cols-2 gap-12 max-w-5xl w-full items-center">
+          {/* Product Carousel */}
+          <div className="flex justify-center relative">
+             <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full -z-10 scale-75" />
+             <ProductCarousel />
           </div>
           
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-2xl font-bold text-white mb-2">Void Count: Base Deck</h2>
-            <p className="text-slate-400 mb-4">
-              The complete 110-card deck. Includes rulebook, tokens, and everything you need for 2-4 players.
+          {/* Product Details */}
+          <div className="flex flex-col gap-6 text-center md:text-left">
+            <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Void Count: Base Deck</h2>
+                <p className="text-indigo-400 font-medium tracking-wider uppercase text-sm">First Edition • UK Release</p>
+            </div>
+            
+            <p className="text-slate-300 text-lg leading-relaxed">
+              The complete 116-card deck. Includes rulebook, tokens, and everything you need for 2-8 players. 
+              Perfect for game nights, parties, and strategic cosmic battles.
             </p>
-            <p className="text-3xl font-bold text-white mb-6">$25.00</p>
-            <PrimaryButton href={STRIPE_CHECKOUT_URL} className="w-full md:w-auto">
-              Pre-order Now
-            </PrimaryButton>
+
+            <div className="flex flex-col gap-2">
+                <div className="flex items-baseline justify-center md:justify-start gap-3">
+                    <span className="text-4xl font-bold text-white">£20.00</span>
+                    <span className="text-slate-500 line-through text-lg">£25.00</span>
+                    <span className="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                        EARLY BIRD
+                    </span>
+                </div>
+                <p className="text-slate-400 text-sm">Free shipping within the UK.</p>
+            </div>
+
+            <div className="pt-4">
+                <PrimaryButton href={STRIPE_CHECKOUT_URL} className="w-full md:w-auto text-lg px-8 py-4">
+                  Pre-order Now
+                </PrimaryButton>
+                <p className="mt-4 text-xs text-slate-500">
+                    Secure payment via Stripe. Estimated delivery: Late 2025.
+                </p>
+            </div>
           </div>
         </div>
       </div>
+
+      <SiteFooter />
     </main>
   );
 }

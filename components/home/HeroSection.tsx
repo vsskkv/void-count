@@ -75,8 +75,7 @@ export const HeroSection = () => {
         </h1>
 
         <p className="hero-subtitle text-base md:text-lg text-slate-200 max-w-2xl mx-auto mb-8">
-          Draft powerful anomalies, push the Void Count higher, and decide when
-          to trigger it. Do you burn your opponents or go down with them?
+          Play Point Cards, use Power Cards, and keep your total low. Do you call 'Count' early or risk it all?
         </p>
 
         <div className="hero-cta flex justify-center flex-wrap gap-4">
