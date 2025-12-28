@@ -1,65 +1,198 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { GameCard } from "@/components/3d/GameCard";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function HomePage() {
+  const mainRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mainRef.current || !cardRef.current || !cardContainerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Initial entrance animation
+      gsap.from(cardRef.current, {
+        y: 200,
+        opacity: 0,
+        duration: 2,
+        ease: "power3.out",
+      });
+
+      // Scroll-driven rotation
+      gsap.to(cardRef.current, {
+        rotateY: 360 * 2, // Rotate 2 full circles
+        rotateX: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: mainRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+      });
+
+      // Animate content sections entering from left and right
+      const sections = gsap.utils.toArray<HTMLElement>(".content-section");
+      sections.forEach((section, i) => {
+        // Push content further out: -100 for left, 100 for right
+        // Only applies to the first 3 sections which alternate
+        const isCTA = i === 3; 
+        const direction = i % 2 === 0 ? -100 : 100; 
+        
+        if (!isCTA) {
+          gsap.fromTo(section, 
+            {
+              opacity: 0,
+              x: direction,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 70%",
+                end: "top 40%",
+                scrub: true,
+              },
+            }
+          );
+        } else {
+          // CTA fades up from bottom
+          gsap.fromTo(section,
+            {
+              opacity: 0,
+              y: 100
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true
+              }
+            }
+          );
+        }
+      });
+
+    }, mainRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main ref={mainRef} className="relative bg-slate-950 min-h-[400vh]">
+      {/* Header - Fixed */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <SiteHeader />
+      </div>
+
+      {/* Fixed 3D Card Container - Centered */}
+      <div 
+        ref={cardContainerRef}
+        className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
+      >
+        <GameCard ref={cardRef} className="transform-gpu scale-75 md:scale-100" />
+      </div>
+
+      {/* Scrollable Content Sections */}
+      {/* Increased max-width to push content to edges */}
+      <div className="relative z-20 w-full max-w-[90%] md:max-w-[95%] mx-auto px-4 md:px-12 pointer-events-none flex flex-col">
+        
+        {/* Section 1: Intro - Left aligned */}
+        <section className="content-section min-h-screen flex flex-col justify-center items-start pt-32 pointer-events-auto">
+          <div className="max-w-md md:max-w-lg backdrop-blur-sm bg-slate-950/40 p-8 rounded-2xl border border-slate-800/50">
+            <div className="mb-6">
+               <Image
+                  src="/void-count-logo.png"
+                  alt="Void Count logo"
+                  width={150}
+                  height={150}
+                  priority
+                />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
+              A Cosmic Card Game of Risk and Timing
+            </h1>
+            <p className="text-xl text-slate-300 mb-8">
+              Scroll to explore the Void.
+            </p>
+          </div>
+        </section>
+
+        {/* Section 2: The Void - Right aligned */}
+        <section className="content-section min-h-screen flex flex-col justify-center items-end text-right pointer-events-auto">
+          <div className="max-w-md md:max-w-lg backdrop-blur-md bg-slate-950/60 p-8 rounded-3xl border border-slate-800 shadow-2xl">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+              The Void is Counting Down
+            </h2>
+            <p className="text-lg md:text-xl text-slate-200 leading-relaxed">
+              Every game is a race against an invisible threat. Play safe, or feed the Void with high-risk cards that might take everyone out.
+              <br/><br/>
+              <span className="text-indigo-400 font-semibold">Will you survive the collapse?</span>
+            </p>
+          </div>
+        </section>
+
+        {/* Section 3: Mechanics - Left aligned */}
+        <section className="content-section min-h-screen flex flex-col justify-center items-start pointer-events-auto">
+          <div className="flex flex-col gap-6 max-w-md md:max-w-lg w-full">
+            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-indigo-500 transition-colors">
+              <h3 className="text-2xl font-bold text-indigo-400 mb-2">Draft</h3>
+              <p className="text-slate-300 text-lg">Select anomalies and build your hand carefully. Every card counts.</p>
+            </div>
+            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-violet-500 transition-colors">
+               <h3 className="text-2xl font-bold text-violet-400 mb-2">Risk</h3>
+               <p className="text-slate-300 text-lg">Push the Void Count higher to gain power. Is it worth the danger?</p>
+            </div>
+            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-sky-500 transition-colors">
+               <h3 className="text-2xl font-bold text-sky-400 mb-2">Survive</h3>
+               <p className="text-slate-300 text-lg">Be the last one standing when the count hits zero.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: CTA - Centered / Bottom */}
+        <section className="content-section min-h-[80vh] flex flex-col items-center justify-center text-center pb-32 pointer-events-auto">
+           <div className="max-w-2xl backdrop-blur-md bg-slate-950/60 p-10 rounded-3xl border border-indigo-500/30 shadow-[0_0_50px_rgba(79,70,229,0.2)]">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Enter?
+            </h2>
+            <p className="text-xl mb-8 text-slate-300">
+              Join the early access list or pre-order the deck today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <PrimaryButton href={STRIPE_CHECKOUT_URL} className="text-lg px-10 py-4">
+                Pre-order Now
+              </PrimaryButton>
+              <PrimaryButton href="/how-to-play" variant="secondary" className="text-lg px-10 py-4">
+                Learn More
+              </PrimaryButton>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer - Inside the scroll container at the very end */}
+        <div className="pointer-events-auto mt-auto">
+          <SiteFooter />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+      </div>
+    </main>
   );
 }
