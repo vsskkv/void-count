@@ -58,7 +58,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(({ className =
 
         {/* Centered VOID COUNT Text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-          <div className="relative flex flex-col items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center -mt-[8%]">
             {/* VOID Text */}
             <div 
               className="font-extrabold leading-[0.9] mb-1 relative"
@@ -105,7 +105,71 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(({ className =
             >
               COUNT
             </div>
+            
+            {/* VC Logo Circle - Below VOID COUNT */}
+            <div 
+              className="mt-6 flex items-center justify-center"
+              style={{
+                width: isHero ? "min(10vh, 12vw)" : "60px",
+                height: isHero ? "min(10vh, 12vw)" : "60px",
+              }}
+            >
+              <div 
+                className="w-full h-full rounded-full border-2 border-white flex items-center justify-center"
+                style={{
+                  boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+                }}
+              >
+                <span 
+                  className="text-white font-semibold"
+                  style={{
+                    fontSize: isHero ? "min(3vh, 4vw)" : "1.5rem",
+                    letterSpacing: "0.15em",
+                    marginLeft: "0.15em",
+                  }}
+                >
+                  VC
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom Section: Copyright, Social Links, and Button */}
+        <div className="absolute bottom-0 left-0 right-0 pb-4 px-4 flex flex-col items-center gap-3 z-10">
+          {/* Copyright */}
+          <p 
+            className="text-white text-center"
+            style={{
+              fontSize: isHero ? "min(1.2vh, 1.5vw)" : "0.75rem",
+            }}
+          >
+            © 2026 Void Count. All rights reserved.
+          </p>
+          
+          {/* Social Links */}
+          <div 
+            className="flex justify-center gap-6"
+            style={{
+              fontSize: isHero ? "min(1.2vh, 1.5vw)" : "0.75rem",
+            }}
+          >
+            <a href="#" className="text-white hover:text-purple-300 transition-colors">Twitter</a>
+            <a href="#" className="text-white hover:text-purple-300 transition-colors">Discord</a>
+            <a href="#" className="text-white hover:text-purple-300 transition-colors">Instagram</a>
+          </div>
+          
+          {/* Prototype Card Art Button */}
+          <button
+            className="px-6 py-2 rounded-lg uppercase font-semibold text-white border border-purple-500/50 bg-black/50 hover:bg-purple-500/20 hover:border-purple-400 transition-all"
+            style={{
+              fontSize: isHero ? "min(1vh, 1.2vw)" : "0.7rem",
+              letterSpacing: "0.1em",
+              boxShadow: "0 0 10px rgba(168, 85, 247, 0.3)",
+            }}
+          >
+            PROTOTYPE CARD ART
+          </button>
         </div>
       </div>
     </div>
