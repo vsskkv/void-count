@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -125,16 +124,43 @@ export default function HomePage() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent pointer-events-none" />
             
             <div className="relative mb-8">
-               {/* Logo Glow Effect */}
-               <div className="absolute -inset-8 bg-indigo-500/30 blur-2xl rounded-full opacity-60 mix-blend-screen pointer-events-none" />
-               <Image
-                  src="/void-count-logo.png"
-                  alt="Void Count logo"
-                  width={160}
-                  height={160}
-                  priority
-                  className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]"
-                />
+               {/* Circular Logo with Vortex Design */}
+               <div className="relative w-40 h-40 rounded-full overflow-hidden border-2 border-white/20" style={{ boxShadow: "0 0 20px rgba(168, 85, 247, 0.4)" }}>
+                 {/* Vortex Background */}
+                 <div 
+                   className="absolute inset-0 rounded-full"
+                   style={{
+                     background: `
+                       radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.8) 0%, rgba(124, 58, 237, 0.6) 25%, transparent 60%),
+                       conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(139, 92, 246, 0.5) 45deg, rgba(167, 139, 250, 0.4) 90deg, transparent 135deg, rgba(196, 181, 253, 0.4) 180deg, rgba(124, 58, 237, 0.5) 225deg, transparent 270deg, rgba(139, 92, 246, 0.4) 315deg, transparent 360deg)
+                     `,
+                     animation: "vortex 15s linear infinite",
+                   }}
+                 />
+                 {/* VOID COUNT Text Overlay */}
+                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                   <div className="relative flex flex-col items-center justify-center">
+                     <div className="text-white font-extrabold text-xs mb-0.5 relative leading-tight" style={{ letterSpacing: "0.08em", textShadow: "0 0 8px rgba(168, 85, 247, 0.9)" }}>
+                       <span 
+                         className="absolute -top-[0.5em] text-white pointer-events-none"
+                         style={{
+                           left: "calc(25% + 0.05em)",
+                           fontSize: "0.35em",
+                           fontWeight: "bold",
+                           textShadow: "0 0 6px rgba(168, 85, 247, 1)",
+                           transform: "translateX(-50%)",
+                         }}
+                       >
+                         ∅
+                       </span>
+                       VOID
+                     </div>
+                     <div className="text-white font-extrabold text-xs leading-tight" style={{ letterSpacing: "0.08em", textShadow: "0 0 8px rgba(168, 85, 247, 0.9)" }}>
+                       COUNT
+                     </div>
+                   </div>
+                 </div>
+               </div>
             </div>
             <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
               A Cosmic Card Game of Risk and Timing
