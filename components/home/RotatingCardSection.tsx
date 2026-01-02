@@ -20,7 +20,9 @@ export const RotatingCardSection = () => {
       ease: "sine.inOut",
     });
 
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
