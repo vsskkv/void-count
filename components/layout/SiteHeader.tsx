@@ -5,7 +5,7 @@ export const SiteHeader = () => {
     <header className="w-full p-6 flex justify-between items-center border-b border-slate-800/50 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50">
       <div className="text-2xl font-extrabold tracking-wider">
         <Link href="/" className="text-white hover:text-indigo-400 transition-colors">
-          COUNT VII
+          VOID COUNT
         </Link>
       </div>
       <nav className="hidden md:flex gap-8 text-sm font-medium text-slate-300">
