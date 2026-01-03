@@ -1,130 +1,95 @@
 "use client";
 
 import { forwardRef } from "react";
+import styles from "./GameCard.module.css";
 
 interface GameCardProps {
   className?: string;
   variant?: "hero" | "standard";
 }
 
-export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(({ className = "", variant = "standard" }, ref) => {
-  
-  const isHero = variant === "hero";
+export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
+  ({ className = "", variant = "standard" }, ref) => {
+    const isHero = variant === "hero";
 
-  const containerClasses = isHero 
-    ? "relative h-[60vh] md:h-[75vh] w-auto aspect-[2/3] max-w-[85vw] max-h-[900px]"
-    : "relative w-full h-full"; // Standard variant fills parent
+    const containerClasses =
+      variant === "hero"
+        ? "relative h-[60vh] md:h-[75vh] w-auto aspect-[2/3] max-w-[85vw] max-h-[900px]"
+        : "relative w-full h-full"; // Standard variant fills parent
 
-  const textClasses = isHero
-    ? "text-[min(8vh,10vw)]"
-    : "text-6xl"; // Standard variant uses fixed sizing (parent should control scale via transform if needed, or just fit)
+    return (
+      <div className={`perspective-[1000px] ${className}`}>
+        <div
+          ref={ref}
+          className={`${containerClasses} ${styles.card} shadow-[0_30px_80px_rgba(0,0,0,0.7)]`}
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {/* FRONT (Void Count cover) */}
+          <div className={`${styles.face} ${styles.front}`}>
+            <div className={styles.vortexWrap}>
+              <div className={styles.vortexC} />
+              <div className={styles.vortexA} />
+              <div className={styles.vortexB} />
+            </div>
 
-  return (
-    <div className={`perspective-[1000px] ${className}`}>
-      <div
-        ref={ref}
-        className={`${containerClasses} rounded-2xl md:rounded-3xl bg-black shadow-[0_30px_80px_rgba(0,0,0,0.7)]`}
-        style={{ 
-          transformStyle: "preserve-3d",
-          border: "2px solid rgba(168, 85, 247, 1)",
-          boxShadow: "0 0 25px rgba(168, 85, 247, 0.9), 0 0 50px rgba(168, 85, 247, 0.6), 0 0 75px rgba(168, 85, 247, 0.3), 0 30px 80px rgba(0,0,0,0.7)",
-        }}
-      >
-        {/* Base dark background */}
-        <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-black" />
-        
-        {/* Swirling Purple Vortex Background - Circular Counter-clockwise */}
-        <div 
-          className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden"
-          style={{
-            background: `
-              radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.9) 0%, rgba(124, 58, 237, 0.7) 15%, rgba(167, 139, 250, 0.5) 30%, rgba(196, 181, 253, 0.3) 45%, transparent 65%),
-              conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(139, 92, 246, 0.6) 30deg, rgba(167, 139, 250, 0.5) 60deg, rgba(196, 181, 253, 0.4) 90deg, transparent 120deg, rgba(124, 58, 237, 0.5) 150deg, rgba(139, 92, 246, 0.4) 180deg, transparent 210deg, rgba(167, 139, 250, 0.5) 240deg, rgba(196, 181, 253, 0.4) 270deg, transparent 300deg, rgba(124, 58, 237, 0.5) 330deg, transparent 360deg)
-            `,
-            animation: "vortex 20s linear infinite",
-          }}
-        />
-        
-        {/* Additional swirling layers for depth and motion - counter-clockwise */}
-        <div 
-          className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden"
-          style={{
-            background: `
-              conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(196, 181, 253, 0.5) 45deg, rgba(167, 139, 250, 0.4) 90deg, transparent 135deg, rgba(139, 92, 246, 0.5) 180deg, rgba(124, 58, 237, 0.4) 225deg, transparent 270deg, rgba(196, 181, 253, 0.4) 315deg, transparent 360deg)
-            `,
-            animation: "vortex-reverse 25s linear infinite",
-            opacity: 0.85,
-          }}
-        />
-        
-        {/* Streaks layer for wispy effect */}
-        <div 
-          className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden"
-          style={{
-            background: `
-              radial-gradient(ellipse 80% 60% at 50% 50%, rgba(196, 181, 253, 0.4) 0%, transparent 50%),
-              conic-gradient(from 45deg at 50% 50%, transparent 0deg, rgba(167, 139, 250, 0.3) 60deg, transparent 120deg, rgba(139, 92, 246, 0.3) 180deg, transparent 240deg, rgba(196, 181, 253, 0.3) 300deg, transparent 360deg)
-            `,
-            animation: "vortex 30s linear infinite",
-            opacity: 0.7,
-          }}
-        />
+            <div className={styles.vignette} />
+            <div className={styles.sheen} />
 
-        {/* Centered VOID COUNT Text with 3D Metallic Effect */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-          <div className="relative flex flex-col items-center justify-center">
-            {/* VOID Text */}
-            <div 
-              className="font-extrabold leading-[0.9] mb-1 relative"
-              style={{
-                fontSize: textClasses.includes('min') ? textClasses : 'inherit',
-                background: "linear-gradient(to bottom, #ffffff 0%, #f3e8ff 40%, #e9d5ff 70%, #ddd6fe 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textShadow: "4px 4px 0px rgba(79, 70, 229, 0.9), 6px 6px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(168, 85, 247, 0.3)",
-                letterSpacing: "0.05em",
-                filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.9))",
-              }}
-            >
-              {/* Empty Set Symbol above O */}
-              <span 
-                className="absolute -top-[0.8em] pointer-events-none"
-                style={{
-                  left: "calc(25% + 0.05em)", // Position above the "O" in VOID (accounting for letter spacing)
-                  fontSize: isHero ? "min(2vh, 2.5vw)" : "0.4em",
-                  fontWeight: "bold",
-                  color: "#ffffff",
-                  textShadow: "0 0 12px rgba(168, 85, 247, 0.9), 2px 2px 4px rgba(0, 0, 0, 0.8)",
-                  transform: "translateX(-50%)",
-                }}
+            <div className={styles.titleWrap}>
+              <div
+                className={styles.title}
+                style={{ fontSize: isHero ? "min(11vh, 12vw)" : "3.75rem" }}
               >
-                ∅
-              </span>
+                <span className={styles.word}>
+                  <span
+                    className={styles.emptySet}
+                    style={{ fontSize: isHero ? "min(3vh, 3.2vw)" : "1.05rem" }}
+                  >
+                    ∅
+                  </span>
+                  VOID
+                </span>
+                <span className={styles.word}>COUNT</span>
+              </div>
+            </div>
+          </div>
+
+          {/* BACK (Void card back) */}
+          <div className={`${styles.face} ${styles.back}`}>
+            <div className={styles.backBg} />
+            <div className={styles.backParticles} />
+            <div className={styles.backRing} />
+
+            <div
+              className={styles.backLabelTop}
+              style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}
+            >
               VOID
             </div>
-            
-            {/* COUNT Text */}
-            <div 
-              className="font-extrabold leading-[0.9]"
-              style={{
-                fontSize: textClasses.includes('min') ? textClasses : 'inherit',
-                background: "linear-gradient(to bottom, #ffffff 0%, #f3e8ff 40%, #e9d5ff 70%, #ddd6fe 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textShadow: "4px 4px 0px rgba(79, 70, 229, 0.9), 6px 6px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(168, 85, 247, 0.3)",
-                letterSpacing: "0.05em",
-                filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.9))",
-              }}
+            <div
+              className={styles.backLabelBottom}
+              style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}
             >
-              COUNT
+              VOID
+            </div>
+
+            <div className={`${styles.pip} ${styles.pipTL}`}>
+              <span style={{ fontSize: isHero ? "min(3.4vh, 4vw)" : "1.75rem" }}>
+                0
+              </span>
+            </div>
+            <div className={`${styles.pip} ${styles.pipBR}`}>
+              <span style={{ fontSize: isHero ? "min(3.4vh, 4vw)" : "1.75rem" }}>
+                0
+              </span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 GameCard.displayName = "GameCard";
+
+
