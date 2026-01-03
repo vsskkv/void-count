@@ -11,6 +11,13 @@
   }
 }
 
+.inner {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+}
+
 /* Two-sided planes */
 .face {
   position: absolute;
