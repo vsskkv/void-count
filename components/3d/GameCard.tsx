@@ -8,6 +8,7 @@ interface GameCardProps {
   variant?: "hero" | "standard";
   frontSrc?: string;
   backSrc?: string;
+  frontAlt?: string;
   manualRef?: React.Ref<HTMLDivElement>;
 }
 
@@ -18,6 +19,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
       variant = "standard",
       frontSrc = "/void-count-card-front.png",
       backSrc = "/void-count-card-back.png",
+      frontAlt = "Void Count strategic card game front",
       manualRef,
     },
     ref
@@ -51,7 +53,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                   <img
                     className={styles.image}
                     src={frontSrc}
-                    alt="Void Count strategic card game front"
+                    alt={frontAlt}
                     draggable={false}
                     onError={() => setUseImages(false)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}

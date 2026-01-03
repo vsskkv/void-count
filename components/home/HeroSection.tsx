@@ -101,6 +101,7 @@ export const HeroSection = () => {
               <GameCard
                 variant="standard"
                 frontSrc="/void-count-double-your-hand-card.png"
+                frontAlt="Void Count strategic card game – Double Your Hand card"
                 className="w-full h-full"
               />
             </div>
@@ -109,6 +110,7 @@ export const HeroSection = () => {
               <GameCard
                 variant="standard"
                 frontSrc="/void-count-toss-card.png"
+                frontAlt="Void Count strategic card game – Toss card"
                 className="w-full h-full"
               />
             </div>
@@ -117,6 +119,7 @@ export const HeroSection = () => {
               <GameCard
                 variant="hero"
                 frontSrc="/void-count-card-back.png"
+                frontAlt="Void Count strategic card game – Card Back"
                 className="w-full h-full shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
               />
             </div>

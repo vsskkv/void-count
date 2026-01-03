@@ -3,20 +3,20 @@ import HomePageClient from "@/components/pages/HomePageClient";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Void Count™ – Strategic Card Game | Perfect Gift for Board & Card Game Fans",
+  title: "Void Count™ | New Strategic Card Game for Family & Friends | Kickstarter",
   description:
-    "Void Count is a fast-paced strategic card game full of sabotage, bluffing and clever play. A perfect gift for board game and card game lovers.",
+    "Discover Void Count, the newest strategic card game built for sabotage and big laughs. The perfect gift for board game fans. Join the chaos on Kickstarter soon!",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Void Count™ – Strategic Card Game | Perfect Gift for Board & Card Game Fans",
+    title: "Void Count™ | New Strategic Card Game for Family & Friends | Kickstarter",
     description:
-      "Void Count is a fast-paced strategic card game full of sabotage, bluffing and clever play. A perfect gift for board game and card game lovers.",
+      "Discover Void Count, the newest strategic card game built for sabotage and big laughs. The perfect gift for board game fans. Join the chaos on Kickstarter soon!",
     url: "/",
   },
   twitter: {
-    title: "Void Count™ – Strategic Card Game | Perfect Gift for Board & Card Game Fans",
+    title: "Void Count™ | New Strategic Card Game for Family & Friends | Kickstarter",
     description:
-      "Void Count is a fast-paced strategic card game full of sabotage, bluffing and clever play. A perfect gift for board game and card game lovers.",
+      "Discover Void Count, the newest strategic card game built for sabotage and big laughs. The perfect gift for board game fans. Join the chaos on Kickstarter soon!",
   },
 };
 

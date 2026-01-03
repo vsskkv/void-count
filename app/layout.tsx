@@ -96,7 +96,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Void Count",
-    description: SITE_DESCRIPTION,
+    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. The perfect gift for family and friends who love board games and strategy. Launching soon on Kickstarter.",
     image: `${siteUrl}/void-count-logo.png`,
     brand: {
       "@type": "Brand",
@@ -108,6 +108,10 @@ export default function RootLayout({
       availability: "https://schema.org/PreOrder",
       price: "0.00",
       priceCurrency: "GBP",
+      seller: {
+        "@type": "Organization",
+        name: SITE_NAME,
+      },
     },
   };
 

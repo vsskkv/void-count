@@ -13,18 +13,20 @@ import { TurnFlow } from "@/components/how-to-play/TurnFlow";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Play Void Count | Card Game Rules & Strategy",
+  title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
   description:
-    "Learn how to play Void Count. A fast-paced strategic card game of risk, timing, and sabotage. Easy to learn, brutal to master.",
+    "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
   alternates: { canonical: "/how-to-play" },
   openGraph: {
-    title: `How to Play | ${SITE_NAME}`,
-    description: SITE_DESCRIPTION,
+    title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
+    description:
+      "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
     url: "/how-to-play",
   },
   twitter: {
-    title: `How to Play | ${SITE_NAME}`,
-    description: SITE_DESCRIPTION,
+    title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
+    description:
+      "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
   },
 };
 
@@ -83,7 +85,7 @@ export default function HowToPlayPage() {
                 Origin
               </span>
               <span className="font-bold text-white uppercase italic">
-                Designed in UK
+                Designed in the UK
               </span>
             </div>
           </div>

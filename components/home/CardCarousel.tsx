@@ -117,7 +117,7 @@ export const CardCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalCards = CARD_DATA.length;
-  const radius = 650; // Distance from center to each card
+  const radius = 650; // Distance from centre to each card
   const angleStep = (2 * Math.PI) / totalCards; // Angle between cards
 
   useEffect(() => {
@@ -134,7 +134,7 @@ export const CardCarousel = () => {
         const x = Math.sin(angle) * radius;
         const z = Math.cos(angle) * radius;
         
-        // Rotate card to face OUTWARD from center
+        // Rotate card to face OUTWARD from centre
         const faceOutwardRotation = (angle * 180) / Math.PI;
 
         // Position and orient the card in the circle
@@ -252,6 +252,7 @@ export const CardCarousel = () => {
                 variant="standard"
                 frontSrc={card.front}
                 backSrc={card.back}
+                frontAlt={`Void Count strategic card game – ${card.name} card`}
                 manualRef={(el: HTMLDivElement | null) => {
                   cardInnerRefs.current[i] = el;
                 }}

@@ -6,15 +6,15 @@ export const SEOContentSections = () => {
       {/* What is Void Count? */}
       <section className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 text-white tracking-tighter uppercase italic">
-          What Is <span className="text-indigo-500">Void Count?</span>
+          The <span className="text-indigo-500">New Card Game</span> to Play
         </h2>
         <p className="text-lg sm:text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-          Void Count is a strategic card game designed for players who love
+          Void Count is the perfect new card game to play with friends and family.
+          It's a strategic experience designed for players who love
           clever plays, unexpected twists, and a bit of friendly sabotage.
-          Whether you're looking for a fast-paced game night with friends or a
-          tactical challenge for family gatherings, Void Count delivers an
-          unforgettable experience where every move counts and the "Void" is
-          always waiting to claim your points.
+          Whether you're looking for a fast-paced game night or a
+          tactical challenge for your next gathering, Void Count delivers an
+          unforgettable experience where every move counts.
         </p>
       </section>
 
@@ -23,7 +23,7 @@ export const SEOContentSections = () => {
         <div className="bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-10 text-white tracking-tighter uppercase italic text-center">
             The Perfect Gift for <br className="hidden sm:block" />
-            <span className="text-purple-500">Board & Card Game Lovers</span>
+            <span className="text-purple-500">Family and Friends</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">

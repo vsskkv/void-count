@@ -4,9 +4,9 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Void Count | Strategic Sabotage Card Game",
+  title: "About Void Count | The Story Behind the New Strategy Card Game",
   description:
-    "Void Count is a fast-paced card game of risk, bluffing, and sabotage. Stay below the limit, outplay your friends, and use clever power moves to win.",
+    "Discover the origins of Void Count, a card game designed in the UK for social sabotage and laughs. Learn why it's the perfect gift for board game lovers and Kickstarter fans.",
   alternates: { canonical: "/about" },
 };
 
@@ -77,12 +77,12 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">🎲</span>
-                <span className="font-bold uppercase italic tracking-tight text-slate-200">Game nights with friends</span>
+                <span className="text-3xl">🃏</span>
+                <span className="font-bold uppercase italic tracking-tight text-slate-200">The perfect new card game to play</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
                 <span className="text-3xl">👨‍👩‍👧‍👦</span>
-                <span className="font-bold uppercase italic tracking-tight text-slate-200">Families with teens</span>
+                <span className="font-bold uppercase italic tracking-tight text-slate-200">Gifts for family and friends</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
                 <span className="text-3xl">🎁</span>
