@@ -2,17 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
-
-/**
- * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
- */
-const SafeImage = (props: any) => {
-  const ImageComponent = Image as any;
-  return <ImageComponent {...props} />;
-};
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -69,12 +59,11 @@ export const HeroSection = () => {
 
       <div className="relative max-w-5xl mx-auto text-center flex flex-col items-center">
         <div className="hero-logo mb-8 flex justify-center">
-          <SafeImage
+          <img
             src="/void-count-logo.png"
             alt="Void Count logo"
             width={260}
             height={260}
-            priority
           />
         </div>
 
@@ -87,7 +76,11 @@ export const HeroSection = () => {
         </p>
 
         <div className="hero-cta flex justify-center flex-wrap gap-4">
-          <PrimaryButton href={STRIPE_CHECKOUT_URL}>Pre-order the deck</PrimaryButton>
+          <PrimaryButton 
+            onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Join the Waitlist
+          </PrimaryButton>
           <PrimaryButton href="/how-to-play" variant="secondary">
             Learn how to play
           </PrimaryButton>

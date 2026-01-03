@@ -3,23 +3,15 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+import Link from "next/link";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
+import { KICKSTARTER_URL } from "@/lib/constants";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { GameCard } from "@/components/3d/GameCard";
 import { WaitlistSection } from "@/components/home/WaitlistSection";
 
 gsap.registerPlugin(ScrollTrigger);
-
-/**
- * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
- */
-const SafeImage = (props: any) => {
-  const ImageComponent = Image as any;
-  return <ImageComponent {...props} />;
-};
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -58,10 +50,6 @@ export default function HomePage() {
       // Animate content sections entering from left and right
       const sections = gsap.utils.toArray<HTMLElement>(".content-section");
       sections.forEach((section, i) => {
-        // Push content further out: -100 for left, 100 for right
-        // Only applies to the first 3 sections which alternate
-        // Intro (0), Void (1), Mechanics (2)
-        
         // Waitlist section (which might be index 3 now) should fade up
         const isSideSection = i < 3; 
         
@@ -153,10 +141,18 @@ export default function HomePage() {
             <p className="relative z-10 text-lg md:text-2xl text-slate-200 mb-6 md:mb-8 font-medium leading-relaxed">
               The ultimate cosmic race of <span className="text-indigo-400 font-bold">risk</span>, <span className="text-purple-400 font-bold">strategy</span>, and <span className="text-cyan-400 font-bold">timing</span>.
             </p>
-            <div className="relative z-10 flex gap-4">
+            <div className="relative z-10 flex flex-wrap gap-4">
               <div className="px-6 py-3 bg-white text-slate-950 font-black rounded-xl hover:scale-105 transition-transform cursor-default text-sm md:text-base">
                 SCROLL TO PLAY
               </div>
+              <a 
+                href={KICKSTARTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-[#05ce78]/20 text-[#05ce78] border border-[#05ce78]/40 font-black rounded-xl hover:bg-[#05ce78]/30 hover:scale-105 transition-all text-sm md:text-base flex items-center gap-2"
+              >
+                KICKSTARTER
+              </a>
             </div>
           </div>
         </section>
@@ -215,12 +211,20 @@ export default function HomePage() {
               The first edition is almost here. Join the waitlist to be first in line when the Void opens.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
-              <button 
-                onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl md:text-2xl font-black px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-xl transform hover:scale-105 transition-all"
+              <Link 
+                href="#waitlist-form"
+                className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl md:text-2xl font-black px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-xl transform hover:scale-105 transition-all flex justify-center items-center"
               >
                 Join the Waitlist
-              </button>
+              </Link>
+              <a 
+                href={KICKSTARTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-[#05ce78]/20 text-[#05ce78] border-2 border-[#05ce78]/40 text-xl md:text-2xl font-black px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-xl transform hover:scale-105 transition-all flex justify-center items-center gap-2"
+              >
+                KICKSTARTER
+              </a>
               <PrimaryButton href="/how-to-play" variant="secondary" className="w-full sm:w-auto text-lg md:text-xl px-8 md:px-10 py-4 md:py-5 rounded-2xl border-white/20 hover:bg-white/10">
                 How to Play
               </PrimaryButton>

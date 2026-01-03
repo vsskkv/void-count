@@ -1,5 +1,6 @@
-import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
+"use client";
+
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ProductCarousel } from "@/components/shop/ProductCarousel";
@@ -15,13 +16,11 @@ export default function ShopPage() {
         </h1>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl w-full items-center">
-          {/* Product Carousel */}
           <div className="flex justify-center relative">
              <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full -z-10 scale-75" />
              <ProductCarousel />
           </div>
           
-          {/* Product Details */}
           <div className="flex flex-col gap-6 text-center md:text-left">
             <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Void Count: Base Deck</h2>
@@ -45,12 +44,12 @@ export default function ShopPage() {
             </div>
 
             <div className="pt-4">
-                <button 
-                  onClick={() => window.location.href = '/#waitlist-form'}
-                  className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-all text-lg"
+                <Link 
+                  href="/#waitlist-form"
+                  className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-all text-lg inline-block text-center"
                 >
                   Join the Waitlist
-                </button>
+                </Link>
                 <p className="mt-4 text-xs text-slate-500">
                     The shop is opening soon. Join the waitlist to be first in line.
                 </p>

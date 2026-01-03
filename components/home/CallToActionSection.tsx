@@ -56,7 +56,12 @@ export const CallToActionSection = () => {
           </p>
         </div>
         <div className="flex flex-col gap-3 w-full md:w-auto">
-          <PrimaryButton href={STRIPE_CHECKOUT_URL}>Pre-order Now</PrimaryButton>
+          <button 
+            onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-3 rounded-lg transition-all"
+          >
+            Join the Waitlist
+          </button>
         </div>
       </div>
     </section>

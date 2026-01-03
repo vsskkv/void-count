@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef, useMemo, useState } from "react";
-import Image from "next/image";
 import styles from "./GameCard.module.css";
 
 interface GameCardProps {
@@ -11,14 +10,6 @@ interface GameCardProps {
   backSrc?: string;
 }
 
-/**
- * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
- */
-const SafeImage = (props: any) => {
-  const ImageComponent = Image as any;
-  return <ImageComponent {...props} />;
-};
-
 export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
   ({ className = "", variant = "standard", frontSrc = "/card-front.png", backSrc = "/card-back.png" }, ref) => {
     const isHero = variant === "hero";
@@ -26,7 +17,6 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
 
     const shouldUseImages = useMemo(() => {
       // If either image fails to load, we fall back to CSS-rendered art automatically.
-      // Also allows users to intentionally disable by passing empty strings.
       return useImages && Boolean(frontSrc) && Boolean(backSrc);
     }, [useImages, frontSrc, backSrc]);
 
@@ -46,15 +36,13 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           <div className={`${styles.face} ${styles.front}`}>
             {shouldUseImages ? (
               <>
-                <SafeImage
+                <img
                   className={styles.image}
                   src={frontSrc}
                   alt="Void Count card front"
                   draggable={false}
                   onError={() => setUseImages(false)}
-                  fill
-                  sizes={isHero ? "100vw" : "256px"}
-                  priority={isHero}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <div className={styles.neonBorder} />
               </>
@@ -95,14 +83,13 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           <div className={`${styles.face} ${styles.back}`}>
             {shouldUseImages ? (
               <>
-                <SafeImage
+                <img
                   className={styles.image}
                   src={backSrc}
                   alt="Void Count card back"
                   draggable={false}
                   onError={() => setUseImages(false)}
-                  fill
-                  sizes={isHero ? "100vw" : "256px"}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <div className={styles.neonBorder} />
               </>
