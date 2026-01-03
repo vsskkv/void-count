@@ -36,11 +36,12 @@ export const HeroSection = () => {
       });
 
       gsap.from(".hero-logo", {
-        x: 100,
+        scale: 0.8,
         opacity: 0,
         duration: 1.2,
         delay: 0.3,
         ease: "power4.out",
+        force3D: true,
       });
     }, containerRef);
 
@@ -93,11 +94,11 @@ export const HeroSection = () => {
         </div>
 
         {/* Hero Card Visual */}
-        <div className="hero-logo flex-1 relative w-full max-w-[350px] sm:max-w-[450px] aspect-[2.5/3.5] lg:max-w-none lg:h-[600px] flex justify-center items-center">
-          <div className="absolute inset-0 bg-indigo-500/20 blur-[120px] rounded-full animate-pulse" />
+        <div className="hero-logo flex-1 relative w-full max-w-[280px] sm:max-w-[450px] aspect-[2.5/3.5] lg:max-w-none lg:h-[600px] flex justify-center items-center">
+          <div className="absolute inset-0 bg-indigo-500/20 blur-[80px] sm:blur-[120px] rounded-full animate-pulse" />
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Background Card */}
-            <div className="absolute w-[240px] sm:w-[300px] md:w-[350px] transform -rotate-12 -translate-x-12 opacity-40">
+            <div className="absolute w-[180px] sm:w-[300px] md:w-[350px] transform -rotate-12 -translate-x-8 sm:-translate-x-12 opacity-40 will-change-transform">
               <GameCard
                 variant="standard"
                 frontSrc="/void-count-double-your-hand-card.png"
@@ -106,7 +107,7 @@ export const HeroSection = () => {
               />
             </div>
             {/* Middle Card */}
-            <div className="absolute w-[240px] sm:w-[300px] md:w-[350px] transform rotate-6 translate-x-8 opacity-60">
+            <div className="absolute w-[180px] sm:w-[300px] md:w-[350px] transform rotate-6 translate-x-4 sm:translate-x-8 opacity-60 will-change-transform">
               <GameCard
                 variant="standard"
                 frontSrc="/void-count-toss-card.png"
@@ -115,12 +116,12 @@ export const HeroSection = () => {
               />
             </div>
             {/* Front Card */}
-            <div className="relative w-[240px] sm:w-[300px] md:w-[350px] transform -rotate-3 z-10">
+            <div className="relative w-[180px] sm:w-[300px] md:w-[350px] transform -rotate-3 z-10 will-change-transform">
               <GameCard
                 variant="hero"
                 frontSrc="/void-count-card-back.png"
                 frontAlt="Void Count strategic card game – Card Back"
-                className="w-full h-full shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
+                className="w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.6)] sm:shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
               />
             </div>
           </div>

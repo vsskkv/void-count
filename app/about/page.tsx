@@ -15,12 +15,12 @@ export default function AboutPage() {
     <main className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
       <SiteHeader />
 
-      <div className="pt-24 md:pt-32 pb-16 px-4 max-w-4xl mx-auto">
+      <div className="pt-32 md:pt-48 pb-16 px-6 max-w-4xl mx-auto">
         <div className="mb-12 text-center md:text-left">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8]">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8]">
             About <span className="text-indigo-500">Void Count</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-200 font-bold italic leading-tight">
+          <p className="text-lg md:text-2xl text-slate-200 font-bold italic leading-tight">
             Void Count is a fast-paced card game of risk, bluffing, and
             sabotage. Stay below the limit, outplay your friends, and use
             clever power moves to keep your score at zero.
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">A unique gift for gamers</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">🍻</span>
+                <span className="text-3xl">🎮</span>
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">Casual strategy fans</span>
               </div>
             </div>

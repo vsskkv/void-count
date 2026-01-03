@@ -8,9 +8,9 @@ export const HowItWorksSection = () => {
           HOW <span className="text-indigo-500">VOID COUNT</span> WORKS
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12">
           {/* Step 1 */}
-          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-indigo-500/30 transition-all group">
+          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-indigo-500/30 transition-all group will-change-transform">
             <div className="absolute -top-6 left-8 w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-black text-white shadow-[0_10px_30px_rgba(79,70,229,0.4)] group-hover:scale-110 transition-transform">
               1
             </div>
@@ -23,7 +23,7 @@ export const HowItWorksSection = () => {
           </div>
 
           {/* Step 2 */}
-          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 transition-all group">
+          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 transition-all group will-change-transform">
             <div className="absolute -top-6 left-8 w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center text-2xl font-black text-white shadow-[0_10px_30px_rgba(147,51,234,0.4)] group-hover:scale-110 transition-transform">
               2
             </div>
@@ -36,7 +36,7 @@ export const HowItWorksSection = () => {
           </div>
 
           {/* Step 3 */}
-          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-blue-500/30 transition-all group">
+          <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-white/5 hover:border-blue-500/30 transition-all group will-change-transform">
             <div className="absolute -top-6 left-8 w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl font-black text-white shadow-[0_10px_30px_rgba(37,99,235,0.4)] group-hover:scale-110 transition-transform">
               3
             </div>

@@ -3,11 +3,11 @@ import Link from 'next/link';
 export const SiteFooter = () => {
   return (
     <footer className="w-full py-12 px-4 text-center text-slate-300 text-sm relative z-50">
-      <div className="max-w-4xl mx-auto flex flex-col gap-6">
-        <div className="flex justify-center gap-8">
-          <Link href="/" className="hover:text-white transition-colors">HOME</Link>
-          <Link href="/about" className="hover:text-white transition-colors">ABOUT</Link>
-          <Link href="/how-to-play" className="hover:text-white transition-colors">HOW TO PLAY</Link>
+      <div className="max-w-4xl mx-auto flex flex-col gap-8">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+          <Link href="/" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">HOME</Link>
+          <Link href="/about" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">ABOUT</Link>
+          <Link href="/how-to-play" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">HOW TO PLAY</Link>
         </div>
         <div>
           <p>&copy; 2026 Void Count. All rights reserved.</p>

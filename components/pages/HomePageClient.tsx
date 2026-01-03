@@ -103,7 +103,7 @@ export default function HomePageClient() {
       // Animate content sections entering from left and right
       const sections = gsap.utils.toArray<HTMLElement>(".content-section");
       sections.forEach((section, i) => {
-        const direction = i % 2 === 0 ? -100 : 100;
+        const direction = i % 2 === 0 ? -50 : 50; // Smaller movement for better performance
         gsap.fromTo(
           section,
           {
@@ -113,12 +113,13 @@ export default function HomePageClient() {
           {
             opacity: 1,
             x: 0,
-            duration: 1,
+            duration: 0.8,
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
-              end: "top 50%",
-              scrub: true,
+              start: "top 90%",
+              end: "top 60%",
+              scrub: 1, // Smooth scrub
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -196,16 +197,16 @@ export default function HomePageClient() {
       {/* Scrollable Content Sections */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
         {/* Section 1: Social Proof - The "Friends" Hook */}
-        <section className="content-section min-h-[100svh] flex flex-col justify-center items-center py-16 md:py-20">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center items-center py-12 md:py-20 will-change-transform">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Card Images Grid - Static */}
-            <div className="relative h-[450px] sm:h-[550px] lg:h-[650px] order-1 lg:order-1 flex items-center justify-center">
+            <div className="relative h-[300px] sm:h-[500px] lg:h-[650px] order-1 lg:order-1 flex items-center justify-center mb-4 lg:mb-0">
               {/* Background glow */}
-              <div className="absolute inset-0 bg-indigo-600/10 blur-[120px] rounded-full" />
+              <div className="absolute inset-0 bg-indigo-600/10 blur-[60px] sm:blur-[120px] rounded-full" />
 
               {/* Overlapping Card Pile */}
-              <div className="relative w-full max-w-[400px] aspect-[2.5/3.5]">
-                <div className="absolute inset-0 transform -rotate-12 -translate-x-16 translate-y-4">
+              <div className="relative w-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5]">
+                <div className="absolute inset-0 transform -rotate-12 -translate-x-6 sm:-translate-x-16 translate-y-2 sm:translate-y-4 will-change-transform">
                   <img
                     src="/void-count-sabotage-card.png"
                     alt="Void Count strategic card game – Sabotage card"
@@ -214,7 +215,7 @@ export default function HomePageClient() {
                     className="w-full h-full object-contain rounded-xl opacity-40 shadow-2xl"
                   />
                 </div>
-                <div className="absolute inset-0 transform rotate-12 translate-x-16 -translate-y-4">
+                <div className="absolute inset-0 transform rotate-12 translate-x-6 sm:translate-x-16 -translate-y-2 sm:-translate-y-4 will-change-transform">
                   <img
                     src="/void-count-toss-card.png"
                     alt="Void Count strategic card game – Toss card"
@@ -223,16 +224,16 @@ export default function HomePageClient() {
                     className="w-full h-full object-contain rounded-xl opacity-60 shadow-2xl"
                   />
                 </div>
-                <div className="absolute inset-0 transform -rotate-6 -translate-y-8 scale-105 z-10">
+                <div className="absolute inset-0 transform -rotate-6 -translate-y-4 sm:-translate-y-8 scale-105 z-10 will-change-transform">
                   <img
                     src="/void-count-double-your-hand-card.png"
                     alt="Void Count strategic card game – Double Your Hand card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain rounded-xl shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
+                    className="w-full h-full object-contain rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
                   />
                 </div>
-                <div className="absolute inset-0 transform rotate-3 translate-y-12 translate-x-4 scale-95">
+                <div className="absolute inset-0 transform rotate-3 translate-y-6 sm:translate-y-12 translate-x-2 sm:translate-x-4 scale-95 will-change-transform">
                   <img
                     src="/void-count-take-two-card.png"
                     alt="Void Count strategic card game – Take Two card"
@@ -245,17 +246,17 @@ export default function HomePageClient() {
             </div>
 
             {/* Right: Content */}
-            <div className="text-left lg:text-right order-2 lg:order-2">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 text-white tracking-tighter leading-[0.9] uppercase italic">
+            <div className="text-center lg:text-right order-2 lg:order-2 px-2 sm:px-0">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 text-white tracking-tighter leading-[0.9] uppercase italic">
                 LOWEST SCORE <br />
                 WINS THE <br />
                 <span className="text-purple-500">ROUND.</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed font-bold italic mb-8 max-w-2xl">
+              <p className="text-lg sm:text-xl md:text-2xl text-slate-200 leading-relaxed font-bold italic mb-8 max-w-2xl mx-auto lg:ml-auto lg:mr-0">
                 You will be betrayed. Trust no one. <br className="hidden md:block" />
                 Someone always gets cocky, and calling "Count" too early hurts.
               </p>
-              <div className="flex flex-wrap lg:justify-end gap-2 sm:gap-3 md:gap-4">
+              <div className="flex flex-wrap justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4">
                 <div className="px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
                   ⚡ 100% Chaos
                 </div>
@@ -267,12 +268,11 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        {/* Section 2: The Einstein Mechanics - Strategic Appeal */}
-        <section className="content-section min-h-[100svh] flex flex-col justify-center py-16 md:py-20">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center py-12 md:py-20 will-change-transform">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Content */}
-            <div className="flex flex-col gap-6 md:gap-8 order-2 lg:order-1">
-              <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+            <div className="flex flex-col gap-6 md:gap-8 order-2 lg:order-1 px-2 sm:px-0">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] text-center lg:text-left">
                 CLEVERNESS
                 <br />
                 REQUIRED.
@@ -309,13 +309,13 @@ export default function HomePageClient() {
 
                 <div className="group bg-gradient-to-r from-indigo-900/40 to-purple-900/40 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-indigo-500/30">
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">🍻</div>
+                    <div className="text-3xl sm:text-4xl flex-shrink-0">🎮</div>
                     <div>
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase italic tracking-tighter mb-2">
                         Game Night Essential
                       </h3>
                       <p className="text-slate-200 text-base sm:text-lg font-bold italic">
-                        Fast, addictive, and perfect with drinks. One round and you'll be hooked for the rest of the night.
+                        Fast, addictive, and perfect for game nights. One round and you'll be hooked for the rest of the night.
                       </p>
                     </div>
                   </div>
@@ -324,16 +324,16 @@ export default function HomePageClient() {
             </div>
 
             {/* Right: Card Images Grid - Auto-rotating */}
-            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] order-1 lg:order-2">
+            <div className="relative h-[300px] sm:h-[500px] lg:h-[650px] order-1 lg:order-2 flex items-center justify-center mb-4 lg:mb-0">
               {/* Background glow */}
-              <div className="absolute inset-0 bg-indigo-600/10 blur-[120px] rounded-full" />
+              <div className="absolute inset-0 bg-indigo-600/10 blur-[60px] sm:blur-[120px] rounded-full" />
 
               {/* Card Grid */}
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5]">
                 {outgoingCardSet !== null && (
                   <div
                     key={`out-${outgoingCardSet}`}
-                    className="absolute inset-0 grid grid-cols-2 gap-4 p-4"
+                    className="absolute inset-0 grid grid-cols-2 gap-2 sm:gap-4 p-2 sm:p-4"
                     style={{
                       animation:
                         "smoothFadeOut 1s cubic-bezier(0.4, 0, 0.2, 1) forwards",
@@ -345,7 +345,7 @@ export default function HomePageClient() {
                       <div
                         key={`out-${outgoingCardSet}-${index}`}
                         className={`relative ${
-                          index === 1 ? "mt-8" : index === 2 ? "-mt-8" : ""
+                          index === 1 ? "mt-4 sm:mt-8" : index === 2 ? "-mt-4 sm:-mt-8" : ""
                         }`}
                       >
                         <img
@@ -353,10 +353,10 @@ export default function HomePageClient() {
                           alt={card.alt}
                           loading="lazy"
                           decoding="async"
-                          className="w-full h-full object-contain rounded-xl"
+                          className="w-full h-full object-contain rounded-xl will-change-transform"
                           style={{
                             filter:
-                              "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
+                              "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)) drop-shadow(0 10px 20px rgba(99, 102, 241, 0.4))",
                           }}
                         />
                       </div>
@@ -366,7 +366,7 @@ export default function HomePageClient() {
 
                 <div
                   key={`in-${currentCardSet}`}
-                  className="absolute inset-0 grid grid-cols-2 gap-4 p-4"
+                  className="absolute inset-0 grid grid-cols-2 gap-2 sm:gap-4 p-2 sm:p-4"
                   style={{
                     animation:
                       "smoothFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards",
@@ -377,7 +377,7 @@ export default function HomePageClient() {
                     <div
                       key={`in-${currentCardSet}-${index}`}
                       className={`relative ${
-                        index === 1 ? "mt-8" : index === 2 ? "-mt-8" : ""
+                        index === 1 ? "mt-4 sm:mt-8" : index === 2 ? "-mt-4 sm:-mt-8" : ""
                       }`}
                     >
                       <img
@@ -385,10 +385,10 @@ export default function HomePageClient() {
                         alt={card.alt}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-contain rounded-xl"
+                        className="w-full h-full object-contain rounded-xl will-change-transform"
                         style={{
                           filter:
-                            "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
+                            "drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)) drop-shadow(0 10px 20px rgba(99, 102, 241, 0.4))",
                         }}
                       />
                     </div>

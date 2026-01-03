@@ -36,13 +36,13 @@ export default function HowToPlayPage() {
       <SiteHeader />
 
       {/* Hero Section */}
-      <div className="pt-32 md:pt-48 pb-12 md:pb-24 px-4 text-center">
+      <div className="pt-32 md:pt-48 pb-12 md:pb-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-8xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
             HOW TO PLAY <br />
             <span className="text-indigo-500">VOID COUNT</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-200 font-bold italic mb-10 max-w-2xl mx-auto leading-tight">
+          <p className="text-lg md:text-2xl text-slate-200 font-bold italic mb-10 max-w-2xl mx-auto leading-tight">
             A fast-paced strategic card game of risk, timing, and sabotage.{" "}
             <br className="hidden md:block" />
             Easy to learn. Brutal to master.

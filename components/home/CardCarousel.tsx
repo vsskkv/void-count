@@ -117,7 +117,8 @@ export const CardCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalCards = CARD_DATA.length;
-  const radius = 650; // Distance from centre to each card
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const radius = isMobile ? 350 : 650; // Distance from centre to each card
   const angleStep = (2 * Math.PI) / totalCards; // Angle between cards
 
   useEffect(() => {
@@ -142,6 +143,7 @@ export const CardCarousel = () => {
           x,
           z,
           rotateY: faceOutwardRotation,
+          force3D: true, // Force hardware acceleration
         });
       });
 
@@ -154,10 +156,11 @@ export const CardCarousel = () => {
         // Stagger the start of each card's flip for a wave effect
         gsap.to(inner, {
           rotateY: 360,
-          duration: 8, // Each card takes 8 seconds for a full flip
+          duration: 10, // Slower flip for better performance on mobile
           repeat: -1,
           ease: "none",
-          delay: i * 0.3, // Stagger by 0.3s per card
+          delay: i * 0.4, // Stagger by 0.4s per card
+          force3D: true,
         });
       });
 
@@ -166,14 +169,15 @@ export const CardCarousel = () => {
       // ═══════════════════════════════════════════════════════════
       gsap.to(carouselRef.current, {
         rotationY: -360, // Full rotation
-        duration: 50, // Slow, majestic rotation (50 seconds per full spin)
+        duration: 60, // Slow, majestic rotation (60 seconds per full spin)
         repeat: -1,
         ease: "none",
+        force3D: true,
       });
     }, carouselRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [radius, angleStep]);
 
   // Manual rotation with arrow buttons
   const rotate = (direction: 1 | -1) => {
@@ -189,6 +193,7 @@ export const CardCarousel = () => {
       duration: 1,
       ease: "power2.inOut",
       overwrite: true,
+      force3D: true, // Force 3D for smoother rotation
       onComplete: () => {
         setCurrentIndex((prev) => (prev + direction + totalCards) % totalCards);
         setIsAnimating(false);
@@ -222,15 +227,15 @@ export const CardCarousel = () => {
 
       {/* 3D Carousel Stage */}
       <div 
-        className="perspective-[2000px] w-full max-w-7xl flex items-center justify-center flex-1"
+        className="perspective-[1500px] sm:perspective-[2000px] w-full max-w-7xl flex items-center justify-center flex-1"
         style={{ 
-          height: "clamp(350px, 50vh, 600px)",
-          minHeight: "350px"
+          height: "clamp(300px, 40vh, 600px)",
+          minHeight: "300px"
         }}
       >
         <div
           ref={carouselRef}
-          className="relative preserve-3d"
+          className="relative preserve-3d will-change-transform"
           style={{
             transformStyle: "preserve-3d",
             width: "100%",
@@ -241,11 +246,11 @@ export const CardCarousel = () => {
             <div
               key={card.id}
               ref={(el) => { cardContainerRefs.current[i] = el; }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 preserve-3d"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 preserve-3d will-change-transform"
               style={{
                 transformStyle: "preserve-3d",
-                width: "clamp(140px, 20vw, 280px)",
-                height: "clamp(196px, 28vw, 392px)",
+                width: "clamp(100px, 15vw, 280px)",
+                height: "clamp(140px, 21vw, 392px)",
               }}
             >
               <GameCard
@@ -267,11 +272,11 @@ export const CardCarousel = () => {
       <button
         onClick={() => rotate(-1)}
         disabled={isAnimating}
-        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_50px_rgba(99,102,241,0.6)] group active:scale-95"
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] group active:scale-95"
         aria-label="Previous card"
       >
         <svg 
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" 
+          className="w-6 h-6 sm:w-8 sm:h-8 group-hover:scale-110 transition-transform" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -283,11 +288,11 @@ export const CardCarousel = () => {
       <button
         onClick={() => rotate(1)}
         disabled={isAnimating}
-        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_50px_rgba(99,102,241,0.6)] group active:scale-95"
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] group active:scale-95"
         aria-label="Next card"
       >
         <svg 
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" 
+          className="w-6 h-6 sm:w-8 sm:h-8 group-hover:scale-110 transition-transform" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"

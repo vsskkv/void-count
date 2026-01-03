@@ -36,11 +36,11 @@ export const GameExperienceSection = () => {
 
   return (
     <section className="relative z-20 py-24 md:py-32">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        <h2 className="text-4xl md:text-6xl font-black mb-4 text-white tracking-tighter uppercase italic leading-tight">
+      <div className="max-w-5xl mx-auto px-6 sm:px-6 text-center">
+        <h2 className="text-4xl md:text-7xl font-black mb-4 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
           WHAT <span className="text-indigo-500">ACTUALLY HAPPENS</span>
         </h2>
-        <p className="text-xl md:text-2xl text-slate-400 font-bold mb-16 uppercase tracking-widest">
+        <p className="text-lg md:text-3xl text-slate-400 font-black mb-16 uppercase tracking-tighter italic">
           One round and you'll get it.
         </p>
 
@@ -48,9 +48,9 @@ export const GameExperienceSection = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className={`relative p-8 rounded-3xl bg-gradient-to-br ${step.color} border border-white/5 backdrop-blur-sm flex flex-col items-center justify-center transform hover:scale-105 transition-all duration-300 group`}
+              className={`relative p-8 rounded-[2rem] bg-gradient-to-br ${step.color} border border-white/5 backdrop-blur-sm flex flex-col items-center justify-center transform hover:scale-105 transition-all duration-300 group will-change-transform`}
             >
-              <div className="text-5xl mb-4 group-hover:animate-bounce">
+              <div className="text-6xl mb-4 group-hover:animate-bounce">
                 {step.emoji}
               </div>
               <p className="text-xl font-black text-white uppercase italic tracking-tight leading-tight">
