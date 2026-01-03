@@ -11,13 +11,22 @@ export const WaitlistSection = () => {
     e.preventDefault();
     setStatus('loading');
     
-    // Placeholder for future Google Drive / Sheets integration
-    // For now, simulate a network request
-    setTimeout(() => {
-      console.log("Waitlist email submitted:", email);
+    try {
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9CyMcfd44Vuop8bnM1sDm8omPLZ7yiQeI_Yuh7AvPU8r4gTGmQLRQ_Ze7hd8-f39Odw/exec';
+      
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
       setStatus('success');
       setEmail('');
-    }, 1000);
+    } catch (error) {
+      console.error("Waitlist error:", error);
+      setStatus('error');
+    }
   };
 
   return (
