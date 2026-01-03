@@ -16,8 +16,13 @@ export const metadata: Metadata = {
   title: "Void Count",
   description: "A game of mystery and perception",
   icons: {
-    icon: "/void-count-logo.png",
-    apple: "/void-count-logo.png",
+    icon: [
+      { url: "/void-count-logo.png" },
+      { url: "/void-count-logo.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/void-count-logo.png" },
+    ],
   },
 };
 
