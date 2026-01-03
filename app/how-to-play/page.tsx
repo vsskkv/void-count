@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import { RuleSection } from "@/components/how-to-play/RuleSection";
-import { DrawPileVisual, PowerCardVisual, CountCallVisual, DemoCard } from "@/components/how-to-play/DemoCards";
+import {
+  DrawPileVisual,
+  PowerCardVisual,
+  CountCallVisual,
+  DemoCard,
+} from "@/components/how-to-play/DemoCards";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { TurnFlow } from "@/components/how-to-play/TurnFlow";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Play",
-  description: `Learn how to play ${SITE_NAME}. ${SITE_DESCRIPTION}`,
+  title: "How to Play Void Count | Card Game Rules & Strategy",
+  description:
+    "Learn how to play Void Count. A fast-paced strategic card game of risk, timing, and sabotage. Easy to learn, brutal to master.",
   alternates: { canonical: "/how-to-play" },
   openGraph: {
     title: `How to Play | ${SITE_NAME}`,
@@ -24,196 +32,291 @@ export default function HowToPlayPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
       <SiteHeader />
-      
-      <div className="pt-24 md:pt-32 pb-12 md:pb-16 px-4 md:px-6 text-center">
-        <h1 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200 leading-tight">
-          How to Play Void Count
-        </h1>
-        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
-          <span className="text-xs md:text-sm text-indigo-400 font-bold uppercase tracking-widest mt-2 block">
-            2-8 Players • Ages 7+
-          </span>
-        </p>
+
+      {/* Hero Section */}
+      <div className="pt-32 md:pt-48 pb-12 md:pb-24 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-8xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+            HOW TO PLAY <br />
+            <span className="text-indigo-500">VOID COUNT</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-200 font-bold italic mb-10 max-w-2xl mx-auto leading-tight">
+            A fast-paced strategic card game of risk, timing, and sabotage.{" "}
+            <br className="hidden md:block" />
+            Easy to learn. Brutal to master.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            <Link
+              href="/#waitlist-form"
+              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl font-black px-10 py-5 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
+            >
+              Get the Game
+            </Link>
+          </div>
+          <div className="mt-12 flex flex-wrap justify-center gap-6 md:gap-12 opacity-70">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
+                Players
+              </span>
+              <span className="font-bold text-white uppercase italic">
+                2–8 Players
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
+                Ages
+              </span>
+              <span className="font-bold text-white uppercase italic">
+                7+ Years
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
+                Time
+              </span>
+              <span className="font-bold text-white uppercase italic">
+                20–30 Mins
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
+                Origin
+              </span>
+              <span className="font-bold text-white uppercase italic">
+                Designed in UK
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Aim of the Game */}
-      <RuleSection 
-        title="Aim of the Game"
-        alignment="left"
-        icon="🎯"
-        description={
-          <p>Avoid reaching the score limit by keeping the lowest total of Point Cards each round.</p>
-        }
-        cardVisual={
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-black mb-8 text-white tracking-tighter uppercase italic">
+            Aim of the <span className="text-indigo-500">Game</span>
+          </h2>
+          <p className="text-lg md:text-2xl text-slate-300 leading-relaxed font-bold italic mb-8">
+            Go low. Stay low. The goal is to have the lowest total score when
+            someone calls "Count". If you reach the limit, you're out.
+          </p>
           <div className="flex gap-4 justify-center">
-             <DemoCard src="/void-count-one-card.png" label="1 Point" />
-             <DemoCard src="/void-count-two-card.png" label="2 Points" />
+            <DemoCard src="/void-count-one-card.png" label="1 Point" />
+            <DemoCard src="/void-count-two-card.png" label="2 Points" />
           </div>
-        }
-      />
+        </div>
+      </div>
 
-      {/* Contents */}
-      <RuleSection 
-        title="Contents (116 Cards)"
-        alignment="right"
-        icon="📦"
-        description={
-          <ul className="list-disc list-inside space-y-2 ml-2 text-left">
-            <li><strong>Void Cards (0 Points):</strong> x4</li>
-            <li><strong>Point Cards (1–9 Points, 8 of each):</strong> x72</li>
-            <li><strong>Point Cards (10 Points, 8 each of: Blood Moon, Spring Waterfall, Desert Horizon, Blue Glacier):</strong> x32</li>
-            <li><strong>Power Cards:</strong> Each has a special effect (Take Two x2, Toss x2, Sabotage x3, Double Your Hand x1) x8</li>
-          </ul>
-        }
-        cardVisual={
-          <div className="grid grid-cols-2 gap-2">
-            <DemoCard src="/void-count-blue-glacier-card.png" label="Blue Glacier" />
-            <DemoCard src="/void-count-desert-horizon-card.png" label="Desert Horizon" />
-            <DemoCard src="/void-count-volcanix-lava-card.png" label="Volcanix Lava" />
-            <DemoCard src="/void-count-toxic-swamp-card.png" label="Toxic Swamp" />
-          </div>
-        }
-      />
+      {/* Turn Flow Section */}
+      <TurnFlow />
 
       {/* Game Setup */}
-      <RuleSection 
+      <RuleSection
         title="Game Setup"
         alignment="left"
         icon="🃏"
         description={
-          <ul className="list-disc list-inside space-y-2 ml-2 text-left">
-            <li>Shuffle all 116 cards.</li>
-            <li>Deal <strong>8 cards</strong> to each player.</li>
-            <li>Place the remaining cards face down in the centre – <strong>Draw Deck</strong>.</li>
-            <li>Flip the top card of the Draw Deck face up beside it – <strong>Open Pile</strong>. (The first open card can be any type (Point or Power)).</li>
-          </ul>
+          <div className="space-y-4">
+            <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
+              <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
+                1
+              </div>
+              <p className="text-slate-300">Shuffle all 116 custom cards.</p>
+            </div>
+            <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
+              <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
+                2
+              </div>
+              <p className="text-slate-300">Deal 8 cards to each player.</p>
+            </div>
+            <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
+              <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
+                3
+              </div>
+              <p className="text-slate-300">
+                Place the remaining cards face down as the Draw Deck.
+              </p>
+            </div>
+            <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
+              <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
+                4
+              </div>
+              <p className="text-slate-300">
+                Flip the top card to start the Open Pile.
+              </p>
+            </div>
+          </div>
         }
         cardVisual={<DrawPileVisual />}
       />
 
       {/* Turn Actions */}
-      <RuleSection 
+      <RuleSection
         title="On Your Turn"
         alignment="right"
         icon="🔄"
         description={
-          <div className="space-y-6 text-left">
-            <p>Do <strong>one</strong> of the following:</p>
-            
-            <div>
-              <h3 className="text-indigo-300 font-bold text-xl mb-2">1. Play Point Card(s)</h3>
-              <p className="mb-2">Play a single Point Card or multiple Point Cards of the <strong>same value</strong>.</p>
-              <ul className="list-disc list-inside pl-2 space-y-1 text-slate-400 text-sm">
-                <li>There are 4 different types of 10 value Point Cards: Blood Moon, Spring Waterfall, Desert Horizon, and Blue Glacier. Sets must be the <strong>exact same</strong> type (e.g., 2 Blood Moons).</li>
-                <li>If your played set matches the top card of the Open Pile, you <strong>do not draw</strong>.</li>
-                <li>Otherwise, you must <strong>draw 1 card</strong> after playing.</li>
-              </ul>
+          <div className="space-y-6">
+            <div className="p-6 bg-slate-900/60 rounded-3xl border border-white/5">
+              <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
+                1. Play Point Card(s)
+              </h3>
+              <p className="text-slate-300 mb-2">
+                Play a single card or a set of matching values. If they match
+                the top card, you don't draw. Otherwise, draw 1.
+              </p>
             </div>
 
-            <div>
-              <h3 className="text-indigo-300 font-bold text-xl mb-2">2. Play a Power Card</h3>
-              <p>Play onto the Open Pile and follow its effect immediately. Then, <strong>draw 1 card</strong> (unless playing Toss or the Power Card matches the previous Power Card on the Open Pile).</p>
+            <div className="p-6 bg-slate-900/60 rounded-3xl border border-white/5">
+              <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
+                2. Play a Power Card
+              </h3>
+              <p className="text-slate-300 mb-2">
+                Resolve the effect immediately. These are your best tools for
+                sabotaging opponents and lowering your own total.
+              </p>
             </div>
 
-            <div>
-              <h3 className="text-indigo-300 font-bold text-xl mb-2">3. Pick up from Open Pile</h3>
-              <p>Take the top card for strategic purposes. You must then play a <strong>different</strong> card from your hand in the same turn.</p>
-            </div>
-
-            <div>
-              <h3 className="text-indigo-300 font-bold text-xl mb-2">4. Call "Count"</h3>
-              <p>Call "Count" at the start of your turn if your hand totals <strong>7 points or less</strong> and contains <strong>no Power Cards</strong>. Everyone reveals their hand and the round ends immediately.</p>
+            <div className="p-6 bg-slate-900/60 rounded-3xl border border-white/5">
+              <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
+                3. Call "Count"
+              </h3>
+              <p className="text-slate-300">
+                If your hand totals 7 or less (and you have no Power Cards), you
+                can call "Count" to end the round.
+              </p>
             </div>
           </div>
         }
       />
 
       {/* Power Cards Explained */}
-      <RuleSection 
-        title="Power Cards Explained"
-        alignment="left"
-        icon="⚡"
-        description={
-          <div className="space-y-4 text-left">
-             <p className="text-sm italic text-slate-400 mb-4">Note: After resolving its effect, draw one card from the Draw Deck, except when playing a Toss Card or when the Power Card matches the previous Power Card.</p>
-             
-             <div>
-                <strong className="text-indigo-200">Take Two (Value 2):</strong>
-                <p>Choose a player to draw 2 cards. You draw 1 replacement card.</p>
-             </div>
-             
-             <div>
-                <strong className="text-indigo-200">Toss Card (Value 1):</strong>
-                <p>Discard any Point Card(s) of the same value. Do <strong>not</strong> draw a replacement card.</p>
-             </div>
-
-             <div>
-                <strong className="text-indigo-200">Sabotage Card (Value 3):</strong>
-                <p>Choose a player and give them one or more Point Cards of the same value. You draw 1 replacement card. (If it's your last card, no player is sabotaged).</p>
-             </div>
-
-             <div>
-                <strong className="text-indigo-200">Double Your Hand (Value 5):</strong>
-                <p>Choose another player. They must draw as many cards as they currently hold. Cannot be used on yourself.</p>
-             </div>
+      <div className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-6xl font-black mb-16 text-white tracking-tighter uppercase italic text-center">
+          POWER CARDS: <span className="text-indigo-500">SHOW & TELL</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
+            <DemoCard src="/void-count-take-two-card.png" label="Take Two" />
+            <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
+              Take Two
+            </h3>
+            <p className="text-slate-400 text-sm font-bold italic">
+              Force a player to draw 2. Perfect for late-game sabotage.
+            </p>
           </div>
-        }
-        cardVisual={<PowerCardVisual />}
-      />
-
-      {/* Game Rules Explained */}
-      <RuleSection 
-        title="Game Rules & Scoring"
-        alignment="right"
-        icon="📝"
-        description={
-          <div className="space-y-4 text-left">
-             <ul className="list-disc list-inside space-y-2">
-                <li><strong>Scoring Results:</strong> If caller has the lowest total, they score <strong>0</strong>. If someone else is lower, caller takes <strong>20 penalty points</strong>.</li>
-                <li><strong>Ties:</strong> If others tie with the caller for lowest, caller still scores 0.</li>
-                <li><strong>Score Cap:</strong> Max <strong>25 points</strong> per round per player.</li>
-                <li><strong>Counting Score:</strong> Point Cards are face value (1-10). Power Cards also have point values (1-5) after Count is called.</li>
-                <li><strong>Empty Hand:</strong> If turn ends with 0 cards, draw 1 card immediately. You cannot call Count with zero cards.</li>
-                <li><strong>Empty Draw Deck:</strong> Reshuffle Open Pile to make a new Draw Deck.</li>
-             </ul>
+          <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
+            <DemoCard src="/void-count-toss-card.png" label="Toss" />
+            <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
+              Toss
+            </h3>
+            <p className="text-slate-400 text-sm font-bold italic">
+              Discard point cards without drawing back. The fastest way to zero.
+            </p>
           </div>
-        }
-      />
+          <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
+            <DemoCard src="/void-count-sabotage-card.png" label="Sabotage" />
+            <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
+              Sabotage
+            </h3>
+            <p className="text-slate-400 text-sm font-bold italic">
+              Give your worst cards to someone else. Shift the burden.
+            </p>
+          </div>
+          <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
+            <DemoCard
+              src="/void-count-double-your-hand-card.png"
+              label="Double Your Hand"
+            />
+            <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
+              Double Up
+            </h3>
+            <p className="text-slate-400 text-sm font-bold italic">
+              A nuclear option. Force a rival to double their entire hand.
+            </p>
+          </div>
+        </div>
+      </div>
 
-      {/* Winning the Game */}
-      <RuleSection 
+      {/* Call Count Warning */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="bg-rose-500/10 border-2 border-rose-500/30 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/10 rounded-bl-full flex items-center justify-center text-3xl opacity-50">
+            ⚠️
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tighter uppercase italic leading-tight">
+            THE <span className="text-rose-500">"COUNT"</span> RISK
+          </h2>
+          <p className="text-xl md:text-2xl text-slate-200 font-bold italic leading-tight mb-8">
+            Calling Count is the ultimate gamble. If anyone beats your score,
+            you immediately take 20 penalty points.
+          </p>
+          <div className="bg-slate-900/60 p-6 rounded-2xl border border-white/5">
+            <p className="text-slate-400 uppercase tracking-widest text-xs font-black mb-2">
+              Example
+            </p>
+            <p className="text-slate-300 font-bold italic">
+              You call Count with 4 points. Another player reveals they only
+              have 3 points. You lose the gamble and take the penalty.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Winning Section */}
+      <RuleSection
         title="Winning the Game"
         alignment="left"
         icon="🏆"
         description={
           <div className="grid md:grid-cols-2 gap-6 text-left">
-             <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
-                <h3 className="font-bold text-indigo-300 mb-2">Option 1: Lowest Score</h3>
-                <p className="text-sm text-slate-300">Play until a player reaches/exceeds the limit (50-500). The player with the <strong>lowest overall score</strong> wins.</p>
-             </div>
-             <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
-                <h3 className="font-bold text-indigo-300 mb-2">Option 2: Elimination</h3>
-                <p className="text-sm text-slate-300">When a player reaches the limit (50-500), they are <strong>eliminated</strong>. Last player standing wins.</p>
-             </div>
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
+              <h3 className="font-bold text-indigo-300 mb-2 uppercase italic">
+                Option 1: Lowest Score
+              </h3>
+              <p className="text-sm text-slate-300">
+                Play until someone reaches the limit. The lowest overall score
+                wins.
+              </p>
+            </div>
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
+              <h3 className="font-bold text-indigo-300 mb-2 uppercase italic">
+                Option 2: Elimination
+              </h3>
+              <p className="text-sm text-slate-300">
+                Once you reach the limit, you're eliminated. Last player
+                standing wins.
+              </p>
+            </div>
           </div>
         }
         cardVisual={<CountCallVisual />}
       />
 
-      {/* Tips and Tricks */}
-      <RuleSection 
-        title="Tips & Tricks"
-        alignment="right"
-        icon="💡"
-        description={
-          <ul className="list-disc list-inside space-y-3 text-left">
-             <li><strong>Keep Void Cards!</strong> They are worth 0 and make calling Count easier.</li>
-             <li><strong>Don't hold Power Cards for too long.</strong> They stop you from calling "Count" and hold point values.</li>
-             <li><strong>Bluff & Time Wisely.</strong> Calling too early could cost you 20 points!</li>
-             <li><strong>Watch the Open Pile.</strong> Avoid picking up Power Cards late if the round is ending soon.</li>
-          </ul>
-        }
-      />
+      {/* Footer CTA */}
+      <section className="py-24 md:py-32 px-4 text-center">
+        <div className="max-w-4xl mx-auto bg-gradient-to-br from-indigo-900/20 to-purple-900/20 p-12 md:p-20 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/stars-bg.svg')] opacity-10" />
+          <h2 className="relative z-10 text-4xl md:text-7xl font-black mb-8 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+            READY TO <br />
+            <span className="text-indigo-500">START THE COUNT?</span>
+          </h2>
+          <div className="relative z-10 flex flex-col sm:flex-row justify-center items-center gap-6">
+            <Link
+              href="/#waitlist-form"
+              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-2xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
+            >
+              Get Void Count
+            </Link>
+            <Link
+              href="/about"
+              className="w-full sm:w-auto text-lg font-black text-slate-400 hover:text-white transition-colors uppercase tracking-widest"
+            >
+              Our Story
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </main>
