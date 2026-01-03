@@ -29,8 +29,8 @@ export default function HowToPlayPage() {
         }
         cardVisual={
           <div className="flex gap-4 justify-center">
-             <DemoCard value="0" type="void" color="violet" />
-             <DemoCard value="1" label="Point Card" color="sky" />
+             <DemoCard src="/One v1.png" label="1 Point" />
+             <DemoCard src="/Two v1.png" label="2 Points" />
           </div>
         }
       />
@@ -43,10 +43,18 @@ export default function HowToPlayPage() {
         description={
           <ul className="list-disc list-inside space-y-2 ml-2 text-left">
             <li><strong>Void Cards (0 Points):</strong> x4</li>
-            <li><strong>Point Cards (1–9 Points):</strong> x72 (8 of each)</li>
-            <li><strong>Point Cards (10 Points):</strong> x32 (8 each of: Blood Moon, Spring Waterfall, Desert Horizon, Blue Glacier)</li>
-            <li><strong>Power Cards:</strong> x8 (Take Two x2, Toss x2, Sabotage x3, Double Your Hand x1)</li>
+            <li><strong>Point Cards (1–9 Points, 8 of each):</strong> x72</li>
+            <li><strong>Point Cards (10 Points, 8 each of: Blood Moon, Spring Waterfall, Desert Horizon, Blue Glacier):</strong> x32</li>
+            <li><strong>Power Cards:</strong> Each has a special effect (Take Two x2, Toss x2, Sabotage x3, Double Your Hand x1) x8</li>
           </ul>
+        }
+        cardVisual={
+          <div className="grid grid-cols-2 gap-2">
+            <DemoCard src="/Blue Glacier v1.png" label="Blue Glacier" />
+            <DemoCard src="/Desert Horizon v1.png" label="Desert Horizon" />
+            <DemoCard src="/Volcanix Lava v1.png" label="Volcanix Lava" />
+            <DemoCard src="/Toxic Swamp v1.png" label="Toxic Swamp" />
+          </div>
         }
       />
 
@@ -60,7 +68,7 @@ export default function HowToPlayPage() {
             <li>Shuffle all 116 cards.</li>
             <li>Deal <strong>8 cards</strong> to each player.</li>
             <li>Place the remaining cards face down in the centre – <strong>Draw Deck</strong>.</li>
-            <li>Flip the top card of the Draw Deck face up beside it – <strong>Open Pile</strong>. (The first open card can be any type).</li>
+            <li>Flip the top card of the Draw Deck face up beside it – <strong>Open Pile</strong>. (The first open card can be any type (Point or Power)).</li>
           </ul>
         }
         cardVisual={<DrawPileVisual />}
@@ -79,8 +87,8 @@ export default function HowToPlayPage() {
               <h3 className="text-indigo-300 font-bold text-xl mb-2">1. Play Point Card(s)</h3>
               <p className="mb-2">Play a single Point Card or multiple Point Cards of the <strong>same value</strong>.</p>
               <ul className="list-disc list-inside pl-2 space-y-1 text-slate-400 text-sm">
-                <li>For 10-value cards (Blood Moon, etc.), sets must be the <strong>exact same</strong> type (e.g., 2 Blood Moons).</li>
-                <li>If your played set matches the Open Pile's top card value, you <strong>do not draw</strong>.</li>
+                <li>There are 4 different types of 10 value Point Cards: Blood Moon, Spring Waterfall, Desert Horizon, and Blue Glacier. Sets must be the <strong>exact same</strong> type (e.g., 2 Blood Moons).</li>
+                <li>If your played set matches the top card of the Open Pile, you <strong>do not draw</strong>.</li>
                 <li>Otherwise, you must <strong>draw 1 card</strong> after playing.</li>
               </ul>
             </div>
@@ -97,7 +105,7 @@ export default function HowToPlayPage() {
 
             <div>
               <h3 className="text-indigo-300 font-bold text-xl mb-2">4. Call "Count"</h3>
-              <p>Call "Count" at the start of your turn if your hand totals <strong>7 points or less</strong> and contains <strong>no Power Cards</strong>.</p>
+              <p>Call "Count" at the start of your turn if your hand totals <strong>7 points or less</strong> and contains <strong>no Power Cards</strong>. Everyone reveals their hand and the round ends immediately.</p>
             </div>
           </div>
         }
@@ -110,26 +118,26 @@ export default function HowToPlayPage() {
         icon="⚡"
         description={
           <div className="space-y-4 text-left">
-             <p className="text-sm italic text-slate-400 mb-4">Note: If you hold these cards after "Count" is called, they have a point value.</p>
+             <p className="text-sm italic text-slate-400 mb-4">Note: After resolving its effect, draw one card from the Draw Deck, except when playing a Toss Card or when the Power Card matches the previous Power Card.</p>
              
              <div>
                 <strong className="text-indigo-200">Take Two (Value 2):</strong>
-                <p>Play on Open Pile. Choose a player to draw 2 cards. You draw 1 replacement card.</p>
+                <p>Choose a player to draw 2 cards. You draw 1 replacement card.</p>
              </div>
              
              <div>
-                <strong className="text-indigo-200">Toss (Value 1):</strong>
-                <p>Play on Open Pile. Discard any number of Point Cards of the <strong>same value</strong>. Do <strong>not</strong> draw a replacement card.</p>
+                <strong className="text-indigo-200">Toss Card (Value 1):</strong>
+                <p>Discard any Point Card(s) of the same value. Do <strong>not</strong> draw a replacement card.</p>
              </div>
 
              <div>
-                <strong className="text-indigo-200">Sabotage (Value 3):</strong>
-                <p>Choose a player and give them one or more Point Cards of the same value from your hand. You draw 1 replacement card. (If it's your last card, just play it and draw 1).</p>
+                <strong className="text-indigo-200">Sabotage Card (Value 3):</strong>
+                <p>Choose a player and give them one or more Point Cards of the same value. You draw 1 replacement card. (If it's your last card, no player is sabotaged).</p>
              </div>
 
              <div>
                 <strong className="text-indigo-200">Double Your Hand (Value 5):</strong>
-                <p>Choose a player (not yourself). They must draw as many cards as they currently hold.</p>
+                <p>Choose another player. They must draw as many cards as they currently hold. Cannot be used on yourself.</p>
              </div>
           </div>
         }
@@ -142,34 +150,35 @@ export default function HowToPlayPage() {
         alignment="right"
         icon="📝"
         description={
-           <div className="space-y-4 text-left">
-              <ul className="list-disc list-inside space-y-2">
-                 <li><strong>Calling Count:</strong> If the caller has the lowest total, they score <strong>0</strong>. If someone else is lower, caller takes <strong>20 penalty points</strong>.</li>
-                 <li><strong>Ties:</strong> If others tie with the caller for lowest, caller still gets 0. Tied players take their hand total.</li>
-                 <li><strong>Score Cap:</strong> Max <strong>25 points</strong> per round per player.</li>
-                 <li><strong>Empty Hand:</strong> If your turn ends with 0 cards, you must draw 1 card immediately. You cannot call Count with an empty hand.</li>
-                 <li><strong>Reshuffle:</strong> If Draw Deck runs out, reshuffle Open Pile to make a new Draw Deck.</li>
-              </ul>
-           </div>
+          <div className="space-y-4 text-left">
+             <ul className="list-disc list-inside space-y-2">
+                <li><strong>Scoring Results:</strong> If caller has the lowest total, they score <strong>0</strong>. If someone else is lower, caller takes <strong>20 penalty points</strong>.</li>
+                <li><strong>Ties:</strong> If others tie with the caller for lowest, caller still scores 0.</li>
+                <li><strong>Score Cap:</strong> Max <strong>25 points</strong> per round per player.</li>
+                <li><strong>Counting Score:</strong> Point Cards are face value (1-10). Power Cards also have point values (1-5) after Count is called.</li>
+                <li><strong>Empty Hand:</strong> If turn ends with 0 cards, draw 1 card immediately. You cannot call Count with zero cards.</li>
+                <li><strong>Empty Draw Deck:</strong> Reshuffle Open Pile to make a new Draw Deck.</li>
+             </ul>
+          </div>
         }
       />
 
-       {/* Winning the Game */}
-       <RuleSection 
+      {/* Winning the Game */}
+      <RuleSection 
         title="Winning the Game"
         alignment="left"
         icon="🏆"
         description={
-           <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
-                 <h3 className="font-bold text-indigo-300 mb-2">Option 1: Lowest Score</h3>
-                 <p className="text-sm">Play until a player reaches the limit (50-500). The player with the <strong>lowest overall score</strong> wins.</p>
-              </div>
-              <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
-                 <h3 className="font-bold text-indigo-300 mb-2">Option 2: Elimination</h3>
-                 <p className="text-sm">Players reaching the limit are <strong>eliminated</strong>. Last player standing wins.</p>
-              </div>
-           </div>
+          <div className="grid md:grid-cols-2 gap-6 text-left">
+             <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
+                <h3 className="font-bold text-indigo-300 mb-2">Option 1: Lowest Score</h3>
+                <p className="text-sm text-slate-300">Play until a player reaches/exceeds the limit (50-500). The player with the <strong>lowest overall score</strong> wins.</p>
+             </div>
+             <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">
+                <h3 className="font-bold text-indigo-300 mb-2">Option 2: Elimination</h3>
+                <p className="text-sm text-slate-300">When a player reaches the limit (50-500), they are <strong>eliminated</strong>. Last player standing wins.</p>
+             </div>
+          </div>
         }
         cardVisual={<CountCallVisual />}
       />
@@ -182,9 +191,9 @@ export default function HowToPlayPage() {
         description={
           <ul className="list-disc list-inside space-y-3 text-left">
              <li><strong>Keep Void Cards!</strong> They are worth 0 and make calling Count easier.</li>
-             <li><strong>Don't hoard Power Cards.</strong> They stop you from calling "Count" and have point values if caught.</li>
-             <li><strong>Bluff & Time Wisely.</strong> Calling too early can cost you 20 points!</li>
-             <li><strong>Watch the Open Pile.</strong> Avoid picking up Power Cards late in the round.</li>
+             <li><strong>Don't hold Power Cards for too long.</strong> They stop you from calling "Count" and hold point values.</li>
+             <li><strong>Bluff & Time Wisely.</strong> Calling too early could cost you 20 points!</li>
+             <li><strong>Watch the Open Pile.</strong> Avoid picking up Power Cards late if the round is ending soon.</li>
           </ul>
         }
       />

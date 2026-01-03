@@ -124,12 +124,11 @@ export default function HomePage() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent pointer-events-none" />
             
             <div className="relative mb-8">
-               <Image
+               <img
                   src="/void-count-logo.png"
                   alt="Void Count logo"
                   width={160}
                   height={160}
-                  priority
                   className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                 />
             </div>

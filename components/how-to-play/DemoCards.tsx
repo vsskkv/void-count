@@ -7,14 +7,31 @@ export const DemoCard = ({
   value, 
   type = "point", 
   label,
-  color = "indigo" 
+  color = "indigo",
+  src
 }: { 
   value?: string | number, 
   type?: "point" | "power" | "void",
   label?: string,
-  color?: "indigo" | "violet" | "sky" | "rose"
+  color?: "indigo" | "violet" | "sky" | "rose",
+  src?: string
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+
+  if (src) {
+    return (
+      <div 
+        ref={cardRef}
+        className="relative w-32 h-48 rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105"
+      >
+        <img 
+          src={src} 
+          alt={label || "Card"} 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    );
+  }
 
   const getColorClasses = () => {
     switch (color) {
@@ -64,18 +81,12 @@ export const DrawPileVisual = () => {
   return (
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
       {/* Deck */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 bg-slate-800 rounded-xl border border-slate-600 shadow-xl">
-        <div className="absolute inset-0 flex items-center justify-center">
-           <div className="w-12 h-12 rounded-full border-2 border-slate-600 flex items-center justify-center opacity-30">
-             <span className="text-xs font-bold">VC</span>
-           </div>
-        </div>
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10">
+        <img src="/card-back.png" alt="Deck" className="w-full h-full object-cover" />
       </div>
       {/* Top Card (Animated) */}
-      <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 bg-indigo-900 rounded-xl border border-indigo-500 shadow-xl flex items-center justify-center z-10">
-         <div className="w-12 h-12 rounded-full border-2 border-indigo-400 flex items-center justify-center opacity-50">
-             <span className="text-xs font-bold text-indigo-200">VC</span>
-         </div>
+      <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10">
+        <img src="/card-back.png" alt="Top Card" className="w-full h-full object-cover" />
       </div>
     </div>
   );
@@ -96,8 +107,10 @@ export const PowerCardVisual = () => {
 
     return (
         <div ref={containerRef} className="flex gap-4">
-            <DemoCard value="T2" label="Take Two" type="power" color="rose" />
-            <DemoCard value="X" label="Toss" type="power" color="sky" />
+            <DemoCard src="/Take Two v1.png" label="Take Two" />
+            <DemoCard src="/Toss v1.png" label="Toss" />
+            <DemoCard src="/Sabotage v1.png" label="Sabotage" />
+            <DemoCard src="/Double Your Hand v1.png" label="Double Your Hand" />
         </div>
     );
 };
@@ -106,13 +119,13 @@ export const CountCallVisual = () => {
   return (
     <div className="flex gap-2 items-end">
        <div className="animate-bounce">
-          <DemoCard value="0" type="void" color="violet" />
+          <DemoCard src="/One v1.png" label="1 Point" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.1s' }}>
-          <DemoCard value="3" label="Points" color="indigo" />
+          <DemoCard src="/Two v1.png" label="2 Points" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
-          <DemoCard value="4" label="Points" color="indigo" />
+          <DemoCard src="/Four v1.png" label="4 Points" />
        </div>
        <div className="ml-4 flex flex-col justify-center h-48">
           <span className="text-4xl font-bold text-white">= 7</span>
