@@ -76,7 +76,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main ref={mainRef} className="relative bg-slate-950 min-h-[400vh]">
+    <main ref={mainRef} className="relative bg-slate-950 min-h-[400dvh] overflow-x-hidden">
       {/* Header - Fixed */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <SiteHeader />
@@ -91,10 +91,10 @@ export default function HomePage() {
       </div>
 
       {/* Scrollable Content Sections */}
-      <div className="relative z-20 w-full max-w-[95%] mx-auto px-4 md:px-12 pointer-events-none flex flex-col">
+      <div className="relative z-20 w-full max-w-[95%] mx-auto px-4 md:px-12 pointer-events-none flex flex-col overflow-x-hidden">
         
         {/* Section 1: Hero Intro - Clever & Social */}
-        <section className="content-section min-h-screen flex flex-col justify-center items-start pt-32 pb-20 pointer-events-auto px-4">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center items-start pt-32 pb-20 pointer-events-auto px-4">
           <div className="max-w-md md:max-w-2xl backdrop-blur-md bg-slate-950/60 p-6 md:p-12 rounded-3xl border border-indigo-500/30 overflow-hidden relative shadow-[0_0_80px_rgba(79,70,229,0.3)]">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-500/10 pointer-events-none" />
             
@@ -146,7 +146,7 @@ export default function HomePage() {
         </section>
 
         {/* Section 2: Social Proof - The "Friends" Hook */}
-        <section className="content-section min-h-screen flex flex-col justify-center items-end text-right pointer-events-auto px-4">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center items-end text-right pointer-events-auto px-4">
           <div className="max-w-md md:max-w-xl backdrop-blur-md bg-slate-950/80 p-8 md:p-14 rounded-[3rem] border border-purple-500/30 shadow-2xl relative overflow-hidden text-right">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full" />
             
@@ -164,7 +164,7 @@ export default function HomePage() {
         </section>
 
         {/* Section 3: The Einstein Mechanics - Strategic Appeal */}
-        <section className="content-section min-h-screen flex flex-col justify-center items-start pointer-events-auto px-4">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center items-start pointer-events-auto px-4">
           <div className="flex flex-col gap-6 md:gap-10 max-w-2xl w-full">
             <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter mb-2 md:mb-4 uppercase leading-[0.85]">
               CLEVERNESS<br/>
@@ -199,7 +199,7 @@ export default function HomePage() {
         </section>
 
         {/* Section 4: High-Energy CTA */}
-        <section className="content-section min-h-[90vh] flex flex-col items-center justify-center text-center pointer-events-auto px-4 py-20">
+        <section className="content-section min-h-[90svh] flex flex-col items-center justify-center text-center pointer-events-auto px-4 py-20">
            <div className="max-w-4xl w-full backdrop-blur-2xl bg-indigo-950/10 p-10 md:p-20 rounded-[3rem] md:rounded-[5rem] border-2 border-white/10 shadow-[0_0_120px_rgba(99,102,241,0.2)] relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10" />
             
