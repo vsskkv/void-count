@@ -15,9 +15,6 @@ export const SiteHeader = () => {
         {/* <Link href="/shop" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">
           SHOP
         </Link> */}
-        <Link href="/contact" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">
-          CONTACT
-        </Link>
       </nav>
     </header>
   );

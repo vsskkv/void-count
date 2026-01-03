@@ -57,9 +57,6 @@ export const CallToActionSection = () => {
         </div>
         <div className="flex flex-col gap-3 w-full md:w-auto">
           <PrimaryButton href={STRIPE_CHECKOUT_URL}>Pre-order Now</PrimaryButton>
-          <PrimaryButton href="/contact" variant="secondary">
-            Join early access list
-          </PrimaryButton>
         </div>
       </div>
     </section>
