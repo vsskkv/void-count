@@ -16,8 +16,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     {
       className = "",
       variant = "standard",
-      frontSrc = "/card-front.png",
-      backSrc = "/card-back.png",
+      frontSrc = "/void-count-card-front.png",
+      backSrc = "/void-count-card-back.png",
       manualRef,
     },
     ref
@@ -51,7 +51,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                   <img
                     className={styles.image}
                     src={frontSrc}
-                    alt="Void Count card front"
+                    alt="Void Count strategic card game front"
                     draggable={false}
                     onError={() => setUseImages(false)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -100,7 +100,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                   <img
                     className={styles.image}
                     src={backSrc}
-                    alt="Void Count card back"
+                    alt="Void Count strategic card game back"
                     draggable={false}
                     onError={() => setUseImages(false)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}

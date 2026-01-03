@@ -9,6 +9,9 @@ export const SiteHeader = () => {
         </Link>
       </div>
       <nav className="flex gap-4 md:gap-8 text-xs md:text-sm font-medium text-slate-300">
+        <Link href="/about" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap">
+          ABOUT
+        </Link>
         <Link href="/how-to-play" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap">
           HOW TO PLAY
         </Link>

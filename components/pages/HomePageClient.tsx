@@ -10,34 +10,75 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WaitlistSection } from "@/components/home/WaitlistSection";
 import { CardCarousel } from "@/components/home/CardCarousel";
+import { SEOContentSections } from "@/components/home/SEOContentSections";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Card sets for rotation
 const CARD_SETS = [
   [
-    { src: "/Eight v1.png", alt: "Eight Card", label: "Point Cards" },
-    { src: "/Blue Glacier v1.png", alt: "Blue Glacier", label: "Anomalies" },
-    { src: "/Take Two v1.png", alt: "Take Two", label: "Power Cards" },
     {
-      src: "/Volcanix Lava v1.png",
-      alt: "Volcanix Lava",
+      src: "/void-count-eight-card.png",
+      alt: "Void Count strategic card game – Eight card",
+      label: "Point Cards",
+    },
+    {
+      src: "/void-count-blue-glacier-card.png",
+      alt: "Void Count strategic card game – Blue Glacier anomaly card",
+      label: "Anomalies",
+    },
+    {
+      src: "/void-count-take-two-card.png",
+      alt: "Void Count strategic card game – Take Two power card",
+      label: "Power Cards",
+    },
+    {
+      src: "/void-count-volcanix-lava-card.png",
+      alt: "Void Count strategic card game – Volcanix Lava game changer card",
       label: "Game Changers",
     },
   ],
   [
-    { src: "/Three v1.png", alt: "Three Card", label: "Point Cards" },
-    { src: "/Desert Horizon v1.png", alt: "Desert Horizon", label: "Anomalies" },
-    { src: "/Sabotage v1.png", alt: "Sabotage", label: "Power Cards" },
-    { src: "/Toxic Swamp v1.png", alt: "Toxic Swamp", label: "Game Changers" },
+    {
+      src: "/void-count-three-card.png",
+      alt: "Void Count strategic card game – Three card",
+      label: "Point Cards",
+    },
+    {
+      src: "/void-count-desert-horizon-card.png",
+      alt: "Void Count strategic card game – Desert Horizon anomaly card",
+      label: "Anomalies",
+    },
+    {
+      src: "/void-count-sabotage-card.png",
+      alt: "Void Count strategic card game – Sabotage power card",
+      label: "Power Cards",
+    },
+    {
+      src: "/void-count-toxic-swamp-card.png",
+      alt: "Void Count strategic card game – Toxic Swamp game changer card",
+      label: "Game Changers",
+    },
   ],
   [
-    { src: "/Seven v1.png", alt: "Seven Card", label: "Point Cards" },
-    { src: "/Toss v1.png", alt: "Toss", label: "Power Cards" },
-    { src: "/Nine v1.png", alt: "Nine Card", label: "Point Cards" },
     {
-      src: "/Double Your Hand v1.png",
-      alt: "Double Your Hand",
+      src: "/void-count-seven-card.png",
+      alt: "Void Count strategic card game – Seven card",
+      label: "Point Cards",
+    },
+    {
+      src: "/void-count-toss-card.png",
+      alt: "Void Count strategic card game – Toss power card",
+      label: "Power Cards",
+    },
+    {
+      src: "/void-count-nine-card.png",
+      alt: "Void Count strategic card game – Nine card",
+      label: "Point Cards",
+    },
+    {
+      src: "/void-count-double-your-hand-card.png",
+      alt: "Void Count strategic card game – Double Your Hand power card",
       label: "Power Cards",
     },
   ],
@@ -129,6 +170,11 @@ export default function HomePageClient() {
       {/* Card Carousel Hero Section */}
       <CardCarousel />
 
+      {/* Visually Hidden H1 for SEO */}
+      <h1 className="sr-only">
+        Void Count: A Strategic Card Game Built for Sabotage, Bluffing and Big Laughs
+      </h1>
+
       {/* Scrollable Content Sections */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
         {/* Section 1: Social Proof - The "Friends" Hook */}
@@ -143,8 +189,8 @@ export default function HomePageClient() {
               <div className="relative w-full h-full grid grid-cols-2 gap-4 p-4">
                 <div className="relative">
                   <img
-                    src="/Sabotage v1.png"
-                    alt="Sabotage Card"
+                    src="/void-count-sabotage-card.png"
+                    alt="Void Count strategic card game – Sabotage card"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
@@ -156,8 +202,8 @@ export default function HomePageClient() {
                 </div>
                 <div className="relative mt-8">
                   <img
-                    src="/Toss v1.png"
-                    alt="Toss Card"
+                    src="/void-count-toss-card.png"
+                    alt="Void Count strategic card game – Toss card"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
@@ -169,8 +215,8 @@ export default function HomePageClient() {
                 </div>
                 <div className="relative -mt-8">
                   <img
-                    src="/Double Your Hand v1.png"
-                    alt="Double Your Hand Card"
+                    src="/void-count-double-your-hand-card.png"
+                    alt="Void Count strategic card game – Double Your Hand card"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
@@ -182,8 +228,8 @@ export default function HomePageClient() {
                 </div>
                 <div className="relative">
                   <img
-                    src="/Take Two v1.png"
-                    alt="Take Two Card"
+                    src="/void-count-take-two-card.png"
+                    alt="Void Count strategic card game – Take Two card"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
@@ -389,7 +435,12 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        {/* Section 4: Waitlist - Centered / Bottom */}
+        {/* Section 4: SEO Content */}
+        <div className="py-16 md:py-24">
+          <SEOContentSections />
+        </div>
+
+        {/* Section 5: Waitlist - Centered / Bottom */}
         <div className="py-16 md:py-20">
           <WaitlistSection />
         </div>

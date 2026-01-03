@@ -92,6 +92,25 @@ export default function RootLayout({
     url: siteUrl,
   };
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Void Count",
+    description: SITE_DESCRIPTION,
+    image: `${siteUrl}/void-count-logo.png`,
+    brand: {
+      "@type": "Brand",
+      name: "Void Count",
+    },
+    offers: {
+      "@type": "Offer",
+      url: siteUrl,
+      availability: "https://schema.org/PreOrder",
+      price: "0.00",
+      priceCurrency: "GBP",
+    },
+  };
+
   return (
     <html lang="en-GB">
       <body
@@ -106,6 +125,11 @@ export default function RootLayout({
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
         />
         <div className="min-h-screen flex flex-col bg-[radial-gradient(circle_at_top,#1d2540_0,transparent_55%),radial-gradient(circle_at_bottom,#020617_0,transparent_55%)]">
           {children}

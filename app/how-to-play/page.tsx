@@ -46,8 +46,8 @@ export default function HowToPlayPage() {
         }
         cardVisual={
           <div className="flex gap-4 justify-center">
-             <DemoCard src="/One v1.png" label="1 Point" />
-             <DemoCard src="/Two v1.png" label="2 Points" />
+             <DemoCard src="/void-count-one-card.png" label="1 Point" />
+             <DemoCard src="/void-count-two-card.png" label="2 Points" />
           </div>
         }
       />
@@ -67,10 +67,10 @@ export default function HowToPlayPage() {
         }
         cardVisual={
           <div className="grid grid-cols-2 gap-2">
-            <DemoCard src="/Blue Glacier v1.png" label="Blue Glacier" />
-            <DemoCard src="/Desert Horizon v1.png" label="Desert Horizon" />
-            <DemoCard src="/Volcanix Lava v1.png" label="Volcanix Lava" />
-            <DemoCard src="/Toxic Swamp v1.png" label="Toxic Swamp" />
+            <DemoCard src="/void-count-blue-glacier-card.png" label="Blue Glacier" />
+            <DemoCard src="/void-count-desert-horizon-card.png" label="Desert Horizon" />
+            <DemoCard src="/void-count-volcanix-lava-card.png" label="Volcanix Lava" />
+            <DemoCard src="/void-count-toxic-swamp-card.png" label="Toxic Swamp" />
           </div>
         }
       />
