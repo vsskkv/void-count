@@ -1,42 +1,14 @@
 .card {
   position: relative;
-  background: #000;
+  background: transparent;
   border-radius: 1.25rem;
-  overflow: hidden;
-  isolation: isolate;
+  transform-style: preserve-3d;
 }
 
 @media (min-width: 768px) {
   .card {
     border-radius: 1.5rem;
   }
-}
-
-/* Neon border like the prototype (outer glow + inner stroke) */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 50;
-  box-shadow:
-    0 0 0 2px rgba(168, 85, 247, 0.85),
-    0 0 24px rgba(168, 85, 247, 0.55),
-    0 0 60px rgba(168, 85, 247, 0.22);
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    radial-gradient(120% 90% at 50% 110%, rgba(168, 85, 247, 0.22) 0%, transparent 55%),
-    radial-gradient(90% 70% at 50% -10%, rgba(168, 85, 247, 0.10) 0%, transparent 55%),
-    radial-gradient(120% 120% at 0% 100%, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
 }
 
 /* Two-sided planes */
@@ -47,14 +19,32 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
+  background: #000;
+  overflow: hidden;
+  /* Add a subtle inner shadow to define the card edge if needed, 
+     but mostly rely on the PNG art */
+}
+
+/* Neon border ONLY for fallback case, or as a global effect if desired.
+   Moving it to a separate class to avoid covering images. */
+.neonBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow:
+    0 0 0 2px rgba(168, 85, 247, 0.85),
+    0 0 24px rgba(168, 85, 247, 0.55),
+    0 0 60px rgba(168, 85, 247, 0.22);
 }
 
 .front {
-  transform: rotateY(0deg) translateZ(0.5px);
+  transform: rotateY(0deg) translateZ(0.1px);
 }
 
 .back {
-  transform: rotateY(180deg) translateZ(0.5px);
+  transform: rotateY(180deg) translateZ(0.1px);
 }
 
 /* If using PNGs */
@@ -63,7 +53,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill; /* Use fill instead of cover to respect the exact PNG dimensions */
   border-radius: inherit;
   user-select: none;
   -webkit-user-drag: none;

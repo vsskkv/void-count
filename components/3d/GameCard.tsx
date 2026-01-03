@@ -23,7 +23,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
 
     const containerClasses =
       variant === "hero"
-        ? "relative h-[60vh] md:h-[75vh] w-auto aspect-[2/3] max-w-[85vw] max-h-[900px]"
+        ? "relative h-[60vh] md:h-[75vh] w-auto aspect-[2.5/3.5] max-w-[85vw] max-h-[900px]"
         : "relative w-full h-full"; // Standard variant fills parent
 
     return (
@@ -36,13 +36,16 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           {/* FRONT (Void Count cover) */}
           <div className={`${styles.face} ${styles.front}`}>
             {shouldUseImages ? (
-              <img
-                className={styles.image}
-                src={frontSrc}
-                alt="Void Count card front"
-                draggable={false}
-                onError={() => setUseImages(false)}
-              />
+              <>
+                <img
+                  className={styles.image}
+                  src={frontSrc}
+                  alt="Void Count card front"
+                  draggable={false}
+                  onError={() => setUseImages(false)}
+                />
+                <div className={styles.neonBorder} />
+              </>
             ) : (
               <>
                 <div className={styles.vortexWrap}>
@@ -71,6 +74,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     <span className={styles.word}>COUNT</span>
                   </div>
                 </div>
+                <div className={styles.neonBorder} />
               </>
             )}
           </div>
@@ -78,13 +82,16 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           {/* BACK (Void card back) */}
           <div className={`${styles.face} ${styles.back}`}>
             {shouldUseImages ? (
-              <img
-                className={styles.image}
-                src={backSrc}
-                alt="Void Count card back"
-                draggable={false}
-                onError={() => setUseImages(false)}
-              />
+              <>
+                <img
+                  className={styles.image}
+                  src={backSrc}
+                  alt="Void Count card back"
+                  draggable={false}
+                  onError={() => setUseImages(false)}
+                />
+                <div className={styles.neonBorder} />
+              </>
             ) : (
               <>
                 <div className={styles.backBg} />
@@ -114,6 +121,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     0
                   </span>
                 </div>
+                <div className={styles.neonBorder} />
               </>
             )}
           </div>
