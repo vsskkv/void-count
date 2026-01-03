@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -11,6 +12,14 @@ import { GameCard } from "@/components/3d/GameCard";
 import { WaitlistSection } from "@/components/home/WaitlistSection";
 
 gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
+ */
+const SafeImage = (props: any) => {
+  const ImageComponent = Image as any;
+  return <ImageComponent {...props} />;
+};
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -21,6 +30,9 @@ export default function HomePage() {
     if (!mainRef.current || !cardRef.current || !cardContainerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Set initial state to show the back of the card (180 degrees)
+      gsap.set(cardRef.current, { rotateY: 180 });
+
       // Initial entrance animation
       gsap.from(cardRef.current, {
         y: 200,
@@ -29,9 +41,10 @@ export default function HomePage() {
         ease: "power3.out",
       });
 
-      // Scroll-driven rotation
+      // Scroll-driven rotation: Starts at 180 (Back) and ends at 1080 (Front)
+      // This performs 2.5 full rotations
       gsap.to(cardRef.current, {
-        rotateY: 360 * 2, // Rotate 2 full circles
+        rotateY: 180 + (360 * 2) + 180, 
         rotateX: 10,
         ease: "none",
         scrollTrigger: {
@@ -124,14 +137,13 @@ export default function HomePage() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent pointer-events-none" />
             
             <div className="relative mb-8">
-               <img
+               <SafeImage
                   src="/void-count-logo.png"
                   alt="Void Count logo"
                   width={160}
                   height={160}
+                  priority
                   className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
-                  loading="eager"
-                  decoding="async"
                 />
             </div>
             <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">

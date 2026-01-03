@@ -2,8 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { STRIPE_CHECKOUT_URL } from "@/lib/constants";
+
+/**
+ * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
+ */
+const SafeImage = (props: any) => {
+  const ImageComponent = Image as any;
+  return <ImageComponent {...props} />;
+};
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -60,13 +69,12 @@ export const HeroSection = () => {
 
       <div className="relative max-w-5xl mx-auto text-center flex flex-col items-center">
         <div className="hero-logo mb-8 flex justify-center">
-          <img
+          <SafeImage
             src="/void-count-logo.png"
             alt="Void Count logo"
             width={260}
             height={260}
-            loading="eager"
-            decoding="async"
+            priority
           />
         </div>
 

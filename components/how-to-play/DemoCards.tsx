@@ -2,6 +2,16 @@
 
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import Image from 'next/image';
+
+/**
+ * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
+ * "JSX element class does not support attributes"
+ */
+const SafeImage = (props: any) => {
+  const ImageComponent = Image as any;
+  return <ImageComponent {...props} />;
+};
 
 export const DemoCard = ({ 
   value, 
@@ -22,14 +32,15 @@ export const DemoCard = ({
     return (
       <div 
         ref={cardRef}
-        className="relative w-32 h-48 rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105"
+        className="relative w-32 h-48 rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105 bg-slate-900"
       >
-        <img 
+        <SafeImage 
           src={src} 
           alt={label || "Card"} 
-          className="w-full h-full object-cover"
+          fill
+          sizes="128px"
+          className="object-cover"
           loading="lazy"
-          decoding="async"
         />
       </div>
     );
@@ -83,24 +94,12 @@ export const DrawPileVisual = () => {
   return (
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
       {/* Deck */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10">
-        <img 
-          src="/card-back.png" 
-          alt="Deck" 
-          className="w-full h-full object-cover" 
-          loading="lazy"
-          decoding="async"
-        />
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900">
+        <SafeImage src="/card-back.png" alt="Deck" fill sizes="128px" className="object-cover" />
       </div>
       {/* Top Card (Animated) */}
-      <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10">
-        <img 
-          src="/card-back.png" 
-          alt="Top Card" 
-          className="w-full h-full object-cover" 
-          loading="lazy"
-          decoding="async"
-        />
+      <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10 bg-slate-900">
+        <SafeImage src="/card-back.png" alt="Top Card" fill sizes="128px" className="object-cover" />
       </div>
     </div>
   );
@@ -148,4 +147,3 @@ export const CountCallVisual = () => {
     </div>
   )
 }
-

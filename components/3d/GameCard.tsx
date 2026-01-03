@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useMemo, useState } from "react";
+import Image from "next/image";
 import styles from "./GameCard.module.css";
 
 interface GameCardProps {
@@ -9,6 +10,14 @@ interface GameCardProps {
   frontSrc?: string;
   backSrc?: string;
 }
+
+/**
+ * SafeImage wrapper to bypass the React 19 / Next.js 15+ type conflict 
+ */
+const SafeImage = (props: any) => {
+  const ImageComponent = Image as any;
+  return <ImageComponent {...props} />;
+};
 
 export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
   ({ className = "", variant = "standard", frontSrc = "/card-front.png", backSrc = "/card-back.png" }, ref) => {
@@ -37,12 +46,15 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           <div className={`${styles.face} ${styles.front}`}>
             {shouldUseImages ? (
               <>
-                <img
+                <SafeImage
                   className={styles.image}
                   src={frontSrc}
                   alt="Void Count card front"
                   draggable={false}
                   onError={() => setUseImages(false)}
+                  fill
+                  sizes={isHero ? "100vw" : "256px"}
+                  priority={isHero}
                 />
                 <div className={styles.neonBorder} />
               </>
@@ -83,12 +95,14 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
           <div className={`${styles.face} ${styles.back}`}>
             {shouldUseImages ? (
               <>
-                <img
+                <SafeImage
                   className={styles.image}
                   src={backSrc}
                   alt="Void Count card back"
                   draggable={false}
                   onError={() => setUseImages(false)}
+                  fill
+                  sizes={isHero ? "100vw" : "256px"}
                 />
                 <div className={styles.neonBorder} />
               </>
@@ -132,5 +146,3 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
 );
 
 GameCard.displayName = "GameCard";
-
-
