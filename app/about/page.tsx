@@ -130,7 +130,7 @@ export default function AboutPage() {
               href="/#waitlist-form"
               className="flex-1 bg-white/5 hover:bg-white/10 border border-white/20 text-white text-center py-5 rounded-2xl font-black uppercase italic tracking-tighter shadow-xl transform hover:scale-105 transition-all"
             >
-              Join the Chaos
+              Join the Fun
             </a>
           </section>
         </div>

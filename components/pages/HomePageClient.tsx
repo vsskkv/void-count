@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { KICKSTARTER_URL } from "@/lib/constants";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -197,49 +196,53 @@ export default function HomePageClient() {
       {/* Scrollable Content Sections */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
         {/* Section 1: Social Proof - The "Friends" Hook */}
-        <section className="content-section min-h-[100svh] flex flex-col justify-center items-center py-12 md:py-20 will-change-transform">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center items-center py-12 md:py-20 will-change-transform relative">
+          {/* Subtle background effects */}
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-transparent to-purple-950/20 pointer-events-none" />
+          
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
             {/* Left: Card Images Grid - Static */}
             <div className="relative h-[300px] sm:h-[500px] lg:h-[650px] order-1 lg:order-1 flex items-center justify-center mb-4 lg:mb-0">
-              {/* Background glow */}
-              <div className="absolute inset-0 bg-indigo-600/10 blur-[60px] sm:blur-[120px] rounded-full" />
+              {/* Enhanced background glow */}
+              <div className="absolute inset-0 bg-indigo-600/15 blur-[60px] sm:blur-[120px] rounded-full animate-pulse" />
+              <div className="absolute inset-0 bg-purple-600/10 blur-[80px] sm:blur-[140px] rounded-full" style={{ animationDelay: '0.5s' }} />
 
-              {/* Overlapping Card Pile */}
-              <div className="relative w-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5]">
-                <div className="absolute inset-0 transform -rotate-12 -translate-x-6 sm:-translate-x-16 translate-y-2 sm:translate-y-4 will-change-transform">
+              {/* Overlapping Card Pile with hover effects */}
+              <div className="relative w-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5] group">
+                <div className="absolute inset-0 transform -rotate-12 -translate-x-6 sm:-translate-x-16 translate-y-2 sm:translate-y-4 will-change-transform transition-all duration-500 group-hover:-rotate-10 group-hover:scale-105">
                   <img
                     src="/void-count-sabotage-card.png"
                     alt="Void Count strategic card game – Sabotage card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain rounded-xl opacity-40 shadow-2xl"
+                    className="w-full h-full object-contain rounded-xl opacity-40 shadow-2xl transition-opacity duration-500 group-hover:opacity-50"
                   />
                 </div>
-                <div className="absolute inset-0 transform rotate-12 translate-x-6 sm:translate-x-16 -translate-y-2 sm:-translate-y-4 will-change-transform">
+                <div className="absolute inset-0 transform rotate-12 translate-x-6 sm:translate-x-16 -translate-y-2 sm:-translate-y-4 will-change-transform transition-all duration-500 group-hover:rotate-10 group-hover:scale-105">
                   <img
                     src="/void-count-toss-card.png"
                     alt="Void Count strategic card game – Toss card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain rounded-xl opacity-60 shadow-2xl"
+                    className="w-full h-full object-contain rounded-xl opacity-60 shadow-2xl transition-opacity duration-500 group-hover:opacity-70"
                   />
                 </div>
-                <div className="absolute inset-0 transform -rotate-6 -translate-y-4 sm:-translate-y-8 scale-105 z-10 will-change-transform">
+                <div className="absolute inset-0 transform -rotate-6 -translate-y-4 sm:-translate-y-8 scale-105 z-10 will-change-transform transition-all duration-500 group-hover:-rotate-4 group-hover:scale-110 group-hover:-translate-y-6">
                   <img
                     src="/void-count-double-your-hand-card.png"
                     alt="Void Count strategic card game – Double Your Hand card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
+                    className="w-full h-full object-contain rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_40px_80px_rgba(0,0,0,0.6)] transition-shadow duration-500"
                   />
                 </div>
-                <div className="absolute inset-0 transform rotate-3 translate-y-6 sm:translate-y-12 translate-x-2 sm:translate-x-4 scale-95 will-change-transform">
+                <div className="absolute inset-0 transform rotate-3 translate-y-6 sm:translate-y-12 translate-x-2 sm:translate-x-4 scale-95 will-change-transform transition-all duration-500 group-hover:rotate-2 group-hover:scale-100">
                   <img
                     src="/void-count-take-two-card.png"
                     alt="Void Count strategic card game – Take Two card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain rounded-xl opacity-80 shadow-2xl"
+                    className="w-full h-full object-contain rounded-xl opacity-80 shadow-2xl transition-opacity duration-500 group-hover:opacity-90"
                   />
                 </div>
               </div>
@@ -250,17 +253,17 @@ export default function HomePageClient() {
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 text-white tracking-tighter leading-[0.9] uppercase italic">
                 LOWEST SCORE <br />
                 WINS THE <br />
-                <span className="text-purple-500">ROUND.</span>
+                <span className="text-purple-500 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">ROUND.</span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-slate-200 leading-relaxed font-bold italic mb-8 max-w-2xl mx-auto lg:ml-auto lg:mr-0">
-                You will be betrayed. Trust no one. <br className="hidden md:block" />
-                Someone always gets cocky, and calling "Count" too early hurts.
+                Every move matters. Every card counts. <br className="hidden md:block" />
+                Strategy meets surprise, and calling "Count" at the right moment wins the round.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4">
-                <div className="px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
-                  100% Chaos
+                <div className="px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm hover:bg-indigo-500/20 hover:border-indigo-500/50 transition-all">
+                  Pure Strategy
                 </div>
-                <div className="px-3 sm:px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl text-purple-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
+                <div className="px-3 sm:px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl text-purple-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm hover:bg-purple-500/20 hover:border-purple-500/50 transition-all">
                   Learn while playing
                 </div>
               </div>
@@ -268,53 +271,56 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        <section className="content-section min-h-[100svh] flex flex-col justify-center py-12 md:py-20 will-change-transform">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section className="content-section min-h-[100svh] flex flex-col justify-center py-12 md:py-20 will-change-transform relative">
+          {/* Subtle background effects */}
+          <div className="absolute inset-0 bg-gradient-to-bl from-purple-950/20 via-transparent to-indigo-950/20 pointer-events-none" />
+          
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
             {/* Left: Content */}
             <div className="flex flex-col gap-6 md:gap-8 order-2 lg:order-1 px-2 sm:px-0">
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] text-center lg:text-left">
                 CLEVERNESS
                 <br />
-                REQUIRED.
+                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">REQUIRED.</span>
               </h2>
 
               <div className="grid grid-cols-1 gap-4 md:gap-6">
-                <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-indigo-500/50 transition-all">
+                <div className="group bg-slate-900/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-indigo-500/50 hover:bg-slate-900/80 transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-indigo-500" />
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center shrink-0 group-hover:bg-indigo-500/20 group-hover:border-indigo-500/50 transition-all">
+                      <div className="w-2 h-2 rounded-full bg-indigo-500 group-hover:scale-125 transition-transform" />
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-black text-indigo-400 mb-2 uppercase italic">
-                        Sneaky Sabotage
+                      <h3 className="text-xl sm:text-2xl font-black text-indigo-400 mb-2 uppercase italic group-hover:text-indigo-300 transition-colors">
+                        Clever Strategy
                       </h3>
                       <p className="text-slate-300 font-bold text-sm sm:text-base italic">
-                        Swap hands. Double their cards. Watch them crumble as you glide to victory.
+                        Swap hands. Double their cards. Turn the tables with strategic plays that shift the game in your favor.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-violet-500/50 transition-all">
+                <div className="group bg-slate-900/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-violet-500/50 hover:bg-slate-900/80 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-violet-500" />
+                    <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0 group-hover:bg-violet-500/20 group-hover:border-violet-500/50 transition-all">
+                      <div className="w-2 h-2 rounded-full bg-violet-500 group-hover:scale-125 transition-transform" />
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-black text-violet-400 mb-2 uppercase italic">
+                      <h3 className="text-xl sm:text-2xl font-black text-violet-400 mb-2 uppercase italic group-hover:text-violet-300 transition-colors">
                         The "Count" Risk
                       </h3>
                       <p className="text-slate-300 font-bold text-sm sm:text-base italic">
-                        Think you're safe? Call "Count" and reveal the truth. If you're wrong, it's a long way back.
+                        Think you're safe? Call "Count" and reveal the truth. Timing is everything—call it right and you win the round.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="group bg-gradient-to-r from-indigo-900/40 to-purple-900/40 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-indigo-500/30">
+                <div className="group bg-gradient-to-r from-indigo-900/50 to-purple-900/50 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-indigo-500/40 hover:border-indigo-500/60 transition-all duration-300 hover:shadow-[0_0_40px_rgba(99,102,241,0.3)]">
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/30 flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-white" />
+                    <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/30 flex items-center justify-center shrink-0 group-hover:bg-white/20 group-hover:border-white/50 transition-all">
+                      <div className="w-2 h-2 rounded-full bg-white group-hover:scale-125 transition-transform" />
                     </div>
                     <div>
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase italic tracking-tighter mb-2">
@@ -331,8 +337,9 @@ export default function HomePageClient() {
 
             {/* Right: Card Images Grid - Auto-rotating */}
             <div className="relative h-[300px] sm:h-[500px] lg:h-[650px] order-1 lg:order-2 flex items-center justify-center mb-4 lg:mb-0">
-              {/* Background glow */}
-              <div className="absolute inset-0 bg-indigo-600/10 blur-[60px] sm:blur-[120px] rounded-full" />
+              {/* Enhanced background glow */}
+              <div className="absolute inset-0 bg-indigo-600/15 blur-[60px] sm:blur-[120px] rounded-full animate-pulse" />
+              <div className="absolute inset-0 bg-violet-600/10 blur-[80px] sm:blur-[140px] rounded-full" style={{ animationDelay: '0.7s' }} />
 
               {/* Card Grid */}
               <div className="relative w-full h-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5]">
@@ -401,40 +408,6 @@ export default function HomePageClient() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3: High-Energy CTA */}
-        <section className="content-section min-h-[90svh] flex flex-col items-center justify-center text-center py-16 md:py-20">
-          <div className="max-w-4xl w-full backdrop-blur-2xl bg-indigo-950/10 p-8 sm:p-12 md:p-16 lg:p-20 rounded-3xl md:rounded-[3rem] lg:rounded-[5rem] border-2 border-white/10 shadow-[0_0_120px_rgba(99,102,241,0.2)] relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10" />
-
-            <h2 className="relative z-10 text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-9xl font-black mb-6 sm:mb-8 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
-              UPGRADE
-              <br />
-              <span className="text-indigo-500">GAME NIGHT.</span>
-            </h2>
-
-            <p className="relative z-10 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-8 sm:mb-10 md:mb-12 text-slate-200 font-medium max-w-2xl mx-auto leading-tight">
-              Ready to redefine your table? Join the waitlist for the next 
-              print run and be the first to start the count.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center relative z-10">
-              <Link
-                href="#waitlist-form"
-                className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl sm:text-2xl md:text-3xl font-black px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8 rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 md:hover:scale-110 transition-all active:scale-95 flex items-center justify-center"
-              >
-                JOIN THE WAITLIST
-              </Link>
-              <PrimaryButton
-                href="/how-to-play"
-                variant="secondary"
-                className="w-full sm:w-auto text-lg sm:text-xl md:text-2xl px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-7 rounded-2xl sm:rounded-[2rem] border-white/20 hover:bg-white/10"
-              >
-                SEE THE RULES
-              </PrimaryButton>
             </div>
           </div>
         </section>

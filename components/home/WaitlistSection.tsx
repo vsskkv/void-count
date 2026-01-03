@@ -34,7 +34,8 @@ export const WaitlistSection = () => {
       id="waitlist-form"
       className="content-section min-h-[70vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto px-4"
     >
-      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/30 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/30 shadow-[0_0_80px_rgba(79,70,229,0.2)] relative overflow-hidden">
+      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/40 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-indigo-500/60 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50" />
 
         <div className="mb-8 px-2">
@@ -44,7 +45,7 @@ export const WaitlistSection = () => {
           </h2>
           <p className="text-lg md:text-3xl mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
             Be the first to know when the next print run drops. <br className="hidden md:block" />
-            Join the list... before someone sabotages you.
+            Join the list and be ready for the next round.
           </p>
 
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-2xl mx-auto px-4">

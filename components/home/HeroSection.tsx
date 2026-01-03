@@ -53,9 +53,15 @@ export const HeroSection = () => {
       ref={containerRef}
       className="relative overflow-hidden px-6 pt-32 pb-12 md:pt-48 md:pb-24"
     >
-      {/* Spacey background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0,#1d4ed8_0,transparent_55%),radial-gradient(circle_at_50%_100%,#020617_0,transparent_55%)] opacity-40" />
+      {/* Enhanced background gradients */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0,#1d4ed8_0,transparent_55%),radial-gradient(circle_at_50%_100%,#020617_0,transparent_55%)] opacity-50" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(99,102,241,0.15),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(168,85,247,0.1),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-slate-950/20" />
+      
+      {/* Animated gradient orbs */}
+      <div className="pointer-events-none absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] animate-pulse" />
+      <div className="pointer-events-none absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
 
       <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16">
         <div className="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -68,8 +74,8 @@ export const HeroSection = () => {
           </h1>
 
           <p className="hero-subtitle text-xl md:text-3xl text-slate-200 max-w-3xl mb-10 font-bold leading-tight italic">
-            Fast rounds. Sneaky plays. Loud reactions. <br className="hidden md:block" />
-            The card game that ruins friendships (temporarily).
+            Fast rounds. Clever strategy. Epic moments. <br className="hidden md:block" />
+            The card game that turns game night into an adventure.
           </p>
 
           <div className="hero-cta flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-6 w-full max-w-2xl">
@@ -81,7 +87,7 @@ export const HeroSection = () => {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Join the Chaos
+              Join the Fun
             </PrimaryButton>
             <PrimaryButton
               href="/how-to-play"
