@@ -27,31 +27,39 @@ export const SEOContentSections = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-              <span className="text-2xl">✔</span>
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2 uppercase italic tracking-tight">Easy to learn, hard to master</h3>
-                <p className="text-slate-400">Most players learn the basics in under 5 minutes, but the strategic depth keeps you coming back for more.</p>
+                <p className="text-slate-400 font-medium">Most players learn the basics in under 5 minutes, but the strategic depth keeps you coming back for more.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-              <span className="text-2xl">✔</span>
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2 uppercase italic tracking-tight">Versatile Play</h3>
-                <p className="text-slate-400">Works perfectly for families, couples, and parties. Designed for 2–6 players.</p>
+                <p className="text-slate-400 font-medium">Works perfectly for families, couples, and parties. Designed for 2–6 players.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-              <span className="text-2xl">✔</span>
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2 uppercase italic tracking-tight">High Replay Value</h3>
-                <p className="text-slate-400">With multiple card types and shifting anomalies, no two games of Void Count are ever the same.</p>
+                <p className="text-slate-400 font-medium">With multiple card types and shifting anomalies, no two games of Void Count are ever the same.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-              <span className="text-2xl">✔</span>
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2 uppercase italic tracking-tight">Compact & Gift-Ready</h3>
-                <p className="text-slate-400">A premium, portable card game that makes for a unique and thoughtful gift for any occasion.</p>
+                <p className="text-slate-400 font-medium">A premium, portable card game that makes for a unique and thoughtful gift for any occasion.</p>
               </div>
             </div>
           </div>

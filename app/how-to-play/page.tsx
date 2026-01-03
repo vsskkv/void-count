@@ -116,26 +116,25 @@ export default function HowToPlayPage() {
       <RuleSection
         title="Game Setup"
         alignment="left"
-        icon="🃏"
         description={
           <div className="space-y-4">
             <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
               <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
                 1
               </div>
-              <p className="text-slate-300">Shuffle all 116 custom cards.</p>
+              <p className="text-slate-300 font-medium">Shuffle all 116 custom cards.</p>
             </div>
             <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
               <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
                 2
               </div>
-              <p className="text-slate-300">Deal 8 cards to each player.</p>
+              <p className="text-slate-300 font-medium">Deal 8 cards to each player.</p>
             </div>
             <div className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
               <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
                 3
               </div>
-              <p className="text-slate-300">
+              <p className="text-slate-300 font-medium">
                 Place the remaining cards face down as the Draw Deck.
               </p>
             </div>
@@ -143,7 +142,7 @@ export default function HowToPlayPage() {
               <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">
                 4
               </div>
-              <p className="text-slate-300">
+              <p className="text-slate-300 font-medium">
                 Flip the top card to start the Open Pile.
               </p>
             </div>
@@ -156,14 +155,13 @@ export default function HowToPlayPage() {
       <RuleSection
         title="On Your Turn"
         alignment="right"
-        icon="🔄"
         description={
           <div className="space-y-6">
             <div className="p-6 bg-slate-900/60 rounded-3xl border border-white/5">
               <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
                 1. Play Point Card(s)
               </h3>
-              <p className="text-slate-300 mb-2">
+              <p className="text-slate-300 font-medium mb-2">
                 Play a single card or a set of matching values. If they match
                 the top card, you don't draw. Otherwise, draw 1.
               </p>
@@ -173,7 +171,7 @@ export default function HowToPlayPage() {
               <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
                 2. Play a Power Card
               </h3>
-              <p className="text-slate-300 mb-2">
+              <p className="text-slate-300 font-medium mb-2">
                 Resolve the effect immediately. These are your best tools for
                 sabotaging opponents and lowering your own total.
               </p>
@@ -183,7 +181,7 @@ export default function HowToPlayPage() {
               <h3 className="text-indigo-300 font-black text-xl mb-3 uppercase italic tracking-tight">
                 3. Call "Count"
               </h3>
-              <p className="text-slate-300">
+              <p className="text-slate-300 font-medium">
                 If your hand totals 7 or less (and you have no Power Cards), you
                 can call "Count" to end the round.
               </p>
@@ -243,8 +241,8 @@ export default function HowToPlayPage() {
       {/* Call Count Warning */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="bg-rose-500/10 border-2 border-rose-500/30 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/10 rounded-bl-full flex items-center justify-center text-3xl opacity-50">
-            ⚠️
+          <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/10 rounded-bl-full flex items-center justify-center text-3xl opacity-50 font-black text-rose-500 italic">
+            LIMIT
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tighter uppercase italic leading-tight">
             THE <span className="text-rose-500">"COUNT"</span> RISK
@@ -269,7 +267,6 @@ export default function HowToPlayPage() {
       <RuleSection
         title="Winning the Game"
         alignment="left"
-        icon="🏆"
         description={
           <div className="grid md:grid-cols-2 gap-6 text-left">
             <div className="bg-slate-900/50 p-6 rounded-xl border border-indigo-500/20">

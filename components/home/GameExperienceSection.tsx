@@ -3,32 +3,26 @@ import React from "react";
 export const GameExperienceSection = () => {
   const steps = [
     {
-      emoji: "😏",
       text: "Someone thinks they’re winning",
       color: "from-blue-500/20 to-blue-600/10",
     },
     {
-      emoji: "😈",
       text: "Someone sabotages them",
       color: "from-purple-500/20 to-purple-600/10",
     },
     {
-      emoji: "🗣️",
       text: "Everyone shouts",
       color: "from-indigo-500/20 to-indigo-600/10",
     },
     {
-      emoji: "✋",
       text: "Someone calls COUNT",
       color: "from-rose-500/20 to-rose-600/10",
     },
     {
-      emoji: "😬",
       text: "Everyone checks scores in silence",
       color: "from-slate-500/20 to-slate-600/10",
     },
     {
-      emoji: "😂",
       text: "Laughter. Blame. Rematch.",
       color: "from-emerald-500/20 to-emerald-600/10",
     },
@@ -50,8 +44,8 @@ export const GameExperienceSection = () => {
               key={index}
               className={`relative p-8 rounded-[2rem] bg-gradient-to-br ${step.color} border border-white/5 backdrop-blur-sm flex flex-col items-center justify-center transform hover:scale-105 transition-all duration-300 group will-change-transform`}
             >
-              <div className="text-6xl mb-4 group-hover:animate-bounce">
-                {step.emoji}
+              <div className="text-sm font-black text-indigo-500/50 uppercase tracking-[0.2em] mb-4">
+                Step 0{index + 1}
               </div>
               <p className="text-xl font-black text-white uppercase italic tracking-tight leading-tight">
                 {step.text}

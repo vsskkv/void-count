@@ -48,14 +48,17 @@ export const WaitlistSection = () => {
           </p>
 
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-2xl mx-auto px-4">
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
-              <span className="text-indigo-500 text-xl">✨</span> New expansions
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+              New expansions
             </li>
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
-              <span className="text-indigo-500 text-xl">🃏</span> Secret playtests
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+              Secret playtests
             </li>
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
-              <span className="text-indigo-500 text-xl">🎁</span> Launch surprises
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+              Launch surprises
             </li>
           </ul>
         </div>

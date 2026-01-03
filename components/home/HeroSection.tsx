@@ -81,7 +81,7 @@ export const HeroSection = () => {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              😈 Join the Chaos
+              Join the Chaos
             </PrimaryButton>
             <PrimaryButton
               href="/how-to-play"

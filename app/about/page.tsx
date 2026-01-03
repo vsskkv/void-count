@@ -42,10 +42,7 @@ export default function AboutPage() {
           </section>
 
           {/* Player Experience Section */}
-          <section className="bg-slate-900/40 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-12 h-12 bg-indigo-500/10 rounded-br-3xl flex items-center justify-center text-indigo-500 font-black">
-              🎴
-            </div>
+          <section className="bg-slate-900/40 p-8 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-black text-white uppercase italic tracking-tight mb-6">
               The Race to Zero
             </h2>
@@ -77,19 +74,27 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">🃏</span>
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                </div>
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">The perfect new card game to play</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">👨‍👩‍👧‍👦</span>
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                </div>
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">Gifts for family and friends</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">🎁</span>
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                </div>
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">A unique gift for gamers</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
-                <span className="text-3xl">🎮</span>
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                </div>
                 <span className="font-bold uppercase italic tracking-tight text-slate-200">Casual strategy fans</span>
               </div>
             </div>

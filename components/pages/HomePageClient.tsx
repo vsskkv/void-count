@@ -258,10 +258,10 @@ export default function HomePageClient() {
               </p>
               <div className="flex flex-wrap justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4">
                 <div className="px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
-                  ⚡ 100% Chaos
+                  100% Chaos
                 </div>
                 <div className="px-3 sm:px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl text-purple-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
-                  🎮 Learn while playing
+                  Learn while playing
                 </div>
               </div>
             </div>
@@ -281,7 +281,9 @@ export default function HomePageClient() {
               <div className="grid grid-cols-1 gap-4 md:gap-6">
                 <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-indigo-500/50 transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">😈</div>
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-indigo-500" />
+                    </div>
                     <div>
                       <h3 className="text-xl sm:text-2xl font-black text-indigo-400 mb-2 uppercase italic">
                         Sneaky Sabotage
@@ -295,7 +297,9 @@ export default function HomePageClient() {
 
                 <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-violet-500/50 transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">😬</div>
+                    <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-violet-500" />
+                    </div>
                     <div>
                       <h3 className="text-xl sm:text-2xl font-black text-violet-400 mb-2 uppercase italic">
                         The "Count" Risk
@@ -309,7 +313,9 @@ export default function HomePageClient() {
 
                 <div className="group bg-gradient-to-r from-indigo-900/40 to-purple-900/40 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-indigo-500/30">
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">🎮</div>
+                    <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/30 flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-white" />
+                    </div>
                     <div>
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase italic tracking-tighter mb-2">
                         Game Night Essential

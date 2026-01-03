@@ -50,8 +50,8 @@ export const HowItWorksSection = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-300 font-bold uppercase tracking-widest text-sm">
-            <span className="text-xl">⏱️</span> Games last 10–15 minutes
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-300 font-bold uppercase tracking-[0.2em] text-[10px]">
+            Games last 10–15 minutes
           </div>
         </div>
       </div>
