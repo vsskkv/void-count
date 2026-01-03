@@ -1,7 +1,24 @@
+import type { Metadata } from "next";
 import { RuleSection } from "@/components/how-to-play/RuleSection";
 import { DrawPileVisual, PowerCardVisual, CountCallVisual, DemoCard } from "@/components/how-to-play/DemoCards";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "How to Play",
+  description: `Learn how to play ${SITE_NAME}. ${SITE_DESCRIPTION}`,
+  alternates: { canonical: "/how-to-play" },
+  openGraph: {
+    title: `How to Play | ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
+    url: "/how-to-play",
+  },
+  twitter: {
+    title: `How to Play | ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
+  },
+};
 
 export default function HowToPlayPage() {
   return (
