@@ -111,6 +111,37 @@ export default function RootLayout({
     },
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How many players can play Void Count?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Void Count works best with 2–6 players.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Void Count easy to learn?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes – most players learn the basics in under 5 minutes.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is this suitable as a gift?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Absolutely. Void Count is designed as a compact, premium card game gift.",
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en-GB">
       <body
@@ -130,6 +161,11 @@ export default function RootLayout({
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         <div className="min-h-screen flex flex-col bg-[radial-gradient(circle_at_top,#1d2540_0,transparent_55%),radial-gradient(circle_at_bottom,#020617_0,transparent_55%)]">
           {children}

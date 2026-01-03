@@ -30,18 +30,40 @@ export const WaitlistSection = () => {
   };
 
   return (
-    <section id="waitlist-form" className="content-section min-h-[60vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto px-4">
-      <div className="max-w-2xl w-full backdrop-blur-md bg-indigo-950/30 p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/30 shadow-[0_0_50px_rgba(79,70,229,0.15)] relative overflow-hidden">
+    <section
+      id="waitlist-form"
+      className="content-section min-h-[70vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto px-4"
+    >
+      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/30 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/30 shadow-[0_0_80px_rgba(79,70,229,0.2)] relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50" />
-        
-        <h2 className="text-4xl md:text-5xl font-black mb-4 text-white tracking-tighter uppercase italic">
-          Enter the <span className="text-indigo-400">Inner Circle.</span>
-        </h2>
-        <p className="text-xl mb-10 text-slate-200 font-medium">
-          Get exclusive card drops, secret expansions, and early playtest invites before the Void claims them.
-        </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto w-full">
+        <div className="mb-8">
+          <h2 className="text-5xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+            JOIN THE <br />
+            <span className="text-indigo-400">INNER CIRCLE.</span>
+          </h2>
+          <p className="text-xl md:text-3xl mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
+            Be the first to know when the next print run drops. <br className="hidden md:block" />
+            Join the list... before someone sabotages you.
+          </p>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-2xl mx-auto">
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
+              <span className="text-indigo-500 text-xl">✨</span> New expansions
+            </li>
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
+              <span className="text-indigo-500 text-xl">🃏</span> Secret playtests
+            </li>
+            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-sm">
+              <span className="text-indigo-500 text-xl">🎁</span> Launch surprises
+            </li>
+          </ul>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 max-w-lg mx-auto w-full"
+        >
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
@@ -49,19 +71,27 @@ export const WaitlistSection = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-lg bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="flex-1 px-6 py-4 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-lg"
             />
-            <PrimaryButton type="submit" disabled={status === 'loading' || status === 'success'} className="whitespace-nowrap">
-              {status === 'loading' ? 'Joining...' : status === 'success' ? 'Joined!' : 'Join Now'}
+            <PrimaryButton
+              type="submit"
+              disabled={status === "loading" || status === "success"}
+              className="whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)]"
+            >
+              {status === "loading"
+                ? "Unlocking..."
+                : status === "success"
+                ? "Success!"
+                : "Unlock Early Access"}
             </PrimaryButton>
           </div>
-          {status === 'success' && (
-            <p className="text-emerald-400 text-sm animate-fade-in">
-              Thanks for joining! You're on the list.
+          {status === "success" && (
+            <p className="text-emerald-400 text-sm animate-fade-in font-bold">
+              Welcome to the Inner Circle. You're on the list.
             </p>
           )}
-          {status === 'error' && (
-            <p className="text-rose-400 text-sm">
+          {status === "error" && (
+            <p className="text-rose-400 text-sm font-bold">
               Something went wrong. Please try again.
             </p>
           )}

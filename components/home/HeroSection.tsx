@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { GameCard } from "@/components/3d/GameCard";
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -11,35 +12,35 @@ export const HeroSection = () => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".hero-logo", {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.9,
-        ease: "power3.out",
-      });
-
       gsap.from(".hero-heading", {
-        y: 30,
+        y: 50,
         opacity: 0,
-        duration: 0.8,
-        delay: 0.15,
-        ease: "power3.out",
+        duration: 1,
+        ease: "power4.out",
       });
 
       gsap.from(".hero-subtitle", {
-        y: 20,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        delay: 0.3,
-        ease: "power3.out",
+        duration: 1,
+        delay: 0.2,
+        ease: "power4.out",
       });
 
       gsap.from(".hero-cta", {
-        y: 20,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        delay: 0.45,
-        ease: "power3.out",
+        duration: 1,
+        delay: 0.4,
+        ease: "power4.out",
+      });
+
+      gsap.from(".hero-logo", {
+        x: 100,
+        opacity: 0,
+        duration: 1.2,
+        delay: 0.3,
+        ease: "power4.out",
       });
     }, containerRef);
 
@@ -49,41 +50,77 @@ export const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden px-6 pt-16 pb-20 md:pt-24 md:pb-28"
+      className="relative overflow-hidden px-6 pt-32 pb-12 md:pt-48 md:pb-24"
     >
       {/* Spacey background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0,#1d4ed8_0,transparent_55%),radial-gradient(circle_at_90%_100%,#06b6d4_0,transparent_55%)] opacity-60" />
-      <div className="pointer-events-none absolute inset-0 bg-slate-950/90" />
-      {/* Stars background texture overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('/stars-bg.svg')] opacity-20 -z-10" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0,#1d4ed8_0,transparent_55%),radial-gradient(circle_at_50%_100%,#020617_0,transparent_55%)] opacity-40" />
+      <div className="pointer-events-none absolute inset-0 bg-slate-950/20" />
 
-      <div className="relative max-w-5xl mx-auto text-center flex flex-col items-center">
-        <div className="hero-logo mb-8 flex justify-center">
-          <img
-            src="/void-count-logo.png"
-            alt="Void Count logo"
-            width={260}
-            height={260}
-          />
+      <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16">
+        <div className="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <h1 className="hero-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+            GO LOW. <br />
+            LIE HIGH. <br />
+            <span className="text-indigo-500">
+              CALL COUNT.
+            </span>
+          </h1>
+
+          <p className="hero-subtitle text-xl md:text-3xl text-slate-200 max-w-3xl mb-10 font-bold leading-tight italic">
+            Fast rounds. Sneaky plays. Loud reactions. <br className="hidden md:block" />
+            The card game that ruins friendships (temporarily).
+          </p>
+
+          <div className="hero-cta flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 sm:gap-6 w-full max-w-2xl">
+            <PrimaryButton
+              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-2xl md:text-3xl font-black px-10 md:px-14 py-6 md:py-8 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.5)] transform hover:scale-105 transition-all uppercase italic"
+              onClick={() =>
+                document
+                  .getElementById("waitlist-form")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              😈 Join the Chaos
+            </PrimaryButton>
+            <PrimaryButton
+              href="/how-to-play"
+              variant="secondary"
+              className="w-full sm:w-auto text-lg md:text-xl px-8 md:px-10 py-5 md:py-6 rounded-2xl border-white/20 hover:bg-white/10 uppercase font-black"
+            >
+              Learn in 2 Mins
+            </PrimaryButton>
+          </div>
         </div>
 
-        <h1 className="hero-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 text-slate-50">
-          A cosmic card game of risk, timing, and the creeping Void.
-        </h1>
-
-        <p className="hero-subtitle text-base md:text-lg text-slate-200 max-w-2xl mx-auto mb-8">
-          Play Point Cards, use Power Cards, and keep your total low. Do you call 'Count' early or risk it all?
-        </p>
-
-        <div className="hero-cta flex justify-center flex-wrap gap-4">
-          <PrimaryButton 
-            onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Join the Waitlist
-          </PrimaryButton>
-          <PrimaryButton href="/how-to-play" variant="secondary">
-            Learn how to play
-          </PrimaryButton>
+        {/* Hero Card Visual */}
+        <div className="hero-logo flex-1 relative w-full max-w-[350px] sm:max-w-[450px] aspect-[2.5/3.5] lg:max-w-none lg:h-[600px] flex justify-center items-center">
+          <div className="absolute inset-0 bg-indigo-500/20 blur-[120px] rounded-full animate-pulse" />
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* Background Card */}
+            <div className="absolute w-[240px] sm:w-[300px] md:w-[350px] transform -rotate-12 -translate-x-12 opacity-40">
+              <GameCard
+                variant="standard"
+                frontSrc="/void-count-double-your-hand-card.png"
+                className="w-full h-full"
+              />
+            </div>
+            {/* Middle Card */}
+            <div className="absolute w-[240px] sm:w-[300px] md:w-[350px] transform rotate-6 translate-x-8 opacity-60">
+              <GameCard
+                variant="standard"
+                frontSrc="/void-count-toss-card.png"
+                className="w-full h-full"
+              />
+            </div>
+            {/* Front Card */}
+            <div className="relative w-[240px] sm:w-[300px] md:w-[350px] transform -rotate-3 z-10">
+              <GameCard
+                variant="hero"
+                frontSrc="/void-count-card-back.png"
+                className="w-full h-full shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -35,14 +35,14 @@ export default function AboutPage() {
 
           <section className="bg-slate-900/40 p-8 rounded-3xl border border-white/10">
             <h2 className="text-2xl md:text-3xl font-bold text-white uppercase italic tracking-tight mb-4">
-              Designed for Sabotage
+              The Race to the Lowest Score
             </h2>
             <p className="text-slate-300 leading-relaxed">
-              The core of Void Count is "The Void" – a constant threat that
-              requires players to manage their risk, bluff their way through
-              difficult hands, and occasionally ruin their friends' totals.
-              It's about more than just numbers; it's about reading your
-              opponents and knowing when to strike.
+              The core of Void Count is staying below the limit. It’s a constant 
+              balancing act where players manage their risk, bluff through 
+              tricky hands, and use clever plays to keep their points at zero. 
+              It's about more than just numbers; it's about outsmarting your 
+              friends and having a great time doing it.
             </p>
           </section>
 

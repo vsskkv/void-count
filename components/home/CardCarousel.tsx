@@ -214,9 +214,9 @@ export const CardCarousel = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.08),transparent_50%)] pointer-events-none" />
       
       {/* Title */}
-      <div className="w-full text-center z-20 pointer-events-none px-4 pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 lg:pb-20">
+      <div className="w-full text-center z-20 pointer-events-none px-4 pt-8 pb-12 md:pb-16 lg:pb-20">
         <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter uppercase">
-          Explore the <span className="text-indigo-400 italic">Deck</span>
+          Explore the <span className="text-indigo-400 italic">Deck ↓</span>
         </h2>
       </div>
 

@@ -11,6 +11,12 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WaitlistSection } from "@/components/home/WaitlistSection";
 import { CardCarousel } from "@/components/home/CardCarousel";
 import { SEOContentSections } from "@/components/home/SEOContentSections";
+import { HeroSection } from "@/components/home/HeroSection";
+import { SocialProofSection } from "@/components/home/SocialProofSection";
+import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { GameExperienceSection } from "@/components/home/GameExperienceSection";
+
+gsap.registerPlugin(ScrollTrigger);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,7 +173,19 @@ export default function HomePageClient() {
         <SiteHeader />
       </div>
 
-      {/* Card Carousel Hero Section */}
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Social Proof */}
+      <SocialProofSection />
+
+      {/* The Experience */}
+      <GameExperienceSection />
+
+      {/* How It Works */}
+      <HowItWorksSection />
+
+      {/* Card Carousel Section */}
       <CardCarousel />
 
       {/* Visually Hidden H1 for SEO */}
@@ -181,62 +199,46 @@ export default function HomePageClient() {
         <section className="content-section min-h-[100svh] flex flex-col justify-center items-center py-16 md:py-20">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Card Images Grid - Static */}
-            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] order-1 lg:order-1">
+            <div className="relative h-[450px] sm:h-[550px] lg:h-[650px] order-1 lg:order-1 flex items-center justify-center">
               {/* Background glow */}
               <div className="absolute inset-0 bg-indigo-600/10 blur-[120px] rounded-full" />
 
-              {/* Card Grid */}
-              <div className="relative w-full h-full grid grid-cols-2 gap-4 p-4">
-                <div className="relative">
+              {/* Overlapping Card Pile */}
+              <div className="relative w-full max-w-[400px] aspect-[2.5/3.5]">
+                <div className="absolute inset-0 transform -rotate-12 -translate-x-16 translate-y-4">
                   <img
                     src="/void-count-sabotage-card.png"
                     alt="Void Count strategic card game – Sabotage card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
-                    }}
+                    className="w-full h-full object-contain rounded-xl opacity-40 shadow-2xl"
                   />
                 </div>
-                <div className="relative mt-8">
+                <div className="absolute inset-0 transform rotate-12 translate-x-16 -translate-y-4">
                   <img
                     src="/void-count-toss-card.png"
                     alt="Void Count strategic card game – Toss card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
-                    }}
+                    className="w-full h-full object-contain rounded-xl opacity-60 shadow-2xl"
                   />
                 </div>
-                <div className="relative -mt-8">
+                <div className="absolute inset-0 transform -rotate-6 -translate-y-8 scale-105 z-10">
                   <img
                     src="/void-count-double-your-hand-card.png"
                     alt="Void Count strategic card game – Double Your Hand card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
-                    }}
+                    className="w-full h-full object-contain rounded-xl shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
                   />
                 </div>
-                <div className="relative">
+                <div className="absolute inset-0 transform rotate-3 translate-y-12 translate-x-4 scale-95">
                   <img
                     src="/void-count-take-two-card.png"
                     alt="Void Count strategic card game – Take Two card"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain transition-all duration-1000 ease-in-out rounded-xl"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) drop-shadow(0 15px 40px rgba(99, 102, 241, 0.4))",
-                    }}
+                    className="w-full h-full object-contain rounded-xl opacity-80 shadow-2xl"
                   />
                 </div>
               </div>
@@ -245,21 +247,20 @@ export default function HomePageClient() {
             {/* Right: Content */}
             <div className="text-left lg:text-right order-2 lg:order-2">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 text-white tracking-tighter leading-[0.9] uppercase italic">
-                RUIN YOUR <br />
-                FRIENDS' <br />
-                <span className="text-purple-500">TOTALS.</span>
+                LOWEST SCORE <br />
+                WINS THE <br />
+                <span className="text-purple-500">ROUND.</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed font-light mb-8 max-w-2xl">
-                Perfect for partners, parties, or family feuds. It's easy to learn,
-                but <span className="text-white font-bold italic">impossible</span>{" "}
-                to put down once the sabotage starts.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed font-bold italic mb-8 max-w-2xl">
+                You will be betrayed. Trust no one. <br className="hidden md:block" />
+                Someone always gets cocky, and calling "Count" too early hurts.
               </p>
               <div className="flex flex-wrap lg:justify-end gap-2 sm:gap-3 md:gap-4">
                 <div className="px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
-                  Quick Rounds
+                  ⚡ 100% Chaos
                 </div>
                 <div className="px-3 sm:px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl text-purple-300 font-bold text-xs sm:text-sm uppercase backdrop-blur-sm">
-                  Deep Strategy
+                  🎮 Learn while playing
                 </div>
               </div>
             </div>
@@ -280,14 +281,13 @@ export default function HomePageClient() {
               <div className="grid grid-cols-1 gap-4 md:gap-6">
                 <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-indigo-500/50 transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">🧠</div>
+                    <div className="text-3xl sm:text-4xl flex-shrink-0">😈</div>
                     <div>
                       <h3 className="text-xl sm:text-2xl font-black text-indigo-400 mb-2 uppercase italic">
-                        Risk Analysis
+                        Sneaky Sabotage
                       </h3>
-                      <p className="text-slate-300 font-medium text-sm sm:text-base">
-                        Is that 10-point card a ladder to victory or a trap waiting to
-                        collapse your score?
+                      <p className="text-slate-300 font-bold text-sm sm:text-base italic">
+                        Swap hands. Double their cards. Watch them crumble as you glide to victory.
                       </p>
                     </div>
                   </div>
@@ -295,14 +295,13 @@ export default function HomePageClient() {
 
                 <div className="group bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover:border-violet-500/50 transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">🎭</div>
+                    <div className="text-3xl sm:text-4xl flex-shrink-0">😬</div>
                     <div>
                       <h3 className="text-xl sm:text-2xl font-black text-violet-400 mb-2 uppercase italic">
-                        Tactical Bluffs
+                        The "Count" Risk
                       </h3>
-                      <p className="text-slate-300 font-medium text-sm sm:text-base">
-                        Call "Count" when they least expect it. Watch them scramble as
-                        the Void claims their points.
+                      <p className="text-slate-300 font-bold text-sm sm:text-base italic">
+                        Think you're safe? Call "Count" and reveal the truth. If you're wrong, it's a long way back.
                       </p>
                     </div>
                   </div>
@@ -310,14 +309,13 @@ export default function HomePageClient() {
 
                 <div className="group bg-gradient-to-r from-indigo-900/40 to-purple-900/40 backdrop-blur-sm p-6 sm:p-8 rounded-2xl md:rounded-3xl border border-indigo-500/30">
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="text-3xl sm:text-4xl flex-shrink-0">⚔️</div>
+                    <div className="text-3xl sm:text-4xl flex-shrink-0">🍻</div>
                     <div>
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase italic tracking-tighter mb-2">
-                        Strategic Sabotage
+                        Game Night Essential
                       </h3>
-                      <p className="text-slate-200 text-base sm:text-lg font-medium">
-                        Force rivals to double their hand. Swap anomalies. Manipulate
-                        the count.
+                      <p className="text-slate-200 text-base sm:text-lg font-bold italic">
+                        Fast, addictive, and perfect with drinks. One round and you'll be hooked for the rest of the night.
                       </p>
                     </div>
                   </div>
@@ -413,8 +411,8 @@ export default function HomePageClient() {
             </h2>
 
             <p className="relative z-10 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-8 sm:mb-10 md:mb-12 text-slate-200 font-medium max-w-2xl mx-auto leading-tight">
-              The first edition is almost gone. Join the waitlist to secure the game
-              that will redefine your table.
+              Ready to redefine your table? Join the waitlist for the next 
+              print run and be the first to start the count.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center relative z-10">
@@ -422,7 +420,7 @@ export default function HomePageClient() {
                 href="#waitlist-form"
                 className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl sm:text-2xl md:text-3xl font-black px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8 rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 md:hover:scale-110 transition-all active:scale-95 flex items-center justify-center"
               >
-                I WANT IN
+                JOIN THE WAITLIST
               </Link>
               <PrimaryButton
                 href="/how-to-play"
