@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 
 export const RotatingCardSection = () => {
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -51,12 +52,13 @@ export const RotatingCardSection = () => {
 
           {/* Moon / comet / wave motifs to echo the logo */}
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10">
-            <div className="w-16 h-16 rounded-full border border-slate-100/70 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-              <span className="text-xl font-semibold tracking-[0.3em] text-white ml-1">
-                VC
-              </span>
-            </div>
-            <div className="w-28 h-6 rounded-full bg-gradient-to-r from-cyan-400 via-indigo-400 to-sky-500 blur-[6px] opacity-80 animate-pulse" />
+            <Image
+              src="/void-count-logo.png"
+              alt="Void Count logo"
+              width={100}
+              height={100}
+              className="mix-blend-screen drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+            />
           </div>
 
           <div className="absolute bottom-3 left-0 right-0 px-4 text-[10px] uppercase tracking-[0.2em] text-center text-slate-200/80">
