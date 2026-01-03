@@ -9,8 +9,8 @@ export default function ShopPage() {
     <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
       <SiteHeader />
       
-      <div className="flex-1 flex flex-col items-center justify-center pt-32 pb-20 px-6">
-        <h1 className="text-5xl md:text-6xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200">
+      <div className="flex-1 flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200">
           Shop
         </h1>
 
@@ -45,11 +45,14 @@ export default function ShopPage() {
             </div>
 
             <div className="pt-4">
-                <PrimaryButton href={STRIPE_CHECKOUT_URL} className="w-full md:w-auto text-lg px-8 py-4">
-                  Pre-order Now
-                </PrimaryButton>
+                <button 
+                  onClick={() => window.location.href = '/#waitlist-form'}
+                  className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-all text-lg"
+                >
+                  Join the Waitlist
+                </button>
                 <p className="mt-4 text-xs text-slate-500">
-                    Secure payment via Stripe. Estimated delivery: Late 2025.
+                    The shop is opening soon. Join the waitlist to be first in line.
                 </p>
             </div>
           </div>

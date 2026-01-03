@@ -63,16 +63,16 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
   return (
     <section
       ref={sectionRef}
-      className={`min-h-[60vh] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 py-16 px-6 ${
+      className={`min-h-[50vh] md:min-h-[60vh] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 py-12 md:py-16 px-4 md:px-6 ${
         alignment === "right" ? "md:flex-row-reverse" : ""
       }`}
     >
-      <div ref={contentRef} className="flex-1 max-w-xl">
-        <div className="flex items-center gap-4 mb-4">
-          {icon && <div className="text-indigo-400 text-3xl">{icon}</div>}
-          <h2 className="text-3xl md:text-4xl font-bold text-white">{title}</h2>
+      <div ref={contentRef} className="flex-1 max-w-xl w-full">
+        <div className="flex items-center gap-3 md:gap-4 mb-4">
+          {icon && <div className="text-indigo-400 text-2xl md:text-3xl">{icon}</div>}
+          <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">{title}</h2>
         </div>
-        <div className="text-slate-300 text-lg leading-relaxed space-y-4">
+        <div className="text-slate-300 text-base md:text-lg leading-relaxed space-y-4">
           {description}
         </div>
       </div>
@@ -80,7 +80,7 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
       {cardVisual && (
         <div
           ref={visualRef}
-          className="flex-1 flex justify-center items-center min-h-[300px] w-full max-w-md"
+          className="flex-1 flex justify-center items-center min-h-[250px] md:min-h-[300px] w-full max-w-md"
         >
           {cardVisual}
         </div>

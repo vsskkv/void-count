@@ -8,12 +8,12 @@ export default function HowToPlayPage() {
     <main className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
       <SiteHeader />
       
-      <div className="pt-32 pb-16 px-6 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200">
+      <div className="pt-24 md:pt-32 pb-12 md:pb-16 px-4 md:px-6 text-center">
+        <h1 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-cyan-200 leading-tight">
           How to Play Void Count
         </h1>
-        <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-          <span className="text-sm text-indigo-400 font-bold uppercase tracking-widest mt-2 block">
+        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+          <span className="text-xs md:text-sm text-indigo-400 font-bold uppercase tracking-widest mt-2 block">
             2-8 Players • Ages 7+
           </span>
         </p>
