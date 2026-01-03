@@ -31,12 +31,12 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
     const ctx = gsap.context(() => {
       // Slide in content
       gsap.from(contentRef.current, {
-        x: alignment === "left" ? -50 : 50,
+        x: alignment === "left" ? -30 : 30,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.5,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 90%",
           toggleActions: "play none none reverse",
         },
       });
@@ -44,13 +44,13 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
       // Scale up visual
       if (visualRef.current) {
         gsap.from(visualRef.current, {
-          scale: 0.8,
+          scale: 0.9,
           opacity: 0,
-          duration: 0.8,
-          delay: 0.2,
+          duration: 0.5,
+          delay: 0.1,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 90%",
             toggleActions: "play none none reverse",
           },
         });

@@ -65,6 +65,8 @@ export const HeroSection = () => {
             alt="Void Count logo"
             width={260}
             height={260}
+            loading="eager"
+            decoding="async"
           />
         </div>
 

@@ -28,6 +28,8 @@ export const DemoCard = ({
           src={src} 
           alt={label || "Card"} 
           className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     );
@@ -82,11 +84,23 @@ export const DrawPileVisual = () => {
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
       {/* Deck */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10">
-        <img src="/card-back.png" alt="Deck" className="w-full h-full object-cover" />
+        <img 
+          src="/card-back.png" 
+          alt="Deck" 
+          className="w-full h-full object-cover" 
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       {/* Top Card (Animated) */}
       <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10">
-        <img src="/card-back.png" alt="Top Card" className="w-full h-full object-cover" />
+        <img 
+          src="/card-back.png" 
+          alt="Top Card" 
+          className="w-full h-full object-cover" 
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   );

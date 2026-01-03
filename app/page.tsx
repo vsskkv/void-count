@@ -130,6 +130,8 @@ export default function HomePage() {
                   width={160}
                   height={160}
                   className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                  loading="eager"
+                  decoding="async"
                 />
             </div>
             <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
