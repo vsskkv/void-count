@@ -130,83 +130,100 @@ export default function HomePage() {
       {/* Increased max-width to push content to edges */}
       <div className="relative z-20 w-full max-w-[90%] md:max-w-[95%] mx-auto px-4 md:px-12 pointer-events-none flex flex-col">
         
-        {/* Section 1: Intro - Left aligned */}
+        {/* Section 1: Hero Intro - Punchy & Enthusiastic */}
         <section className="content-section min-h-screen flex flex-col justify-center items-start pt-32 pointer-events-auto">
-          <div className="max-w-md md:max-w-lg backdrop-blur-sm bg-slate-950/40 p-8 rounded-2xl border border-slate-800/50 overflow-hidden relative">
-            {/* Subtle internal glow for card */}
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent pointer-events-none" />
+          <div className="max-w-md md:max-w-xl backdrop-blur-md bg-slate-950/60 p-10 rounded-3xl border border-indigo-500/30 overflow-hidden relative shadow-[0_0_50px_rgba(79,70,229,0.2)]">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/20 to-transparent pointer-events-none" />
             
-            <div className="relative mb-8">
-               <SafeImage
+            <div className="relative mb-8 flex items-center gap-4">
+               <img
                   src="/void-count-logo.png"
                   alt="Void Count logo"
-                  width={160}
-                  height={160}
-                  priority
+                  width={120}
+                  height={120}
                   className="relative z-10 mix-blend-screen drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                 />
+                <div className="bg-indigo-500/20 px-3 py-1 rounded-full border border-indigo-500/40 text-xs font-bold text-indigo-300 tracking-widest uppercase">
+                  Ages 7+ • 2-8 Players
+                </div>
             </div>
-            <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200 drop-shadow-sm mb-6">
-              A Cosmic Card Game of Risk and Timing
+            <h1 className="relative z-10 text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-purple-200 leading-tight mb-6">
+              SURVIVE THE <br/>COLLAPSE.
             </h1>
-            <p className="relative z-10 text-xl text-slate-300 mb-8">
-              Scroll to explore the Void.
+            <p className="relative z-10 text-xl md:text-2xl text-slate-200 mb-8 font-medium leading-relaxed">
+              The ultimate cosmic race of <span className="text-indigo-400 font-bold">risk</span>, <span className="text-purple-400 font-bold">strategy</span>, and <span className="text-cyan-400 font-bold">timing</span>.
             </p>
+            <div className="relative z-10 flex gap-4">
+              <div className="px-6 py-3 bg-white text-slate-950 font-black rounded-xl hover:scale-105 transition-transform cursor-default">
+                SCROLL TO PLAY
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Section 2: The Void - Right aligned */}
+        {/* Section 2: The Core Hook - High Stakes */}
         <section className="content-section min-h-screen flex flex-col justify-center items-end text-right pointer-events-auto">
-          <div className="max-w-md md:max-w-lg backdrop-blur-md bg-slate-950/60 p-8 rounded-3xl border border-slate-800 shadow-2xl">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-              The Void is Counting Down
+          <div className="max-w-md md:max-w-lg backdrop-blur-md bg-slate-950/80 p-10 rounded-[2.5rem] border border-purple-500/30 shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full" />
+            
+            <h2 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-tighter italic">
+              0 IS YOUR <br/><span className="text-purple-500 underline decoration-purple-500/50">HERO.</span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-200 leading-relaxed">
-              Every game is a race against an invisible threat. Play safe, or feed the Void with high-risk cards that might take everyone out.
-              <br/><br/>
-              <span className="text-indigo-400 font-semibold">Will you survive the collapse?</span>
+            <p className="text-xl md:text-2xl text-slate-200 leading-relaxed font-light">
+              In the Void, the lowest total wins. Collect <span className="text-white font-bold">Void Cards</span> to hit zero, but beware—the Void is always counting down.
             </p>
+            <div className="mt-8 flex justify-end gap-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="w-12 h-16 rounded-lg border-2 border-purple-500/40 bg-purple-950/20 flex items-center justify-center text-purple-300 font-black">0</div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Section 3: Mechanics - Left aligned */}
+        {/* Section 3: The Three Pillars of Victory */}
         <section className="content-section min-h-screen flex flex-col justify-center items-start pointer-events-auto">
-          <div className="flex flex-col gap-6 max-w-md md:max-w-lg w-full">
-            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-indigo-500 transition-colors">
-              <h3 className="text-2xl font-bold text-indigo-400 mb-2">Draft</h3>
-              <p className="text-slate-300 text-lg">Select anomalies and build your hand carefully. Every card counts.</p>
+          <div className="flex flex-col gap-8 max-w-xl w-full">
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4">
+              MASTER THE <br/>MECHANICS.
+            </h2>
+            
+            <div className="group bg-slate-900/60 border-l-4 border-l-indigo-500 p-8 rounded-r-2xl backdrop-blur-sm hover:bg-indigo-900/20 transition-all cursor-default">
+              <h3 className="text-3xl font-black text-indigo-400 mb-2 uppercase tracking-tighter italic">1. DRAFT</h3>
+              <p className="text-slate-200 text-xl font-medium">Build your hand with precision. Every anomaly you hold is a tool—or a trap.</p>
             </div>
-            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-violet-500 transition-colors">
-               <h3 className="text-2xl font-bold text-violet-400 mb-2">Risk</h3>
-               <p className="text-slate-300 text-lg">Push the Void Count higher to gain power. Is it worth the danger?</p>
+            
+            <div className="group bg-slate-900/60 border-l-4 border-l-violet-500 p-8 rounded-r-2xl backdrop-blur-sm hover:bg-violet-900/20 transition-all cursor-default">
+               <h3 className="text-3xl font-black text-violet-400 mb-2 uppercase tracking-tighter italic">2. SABOTAGE</h3>
+               <p className="text-slate-200 text-xl font-medium">Friendships end here. Force your rivals to draw cards and watch their totals skyrocket.</p>
             </div>
-            <div className="bg-slate-900/80 border border-slate-700 p-6 rounded-xl backdrop-blur-sm hover:border-sky-500 transition-colors">
-               <h3 className="text-2xl font-bold text-sky-400 mb-2">Survive</h3>
-               <p className="text-slate-300 text-lg">Be the last one standing when the count hits zero.</p>
+            
+            <div className="group bg-slate-900/60 border-l-4 border-l-sky-500 p-8 rounded-r-2xl backdrop-blur-sm hover:bg-sky-900/20 transition-all cursor-default">
+               <h3 className="text-3xl font-black text-sky-400 mb-2 uppercase tracking-tighter italic">3. CALL COUNT</h3>
+               <p className="text-slate-200 text-xl font-medium">Got 7 points or less? Strike first. If you're the lowest, you win. If you're not... 20 point penalty.</p>
             </div>
           </div>
         </section>
 
-        {/* Section 4: CTA - Centered / Bottom */}
-        {/* HIDDEN FOR WAITLIST FOCUS */}
-        {/* <section className="content-section min-h-[50vh] flex flex-col items-center justify-center text-center pt-32 pb-10 pointer-events-auto">
-           <div className="max-w-2xl backdrop-blur-md bg-slate-950/60 p-10 rounded-3xl border border-indigo-500/30 shadow-[0_0_50px_rgba(79,70,229,0.2)]">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Enter?
+        {/* Section 4: Call to Action - Excitement focus */}
+        <section className="content-section min-h-[80vh] flex flex-col items-center justify-center text-center pointer-events-auto">
+           <div className="max-w-3xl backdrop-blur-xl bg-indigo-950/20 p-12 rounded-[3rem] border-2 border-white/10 shadow-[0_0_100px_rgba(99,102,241,0.1)] relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-purple-500/5 rounded-[3rem]" />
+            <h2 className="text-5xl md:text-8xl font-black mb-8 text-white tracking-tighter uppercase italic">
+              Ready to <br/><span className="text-indigo-500">Risk it all?</span>
             </h2>
-            <p className="text-xl mb-8 text-slate-300">
-              Join the early access list or pre-order the deck today.
+            <p className="text-2xl mb-12 text-slate-200 font-medium max-w-xl mx-auto">
+              The first edition is almost here. Secure your spot in the Void.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <PrimaryButton href={STRIPE_CHECKOUT_URL} className="text-lg px-10 py-4">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <PrimaryButton href={STRIPE_CHECKOUT_URL} className="text-2xl px-12 py-6 rounded-2xl shadow-xl transform hover:scale-110 transition-transform">
                 Pre-order Now
               </PrimaryButton>
-              <PrimaryButton href="/how-to-play" variant="secondary" className="text-lg px-10 py-4">
-                Learn More
+              <PrimaryButton href="/how-to-play" variant="secondary" className="text-xl px-10 py-5 rounded-2xl border-white/20 hover:bg-white/10">
+                How to Play
               </PrimaryButton>
             </div>
           </div>
-        </section> */}
+        </section>
 
         {/* Section 5: Waitlist - Centered / Bottom */}
         <WaitlistSection />

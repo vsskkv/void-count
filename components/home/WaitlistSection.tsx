@@ -22,12 +22,14 @@ export const WaitlistSection = () => {
 
   return (
     <section className="content-section min-h-[60vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto">
-      <div className="max-w-2xl w-full backdrop-blur-md bg-indigo-950/30 p-10 rounded-3xl border border-indigo-500/20 shadow-[0_0_50px_rgba(79,70,229,0.1)]">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-          Join the Waitlist
+      <div className="max-w-2xl w-full backdrop-blur-md bg-indigo-950/30 p-10 rounded-[3rem] border border-indigo-500/30 shadow-[0_0_50px_rgba(79,70,229,0.15)] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50" />
+        
+        <h2 className="text-4xl md:text-5xl font-black mb-4 text-white tracking-tighter uppercase italic">
+          Enter the <span className="text-indigo-400">Inner Circle.</span>
         </h2>
-        <p className="text-lg mb-8 text-slate-300">
-          Be the first to know about new card drops, expansions, and events.
+        <p className="text-xl mb-10 text-slate-200 font-medium">
+          Get exclusive card drops, secret expansions, and early playtest invites before the Void claims them.
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto w-full">
