@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Void Count",
   description: "A game of mystery and perception",
+  icons: {
+    icon: "/void-count-logo.png",
+    apple: "/void-count-logo.png",
+  },
 };
 
 export default function RootLayout({
