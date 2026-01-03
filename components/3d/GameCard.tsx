@@ -55,6 +55,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     src={frontSrc}
                     alt={frontAlt}
                     draggable={false}
+                    loading="eager"
+                    decoding="async"
                     onError={() => setUseImages(false)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
@@ -104,6 +106,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     src={backSrc}
                     alt="Void Count strategic card game back"
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                     onError={() => setUseImages(false)}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />

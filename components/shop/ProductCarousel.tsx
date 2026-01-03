@@ -1,11 +1,25 @@
 "use client";
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { GameCard } from '@/components/3d/GameCard';
 
 export const ProductCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'center',
+    containScroll: 'trimSnaps',
+    skipSnaps: false,
+    dragFree: false,
+  });
+
+  // Preload images for smoother transitions
+  useEffect(() => {
+    const frontImg = new Image();
+    frontImg.src = '/void-count-card-front.png';
+    const backImg = new Image();
+    backImg.src = '/void-count-card-back.png';
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
