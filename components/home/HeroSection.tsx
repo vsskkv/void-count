@@ -200,17 +200,17 @@ export const HeroSection = () => {
           </div>
 
           {/* Trust Signals */}
-          <div className="hero-trust flex flex-wrap justify-center lg:justify-start items-center gap-x-6 gap-y-3 text-sm sm:text-base text-slate-400">
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-400">⭐</span>
+          <div className="hero-trust flex flex-wrap justify-center lg:justify-start items-center gap-x-4 sm:gap-x-6 gap-y-3 text-xs sm:text-base text-slate-400">
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-yellow-400 text-xs sm:text-base">⭐</span>
               <span><strong className="text-slate-300">120+</strong> players tested</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-purple-400">🔁</span>
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-purple-400 text-xs sm:text-base">🔁</span>
               <span><strong className="text-slate-300">500+</strong> rematches</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-cyan-400">😂</span>
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-cyan-400 text-xs sm:text-base">😂</span>
               <span><strong className="text-slate-300">100%</strong> epic moments</span>
             </div>
           </div>
@@ -219,14 +219,14 @@ export const HeroSection = () => {
         {/* Hero Card Visual */}
         <div 
           ref={cardContainerRef}
-          className="hero-logo flex-1 relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px] aspect-[2.5/3.5] lg:max-w-none lg:h-[600px] flex justify-center items-center"
+          className="hero-logo flex-1 relative w-full max-w-[200px] sm:max-w-[320px] md:max-w-[400px] aspect-[2.5/3.5] lg:max-w-none lg:h-[600px] flex justify-center items-center mt-8 lg:mt-0"
         >
           {/* Pulsing glow */}
-          <div className="absolute inset-0 bg-indigo-500/30 blur-[100px] sm:blur-[120px] rounded-full animate-pulse" />
+          <div className="absolute inset-0 bg-indigo-500/30 blur-[60px] sm:blur-[120px] rounded-full animate-pulse" />
           
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Background Card 1 */}
-            <div className="hero-card-back-1 absolute w-[140px] sm:w-[200px] md:w-[260px] -rotate-12 -translate-x-6 sm:-translate-x-10 opacity-30 will-change-transform">
+            <div className="hero-card-back-1 absolute w-[100px] sm:w-[200px] md:w-[260px] -rotate-12 -translate-x-6 sm:-translate-x-10 opacity-30 will-change-transform">
               <GameCard
                 variant="standard"
                 frontSrc="/Double Your Hand v1.png"
