@@ -23,66 +23,66 @@ gsap.registerPlugin(ScrollTrigger);
 const CARD_SETS = [
   [
     {
-      src: "/void-count-eight-card.png",
+      src: "/Eight v1.png",
       alt: "Void Count strategic card game – Eight card",
       label: "Point Cards",
     },
     {
-      src: "/void-count-blue-glacier-card.png",
+      src: "/Blue Glacier v1.png",
       alt: "Void Count strategic card game – Blue Glacier anomaly card",
       label: "Anomalies",
     },
     {
-      src: "/void-count-take-two-card.png",
+      src: "/Take Two v1.png",
       alt: "Void Count strategic card game – Take Two power card",
       label: "Power Cards",
     },
     {
-      src: "/void-count-volcanix-lava-card.png",
+      src: "/Volcanix Lava v1.png",
       alt: "Void Count strategic card game – Volcanix Lava game changer card",
       label: "Game Changers",
     },
   ],
   [
     {
-      src: "/void-count-three-card.png",
+      src: "/Three v1.png",
       alt: "Void Count strategic card game – Three card",
       label: "Point Cards",
     },
     {
-      src: "/void-count-desert-horizon-card.png",
+      src: "/Desert Horizon v1.png",
       alt: "Void Count strategic card game – Desert Horizon anomaly card",
       label: "Anomalies",
     },
     {
-      src: "/void-count-sabotage-card.png",
+      src: "/Sabotage v1.png",
       alt: "Void Count strategic card game – Sabotage power card",
       label: "Power Cards",
     },
     {
-      src: "/void-count-toxic-swamp-card.png",
+      src: "/Toxic Swamp v1.png",
       alt: "Void Count strategic card game – Toxic Swamp game changer card",
       label: "Game Changers",
     },
   ],
   [
     {
-      src: "/void-count-seven-card.png",
+      src: "/Seven v1.png",
       alt: "Void Count strategic card game – Seven card",
       label: "Point Cards",
     },
     {
-      src: "/void-count-toss-card.png",
+      src: "/Toss v1.png",
       alt: "Void Count strategic card game – Toss power card",
       label: "Power Cards",
     },
     {
-      src: "/void-count-nine-card.png",
+      src: "/Nine v1.png",
       alt: "Void Count strategic card game – Nine card",
       label: "Point Cards",
     },
     {
-      src: "/void-count-double-your-hand-card.png",
+      src: "/Double Your Hand v1.png",
       alt: "Void Count strategic card game – Double Your Hand power card",
       label: "Power Cards",
     },
@@ -211,7 +211,7 @@ export default function HomePageClient() {
               <div className="relative w-full max-w-[220px] sm:max-w-[400px] aspect-[2.5/3.5] group">
                 <div className="absolute inset-0 transform -rotate-12 -translate-x-6 sm:-translate-x-16 translate-y-2 sm:translate-y-4 will-change-transform transition-all duration-500 group-hover:-rotate-10 group-hover:scale-105">
                   <img
-                    src="/void-count-sabotage-card.png"
+                    src="/Sabotage v1.png"
                     alt="Void Count strategic card game – Sabotage card"
                     loading="lazy"
                     decoding="async"
@@ -220,7 +220,7 @@ export default function HomePageClient() {
                 </div>
                 <div className="absolute inset-0 transform rotate-12 translate-x-6 sm:translate-x-16 -translate-y-2 sm:-translate-y-4 will-change-transform transition-all duration-500 group-hover:rotate-10 group-hover:scale-105">
                   <img
-                    src="/void-count-toss-card.png"
+                    src="/Toss v1.png"
                     alt="Void Count strategic card game – Toss card"
                     loading="lazy"
                     decoding="async"
@@ -229,7 +229,7 @@ export default function HomePageClient() {
                 </div>
                 <div className="absolute inset-0 transform -rotate-6 -translate-y-4 sm:-translate-y-8 scale-105 z-10 will-change-transform transition-all duration-500 group-hover:-rotate-4 group-hover:scale-110 group-hover:-translate-y-6">
                   <img
-                    src="/void-count-double-your-hand-card.png"
+                    src="/Double Your Hand v1.png"
                     alt="Void Count strategic card game – Double Your Hand card"
                     loading="lazy"
                     decoding="async"
@@ -238,7 +238,7 @@ export default function HomePageClient() {
                 </div>
                 <div className="absolute inset-0 transform rotate-3 translate-y-6 sm:translate-y-12 translate-x-2 sm:translate-x-4 scale-95 will-change-transform transition-all duration-500 group-hover:rotate-2 group-hover:scale-100">
                   <img
-                    src="/void-count-take-two-card.png"
+                    src="/Take Two v1.png"
                     alt="Void Count strategic card game – Take Two card"
                     loading="lazy"
                     decoding="async"

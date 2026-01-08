@@ -229,7 +229,7 @@ export const HeroSection = () => {
             <div className="hero-card-back-1 absolute w-[140px] sm:w-[200px] md:w-[260px] -rotate-12 -translate-x-6 sm:-translate-x-10 opacity-30 will-change-transform">
               <GameCard
                 variant="standard"
-                frontSrc="/void-count-double-your-hand-card.png"
+                frontSrc="/Double Your Hand v1.png"
                 frontAlt="Void Count strategic card game – Double Your Hand card"
                 className="w-full h-full"
               />
@@ -238,7 +238,7 @@ export const HeroSection = () => {
             <div className="hero-card-back-2 absolute w-[140px] sm:w-[200px] md:w-[260px] rotate-6 translate-x-4 sm:translate-x-6 opacity-40 will-change-transform">
               <GameCard
                 variant="standard"
-                frontSrc="/void-count-toss-card.png"
+                frontSrc="/Toss v1.png"
                 frontAlt="Void Count strategic card game – Toss card"
                 className="w-full h-full"
               />
@@ -247,7 +247,7 @@ export const HeroSection = () => {
             <div className="hero-card-main relative w-[140px] sm:w-[200px] md:w-[260px] lg:w-[320px] -rotate-3 z-10 will-change-transform">
               <GameCard
                 variant="hero"
-                frontSrc="/void-count-card-back.png"
+                frontSrc="/Back V1.png"
                 frontAlt="Void Count strategic card game – Card Back"
                 className="w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.6)] sm:shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
               />

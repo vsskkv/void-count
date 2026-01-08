@@ -83,11 +83,11 @@ export const DrawPileVisual = () => {
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
       {/* Deck */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900">
-        <img src="/void-count-card-back.png" alt="Void Count card back" className="w-full h-full object-cover" />
+        <img src="/Back V1.png" alt="Void Count card back" className="w-full h-full object-cover" />
       </div>
       {/* Top Card (Animated) */}
       <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10 bg-slate-900">
-        <img src="/void-count-card-back.png" alt="Void Count card back" className="w-full h-full object-cover" />
+        <img src="/Back V1.png" alt="Void Count card back" className="w-full h-full object-cover" />
       </div>
     </div>
   );
@@ -108,10 +108,10 @@ export const PowerCardVisual = () => {
 
     return (
         <div ref={containerRef} className="flex gap-4">
-            <DemoCard src="/void-count-take-two-card.png" label="Take Two" />
-            <DemoCard src="/void-count-toss-card.png" label="Toss" />
-            <DemoCard src="/void-count-sabotage-card.png" label="Sabotage" />
-            <DemoCard src="/void-count-double-your-hand-card.png" label="Double Your Hand" />
+            <DemoCard src="/Take Two v1.png" label="Take Two" />
+            <DemoCard src="/Toss v1.png" label="Toss" />
+            <DemoCard src="/Sabotage v1.png" label="Sabotage" />
+            <DemoCard src="/Double Your Hand v1.png" label="Double Your Hand" />
         </div>
     );
 };
@@ -120,13 +120,13 @@ export const CountCallVisual = () => {
   return (
     <div className="flex gap-2 items-end">
        <div className="animate-bounce">
-          <DemoCard src="/void-count-one-card.png" label="1 Point" />
+          <DemoCard src="/One v1.png" label="1 Point" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.1s' }}>
-          <DemoCard src="/void-count-two-card.png" label="2 Points" />
+          <DemoCard src="/Two v1.png" label="2 Points" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
-          <DemoCard src="/void-count-four-card.png" label="4 Points" />
+          <DemoCard src="/Four v1.png" label="4 Points" />
        </div>
        <div className="ml-4 flex flex-col justify-center h-48">
           <span className="text-4xl font-bold text-white">= 7</span>

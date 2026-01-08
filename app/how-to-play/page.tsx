@@ -103,8 +103,8 @@ export default function HowToPlayPage() {
             someone calls "Count". If you reach the limit, you're out.
           </p>
           <div className="flex gap-4 justify-center">
-            <DemoCard src="/void-count-one-card.png" label="1 Point" />
-            <DemoCard src="/void-count-two-card.png" label="2 Points" />
+            <DemoCard src="/One v1.png" label="1 Point" />
+            <DemoCard src="/Two v1.png" label="2 Points" />
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@ export default function HowToPlayPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
-            <DemoCard src="/void-count-take-two-card.png" label="Take Two" />
+            <DemoCard src="/Take Two v1.png" label="Take Two" />
             <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
               Take Two
             </h3>
@@ -206,7 +206,7 @@ export default function HowToPlayPage() {
             </p>
           </div>
           <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
-            <DemoCard src="/void-count-toss-card.png" label="Toss" />
+            <DemoCard src="/Toss v1.png" label="Toss" />
             <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
               Toss
             </h3>
@@ -215,7 +215,7 @@ export default function HowToPlayPage() {
             </p>
           </div>
           <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
-            <DemoCard src="/void-count-sabotage-card.png" label="Sabotage" />
+            <DemoCard src="/Sabotage v1.png" label="Sabotage" />
             <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">
               Sabotage
             </h3>
@@ -225,7 +225,7 @@ export default function HowToPlayPage() {
           </div>
           <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
             <DemoCard
-              src="/void-count-double-your-hand-card.png"
+              src="/Double Your Hand v1.png"
               label="Double Your Hand"
             />
             <h3 className="text-xl font-black text-white uppercase italic mt-6 mb-2">

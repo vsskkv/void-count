@@ -17,8 +17,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     {
       className = "",
       variant = "standard",
-      frontSrc = "/void-count-card-front.png",
-      backSrc = "/void-count-card-back.png",
+      frontSrc = "/Void v1.png",
+      backSrc = "/Back V1.png",
       frontAlt = "Void Count strategic card game front",
       manualRef,
     },
