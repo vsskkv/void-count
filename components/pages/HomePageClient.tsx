@@ -23,11 +23,6 @@ gsap.registerPlugin(ScrollTrigger);
 const CARD_SETS = [
   [
     {
-      src: "/Eight v1.png",
-      alt: "Void Count strategic card game – Eight card",
-      label: "Point Cards",
-    },
-    {
       src: "/Blue Glacier v1.png",
       alt: "Void Count strategic card game – Blue Glacier anomaly card",
       label: "Anomalies",
@@ -44,11 +39,6 @@ const CARD_SETS = [
     },
   ],
   [
-    {
-      src: "/Three v1.png",
-      alt: "Void Count strategic card game – Three card",
-      label: "Point Cards",
-    },
     {
       src: "/Desert Horizon v1.png",
       alt: "Void Count strategic card game – Desert Horizon anomaly card",
@@ -67,19 +57,9 @@ const CARD_SETS = [
   ],
   [
     {
-      src: "/Seven v1.png",
-      alt: "Void Count strategic card game – Seven card",
-      label: "Point Cards",
-    },
-    {
       src: "/Toss v1.png",
       alt: "Void Count strategic card game – Toss power card",
       label: "Power Cards",
-    },
-    {
-      src: "/Nine v1.png",
-      alt: "Void Count strategic card game – Nine card",
-      label: "Point Cards",
     },
     {
       src: "/Double Your Hand v1.png",
