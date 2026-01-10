@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { TurnFlow } from "@/components/how-to-play/TurnFlow";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -49,7 +50,7 @@ export default function HowToPlayPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
             <Link
-              href="/#waitlist-form"
+              href={`/#${WAITLIST_FORM_ID}`}
               className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl font-black px-10 py-5 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
             >
               Join Waiting List
@@ -300,7 +301,7 @@ export default function HowToPlayPage() {
           </h2>
           <div className="relative z-10 flex flex-col sm:flex-row justify-center items-center gap-6">
             <Link
-              href="/#waitlist-form"
+              href={`/#${WAITLIST_FORM_ID}`}
               className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-2xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
             >
               Sign Up To Our Waiting List For Kickstarter

@@ -33,8 +33,17 @@ export const CardCarousel = () => {
     : CARD_DATA.filter(c => c.category === activeCategory);
 
   const totalCards = filteredCards.length;
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const radius = isMobile ? 350 : 700; 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Increased radius on mobile to show more of adjacent cards
+  const radius = isMobile ? 220 : 700; 
   const angleStep = (2 * Math.PI) / totalCards;
 
   // Update card flips and scaling based on wheel rotation
@@ -63,7 +72,7 @@ export const CardCarousel = () => {
         });
       });
 
-      // Update card scaling - front-facing card should be bigger
+      // Update card scaling and opacity - front-facing card should be bigger and fully visible
       cardContainerRefs.current.forEach((container, i) => {
         if (!container) return;
         
@@ -82,13 +91,23 @@ export const CardCarousel = () => {
         }
         
         // Scale based on distance from front
-        // 1.5x at front (0°), 0.8x at back (180°)
-        // Use cosine for smooth scaling curve - more dramatic difference
+        // More generous scaling on mobile to keep adjacent cards visible
         const normalizedDistance = distanceFromFront / 180; // 0 to 1
-        const scale = 0.8 + (0.7 * Math.cos(normalizedDistance * Math.PI / 2));
-
+        const maxScale = isMobile ? 1.2 : 1.5;
+        const minScale = isMobile ? 0.65 : 0.8;
+        const scale = minScale + ((maxScale - minScale) * Math.cos(normalizedDistance * Math.PI / 2));
+        
+        // Opacity - make adjacent cards more visible on mobile
+        // Front card: 1.0, sides: 0.8 (mobile) or 0.6 (desktop), back: 0.3
+        const maxOpacity = isMobile ? 0.85 : 0.6;
+        const minOpacity = 0.3;
+        const opacity = isMobile 
+          ? minOpacity + ((maxOpacity - minOpacity) * (1 - normalizedDistance))
+          : minOpacity + ((maxOpacity - minOpacity) * Math.cos(normalizedDistance * Math.PI / 2));
+        
         gsap.set(container, {
           scale,
+          opacity: Math.max(opacity, minOpacity),
           force3D: true,
         });
       });
@@ -164,19 +183,21 @@ export const CardCarousel = () => {
         </h2>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 relative z-30">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 relative z-30" role="tablist" aria-label="Card categories">
           {["All", ...CATEGORIES].map((cat) => (
             <button
               key={cat}
               onClick={() => {
-                setActiveCategory(cat as any);
+                setActiveCategory(cat as CardCategory | "All");
                 setCurrentIndex(0);
                 if (carouselRef.current) gsap.set(carouselRef.current, { rotationY: 0 });
               }}
+              role="tab"
+              aria-selected={activeCategory === cat}
               className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeCategory === cat 
-                ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
-                : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+                  ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
               }`}
             >
               {cat}
@@ -185,8 +206,8 @@ export const CardCarousel = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-7xl relative flex items-center justify-center h-[500px] sm:h-[700px]">
-        <div className="perspective-[3000px] w-full h-full flex items-center justify-center relative">
+      <div className="w-full max-w-7xl relative flex items-center justify-center h-[500px] sm:h-[700px] overflow-visible">
+        <div className={`w-full h-full flex items-center justify-center relative ${isMobile ? 'perspective-[1500px]' : 'perspective-[3000px]'}`}>
           <div
             ref={carouselRef}
             className="relative preserve-3d will-change-transform w-full h-full flex items-center justify-center"
@@ -202,7 +223,7 @@ export const CardCarousel = () => {
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{
                   transformStyle: "preserve-3d",
-                  width: isMobile ? "160px" : "280px",
+                  width: isMobile ? "140px" : "280px",
                   aspectRatio: "2.5/3.5"
                 }}
               >
@@ -210,7 +231,7 @@ export const CardCarousel = () => {
                   variant="standard"
                   frontSrc={card.front}
                   backSrc="/Back V1.png"
-                  className="w-full h-full pointer-events-none"
+                  className="w-full h-full pointer-events-none select-none"
                   manualRef={(el) => { cardInnerRefs.current[i] = el; }}
                 />
               </div>
@@ -222,18 +243,37 @@ export const CardCarousel = () => {
             <button 
               onClick={() => rotate(-1)} 
               disabled={isAnimating}
-              className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-slate-900/80 border border-white/10 text-white flex items-center justify-center hover:bg-indigo-600 transition-all hover:scale-110 active:scale-95 shadow-xl backdrop-blur-md disabled:opacity-50"
+              aria-label="Previous card"
+              className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-slate-900/90 border border-white/20 text-white flex items-center justify-center hover:bg-indigo-600 transition-all hover:scale-110 active:scale-95 shadow-xl backdrop-blur-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
             </button>
             <button 
               onClick={() => rotate(1)} 
               disabled={isAnimating}
-              className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-slate-900/80 border border-white/10 text-white flex items-center justify-center hover:bg-indigo-600 transition-all hover:scale-110 active:scale-95 shadow-xl backdrop-blur-md disabled:opacity-50"
+              aria-label="Next card"
+              className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-slate-900/90 border border-white/20 text-white flex items-center justify-center hover:bg-indigo-600 transition-all hover:scale-110 active:scale-95 shadow-xl backdrop-blur-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
+
+          {/* Card Indicator Dots (Mobile) */}
+          {isMobile && totalCards > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30 pointer-events-none">
+              {filteredCards.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === currentIndex
+                      ? 'w-6 bg-indigo-500'
+                      : 'w-2 bg-white/30'
+                  }`}
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

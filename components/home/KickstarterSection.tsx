@@ -72,7 +72,7 @@ export const KickstarterSection = () => {
 
             <PrimaryButton 
               className="w-full sm:w-auto text-xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
-              onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => scrollToElement(WAITLIST_FORM_ID)}
             >
               Notify Me at Launch
             </PrimaryButton>

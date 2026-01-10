@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useState } from "react";
 import styles from "./GameCard.module.css";
 
 interface GameCardProps {

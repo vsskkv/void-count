@@ -153,6 +153,65 @@
 .backLabelTop { top: 15%; }
 .backLabelBottom { bottom: 15%; transform: translateX(-50%) rotate(180deg) translateZ(15px); }
 
+.vortexB {
+  background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.3), transparent 70%);
+  animation: vcVortex 25s linear infinite reverse;
+}
+
+.vortexC {
+  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%);
+  animation: vcVortex 30s linear infinite;
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.emptySet {
+  font-size: 1.05rem;
+  margin-right: 0.25rem;
+}
+
+.pip {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: rgba(168, 85, 247, 0.8);
+  font-size: 1.5rem;
+  transform: translateZ(10px);
+}
+
+.pipTL {
+  top: 10%;
+  left: 10%;
+}
+
+.pipBR {
+  bottom: 10%;
+  right: 10%;
+  transform: translateZ(10px) rotate(180deg);
+}
+
+.backParticles {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.2) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 @keyframes vcVortex {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

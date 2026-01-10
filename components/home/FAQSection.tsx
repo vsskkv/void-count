@@ -110,11 +110,17 @@ export const FAQSection = () => {
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full p-6 text-left flex items-center justify-between gap-4"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
+                id={`faq-question-${index}`}
               >
                 <span className="text-lg font-black text-white uppercase italic tracking-tight">{item.question}</span>
-                <span className={`text-2xl text-indigo-500 transition-transform duration-300 ${openIndex === index ? "rotate-45" : ""}`}>+</span>
+                <span className={`text-2xl text-indigo-500 transition-transform duration-300 ${openIndex === index ? "rotate-45" : ""}`} aria-hidden="true">+</span>
               </button>
               <div 
+                id={`faq-answer-${index}`}
+                role="region"
+                aria-labelledby={`faq-question-${index}`}
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${
                   openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}

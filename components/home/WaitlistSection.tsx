@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { GOOGLE_SCRIPT_URL, WAITLIST_FORM_ID } from '@/lib/constants';
 
 export const WaitlistSection = () => {
   const [email, setEmail] = useState('');
@@ -9,36 +10,88 @@ export const WaitlistSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setStatus('error');
+      return;
+    }
+    
     setStatus('loading');
     
     try {
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9CyMcfd44Vuop8bnM1sDm8omPLZ7yiQeI_Yuh7AvPU8r4gTGmQLRQ_Ze7hd8-f39Odw/exec';
-      
-      await fetch(GOOGLE_SCRIPT_URL, {
+      // Try API route first (works with Cloudflare Pages Functions or Next.js server)
+      let response = await fetch('/api/waitlist', {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: 'website' }),
       });
 
-      setStatus('success');
-      setEmail('');
+      // If API route returns 404 (static export), fallback to Google Apps Script
+      if (response.status === 404 || !response.ok) {
+        console.log('API route not available, using Google Apps Script directly');
+        
+        // Use Google Apps Script directly (works with static export)
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            timestamp: new Date().toISOString(),
+            source: 'website'
+          }),
+        });
+        
+        // With no-cors, we can't check response, so assume success
+        setStatus('success');
+        setEmail('');
+        return;
+      }
+
+      // Handle successful API response
+      const data = await response.json();
+      
+      if (data.success) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        throw new Error(data.error || 'Submission failed');
+      }
     } catch (error) {
       console.error("Waitlist error:", error);
-      setStatus('error');
+      // If fetch itself fails (network error), try Google Apps Script as fallback
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            timestamp: new Date().toISOString(),
+            source: 'website'
+          }),
+        });
+        setStatus('success');
+        setEmail('');
+      } catch (fallbackError) {
+        console.error("Fallback error:", fallbackError);
+        setStatus('error');
+      }
     }
   };
 
   return (
     <section
-      id="waitlist-form"
+      id={WAITLIST_FORM_ID}
       className="content-section min-h-[70vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto px-4"
     >
       <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/40 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-indigo-500/60 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
-        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50 pointer-events-none" />
 
-        <div className="mb-8 px-2">
+        <div className="mb-8 px-2 relative z-10">
           <h2 className="text-4xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
             JOIN THE <br />
             <span className="text-indigo-400">KICKSTARTER.</span>
@@ -70,7 +123,7 @@ export const WaitlistSection = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 max-w-lg mx-auto w-full"
+          className="flex flex-col gap-4 max-w-lg mx-auto w-full relative z-10"
         >
           <div className="flex flex-col sm:flex-row gap-3">
             <input

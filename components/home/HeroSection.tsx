@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { scrollToElement } from "@/lib/utils";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -77,6 +79,8 @@ export const HeroSection = () => {
             style={{ 
               filter: 'drop-shadow(0 0 40px rgba(0, 0, 0, 0.8))'
             }}
+            width={650}
+            height={650}
             loading="eager"
             decoding="async"
           />
@@ -86,11 +90,7 @@ export const HeroSection = () => {
         <div className="hero-cta flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto px-4">
           <PrimaryButton
             className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-lg sm:text-xl md:text-2xl font-black px-8 sm:px-10 md:px-14 py-4 sm:py-5 md:py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.5)] hover:shadow-[0_25px_60px_rgba(79,70,229,0.6)] transform hover:scale-105 transition-all uppercase italic"
-            onClick={() =>
-              document
-                .getElementById("waitlist-form")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollToElement(WAITLIST_FORM_ID)}
           >
             Join Waiting List
           </PrimaryButton>

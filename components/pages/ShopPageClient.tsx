@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ProductCarousel } from "@/components/shop/ProductCarousel";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export default function ShopPageClient() {
   return (
@@ -50,7 +51,7 @@ export default function ShopPageClient() {
 
             <div className="pt-4">
               <Link
-                href="/#waitlist-form"
+                href={`/#${WAITLIST_FORM_ID}`}
                 className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-all text-lg inline-block text-center"
               >
                 Join the Waiting List

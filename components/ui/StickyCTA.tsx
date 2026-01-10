@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { PrimaryButton } from "./PrimaryButton";
+import { scrollToElement } from "@/lib/utils";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,7 +54,7 @@ export const StickyCTA = () => {
 
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <PrimaryButton
-            onClick={() => document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => scrollToElement(WAITLIST_FORM_ID)}
             className="flex-1 sm:flex-none py-3 px-6 text-sm font-black whitespace-nowrap shadow-none uppercase italic"
           >
             Join the Waiting List

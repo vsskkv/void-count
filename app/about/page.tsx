@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE_NAME } from "@/lib/site";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About Void Count | The Story Behind the New Strategy Card Game",
@@ -75,7 +76,7 @@ export default function AboutPage() {
         {/* Call to Action */}
         <section className="text-center pt-12">
           <a
-            href="/#waitlist-form"
+            href={`/#${WAITLIST_FORM_ID}`}
             className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-xl md:text-2xl font-black px-12 py-6 rounded-2xl uppercase italic tracking-tighter shadow-[0_20px_50px_rgba(79,70,229,0.5)] transform hover:scale-105 transition-all mb-6"
           >
             Join the Waiting List
