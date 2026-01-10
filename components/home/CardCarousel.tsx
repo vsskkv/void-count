@@ -6,12 +6,6 @@ import { GameCard } from "@/components/3d/GameCard";
 
 const CARD_DATA = [
   {
-    id: "one",
-    front: "/One v1.png",
-    back: "/Back V1.png",
-    name: "One",
-  },
-  {
     id: "toss",
     front: "/Toss v1.png",
     back: "/Back V1.png",
