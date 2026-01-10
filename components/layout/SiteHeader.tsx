@@ -15,6 +15,9 @@ export const SiteHeader = () => {
         <Link href="/how-to-play" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
           HOW TO PLAY
         </Link>
+        <Link href="/faq" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
+          FAQ
+        </Link>
       </nav>
     </header>
   );

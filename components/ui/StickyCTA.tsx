@@ -46,16 +46,16 @@ export const StickyCTA = () => {
             Launching Soon on Kickstarter
           </p>
           <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-            Join 120+ players in the Inner Circle
+            Join the waiting list for launch-day updates
           </p>
         </div>
 
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <PrimaryButton
             onClick={() => document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth" })}
-            className="flex-1 sm:flex-none py-3 px-6 text-sm font-black whitespace-nowrap shadow-none"
+            className="flex-1 sm:flex-none py-3 px-6 text-sm font-black whitespace-nowrap shadow-none uppercase italic"
           >
-            🚀 Join the List
+            Join the Waiting List
           </PrimaryButton>
           <button
             onClick={handleDismiss}

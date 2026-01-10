@@ -6,7 +6,7 @@ import { SITE_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Void Count | The Story Behind the New Strategy Card Game",
   description:
-    "Discover the origins of Void Count, a card game designed in the UK for social sabotage and laughs. Learn why it's the perfect gift for board game lovers and Kickstarter fans.",
+    "Discover the origins of Void Count, a card game built for social sabotage and laughs. Learn why it's the perfect gift for board game lovers and Kickstarter fans.",
   alternates: { canonical: "/about" },
 };
 
@@ -21,9 +21,9 @@ export default function AboutPage() {
             About <span className="text-indigo-500">Void Count</span>
           </h1>
           <p className="text-lg md:text-2xl text-slate-200 font-bold italic leading-tight">
-            Void Count is a fast-paced card game of risk, bluffing, and
+            Void Count is a fast-paced card game of risk, timing, and
             sabotage. Stay below the limit, outplay your friends, and use
-            clever power moves to keep your score at zero.
+            clever power moves to win the round.
           </p>
         </div>
 
@@ -34,8 +34,9 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-slate-300 leading-relaxed">
-              Void Count was born in the UK out of a love for competitive game
-              nights and the thrill of a well-timed sabotage. We wanted to
+              Void Count was born out of a love for competitive game
+              nights and the thrill of a well-timed sabotage. The idea for the game 
+              was conceptualised in the UK by two friends who wanted to
               create a game that was easy to pick up but offered layers of
               strategy that keep players engaged round after round.
             </p>
@@ -55,10 +56,10 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-purple-400 uppercase italic">Bluffing Matters</h3>
+                <h3 className="text-xl font-bold text-purple-400 uppercase italic">Strategy Matters</h3>
                 <p className="text-slate-300 text-base leading-relaxed">
-                  Make them think you're holding a winning hand. Use the chaos
-                  to hide your real total until the very last second.
+                  Plan your moves carefully. Use the chaos
+                  to your advantage and time your "Count" call perfectly to win.
                 </p>
               </div>
             </div>
@@ -77,13 +78,13 @@ export default function AboutPage() {
                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
                 </div>
-                <span className="font-bold uppercase italic tracking-tight text-slate-200">The perfect new card game to play</span>
+                <span className="font-bold uppercase italic tracking-tight text-slate-200">The perfect game night addition</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
                 </div>
-                <span className="font-bold uppercase italic tracking-tight text-slate-200">Gifts for family and friends</span>
+                <span className="font-bold uppercase italic tracking-tight text-slate-200">Social strategy fans</span>
               </div>
               <div className="p-6 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-4">
                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
@@ -104,12 +105,12 @@ export default function AboutPage() {
           <section className="pt-8 border-t border-white/10">
             <div className="flex flex-wrap justify-center md:justify-start gap-8 opacity-70">
               <div className="flex flex-col">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">Origin</span>
-                <span className="font-bold text-white uppercase italic">Designed in the UK</span>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">Design</span>
+                <span className="font-bold text-white uppercase italic">Original Concept</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">Testing</span>
-                <span className="font-bold text-white uppercase italic">Play-tested Groups</span>
+                <span className="font-bold text-white uppercase italic">Extensively Play-tested</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">Quality</span>
@@ -130,7 +131,7 @@ export default function AboutPage() {
               href="/#waitlist-form"
               className="flex-1 bg-white/5 hover:bg-white/10 border border-white/20 text-white text-center py-5 rounded-2xl font-black uppercase italic tracking-tighter shadow-xl transform hover:scale-105 transition-all"
             >
-              Join the Fun
+              Join the Waiting List
             </a>
           </section>
         </div>
@@ -140,4 +141,3 @@ export default function AboutPage() {
     </main>
   );
 }
-

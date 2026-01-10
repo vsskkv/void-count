@@ -25,30 +25,31 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     ref
   ) => {
     const isHero = variant === "hero";
-    const [useImages, setUseImages] = useState(true);
+    const [frontError, setFrontError] = useState(false);
+    const [backError, setBackError] = useState(false);
 
-    const shouldUseImages = useMemo(() => {
-      // If either image fails to load, we fall back to CSS-rendered art automatically.
-      return useImages && Boolean(frontSrc) && Boolean(backSrc);
-    }, [useImages, frontSrc, backSrc]);
+    // Front image logic
+    const showFrontImage = frontSrc && !frontError;
+    // Back image logic - defaults to Back V1.png
+    const showBackImage = backSrc && !backError;
 
     const containerClasses =
       variant === "hero"
         ? "relative h-[60vh] md:h-[75vh] w-auto aspect-[2.5/3.5] max-w-[85vw] max-h-[900px]"
-        : "relative w-full h-full"; // Standard variant fills parent
+        : "relative w-full h-full"; 
 
     return (
       <div className={`perspective-[1000px] ${className}`}>
         <div
           ref={ref}
-          className={`${containerClasses} ${styles.card} shadow-[0_30px_80px_rgba(0,0,0,0.7)]`}
+          className={`${containerClasses} ${styles.card}`}
           style={{ transformStyle: "preserve-3d" }}
         >
-          {/* Inner wrapper: optional manual rotation layer (e.g. homepage arrows) */}
+          {/* Inner wrapper for 3D rotation */}
           <div ref={manualRef} className={styles.inner}>
-            {/* FRONT (Void Count cover / card art) */}
+            {/* FRONT FACE */}
             <div className={`${styles.face} ${styles.front}`}>
-              {shouldUseImages ? (
+              {showFrontImage ? (
                 <>
                   <img
                     className={styles.image}
@@ -57,36 +58,24 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     draggable={false}
                     loading="eager"
                     decoding="async"
-                    onError={() => setUseImages(false)}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    onError={() => setFrontError(true)}
                   />
                   <div className={styles.neonBorder} />
                 </>
               ) : (
                 <>
+                  {/* CSS Fallback Art */}
                   <div className={styles.vortexWrap}>
                     <div className={styles.vortexC} />
                     <div className={styles.vortexA} />
                     <div className={styles.vortexB} />
                   </div>
-
                   <div className={styles.vignette} />
                   <div className={styles.sheen} />
-
                   <div className={styles.titleWrap}>
-                    <div
-                      className={styles.title}
-                      style={{ fontSize: isHero ? "min(11vh, 12vw)" : "3.75rem" }}
-                    >
+                    <div className={styles.title} style={{ fontSize: isHero ? "min(11vh, 12vw)" : "3.75rem" }}>
                       <span className={styles.word}>
-                        <span
-                          className={styles.emptySet}
-                          style={{
-                            fontSize: isHero ? "min(3vh, 3.2vw)" : "1.05rem",
-                          }}
-                        >
-                          ∅
-                        </span>
+                        <span className={styles.emptySet} style={{ fontSize: isHero ? "min(3vh, 3.2vw)" : "1.05rem" }}>∅</span>
                         VOID
                       </span>
                       <span className={styles.word}>COUNT</span>
@@ -97,51 +86,31 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
               )}
             </div>
 
-            {/* BACK (Void card back) */}
+            {/* BACK FACE */}
             <div className={`${styles.face} ${styles.back}`}>
-              {shouldUseImages ? (
+              {showBackImage ? (
                 <>
                   <img
                     className={styles.image}
                     src={backSrc}
-                    alt="Void Count strategic card game back"
+                    alt="Void Count card back"
                     draggable={false}
                     loading="lazy"
                     decoding="async"
-                    onError={() => setUseImages(false)}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    onError={() => setBackError(true)}
                   />
                   <div className={styles.neonBorder} />
                 </>
               ) : (
                 <>
+                  {/* CSS Fallback Back Art */}
                   <div className={styles.backBg} />
                   <div className={styles.backParticles} />
                   <div className={styles.backRing} />
-
-                  <div
-                    className={styles.backLabelTop}
-                    style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}
-                  >
-                    VOID
-                  </div>
-                  <div
-                    className={styles.backLabelBottom}
-                    style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}
-                  >
-                    VOID
-                  </div>
-
-                  <div className={`${styles.pip} ${styles.pipTL}`}>
-                    <span style={{ fontSize: isHero ? "min(3.4vh, 4vw)" : "1.75rem" }}>
-                      0
-                    </span>
-                  </div>
-                  <div className={`${styles.pip} ${styles.pipBR}`}>
-                    <span style={{ fontSize: isHero ? "min(3.4vh, 4vw)" : "1.75rem" }}>
-                      0
-                    </span>
-                  </div>
+                  <div className={styles.backLabelTop} style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}>VOID</div>
+                  <div className={styles.backLabelBottom} style={{ fontSize: isHero ? "min(4.2vh, 5vw)" : "2.25rem" }}>VOID</div>
+                  <div className={`${styles.pip} ${styles.pipTL}`}><span>0</span></div>
+                  <div className={`${styles.pip} ${styles.pipBR}`}><span>0</span></div>
                   <div className={styles.neonBorder} />
                 </>
               )}

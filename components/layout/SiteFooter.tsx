@@ -10,6 +10,7 @@ export const SiteFooter = () => {
             <Link href="/" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">HOME</Link>
             <Link href="/about" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">ABOUT</Link>
             <Link href="/how-to-play" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">HOW TO PLAY</Link>
+            <Link href="/faq" className="hover:text-white transition-colors font-bold tracking-widest text-xs uppercase">FAQ</Link>
           </div>
           <div className="flex justify-center gap-6">
             <a href="https://www.instagram.com/voidcountltd?igsh=dHh1bWV5c216YXJ1&utm_source=qr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-300 transition-colors uppercase tracking-widest text-[10px] font-black group">

@@ -27,13 +27,13 @@ export default function ShopPageClient() {
                 Void Count: Base Deck
               </h2>
               <p className="text-indigo-400 font-medium tracking-wider uppercase text-sm">
-                First Edition • UK Release
+                First Edition • Kickstarter Release
               </p>
             </div>
 
             <p className="text-slate-300 text-lg leading-relaxed">
               The complete 116-card deck. Includes rulebook, tokens, and everything
-              you need for 2-8 players. Perfect for game nights, parties, and
+              you need for 2–6 players. Perfect for game nights, parties, and
               strategic cosmic battles.
             </p>
 
@@ -45,7 +45,7 @@ export default function ShopPageClient() {
                   EARLY BIRD
                 </span>
               </div>
-              <p className="text-slate-400 text-sm">Free shipping within the UK.</p>
+              <p className="text-slate-400 text-sm">Global shipping available.</p>
             </div>
 
             <div className="pt-4">
@@ -53,10 +53,10 @@ export default function ShopPageClient() {
                 href="/#waitlist-form"
                 className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-all text-lg inline-block text-center"
               >
-                Join the Waitlist
+                Join the Waiting List
               </Link>
               <p className="mt-4 text-xs text-slate-500">
-                The shop is opening soon. Join the waitlist to be first in line.
+                The shop is opening soon. Join the waiting list to be first in line.
               </p>
             </div>
           </div>

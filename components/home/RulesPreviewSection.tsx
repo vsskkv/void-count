@@ -35,7 +35,7 @@ export const RulesPreviewSection = () => {
             </div>
             <h3 className="text-2xl font-black text-white uppercase italic mb-4 tracking-tight">2. Play Smart</h3>
             <p className="text-slate-300 font-medium italic leading-relaxed">
-              Use Power cards to sabotage rivals, swap hands, and change the rules.
+              Strategic play of power cards helps you win games.
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export const RulesPreviewSection = () => {
             </div>
             <h3 className="text-2xl font-black text-white uppercase italic mb-4 tracking-tight">3. Call Count</h3>
             <p className="text-slate-300 font-medium italic leading-relaxed">
-              Think you have the lowest score? Call "Count" to end the round and win.
+              If you think you have the lowest hand, call Count. But be careful: you'll take a 20-point penalty if you're wrong.
             </p>
           </div>
         </div>

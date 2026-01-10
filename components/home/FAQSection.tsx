@@ -9,15 +9,15 @@ const FAQ_DATA = [
   },
   {
     question: "How long does a game take?",
-    answer: "A single round takes about 2–3 minutes. A full game usually lasts 10–15 minutes."
+    answer: "Rounds are fast and intense. The overall game length depends on player strategy and sabotage levels."
   },
   {
     question: "Is it easy to learn?",
-    answer: "Absolutely. Most people learn the basics in under 2 minutes. The complexity comes from the strategic use of Power cards."
+    answer: "Absolutely. Most people pick up the basics in just a few minutes. The complexity comes from the strategic use of Power cards."
   },
   {
     question: "When is the Kickstarter launching?",
-    answer: "We're in the final stages of playtesting. Join the Inner Circle to get the exact launch date and early-bird discounts."
+    answer: "We're in the final stages of playtesting. Join the waiting list to get the exact launch date and early-bird discounts."
   },
 ];
 

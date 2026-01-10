@@ -41,7 +41,7 @@ export const WaitlistSection = () => {
         <div className="mb-8 px-2">
           <h2 className="text-4xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
             JOIN THE <br />
-            <span className="text-indigo-400">INNER CIRCLE.</span>
+            <span className="text-indigo-400">KICKSTARTER.</span>
           </h2>
           <p className="text-lg md:text-3xl mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
             Be the first to know when the next print run drops. <br className="hidden md:block" />
@@ -59,7 +59,7 @@ export const WaitlistSection = () => {
             </li>
             <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
               <span className="text-indigo-500 text-lg">✓</span>
-              Exclusive UK playtest invites
+              Exclusive playtest invites
             </li>
             <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
               <span className="text-indigo-500 text-lg">✓</span>
@@ -84,13 +84,13 @@ export const WaitlistSection = () => {
             <PrimaryButton
               type="submit"
               disabled={status === "loading" || status === "success"}
-              className="whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)]"
+              className="whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] uppercase italic"
             >
               {status === "loading"
                 ? "Unlocking..."
                 : status === "success"
                 ? "Success!"
-                : "Join the List"}
+                : "Join the Waiting List"}
             </PrimaryButton>
           </div>
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mt-2">
@@ -98,7 +98,7 @@ export const WaitlistSection = () => {
           </p>
           {status === "success" && (
             <p className="text-emerald-400 text-sm animate-fade-in font-bold">
-              Welcome to the Inner Circle. You're on the list.
+              Welcome to the waiting list. You're on the list.
             </p>
           )}
           {status === "error" && (
@@ -111,7 +111,3 @@ export const WaitlistSection = () => {
     </section>
   );
 };
-
-
-
-

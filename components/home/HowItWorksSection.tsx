@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 export const HowItWorksSection = () => {
@@ -8,7 +10,7 @@ export const HowItWorksSection = () => {
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <h2 className="text-4xl md:text-6xl font-black mb-16 text-white tracking-tighter uppercase italic text-center leading-tight">
-          HOW <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">VOID COUNT</span> WORKS
+          HOW <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">VOID COUNT</span> WORKS
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12">
@@ -34,7 +36,7 @@ export const HowItWorksSection = () => {
               Play Smart
             </h3>
             <p className="text-slate-300 text-lg font-bold italic leading-tight">
-              Use Power Cards to shift high points to your friends. Strategic sabotage wins games.
+              Strategic play of power cards helps you win games.
             </p>
           </div>
 
@@ -47,18 +49,17 @@ export const HowItWorksSection = () => {
               Call Count
             </h3>
             <p className="text-slate-300 text-lg font-bold italic leading-tight">
-              If you think you're the lowest, call "Count". If you're right, they take the points. If you're wrong, the points are yours to manage.
+              If you think you have the lowest hand, call Count. But beware: you'll take a 20-point penalty if you're wrong.
             </p>
           </div>
         </div>
 
         <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-300 font-bold uppercase tracking-[0.2em] text-[10px]">
-            Games last 10–15 minutes
+            The Ultimate Strategy
           </div>
         </div>
       </div>
     </section>
   );
 };
-

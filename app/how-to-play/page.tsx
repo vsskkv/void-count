@@ -40,7 +40,7 @@ export default function HowToPlayPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
             HOW TO PLAY <br />
-            <span className="text-indigo-500">VOID COUNT</span>
+            <span className="text-indigo-500 italic">VOID COUNT</span>
           </h1>
           <p className="text-lg md:text-2xl text-slate-200 font-bold italic mb-10 max-w-2xl mx-auto leading-tight">
             A fast-paced strategic card game of risk, timing, and sabotage.{" "}
@@ -52,7 +52,7 @@ export default function HowToPlayPage() {
               href="/#waitlist-form"
               className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl font-black px-10 py-5 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
             >
-              Get the Game
+              Join Waiting List
             </Link>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-6 md:gap-12 opacity-70">
@@ -74,18 +74,18 @@ export default function HowToPlayPage() {
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
-                Time
+                Strategy
               </span>
               <span className="font-bold text-white uppercase italic">
-                20–30 Mins
+                Ultimate Sabotage
               </span>
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500 mb-1">
-                Origin
+                Design
               </span>
               <span className="font-bold text-white uppercase italic">
-                Designed in the UK
+                Premium Quality
               </span>
             </div>
           </div>
@@ -172,8 +172,7 @@ export default function HowToPlayPage() {
                 2. Play a Power Card
               </h3>
               <p className="text-slate-300 font-medium mb-2">
-                Resolve the effect immediately. These are your best tools for
-                sabotaging opponents and lowering your own total.
+                Resolve the effect immediately. Strategic play of power cards helps you win games.
               </p>
             </div>
 
@@ -182,8 +181,7 @@ export default function HowToPlayPage() {
                 3. Call "Count"
               </h3>
               <p className="text-slate-300 font-medium">
-                If your hand totals 7 or less (and you have no Power Cards), you
-                can call "Count" to end the round.
+                If you think you have the lowest hand, call Count. But beware: you'll take a 20-point penalty if you're wrong.
               </p>
             </div>
           </div>
@@ -193,7 +191,7 @@ export default function HowToPlayPage() {
       {/* Power Cards Explained */}
       <div className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-black mb-16 text-white tracking-tighter uppercase italic text-center">
-          POWER CARDS: <span className="text-indigo-500">SHOW & TELL</span>
+          POWER CARDS: <span className="text-indigo-500 italic">SHOW & TELL</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-slate-900/40 p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center">
@@ -245,7 +243,7 @@ export default function HowToPlayPage() {
             LIMIT
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tighter uppercase italic leading-tight">
-            THE <span className="text-rose-500">"COUNT"</span> RISK
+            THE <span className="text-rose-500 italic">"COUNT"</span> RISK
           </h2>
           <p className="text-xl md:text-2xl text-slate-200 font-bold italic leading-tight mb-8">
             Calling Count is the ultimate gamble. If anyone beats your score,
@@ -298,7 +296,7 @@ export default function HowToPlayPage() {
           <div className="absolute inset-0 bg-[url('/stars-bg.svg')] opacity-10" />
           <h2 className="relative z-10 text-4xl md:text-7xl font-black mb-8 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
             READY TO <br />
-            <span className="text-indigo-500">START THE COUNT?</span>
+            <span className="text-indigo-500 italic">START THE COUNT?</span>
           </h2>
           <div className="relative z-10 flex flex-col sm:flex-row justify-center items-center gap-6">
             <Link

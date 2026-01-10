@@ -19,7 +19,7 @@ export const KickstarterSection = () => {
                 <div className="w-24 h-24 sm:w-32 sm:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center animate-pulse">
                   <span className="text-4xl sm:text-6xl italic font-black text-indigo-400">∅</span>
                 </div>
-                <div className="text-center">
+                <div className="text-center px-4">
                   <p className="text-white font-black uppercase italic tracking-tighter text-3xl sm:text-4xl">
                     Base Deck
                   </p>
@@ -44,7 +44,7 @@ export const KickstarterSection = () => {
             </h2>
             
             <p className="text-lg md:text-2xl text-slate-300 font-bold italic mb-10 leading-tight">
-              Get ready for the first edition of Void Count. Join the list to secure early bird pricing and exclusive playtest invites.
+              Get ready for the first edition of Void Count. Join the Kickstarter list to secure early bird pricing and exclusive playtest invites.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-12">
@@ -60,21 +60,21 @@ export const KickstarterSection = () => {
               </div>
               <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">⚡</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">15 Mins</span>
+                <span className="block text-white font-black uppercase text-sm mb-1 italic">Fast Pace</span>
                 <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Rapid Rounds</span>
               </div>
               <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                <span className="block text-2xl mb-2">🛡️</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">UK Made</span>
-                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Direct Shipping</span>
+                <span className="block text-2xl mb-2">🎨</span>
+                <span className="block text-white font-black uppercase text-sm mb-1 italic">Premium Art</span>
+                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Custom Design</span>
               </div>
             </div>
 
             <PrimaryButton 
-              className="w-full sm:w-auto text-xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)]"
-              onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full sm:w-auto text-xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
+              onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: "smooth" })}
             >
-              🚀 Notify Me at Launch
+              Notify Me at Launch
             </PrimaryButton>
           </div>
         </div>
