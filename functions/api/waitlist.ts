@@ -1,9 +1,13 @@
+// @ts-nocheck - This is a Cloudflare Pages Function, not Next.js code
 /**
  * Cloudflare Pages Function for handling waitlist submissions
  * This will work with your static export when deployed to Cloudflare Pages
+ * 
+ * NOTE: This file is excluded from Next.js TypeScript compilation.
+ * It's only used when deployed to Cloudflare Pages.
  */
 
-export const onRequestPost: PagesFunction = async (context) => {
+export const onRequestPost = async (context) => {
   try {
     const { email } = await context.request.json();
 
