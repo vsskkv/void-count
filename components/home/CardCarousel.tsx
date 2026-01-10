@@ -37,7 +37,7 @@ export const CardCarousel = () => {
   const radius = isMobile ? 350 : 700; 
   const angleStep = (2 * Math.PI) / totalCards;
 
-  // Update card flips based on wheel rotation
+  // Update card flips and scaling based on wheel rotation
   useEffect(() => {
     if (!carouselRef.current) return;
 
@@ -59,6 +59,36 @@ export const CardCarousel = () => {
 
         gsap.set(inner, {
           rotateY: flipRotation,
+          force3D: true,
+        });
+      });
+
+      // Update card scaling - front-facing card should be bigger
+      cardContainerRefs.current.forEach((container, i) => {
+        if (!container) return;
+        
+        const cardBaseAngle = angleStep * i;
+        const cardBaseRotation = (cardBaseAngle * 180) / Math.PI;
+        let absoluteRotation = wheelRotation + cardBaseRotation;
+        
+        // Normalize to 0-360 range
+        absoluteRotation = ((absoluteRotation % 360) + 360) % 360;
+        
+        // Calculate distance from front (0 degrees)
+        // Distance is the minimum angle to get to 0 or 360
+        let distanceFromFront = absoluteRotation;
+        if (distanceFromFront > 180) {
+          distanceFromFront = 360 - distanceFromFront;
+        }
+        
+        // Scale based on distance from front
+        // 1.5x at front (0°), 0.8x at back (180°)
+        // Use cosine for smooth scaling curve - more dramatic difference
+        const normalizedDistance = distanceFromFront / 180; // 0 to 1
+        const scale = 0.8 + (0.7 * Math.cos(normalizedDistance * Math.PI / 2));
+
+        gsap.set(container, {
+          scale,
           force3D: true,
         });
       });
