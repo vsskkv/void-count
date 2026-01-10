@@ -303,7 +303,7 @@ export default function HowToPlayPage() {
               href="/#waitlist-form"
               className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-2xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all uppercase italic"
             >
-              Get Void Count
+              Sign Up To Our Waiting List For Kickstarter
             </Link>
             <Link
               href="/about"

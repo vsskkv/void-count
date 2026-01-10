@@ -33,13 +33,38 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-black text-white uppercase italic tracking-tight mb-4">
               Our Story
             </h2>
-            <p className="text-slate-300 leading-relaxed">
-              Void Count was born out of a love for competitive game
-              nights and the thrill of a well-timed sabotage. The idea for the game 
-              was conceptualised in the UK by two friends who wanted to
-              create a game that was easy to pick up but offered layers of
-              strategy that keep players engaged round after round.
+            <p className="text-slate-300 leading-relaxed mb-6">
+              Void Count was conceptualised in the UK by two friends who shared a passion for game nights, strategic thinking, and that perfect moment when a well-timed move turns the tables.
             </p>
+            <p className="text-slate-300 leading-relaxed mb-6">
+              What started as a fun idea during countless game sessions grew into something special. We wanted to create a game that anyone could pick up in minutes—whether you're a seasoned strategist or just looking for a good time with friends.
+            </p>
+            <p className="text-slate-300 leading-relaxed">
+              After countless rounds of testing, tweaking, and probably too many late-night play sessions, Void Count was born. It's the game we wish we'd had at our game nights—quick to learn, endlessly replayable, and packed with those "just one more round" moments.
+            </p>
+          </section>
+
+          {/* Founders Section */}
+          <section className="bg-slate-900/40 p-8 md:p-10 rounded-3xl border border-white/10">
+            <h2 className="text-3xl md:text-4xl font-black text-white uppercase italic tracking-tight mb-8">
+              Meet the Founders
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black text-indigo-400 uppercase italic">Channi</h3>
+                <p className="text-slate-200 font-bold italic mb-3">Founder & Creative Lead</p>
+                <p className="text-slate-300 leading-relaxed">
+                  Channi is the creative force behind Void Count. From dreaming up the card names and their unique abilities to crafting the rules that make each round unpredictable, Channi brings the game's personality and strategic depth to life.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black text-purple-400 uppercase italic">Vikram</h3>
+                <p className="text-slate-200 font-bold italic mb-3">Co-Founder & Designer</p>
+                <p className="text-slate-300 leading-relaxed">
+                  Vikram is the designer co-founder who brings Void Count's vision to reality. With an eye for what makes games look and feel great, Vikram ensures every card, every detail, and every moment of play delivers the experience we set out to create.
+                </p>
+              </div>
+            </div>
           </section>
 
           {/* Player Experience Section */}
