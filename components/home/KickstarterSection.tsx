@@ -2,6 +2,8 @@
 
 import React from "react";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { scrollToElement } from "@/lib/utils";
+import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const KickstarterSection = () => {
   return (
