@@ -72,45 +72,47 @@ export const HeroSection = () => {
         </h1>
 
         {/* One-line Explainer */}
-        <p className="hero-explainer text-lg sm:text-xl md:text-2xl text-slate-300 max-w-2xl mb-10 md:mb-12 leading-relaxed">
-          A fast, strategic card game of sabotage and bluffing for 2–6 players.
-          <span className="block sm:inline"> Games last 10–15 minutes.</span>
+        <p className="hero-explainer text-lg sm:text-xl md:text-2xl text-slate-300 max-w-2xl mb-8 md:mb-10 leading-relaxed font-medium">
+          A 10–15 min sabotage-and-strategy card game for 2–6 players.
+          <span className="block text-indigo-400 font-bold mt-2 sm:mt-1 italic">Go low. Play smart. Call Count.</span>
         </p>
 
         {/* CTAs */}
         <div className="hero-cta flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto mb-10 md:mb-12">
           <PrimaryButton
-            href="/how-to-play"
             className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-xl md:text-2xl font-black px-10 md:px-14 py-5 md:py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.5)] hover:shadow-[0_25px_60px_rgba(79,70,229,0.6)] transform hover:scale-105 transition-all"
-          >
-            🎴 Play in 2 Minutes
-          </PrimaryButton>
-          <PrimaryButton
-            variant="secondary"
-            className="w-full sm:w-auto text-lg md:text-xl px-8 md:px-10 py-5 md:py-6 rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all"
             onClick={() =>
               document
                 .getElementById("waitlist-form")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            Join the Inner Circle
+            🚀 Join the Inner Circle
+          </PrimaryButton>
+          <PrimaryButton
+            variant="secondary"
+            href="/how-to-play"
+            className="w-full sm:w-auto text-lg md:text-xl px-8 md:px-10 py-5 md:py-6 rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all"
+          >
+            🎴 See How to Play
           </PrimaryButton>
         </div>
 
-        {/* Trust Signals */}
-        <div className="hero-trust flex flex-wrap justify-center items-center gap-x-6 gap-y-4 text-sm sm:text-base md:text-lg text-slate-400">
+        {/* Trust Strip */}
+        <div className="hero-trust flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 gap-y-3 px-6 py-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 text-xs sm:text-sm font-black uppercase tracking-widest text-slate-400">
           <div className="flex items-center gap-2 whitespace-nowrap">
-            <span className="text-yellow-400 text-lg">⭐</span>
-            <span><strong className="text-slate-200">120+</strong> players tested</span>
+            <span className="text-yellow-400 text-base">⭐</span>
+            <span className="text-slate-300">120+ Playtesters</span>
           </div>
+          <div className="hidden sm:block w-px h-4 bg-white/10" />
           <div className="flex items-center gap-2 whitespace-nowrap">
-            <span className="text-purple-400 text-lg">🔁</span>
-            <span><strong className="text-slate-200">500+</strong> rematches</span>
+            <span className="text-indigo-400 text-base">🏆</span>
+            <span className="text-slate-300">Top Rated Game</span>
           </div>
+          <div className="hidden sm:block w-px h-4 bg-white/10" />
           <div className="flex items-center gap-2 whitespace-nowrap">
-            <span className="text-cyan-400 text-lg">😂</span>
-            <span><strong className="text-slate-200">100%</strong> epic moments</span>
+            <span className="text-cyan-400 text-base">🇬🇧</span>
+            <span className="text-slate-300">Designed in UK</span>
           </div>
         </div>
       </div>

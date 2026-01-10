@@ -4,56 +4,93 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { GameCard } from "@/components/3d/GameCard";
 
+type CardCategory = "Power" | "Environment" | "Points";
+
 const CARD_DATA = [
+  {
+    id: "one",
+    front: "/One v1.png",
+    back: "/Back V1.png",
+    name: "The One",
+    category: "Points" as CardCategory,
+    effect: "Low value, high stakes. Every point counts.",
+    fun: "The best card to hold when calling Count."
+  },
   {
     id: "toss",
     front: "/Toss v1.png",
     back: "/Back V1.png",
     name: "Toss",
+    category: "Power" as CardCategory,
+    effect: "Discard point cards without drawing back.",
+    fun: "The fastest way to reach zero."
   },
   {
     id: "sabotage",
     front: "/Sabotage v1.png",
     back: "/Back V1.png",
     name: "Sabotage",
+    category: "Power" as CardCategory,
+    effect: "Give your worst cards to someone else.",
+    fun: "Watch their face when you hand over a 9."
   },
   {
     id: "take-two",
     front: "/Take Two v1.png",
     back: "/Back V1.png",
     name: "Take Two",
+    category: "Power" as CardCategory,
+    effect: "Force a player to draw 2 cards.",
+    fun: "Perfect for stopping someone about to call Count."
   },
   {
     id: "double",
     front: "/Double Your Hand v1.png",
     back: "/Back V1.png",
-    name: "Double Your Hand",
+    name: "Double Up",
+    category: "Power" as CardCategory,
+    effect: "Force a rival to double their entire hand.",
+    fun: "The ultimate nuclear option."
   },
   {
     id: "blue-glacier",
     front: "/Blue Glacier v1.png",
     back: "/Back V1.png",
     name: "Blue Glacier",
+    category: "Environment" as CardCategory,
+    effect: "Freezes all power cards for one round.",
+    fun: "Forces everyone to play pure strategy."
   },
   {
     id: "desert",
     front: "/Desert Horizon v1.png",
     back: "/Back V1.png",
     name: "Desert Horizon",
+    category: "Environment" as CardCategory,
+    effect: "Everyone must discard down to 4 cards.",
+    fun: "Levels the playing field instantly."
   },
   {
     id: "toxic",
     front: "/Toxic Swamp v1.png",
     back: "/Back V1.png",
     name: "Toxic Swamp",
+    category: "Environment" as CardCategory,
+    effect: "Drawing cards adds double points.",
+    fun: "Makes every draw a massive risk."
   },
   {
     id: "volcanix",
     front: "/Volcanix Lava v1.png",
     back: "/Back V1.png",
     name: "Volcanix Lava",
+    category: "Environment" as CardCategory,
+    effect: "Highest hand value takes double damage.",
+    fun: "Creates instant panic for the leader."
   },
 ];
+
+const CATEGORIES: CardCategory[] = ["Power", "Environment", "Points"];
 
 export const CardCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -61,61 +98,53 @@ export const CardCarousel = () => {
   const cardInnerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<CardCategory | "All">("Power");
 
-  const totalCards = CARD_DATA.length;
+  const filteredCards = activeCategory === "All" 
+    ? CARD_DATA 
+    : CARD_DATA.filter(c => c.category === activeCategory);
+
+  const totalCards = filteredCards.length;
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const radius = isMobile ? 350 : 650; // Distance from centre to each card
-  const angleStep = (2 * Math.PI) / totalCards; // Angle between cards
+  const radius = isMobile ? 300 : 500; 
+  const angleStep = (2 * Math.PI) / totalCards;
 
   useEffect(() => {
     if (!carouselRef.current) return;
 
     const ctx = gsap.context(() => {
-      // ═══════════════════════════════════════════════════════════
-      // STEP 1: Position each card in a 3D circle
-      // ═══════════════════════════════════════════════════════════
+      // Position each card
       cardContainerRefs.current.forEach((container, i) => {
         if (!container) return;
-
         const angle = angleStep * i;
         const x = Math.sin(angle) * radius;
         const z = Math.cos(angle) * radius;
-        
-        // Rotate card to face OUTWARD from centre
         const faceOutwardRotation = (angle * 180) / Math.PI;
 
-        // Position and orient the card in the circle
         gsap.set(container, {
-          x,
-          z,
+          x, z,
           rotateY: faceOutwardRotation,
-          force3D: true, // Force hardware acceleration
-        });
-      });
-
-      // ═══════════════════════════════════════════════════════════
-      // STEP 2: Each card continuously flips (shows front → back → front)
-      // ═══════════════════════════════════════════════════════════
-      cardInnerRefs.current.forEach((inner, i) => {
-        if (!inner) return;
-
-        // Stagger the start of each card's flip for a wave effect
-        gsap.to(inner, {
-          rotateY: 360,
-          duration: 10, // Slower flip for better performance on mobile
-          repeat: -1,
-          ease: "none",
-          delay: i * 0.4, // Stagger by 0.4s per card
           force3D: true,
         });
       });
 
-      // ═══════════════════════════════════════════════════════════
-      // STEP 3: Carousel wheel rotates continuously
-      // ═══════════════════════════════════════════════════════════
+      // Flip animation
+      cardInnerRefs.current.forEach((inner, i) => {
+        if (!inner) return;
+        gsap.to(inner, {
+          rotateY: 360,
+          duration: 12,
+          repeat: -1,
+          ease: "none",
+          delay: i * 0.5,
+          force3D: true,
+        });
+      });
+
+      // Wheel rotation
       gsap.to(carouselRef.current, {
-        rotationY: -360, // Full rotation
-        duration: 60, // Slow, majestic rotation (60 seconds per full spin)
+        rotationY: -360,
+        duration: 50,
         repeat: -1,
         ease: "none",
         force3D: true,
@@ -123,23 +152,18 @@ export const CardCarousel = () => {
     }, carouselRef);
 
     return () => ctx.revert();
-  }, [radius, angleStep]);
+  }, [radius, angleStep, filteredCards]);
 
-  // Manual rotation with arrow buttons
   const rotate = (direction: 1 | -1) => {
     if (isAnimating || !carouselRef.current) return;
     setIsAnimating(true);
-
-    // Get current rotation and add one card step
     const currentRotation = gsap.getProperty(carouselRef.current, "rotationY") as number;
     const targetRotation = currentRotation + (direction * -(360 / totalCards));
 
     gsap.to(carouselRef.current, {
       rotationY: targetRotation,
-      duration: 1,
+      duration: 0.8,
       ease: "power2.inOut",
-      overwrite: true,
-      force3D: true, // Force 3D for smoother rotation
       onComplete: () => {
         setCurrentIndex((prev) => (prev + direction + totalCards) % totalCards);
         setIsAnimating(false);
@@ -147,127 +171,100 @@ export const CardCarousel = () => {
     });
   };
 
-  // Keyboard controls
-  useEffect(() => {
-    const handleKeyboard = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") rotate(-1);
-      if (e.key === "ArrowRight") rotate(1);
-    };
-
-    window.addEventListener("keydown", handleKeyboard);
-    return () => window.removeEventListener("keydown", handleKeyboard);
-  }, [isAnimating]);
+  const activeCard = filteredCards[currentIndex];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-slate-950 py-20 px-4">
-      {/* Ambient Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.15),transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(168,85,247,0.08),transparent_50%)] pointer-events-none" />
+    <section className="relative min-h-[110vh] flex flex-col items-center justify-center overflow-hidden bg-slate-950 py-24 px-4">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_70%)] pointer-events-none" />
       
-      {/* Title */}
-      <div className="w-full text-center z-20 pointer-events-none px-4 pt-8 pb-12 md:pb-16 lg:pb-20">
-        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter uppercase">
-          Explore the <span className="text-indigo-400 italic">Deck ↓</span>
+      <div className="w-full text-center z-20 mb-12">
+        <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-8 scale-y-110">
+          EXPLORE THE <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">DECK</span>
         </h2>
-      </div>
 
-      {/* 3D Carousel Stage */}
-      <div 
-        className="perspective-[1500px] sm:perspective-[2000px] w-full max-w-7xl flex items-center justify-center flex-1"
-        style={{ 
-          height: "clamp(300px, 40vh, 600px)",
-          minHeight: "300px"
-        }}
-      >
-        <div
-          ref={carouselRef}
-          className="relative preserve-3d will-change-transform"
-          style={{
-            transformStyle: "preserve-3d",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          {CARD_DATA.map((card, i) => (
-            <div
-              key={card.id}
-              ref={(el) => { cardContainerRefs.current[i] = el; }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 preserve-3d will-change-transform"
-              style={{
-                transformStyle: "preserve-3d",
-                width: "clamp(100px, 15vw, 280px)",
-                height: "clamp(140px, 21vw, 392px)",
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+          {["All", ...CATEGORIES].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat as any);
+                setCurrentIndex(0);
               }}
+              className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all border-2 ${
+                activeCategory === cat 
+                ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
+                : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+              }`}
             >
-              <GameCard
-                variant="standard"
-                frontSrc={card.front}
-                backSrc={card.back}
-                frontAlt={`Void Count strategic card game – ${card.name} card`}
-                manualRef={(el: HTMLDivElement | null) => {
-                  cardInnerRefs.current[i] = el;
-                }}
-                className="w-full h-full pointer-events-none"
-              />
-            </div>
+              {cat}
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => rotate(-1)}
-        disabled={isAnimating}
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] group active:scale-95"
-        aria-label="Previous card"
-      >
-        <svg 
-          className="w-6 h-6 sm:w-8 sm:h-8 group-hover:scale-110 transition-transform" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
+      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center flex-1">
+        {/* Left: 3D Stage */}
+        <div className="perspective-[2000px] h-[400px] sm:h-[500px] flex items-center justify-center relative">
+          <div
+            ref={carouselRef}
+            className="relative preserve-3d will-change-transform w-full h-full"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {filteredCards.map((card, i) => (
+              <div
+                key={`${activeCategory}-${card.id}`}
+                ref={(el) => { cardContainerRefs.current[i] = el; }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 preserve-3d"
+                style={{
+                  transformStyle: "preserve-3d",
+                  width: isMobile ? "140px" : "220px",
+                  aspectRatio: "2.5/3.5"
+                }}
+              >
+                <GameCard
+                  variant="standard"
+                  frontSrc={card.front}
+                  backSrc={card.back}
+                  manualRef={(el: HTMLDivElement | null) => { cardInnerRefs.current[i] = el; }}
+                  className="w-full h-full pointer-events-none shadow-2xl"
+                />
+              </div>
+            ))}
+          </div>
 
-      <button
-        onClick={() => rotate(1)}
-        disabled={isAnimating}
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-indigo-600/20 backdrop-blur-md border-2 border-indigo-500/40 text-white hover:bg-indigo-600/40 hover:border-indigo-400 hover:scale-110 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] group active:scale-95"
-        aria-label="Next card"
-      >
-        <svg 
-          className="w-6 h-6 sm:w-8 sm:h-8 group-hover:scale-110 transition-transform" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+          {/* Navigation */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 sm:px-0 pointer-events-none">
+            <button onClick={() => rotate(-1)} className="pointer-events-auto w-12 h-12 rounded-full bg-slate-900/80 border border-white/10 text-white flex items-center justify-center hover:bg-indigo-600 transition-all">
+              ←
+            </button>
+            <button onClick={() => rotate(1)} className="pointer-events-auto w-12 h-12 rounded-full bg-slate-900/80 border border-white/10 text-white flex items-center justify-center hover:bg-indigo-600 transition-all">
+              →
+            </button>
+          </div>
+        </div>
 
-      {/* Card Position Indicators */}
-      <div className="w-full flex justify-center z-20 pt-8 pb-4">
-        <div className="flex gap-1.5 sm:gap-2">
-          {CARD_DATA.map((card, i) => (
-            <button
-              key={card.id}
-              onClick={() => {
-                const diff = i - currentIndex;
-                if (diff !== 0 && !isAnimating) {
-                  const direction = diff > 0 ? 1 : -1;
-                  rotate(direction);
-                }
-              }}
-              className={`transition-all ${
-                i === currentIndex
-                  ? "bg-indigo-400 w-6 sm:w-8 h-1.5 sm:h-2"
-                  : "bg-slate-600 hover:bg-slate-500 w-1.5 sm:w-2 h-1.5 sm:h-2"
-              } rounded-full`}
-              aria-label={`Go to ${card.name}`}
-            />
-          ))}
+        {/* Right: Card Info */}
+        <div className="text-center lg:text-left bg-white/5 backdrop-blur-md rounded-[2.5rem] border border-white/10 p-8 sm:p-12 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-8 opacity-10">
+            <span className="text-8xl italic font-black text-white">∅</span>
+          </div>
+          
+          <div className="relative z-10" key={activeCard?.id}>
+            <div className="inline-block px-4 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+              {activeCard?.category} Card
+            </div>
+            <h3 className="text-4xl sm:text-6xl font-black text-white uppercase italic tracking-tighter mb-4">
+              {activeCard?.name}
+            </h3>
+            <p className="text-xl sm:text-2xl text-slate-300 font-bold italic mb-8 leading-tight">
+              {activeCard?.effect}
+            </p>
+            <div className="p-6 rounded-2xl bg-indigo-600/10 border border-indigo-500/20">
+              <p className="text-indigo-300 text-sm font-black uppercase tracking-widest mb-2">Why it's fun:</p>
+              <p className="text-slate-200 font-bold italic">"{activeCard?.fun}"</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

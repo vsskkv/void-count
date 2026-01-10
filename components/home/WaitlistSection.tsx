@@ -48,18 +48,22 @@ export const WaitlistSection = () => {
             Join the list and be ready for the next round.
           </p>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-2xl mx-auto px-4">
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
-              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-              New expansions
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 text-left max-w-2xl mx-auto px-4">
+            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
+              <span className="text-indigo-500 text-lg">✓</span>
+              Early-bird launch day pricing
             </li>
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
-              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-              Secret playtests
+            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
+              <span className="text-indigo-500 text-lg">✓</span>
+              Vote on new expansion themes
             </li>
-            <li className="flex items-center gap-2 text-slate-200 font-black uppercase italic tracking-tighter text-xs">
-              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-              Launch surprises
+            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
+              <span className="text-indigo-500 text-lg">✓</span>
+              Exclusive UK playtest invites
+            </li>
+            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
+              <span className="text-indigo-500 text-lg">✓</span>
+              Printable mini-rule reference card
             </li>
           </ul>
         </div>
@@ -86,9 +90,12 @@ export const WaitlistSection = () => {
                 ? "Unlocking..."
                 : status === "success"
                 ? "Success!"
-                : "Unlock Early Access"}
+                : "Join the List"}
             </PrimaryButton>
           </div>
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mt-2">
+            No spam. Unsubscribe anytime.
+          </p>
           {status === "success" && (
             <p className="text-emerald-400 text-sm animate-fade-in font-bold">
               Welcome to the Inner Circle. You're on the list.
