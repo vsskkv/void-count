@@ -87,7 +87,7 @@
   position: absolute;
   inset: -10%;
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .vortexA {
@@ -204,12 +204,12 @@
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.3) 2px, transparent 2px),
-    radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.3) 2px, transparent 2px),
-    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.2) 1px, transparent 1px);
+    radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.3) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 100% 100%;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 @keyframes vcVortex {

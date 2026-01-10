@@ -72,7 +72,7 @@ export const CardCarousel = () => {
         });
       });
 
-      // Update card scaling and opacity - front-facing card should be bigger and fully visible
+      // Update card scaling - all cards fully opaque, only scale changes
       cardContainerRefs.current.forEach((container, i) => {
         if (!container) return;
         
@@ -97,17 +97,10 @@ export const CardCarousel = () => {
         const minScale = isMobile ? 0.65 : 0.8;
         const scale = minScale + ((maxScale - minScale) * Math.cos(normalizedDistance * Math.PI / 2));
         
-        // Opacity - make adjacent cards more visible on mobile
-        // Front card: 1.0, sides: 0.8 (mobile) or 0.6 (desktop), back: 0.3
-        const maxOpacity = isMobile ? 0.85 : 0.6;
-        const minOpacity = 0.3;
-        const opacity = isMobile 
-          ? minOpacity + ((maxOpacity - minOpacity) * (1 - normalizedDistance))
-          : minOpacity + ((maxOpacity - minOpacity) * Math.cos(normalizedDistance * Math.PI / 2));
-        
+        // All cards fully opaque - no transparency
         gsap.set(container, {
           scale,
-          opacity: Math.max(opacity, minOpacity),
+          opacity: 1,
           force3D: true,
         });
       });
