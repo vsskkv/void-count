@@ -19,6 +19,9 @@ export default function HomePageClient() {
   useEffect(() => {
     if (!mainRef.current) return;
 
+    // Detect mobile to optimize animations
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     const ctx = gsap.context(() => {
       // Animate content sections entering
       const sections = gsap.utils.toArray<HTMLElement>(".content-section");
@@ -37,15 +40,23 @@ export default function HomePageClient() {
               trigger: section,
               start: "top 90%",
               end: "top 60%",
-              scrub: 1,
+              // Disable scrub on mobile for better performance
+              scrub: isMobile ? false : 1,
               toggleActions: "play none none reverse",
+              // Optimize for mobile
+              invalidateOnRefresh: true,
+              once: isMobile, // Only animate once on mobile
             },
           }
         );
       });
     }, mainRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      // Clean up ScrollTriggers created in this context only
+      // Don't kill all triggers as other components may be using them
+    };
   }, []);
 
   return (
@@ -61,14 +72,14 @@ export default function HomePageClient() {
       {/* 2. Card Carousel Section (Manual wheel deck gallery) */}
       <CardCarousel />
 
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
         {/* 3. Kickstarter Coming Soon */}
-        <div className="content-section">
+        <div className="content-section overflow-x-hidden">
           <KickstarterSection />
         </div>
 
         {/* 4. Waitlist - Now Joining Kickstarter */}
-        <div className="content-section py-16 md:py-20">
+        <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden">
           <WaitlistSection />
         </div>
 

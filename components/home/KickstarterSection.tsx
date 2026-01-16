@@ -7,32 +7,32 @@ import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const KickstarterSection = () => {
   return (
-    <section className="relative z-20 py-24 md:py-32 bg-slate-950 overflow-hidden">
+    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-950 overflow-hidden">
       {/* Background radial effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.1),transparent_70%)] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left: Product Mock Placeholder */}
           <div className="order-2 lg:order-1 relative group">
-            <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
-            <div className="relative aspect-video lg:aspect-square bg-slate-900 rounded-[2.5rem] border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
-              <div className="flex flex-col items-center gap-6">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center animate-pulse">
-                  <span className="text-4xl sm:text-6xl italic font-black text-indigo-400">∅</span>
+            <div className="absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
+            <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
+              <div className="flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-6">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center animate-pulse">
+                  <span className="text-3xl sm:text-4xl lg:text-6xl italic font-black text-indigo-400">∅</span>
                 </div>
-                <div className="text-center px-4">
-                  <p className="text-white font-black uppercase italic tracking-tighter text-3xl sm:text-4xl">
+                <div className="text-center px-2 sm:px-4">
+                  <p className="text-white font-black uppercase italic tracking-tighter text-2xl sm:text-3xl lg:text-4xl">
                     Base Deck
                   </p>
-                  <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-xs">
+                  <p className="text-slate-400 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs mt-1">
                     Coming Soon to Kickstarter
                   </p>
                 </div>
               </div>
               
               {/* Teaser Badges */}
-              <div className="absolute top-8 right-8 bg-indigo-600 text-white text-[10px] font-black uppercase px-4 py-2 rounded-full shadow-lg tracking-[0.2em] transform rotate-12">
+              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-indigo-600 text-white text-[8px] sm:text-[10px] font-black uppercase px-2 sm:px-4 py-1 sm:py-2 rounded-full shadow-lg tracking-[0.15em] sm:tracking-[0.2em] transform rotate-12">
                 Launch Edition
               </div>
             </div>
@@ -40,40 +40,40 @@ export const KickstarterSection = () => {
 
           {/* Right: Content */}
           <div className="order-1 lg:order-2 text-center lg:text-left">
-            <h2 className="text-4xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
-              KICKSTARTER <br />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tighter uppercase italic leading-[0.8] sm:leading-[0.9] md:scale-y-110">
+              KICKSTARTER <br className="hidden sm:block" />
               <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">IS COMING</span>
             </h2>
             
-            <p className="text-lg md:text-2xl text-slate-300 font-bold italic mb-10 leading-tight">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 font-bold italic mb-6 sm:mb-8 lg:mb-10 leading-tight max-w-2xl mx-auto lg:mx-0">
               Get ready for the first edition of Void Count. Join the Kickstarter list to secure early bird pricing and exclusive playtest invites.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mb-12">
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎴</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">116 Cards</span>
-                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Premium Stock</span>
+                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">116 Cards</span>
+                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Premium Stock</span>
               </div>
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">👥</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">2–6 Players</span>
-                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Ultimate Strategy</span>
+                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">2–6 Players</span>
+                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Ultimate Strategy</span>
               </div>
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">⚡</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">Fast Pace</span>
-                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Rapid Rounds</span>
+                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Fast Pace</span>
+                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Rapid Rounds</span>
               </div>
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎨</span>
-                <span className="block text-white font-black uppercase text-sm mb-1 italic">Premium Art</span>
-                <span className="block text-slate-500 text-[10px] font-black uppercase tracking-widest">Custom Design</span>
+                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Premium Art</span>
+                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Custom Design</span>
               </div>
             </div>
 
             <PrimaryButton 
-              className="w-full sm:w-auto text-xl font-black px-12 py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
+              className="w-full text-lg sm:text-xl font-black px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
               onClick={() => scrollToElement(WAITLIST_FORM_ID)}
             >
               Notify Me at Launch

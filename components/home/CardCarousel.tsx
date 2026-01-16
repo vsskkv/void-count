@@ -68,7 +68,8 @@ export const CardCarousel = () => {
 
         gsap.set(inner, {
           rotateY: flipRotation,
-          force3D: true,
+          // Disable force3D on mobile for better performance
+          force3D: !isMobile,
         });
       });
 
@@ -101,7 +102,8 @@ export const CardCarousel = () => {
         gsap.set(container, {
           scale,
           opacity: 1,
-          force3D: true,
+          // Disable force3D on mobile for better performance
+          force3D: !isMobile,
         });
       });
     }, carouselRef);
@@ -128,18 +130,23 @@ export const CardCarousel = () => {
           x,
           z,
           rotateY: rotationY,
-          force3D: true,
+          // Disable force3D on mobile for better performance
+          force3D: !isMobile,
         });
       });
 
       // Align wheel so current index is at the front
       const initialWheelRotation = currentIndex * -(360 / totalCards);
-      gsap.set(carouselRef.current, { rotationY: initialWheelRotation });
+      gsap.set(carouselRef.current, { 
+        rotationY: initialWheelRotation,
+        // Disable force3D on mobile
+        force3D: !isMobile,
+      });
       setWheelRotation(initialWheelRotation);
     }, carouselRef);
 
     return () => ctx.revert();
-  }, [radius, angleStep, filteredCards, currentIndex, totalCards]);
+  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile]);
 
   const rotate = (direction: 1 | -1) => {
     if (isAnimating || !carouselRef.current) return;
@@ -151,9 +158,9 @@ export const CardCarousel = () => {
 
     gsap.to(carouselRef.current, {
       rotationY: targetRotation,
-      duration: 1.2,
-      ease: "power3.inOut",
-      force3D: true,
+      duration: isMobile ? 0.8 : 1.2, // Faster on mobile
+      ease: isMobile ? "power2.inOut" : "power3.inOut", // Simpler easing on mobile
+      force3D: !isMobile, // Disable force3D on mobile
       onUpdate: () => {
         const currentRot = gsap.getProperty(carouselRef.current, "rotationY") as number;
         setWheelRotation(currentRot);
@@ -167,16 +174,17 @@ export const CardCarousel = () => {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-slate-950 py-24 px-4">
+    <section className="relative min-h-[80svh] sm:min-h-[90svh] md:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16 md:py-24 px-4 sm:px-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_70%)] pointer-events-none" />
       
-      <div className="w-full text-center z-20 mb-12">
-        <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-8 scale-y-110 text-center flex justify-center">
-          EXPLORE THE <span className="ml-4 text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">DECK</span>
+      <div className="w-full text-center z-20 mb-6 sm:mb-8 md:mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white tracking-tighter uppercase italic mb-4 sm:mb-6 md:mb-8 md:scale-y-110 text-center flex flex-wrap justify-center gap-2 sm:gap-4">
+          <span>EXPLORE THE</span>
+          <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">DECK</span>
         </h2>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 relative z-30" role="tablist" aria-label="Card categories">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-12 relative z-30" role="tablist" aria-label="Card categories">
           {["All", ...CATEGORIES].map((cat) => (
             <button
               key={cat}
@@ -199,11 +207,11 @@ export const CardCarousel = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-7xl relative flex items-center justify-center h-[500px] sm:h-[700px] overflow-visible">
+      <div className="w-full max-w-7xl relative flex items-center justify-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible">
         <div className={`w-full h-full flex items-center justify-center relative ${isMobile ? 'perspective-[1500px]' : 'perspective-[3000px]'}`}>
           <div
             ref={carouselRef}
-            className="relative preserve-3d will-change-transform w-full h-full flex items-center justify-center"
+            className={`relative preserve-3d w-full h-full flex items-center justify-center ${isMobile ? '' : 'will-change-transform'}`}
             style={{ 
               transformStyle: "preserve-3d",
               transform: `translateZ(-${radius}px)` 

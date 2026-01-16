@@ -93,29 +93,29 @@ export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative z-20 py-24 md:py-32 bg-slate-950">
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase italic leading-[0.8] mb-6 scale-y-110">
+    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-950">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tighter uppercase italic leading-[0.85] sm:leading-[0.8] mb-4 sm:mb-6 md:scale-y-110 px-2">
             FREQUENTLY ASKED <span className="text-indigo-500 italic">QUESTIONS</span>
           </h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {FAQ_DATA.map((item, index) => (
             <div 
               key={index}
-              className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden transition-all hover:border-white/20"
+              className="rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 overflow-hidden transition-all hover:border-white/20"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full p-6 text-left flex items-center justify-between gap-4"
+                className="w-full p-4 sm:p-5 md:p-6 text-left flex items-center justify-between gap-3 sm:gap-4"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
                 id={`faq-question-${index}`}
               >
-                <span className="text-lg font-black text-white uppercase italic tracking-tight">{item.question}</span>
-                <span className={`text-2xl text-indigo-500 transition-transform duration-300 ${openIndex === index ? "rotate-45" : ""}`} aria-hidden="true">+</span>
+                <span className="text-base sm:text-lg font-black text-white uppercase italic tracking-tight pr-2">{item.question}</span>
+                <span className={`text-xl sm:text-2xl text-indigo-500 transition-transform duration-300 shrink-0 ${openIndex === index ? "rotate-45" : ""}`} aria-hidden="true">+</span>
               </button>
               <div 
                 id={`faq-answer-${index}`}
@@ -125,7 +125,7 @@ export const FAQSection = () => {
                   openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="p-6 pt-0 pb-6 text-slate-400 font-medium leading-relaxed italic">
+                <div className="p-4 sm:p-5 md:p-6 pt-0 pb-4 sm:pb-5 md:pb-6 text-sm sm:text-base text-slate-400 font-medium leading-relaxed italic">
                   {item.answer}
                 </div>
               </div>

@@ -85,59 +85,59 @@ export const WaitlistSection = () => {
   return (
     <section
       id={WAITLIST_FORM_ID}
-      className="content-section min-h-[70vh] flex flex-col items-center justify-center text-center py-20 pointer-events-auto px-4"
+      className="content-section min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20 pointer-events-auto px-4 sm:px-6"
     >
-      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-indigo-500/40 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-indigo-500/60 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
+      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] border border-indigo-500/40 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-indigo-500/60 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
         <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50 pointer-events-none" />
 
-        <div className="mb-8 px-2 relative z-10">
-          <h2 className="text-4xl md:text-7xl font-black mb-6 text-white tracking-tighter uppercase italic leading-[0.8] scale-y-110">
+        <div className="mb-6 sm:mb-8 px-2 relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tighter uppercase italic leading-[0.9] sm:leading-[0.85] md:leading-[0.8] md:scale-y-110">
             JOIN THE <br />
             <span className="text-indigo-400">KICKSTARTER.</span>
           </h2>
-          <p className="text-lg md:text-3xl mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
-            Be the first to know when the next print run drops. <br className="hidden md:block" />
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
+            Be the first to know when the next print run drops. <br className="hidden sm:block" />
             Join the list and be ready for the next round.
           </p>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-10 text-left max-w-2xl mx-auto px-4">
-            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
-              <span className="text-indigo-500 text-lg">✓</span>
-              Early-bird launch day pricing
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4 mb-8 sm:mb-10 text-left max-w-2xl mx-auto px-2 sm:px-4">
+            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
+              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
+              <span>Early-bird launch day pricing</span>
             </li>
-            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
-              <span className="text-indigo-500 text-lg">✓</span>
-              Vote on new expansion themes
+            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
+              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
+              <span>Vote on new expansion themes</span>
             </li>
-            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
-              <span className="text-indigo-500 text-lg">✓</span>
-              Exclusive playtest invites
+            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
+              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
+              <span>Exclusive playtest invites</span>
             </li>
-            <li className="flex items-center gap-3 text-slate-200 font-bold italic tracking-tight text-sm">
-              <span className="text-indigo-500 text-lg">✓</span>
-              Printable mini-rule reference card
+            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
+              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
+              <span>Printable mini-rule reference card</span>
             </li>
           </ul>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 max-w-lg mx-auto w-full relative z-10"
+          className="flex flex-col gap-3 sm:gap-4 max-w-lg mx-auto w-full relative z-10"
         >
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <input
               type="email"
               required
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-6 py-4 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-lg"
+              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
             />
             <PrimaryButton
               type="submit"
               disabled={status === "loading" || status === "success"}
-              className="whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-lg px-8 py-4 rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] uppercase italic"
+              className="w-full sm:w-auto whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] uppercase italic"
             >
               {status === "loading"
                 ? "Unlocking..."

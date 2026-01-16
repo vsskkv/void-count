@@ -74,12 +74,28 @@ export const DrawPileVisual = () => {
   useEffect(() => {
     if(!deckRef.current) return;
     
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 2 });
-    const topCard = deckRef.current.querySelector('.top-card');
+    // Detect mobile to optimize animations
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     
-    tl.to(topCard, { x: 120, y: -20, rotation: 5, duration: 0.6, ease: "power2.out" })
-      .to(topCard, { x: 0, y: 0, rotation: 0, duration: 0.4, delay: 0.5, ease: "power2.in" });
+    const topCard = deckRef.current.querySelector('.top-card');
+    if (!topCard) return;
+    
+    // Simpler, limited animation on mobile
+    if (isMobile) {
+      // Just animate once on mobile
+      const tl = gsap.timeline({ repeat: 0 });
+      tl.to(topCard, { x: 80, y: -15, rotation: 3, duration: 0.5, ease: "power2.out" })
+        .to(topCard, { x: 0, y: 0, rotation: 0, duration: 0.3, ease: "power2.in" });
       
+      return () => tl.kill();
+    } else {
+      // Desktop: repeat animation
+      const tl = gsap.timeline({ repeat: 2, repeatDelay: 2 });
+      tl.to(topCard, { x: 120, y: -20, rotation: 5, duration: 0.6, ease: "power2.out" })
+        .to(topCard, { x: 0, y: 0, rotation: 0, duration: 0.4, delay: 0.5, ease: "power2.in" });
+      
+      return () => tl.kill();
+    }
   }, []);
 
   return (
@@ -117,16 +133,39 @@ export const PowerCardVisual = () => {
 
     useEffect(() => {
         if(!containerRef.current) return;
+        
+        // Detect mobile to optimize animations
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        
         const cards = containerRef.current.children;
         
-        gsap.fromTo(cards, 
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, stagger: 0.2, ease: "back.out(1.7)", repeat: -1, repeatDelay: 3, yoyo: true }
-        );
+        // Only animate on desktop to prevent mobile performance issues
+        if (!isMobile && cards.length > 0) {
+            const animation = gsap.fromTo(cards, 
+                { y: 20, opacity: 0 },
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.5, 
+                    stagger: 0.2, 
+                    ease: "back.out(1.7)", 
+                    repeat: 2, // Limited repeats instead of infinite
+                    repeatDelay: 2,
+                    yoyo: true 
+                }
+            );
+            
+            return () => {
+                animation.kill();
+            };
+        } else {
+            // Just set initial state on mobile
+            gsap.set(cards, { y: 0, opacity: 1 });
+        }
     }, []);
 
     return (
-        <div ref={containerRef} className="flex gap-4">
+        <div ref={containerRef} className="flex flex-wrap gap-3 sm:gap-4 justify-center">
             <DemoCard src="/Take Two v1.png" label="Take Two" />
             <DemoCard src="/Toss v1.png" label="Toss" />
             <DemoCard src="/Sabotage v1.png" label="Sabotage" />

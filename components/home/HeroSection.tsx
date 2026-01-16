@@ -53,7 +53,7 @@ export const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden px-4 sm:px-6 pt-24 sm:pt-32 pb-16 md:pt-48 md:pb-32 flex flex-col items-center justify-center min-h-[70svh] sm:min-h-[80vh]"
+      className="relative overflow-hidden px-4 sm:px-6 pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pt-48 md:pb-32 flex flex-col items-center justify-center min-h-[70svh] sm:min-h-[75vh] md:min-h-[80vh]"
     >
       {/* Enhanced background gradients */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#1e1b4b_0%,#020617_70%)] opacity-80" />
@@ -68,14 +68,14 @@ export const HeroSection = () => {
 
       <div className="relative max-w-4xl mx-auto text-center flex flex-col items-center gap-8 sm:gap-12">
         {/* Logo Image Only */}
-        <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center py-12">
+        <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center py-6 sm:py-8 md:py-12">
           {/* Layered glows for deep integration without washing out the logo */}
           <div className="absolute inset-0 bg-indigo-600/10 blur-[120px] rounded-full" />
           
           <img 
             src="/Logo BG Removed.png" 
             alt="Void Count Logo" 
-            className="relative w-[90%] max-w-[320px] sm:max-w-[500px] md:max-w-[650px] h-auto object-contain transition-all duration-700 hover:scale-105"
+            className="relative w-[85%] sm:w-[90%] max-w-[280px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[650px] h-auto object-contain transition-all duration-700 hover:scale-105"
             style={{ 
               filter: 'drop-shadow(0 0 40px rgba(0, 0, 0, 0.8))'
             }}
@@ -87,9 +87,9 @@ export const HeroSection = () => {
         </div>
 
         {/* CTAs */}
-        <div className="hero-cta flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto px-4">
+        <div className="hero-cta flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-6 w-full sm:w-auto px-2 sm:px-4">
           <PrimaryButton
-            className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-lg sm:text-xl md:text-2xl font-black px-8 sm:px-10 md:px-14 py-4 sm:py-5 md:py-6 rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.5)] hover:shadow-[0_25px_60px_rgba(79,70,229,0.6)] transform hover:scale-105 transition-all uppercase italic"
+            className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-base sm:text-lg md:text-xl lg:text-2xl font-black px-6 sm:px-8 md:px-10 lg:px-14 py-3 sm:py-4 md:py-5 lg:py-6 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.5)] hover:shadow-[0_25px_60px_rgba(79,70,229,0.6)] transform hover:scale-105 transition-all uppercase italic"
             onClick={() => scrollToElement(WAITLIST_FORM_ID)}
           >
             Join Waiting List
@@ -97,7 +97,7 @@ export const HeroSection = () => {
           <PrimaryButton
             variant="secondary"
             href="/how-to-play"
-            className="w-full sm:w-auto text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all uppercase italic"
+            className="w-full sm:w-auto text-sm sm:text-base md:text-lg lg:text-xl px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 rounded-xl sm:rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all uppercase italic"
           >
             How to Play
           </PrimaryButton>

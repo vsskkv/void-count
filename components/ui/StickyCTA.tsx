@@ -10,28 +10,53 @@ export const StickyCTA = () => {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    // Check if user has already dismissed the CTA
-    const dismissed = localStorage.getItem("void-count-cta-dismissed");
-    if (dismissed) {
-      setIsDismissed(true);
-      return;
+    // Check if user has already dismissed the CTA (with error handling for SSR/localStorage)
+    try {
+      if (typeof window !== 'undefined') {
+        const dismissed = localStorage.getItem("void-count-cta-dismissed");
+        if (dismissed) {
+          setIsDismissed(true);
+          return;
+        }
+      }
+    } catch (error) {
+      // localStorage might not be available or accessible
+      console.warn('Could not access localStorage:', error);
     }
 
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 600) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      if (!ticking && typeof window !== 'undefined') {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 600) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Only add listener on client side
+    if (typeof window !== 'undefined') {
+      // Use passive listener for better performance
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    localStorage.setItem("void-count-cta-dismissed", "true");
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("void-count-cta-dismissed", "true");
+      }
+    } catch (error) {
+      // localStorage might not be available
+      console.warn('Could not save to localStorage:', error);
+    }
   };
 
   if (isDismissed) return null;
