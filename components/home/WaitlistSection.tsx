@@ -2,83 +2,42 @@
 
 import React, { useState } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { GOOGLE_SCRIPT_URL, WAITLIST_FORM_ID } from '@/lib/constants';
+import { WAITLIST_FORM_ID } from '@/lib/constants';
+
+type ApiResponse = { ok: boolean; message: string };
 
 export const WaitlistSection = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [fullName, setFullName] = useState('');
+  const [source, setSource] = useState('website');
+  const [hp, setHp] = useState(''); // honeypot
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
-      setStatus('error');
-      return;
-    }
-    
-    setStatus('loading');
-    
+    setIsSubmitting(true);
+    setMessage(null);
+
     try {
-      // Try API route first (works with Cloudflare Pages Functions or Next.js server)
-      let response = await fetch('/api/waitlist', {
+      const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'website' }),
+        body: JSON.stringify({ email, fullName, source, hp }),
       });
 
-      // If API route returns 404 (static export), fallback to Google Apps Script
-      if (response.status === 404 || !response.ok) {
-        console.log('API route not available, using Google Apps Script directly');
-        
-        // Use Google Apps Script directly (works with static export)
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            email, 
-            timestamp: new Date().toISOString(),
-            source: 'website'
-          }),
-        });
-        
-        // With no-cors, we can't check response, so assume success
-        setStatus('success');
-        setEmail('');
-        return;
-      }
+      const data = (await response.json()) as ApiResponse;
 
-      // Handle successful API response
-      const data = await response.json();
-      
-      if (data.success) {
-        setStatus('success');
+      setMessage(data.message);
+
+      if (data.ok) {
         setEmail('');
-      } else {
-        throw new Error(data.error || 'Submission failed');
+        setFullName('');
       }
-    } catch (error) {
-      console.error("Waitlist error:", error);
-      // If fetch itself fails (network error), try Google Apps Script as fallback
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            email, 
-            timestamp: new Date().toISOString(),
-            source: 'website'
-          }),
-        });
-        setStatus('success');
-        setEmail('');
-      } catch (fallbackError) {
-        console.error("Fallback error:", fallbackError);
-        setStatus('error');
-      }
+    } catch {
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -125,6 +84,28 @@ export const WaitlistSection = () => {
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 sm:gap-4 max-w-lg mx-auto w-full relative z-10"
         >
+          {/* Honeypot - hidden from users */}
+          <input
+            type="text"
+            value={hp}
+            onChange={(e) => setHp(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute left-[-9999px]"
+          />
+          
+          {/* Optional full name field */}
+          <input
+            type="text"
+            placeholder="Name (optional)"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            autoComplete="name"
+            maxLength={120}
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
+          />
+          
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <input
               type="email"
@@ -132,31 +113,27 @@ export const WaitlistSection = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
               className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
             />
             <PrimaryButton
               type="submit"
-              disabled={status === "loading" || status === "success"}
-              className="w-full sm:w-auto whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] uppercase italic"
+              disabled={isSubmitting}
+              className="w-full sm:w-auto whitespace-nowrap bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] uppercase italic disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status === "loading"
-                ? "Unlocking..."
-                : status === "success"
-                ? "Success!"
-                : "Join the Waiting List"}
+              {isSubmitting ? "Joining..." : "Join the Waiting List"}
             </PrimaryButton>
           </div>
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mt-2">
             No spam. Unsubscribe anytime.
           </p>
-          {status === "success" && (
-            <p className="text-emerald-400 text-sm animate-fade-in font-bold">
-              Welcome to the waiting list. You're on the list.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-rose-400 text-sm font-bold">
-              Something went wrong. Please try again.
+          {message && (
+            <p className={`text-sm font-bold ${
+              message.includes("You're on the list") || message.includes("list")
+                ? "text-emerald-400"
+                : "text-rose-400"
+            }`}>
+              {message}
             </p>
           )}
         </form>

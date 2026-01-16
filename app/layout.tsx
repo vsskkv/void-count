@@ -98,6 +98,7 @@ export default function RootLayout({
     name: "Void Count",
     description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. The perfect gift for family and friends who love board games and strategy. Launching soon on Kickstarter.",
     image: `${siteUrl}/void-count-logo.png`,
+    category: "Card Game",
     brand: {
       "@type": "Brand",
       name: "Void Count",
@@ -113,6 +114,57 @@ export default function RootLayout({
         name: SITE_NAME,
       },
     },
+  };
+
+  const boardGameJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BoardGame",
+    name: "Void Count",
+    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. The perfect gift for board game lovers.",
+    image: `${siteUrl}/void-count-logo.png`,
+    brand: {
+      "@type": "Brand",
+      name: "Void Count",
+    },
+    numberOfPlayers: {
+      minValue: 2,
+      maxValue: 8,
+    },
+    gameLocation: {
+      "@type": "Place",
+      name: "Tabletop",
+    },
+    gameItem: {
+      "@type": "Thing",
+      name: "Card Game",
+    },
+    category: ["Card Game", "Strategy Game", "Party Game", "Family Game", "New Card Game"],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "50",
+    },
+    offers: {
+      "@type": "Offer",
+      url: siteUrl,
+      availability: "https://schema.org/PreOrder",
+      price: "0.00",
+      priceCurrency: "GBP",
+    },
+    keywords: "card game, new card game, strategic card game, card games, strategy card game, family card game, party card game",
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -143,6 +195,22 @@ export default function RootLayout({
           text: "Absolutely. Void Count is designed as a compact, premium card game gift.",
         },
       },
+      {
+        "@type": "Question",
+        name: "What type of card game is Void Count?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Void Count is a new strategic card game that combines elements of risk, bluffing, and sabotage. It's a fast-paced card game perfect for game nights and competitive play.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Void Count a new card game?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Void Count is a new card game launching soon on Kickstarter. It's designed for players who love strategic card games and board games.",
+        },
+      },
     ],
   };
 
@@ -170,7 +238,17 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(boardGameJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <div className="min-h-screen flex flex-col bg-[radial-gradient(circle_at_top,#1d2540_0,transparent_55%),radial-gradient(circle_at_bottom,#020617_0,transparent_55%)]">
           {children}

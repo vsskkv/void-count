@@ -33,11 +33,17 @@ export const HeroSection = () => {
     return () => ctx.revert();
   }, []);
 
-  // Subtle floating animation for logo
+  // Enhanced floating and glow animations for logo
   useEffect(() => {
     if (!logoRef.current) return;
 
-    const logo = gsap.to(logoRef.current, {
+    const logo = logoRef.current;
+    const img = logo.querySelector('img');
+    
+    if (!img) return;
+
+    // Floating animation
+    const floatAnimation = gsap.to(logo, {
       y: -15,
       duration: 4,
       ease: "sine.inOut",
@@ -45,8 +51,28 @@ export const HeroSection = () => {
       yoyo: true,
     });
 
+    // Pulsing glow animation
+    const glowAnimation = gsap.to(img, {
+      filter: 'drop-shadow(0 0 60px rgba(139, 92, 246, 0.8)) drop-shadow(0 0 100px rgba(79, 70, 229, 0.6)) drop-shadow(0 0 140px rgba(168, 85, 247, 0.4))',
+      duration: 3,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
+    // Subtle scale pulse
+    const scaleAnimation = gsap.to(img, {
+      scale: 1.02,
+      duration: 2.5,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
     return () => {
-      logo.kill();
+      floatAnimation.kill();
+      glowAnimation.kill();
+      scaleAnimation.kill();
     };
   }, []);
 
@@ -69,21 +95,61 @@ export const HeroSection = () => {
       <div className="relative max-w-4xl mx-auto text-center flex flex-col items-center gap-8 sm:gap-12">
         {/* Logo Image Only */}
         <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center py-6 sm:py-8 md:py-12">
-          {/* Layered glows for deep integration without washing out the logo */}
-          <div className="absolute inset-0 bg-indigo-600/10 blur-[120px] rounded-full" />
+          {/* Multiple animated glow layers */}
+          <div className="absolute inset-0 bg-indigo-600/20 blur-[140px] rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+          <div className="absolute inset-0 bg-purple-600/15 blur-[160px] rounded-full animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+          <div className="absolute inset-0 bg-violet-500/10 blur-[180px] rounded-full animate-pulse" style={{ animationDuration: '5s', animationDelay: '2s' }} />
           
-          <img 
-            src="/Logo BG Removed.png" 
-            alt="Void Count Logo" 
-            className="relative w-[85%] sm:w-[90%] max-w-[280px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[650px] h-auto object-contain transition-all duration-700 hover:scale-105"
-            style={{ 
-              filter: 'drop-shadow(0 0 40px rgba(0, 0, 0, 0.8))'
-            }}
-            width={650}
-            height={650}
-            loading="eager"
-            decoding="async"
-          />
+          {/* Animated light rays effect */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(139,92,246,0.1)_60deg,transparent_120deg,rgba(79,70,229,0.1)_180deg,transparent_240deg,rgba(168,85,247,0.1)_300deg,transparent_360deg)] animate-[spin_20s_linear_infinite] opacity-60" />
+          </div>
+          
+          {/* Outer glow ring */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[110%] h-[110%] rounded-full border-2 border-indigo-500/30 blur-xl animate-pulse" style={{ animationDuration: '2s' }} />
+          </div>
+          
+          {/* Logo image with enhanced effects */}
+          <div className="relative z-10">
+            <img 
+              src="/New Logo.png" 
+              alt="Void Count - New Strategic Card Game Logo | Card Game 2024" 
+              className="relative w-[85%] sm:w-[90%] max-w-[280px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[650px] h-auto object-contain transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+              style={{ 
+                filter: 'drop-shadow(0 0 50px rgba(139, 92, 246, 0.7)) drop-shadow(0 0 90px rgba(79, 70, 229, 0.5)) drop-shadow(0 0 130px rgba(168, 85, 247, 0.3)) drop-shadow(0 0 20px rgba(0, 0, 0, 0.9))',
+                transform: 'translateZ(0)',
+              }}
+              width={650}
+              height={650}
+              loading="eager"
+              decoding="async"
+            />
+            
+            {/* Additional shine effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/0 to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none rounded-full blur-2xl" 
+                 style={{ 
+                   background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)',
+                   transform: 'translateZ(0)',
+                 }} 
+            />
+          </div>
+          
+          {/* Particle-like sparkles */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-indigo-400 rounded-full blur-sm opacity-60 animate-pulse"
+                style={{
+                  top: `${20 + (i * 15)}%`,
+                  left: `${15 + (i * 12)}%`,
+                  animationDuration: `${2 + (i * 0.5)}s`,
+                  animationDelay: `${i * 0.3}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* CTAs */}

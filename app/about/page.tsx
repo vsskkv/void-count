@@ -5,9 +5,17 @@ import { SITE_NAME } from "@/lib/site";
 import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About Void Count | The Story Behind the New Strategy Card Game",
+  title: "About Void Count | The Story Behind the New Card Game | Card Game for Family",
   description:
-    "Discover the origins of Void Count, a card game built for social sabotage and laughs. Learn why it's the perfect gift for board game lovers and Kickstarter fans.",
+    "Discover the origins of Void Count, a new card game built for social sabotage and laughs. Learn about this strategic card game and why it's the perfect gift for board game lovers, family game nights, and Kickstarter fans.",
+  keywords: [
+    "about card game",
+    "new card game story",
+    "card game creators",
+    "strategic card game history",
+    "Void Count creators",
+    "card game development",
+  ],
   alternates: { canonical: "/about" },
 };
 

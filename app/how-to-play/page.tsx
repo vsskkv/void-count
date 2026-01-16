@@ -14,20 +14,29 @@ import { WAITLIST_FORM_ID } from "@/lib/constants";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
+  title: "How to Play Void Count | Official Rules for the New Card Game | Strategy Card Game",
   description:
-    "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
+    "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game perfect for game nights, family gatherings, and competitive play. Discover why it's one of the best new card games.",
+  keywords: [
+    "how to play card game",
+    "card game rules",
+    "new card game rules",
+    "strategy card game rules",
+    "Void Count rules",
+    "card game instructions",
+    "new card game how to play",
+  ],
   alternates: { canonical: "/how-to-play" },
   openGraph: {
-    title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
+    title: "How to Play Void Count | Official Rules for the New Card Game",
     description:
-      "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
+      "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game.",
     url: "/how-to-play",
   },
   twitter: {
-    title: "How to Play Void Count | Official Rules for the New Strategy Card Game",
+    title: "How to Play Void Count | Official Rules for the New Card Game",
     description:
-      "Learn the rules of Void Count, the fast-paced card game of risk and sabotage. Perfect for game nights, gifts, and strategy fans. See why it's a must-play new card game.",
+      "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game.",
   },
 };
 

@@ -232,6 +232,7 @@ export const CardCarousel = () => {
                   variant="standard"
                   frontSrc={card.front}
                   backSrc="/Back V1.png"
+                  frontAlt={`${card.name} card from Void Count new card game`}
                   className="w-full h-full pointer-events-none select-none"
                   manualRef={(el) => { cardInnerRefs.current[i] = el; }}
                 />

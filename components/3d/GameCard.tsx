@@ -19,7 +19,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
       variant = "standard",
       frontSrc = "/Void v1.png",
       backSrc = "/Back V1.png",
-      frontAlt = "Void Count strategic card game front",
+      frontAlt = "Void Count new card game card - Strategic card game",
       manualRef,
     },
     ref
@@ -93,7 +93,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                   <img
                     className={styles.image}
                     src={backSrc}
-                    alt="Void Count card back"
+                    alt="Void Count card game card back - New card game"
                     draggable={false}
                     loading="lazy"
                     decoding="async"
