@@ -5,17 +5,26 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { CONTACT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description: `Contact ${SITE_NAME}. ${SITE_DESCRIPTION}`,
+  title: `Contact Us | ${SITE_NAME} | New Card Game Support | Card Games`,
+  description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions about this strategic card game? Want to collaborate or provide feedback? We'd love to hear from you! Reach out about this innovative card game.`,
+  keywords: [
+    "contact card game",
+    "new card game contact",
+    "card game support",
+    "Void Count contact",
+    "card game inquiries",
+    "card games contact",
+    "new card games support",
+  ],
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: `Contact | ${SITE_NAME}`,
-    description: SITE_DESCRIPTION,
+    title: `Contact Us | ${SITE_NAME} | New Card Game Support`,
+    description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions about this strategic card game? We'd love to hear from you!`,
     url: "/contact",
   },
   twitter: {
-    title: `Contact | ${SITE_NAME}`,
-    description: SITE_DESCRIPTION,
+    title: `Contact Us | ${SITE_NAME} | New Card Game Support`,
+    description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions? We'd love to hear from you!`,
   },
 };
 

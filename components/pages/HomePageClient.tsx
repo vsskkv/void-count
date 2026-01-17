@@ -9,7 +9,6 @@ import { WaitlistSection } from "@/components/home/WaitlistSection";
 import { CardCarousel } from "@/components/home/CardCarousel";
 import { HeroSection } from "@/components/home/HeroSection";
 import { KickstarterSection } from "@/components/home/KickstarterSection";
-import { SEOContentSection } from "@/components/home/SEOContentSection";
 import { StickyCTA } from "@/components/ui/StickyCTA";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -74,17 +73,12 @@ export default function HomePageClient() {
       <CardCarousel />
 
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
-        {/* 3. SEO Content Section - Keyword Rich */}
-        <div className="content-section overflow-x-hidden">
-          <SEOContentSection />
-        </div>
-
-        {/* 4. Kickstarter Coming Soon */}
+        {/* 3. Kickstarter Coming Soon */}
         <div className="content-section overflow-x-hidden">
           <KickstarterSection />
         </div>
 
-        {/* 5. Waitlist - Now Joining Kickstarter */}
+        {/* 4. Waitlist - Now Joining Kickstarter */}
         <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden">
           <WaitlistSection />
         </div>
@@ -98,9 +92,9 @@ export default function HomePageClient() {
       {/* Sticky CTA */}
       <StickyCTA />
 
-      {/* SEO-Optimized H1 - Visually Hidden but Accessible */}
+      {/* SEO-Optimized H1 - Visible but subtle */}
       <h1 className="sr-only">
-        Void Count: New Card Game 2024 | Strategic Card Game for Family & Friends | Best New Card Games
+        Void Count: New Card Game 2024 | Strategic Card Game for Family & Friends | Best New Card Games | Card Games
       </h1>
     </main>
   );

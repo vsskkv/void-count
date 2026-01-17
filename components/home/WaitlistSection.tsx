@@ -56,28 +56,9 @@ export const WaitlistSection = () => {
             <span className="text-indigo-400">KICKSTARTER.</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
-            Be the first to know when the next print run drops. <br className="hidden sm:block" />
-            Join the list and be ready for the next round.
+            Be the first to know when this new card game launches. <br className="hidden sm:block" />
+            Join the waitlist for Void Count and be ready for the next round of this exciting strategic card game.
           </p>
-
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4 mb-8 sm:mb-10 text-left max-w-2xl mx-auto px-2 sm:px-4">
-            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
-              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
-              <span>Early-bird launch day pricing</span>
-            </li>
-            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
-              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
-              <span>Vote on new expansion themes</span>
-            </li>
-            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
-              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
-              <span>Exclusive playtest invites</span>
-            </li>
-            <li className="flex items-center gap-2 sm:gap-3 text-slate-200 font-bold italic tracking-tight text-xs sm:text-sm">
-              <span className="text-indigo-500 text-base sm:text-lg shrink-0">✓</span>
-              <span>Printable mini-rule reference card</span>
-            </li>
-          </ul>
         </div>
 
         <form

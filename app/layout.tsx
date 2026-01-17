@@ -120,7 +120,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "BoardGame",
     name: "Void Count",
-    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. The perfect gift for board game lovers.",
+    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. The perfect gift for board game lovers. One of the best new card games launching in 2024.",
     image: `${siteUrl}/void-count-logo.png`,
     brand: {
       "@type": "Brand",
@@ -138,7 +138,7 @@ export default function RootLayout({
       "@type": "Thing",
       name: "Card Game",
     },
-    category: ["Card Game", "Strategy Game", "Party Game", "Family Game", "New Card Game"],
+    category: ["Card Game", "Strategy Game", "Party Game", "Family Game", "New Card Game", "Card Games", "Strategic Card Game"],
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -151,7 +151,7 @@ export default function RootLayout({
       price: "0.00",
       priceCurrency: "GBP",
     },
-    keywords: "card game, new card game, strategic card game, card games, strategy card game, family card game, party card game",
+    keywords: "card game, new card game, strategic card game, card games, new card games, strategy card game, family card game, party card game, best new card game, card game 2024, new card games 2024",
   };
 
   const breadcrumbJsonLd = {
@@ -200,7 +200,7 @@ export default function RootLayout({
         name: "What type of card game is Void Count?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count is a new strategic card game that combines elements of risk, bluffing, and sabotage. It's a fast-paced card game perfect for game nights and competitive play.",
+          text: "Void Count is a new strategic card game that combines elements of risk, bluffing, and sabotage. It's a fast-paced card game perfect for game nights and competitive play. As one of the best new card games in 2024, it offers unique mechanics that set it apart from traditional card games.",
         },
       },
       {
@@ -208,7 +208,23 @@ export default function RootLayout({
         name: "Is Void Count a new card game?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, Void Count is a new card game launching soon on Kickstarter. It's designed for players who love strategic card games and board games.",
+          text: "Yes, Void Count is a new card game launching soon on Kickstarter. It's designed for players who love strategic card games and board games. This innovative card game represents the next evolution in card games, combining classic card game elements with fresh mechanics.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the best new card games in 2024?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Void Count is one of the most anticipated new card games launching in 2024. It offers strategic depth, fast-paced gameplay, and works great with 2-6 players, making it perfect for families and friends who enjoy card games.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where can I find new card games?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Void Count is launching on Kickstarter as a new card game for 2024. You can join the waitlist to be notified when this strategic card game becomes available. It's designed for card game enthusiasts looking for innovative gameplay.",
         },
       },
     ],

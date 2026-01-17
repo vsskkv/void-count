@@ -162,10 +162,10 @@ export const HeroSection = () => {
           </PrimaryButton>
           <PrimaryButton
             variant="secondary"
-            href="/how-to-play"
-            className="w-full sm:w-auto text-sm sm:text-base md:text-lg lg:text-xl px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 rounded-xl sm:rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all uppercase italic"
+            className="w-full sm:w-auto text-sm sm:text-base md:text-lg lg:text-xl px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 rounded-xl sm:rounded-2xl border-2 border-indigo-400/50 hover:border-indigo-300 hover:bg-indigo-900/30 font-black transition-all uppercase italic opacity-60 cursor-not-allowed"
+            disabled
           >
-            How to Play
+            How to Play (Coming Soon)
           </PrimaryButton>
         </div>
       </div>

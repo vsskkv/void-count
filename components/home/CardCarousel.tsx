@@ -180,8 +180,12 @@ export const CardCarousel = () => {
       <div className="w-full text-center z-20 mb-6 sm:mb-8 md:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white tracking-tighter uppercase italic mb-4 sm:mb-6 md:mb-8 md:scale-y-110 text-center flex flex-wrap justify-center gap-2 sm:gap-4">
           <span>EXPLORE THE</span>
-          <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">DECK</span>
+          <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">CARD GAME</span>
+          <span>DECK</span>
         </h2>
+        <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
+          Discover the cards from Void Count, one of the best new card games launching in 2024
+        </p>
 
         {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-12 relative z-30" role="tablist" aria-label="Card categories">

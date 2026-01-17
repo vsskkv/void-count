@@ -80,22 +80,24 @@ export const DrawPileVisual = () => {
     const topCard = deckRef.current.querySelector('.top-card');
     if (!topCard) return;
     
+    let tl: gsap.core.Timeline;
+    
     // Simpler, limited animation on mobile
     if (isMobile) {
       // Just animate once on mobile
-      const tl = gsap.timeline({ repeat: 0 });
+      tl = gsap.timeline({ repeat: 0 });
       tl.to(topCard, { x: 80, y: -15, rotation: 3, duration: 0.5, ease: "power2.out" })
         .to(topCard, { x: 0, y: 0, rotation: 0, duration: 0.3, ease: "power2.in" });
-      
-      return () => tl.kill();
     } else {
       // Desktop: repeat animation
-      const tl = gsap.timeline({ repeat: 2, repeatDelay: 2 });
+      tl = gsap.timeline({ repeat: 2, repeatDelay: 2 });
       tl.to(topCard, { x: 120, y: -20, rotation: 5, duration: 0.6, ease: "power2.out" })
         .to(topCard, { x: 0, y: 0, rotation: 0, duration: 0.4, delay: 0.5, ease: "power2.in" });
-      
-      return () => tl.kill();
     }
+    
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
