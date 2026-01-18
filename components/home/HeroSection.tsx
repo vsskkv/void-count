@@ -75,7 +75,7 @@ export const HeroSection = () => {
               height={320}
               loading="eager"
               decoding="async"
-              fetchpriority="high"
+              fetchPriority="high"
               sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 220px"
             />
             
