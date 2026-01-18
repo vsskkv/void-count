@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   robots: {
     index: true,
@@ -262,42 +262,29 @@ export default function RootLayout({
     ],
   };
 
+  const allJsonLd = [
+    orgJsonLd,
+    websiteJsonLd,
+    productJsonLd,
+    boardGameJsonLd,
+    faqJsonLd,
+    breadcrumbJsonLd,
+  ];
+
   return (
     <html lang="en-GB">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-950 text-slate-50`}
         suppressHydrationWarning
       >
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(boardGameJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        />
+        {allJsonLd.map((jsonLd, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        ))}
         <div className="min-h-screen flex flex-col relative">
           <CosmicBackground />
           <VoidParticles />

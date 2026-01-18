@@ -10,6 +10,7 @@ interface GameCardProps {
   backSrc?: string;
   frontAlt?: string;
   manualRef?: React.Ref<HTMLDivElement>;
+  loading?: "eager" | "lazy";
 }
 
 export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
@@ -21,11 +22,12 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
       backSrc = "/Back V1.png",
       frontAlt = "Void Count new card game card - Strategic card game",
       manualRef,
+      loading,
     },
     ref
   ) => {
     const isHero = variant === "hero";
-    const imageLoading: "eager" | "lazy" = isHero ? "eager" : "lazy";
+    const imageLoading: "eager" | "lazy" = loading || (isHero ? "eager" : "lazy");
     const fetchPriority: "high" | "low" | "auto" = isHero ? "high" : "auto";
     const decoding: "async" | "sync" | "auto" = isHero ? "sync" : "async";
     const [frontError, setFrontError] = useState(false);

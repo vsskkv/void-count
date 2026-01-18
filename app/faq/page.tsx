@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "card game 2026",
     "new card games 2026",
   ],
-  alternates: { canonical: "/faq" },
+  alternates: { canonical: "https://voidcount.com/faq" },
   openGraph: {
     title: `FAQ | ${SITE_NAME} | New Card Game Questions | Card Games`,
     description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2026. Learn about this strategic card game, gameplay, and more.`,

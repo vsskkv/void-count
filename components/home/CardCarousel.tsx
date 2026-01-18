@@ -312,6 +312,7 @@ export const CardCarousel = () => {
                   frontAlt={`${card.name} card from Void Count new card game`}
                   className="w-full h-full pointer-events-none select-none"
                   manualRef={(el) => { cardInnerRefs.current[i] = el; }}
+                  loading={i === currentIndex ? "eager" : "lazy"}
                 />
               </div>
             ))}

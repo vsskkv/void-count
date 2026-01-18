@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "best new card game rules",
     "card game 2026",
   ],
-  alternates: { canonical: "/how-to-play" },
+  alternates: { canonical: "https://voidcount.com/how-to-play" },
   openGraph: {
     title: "How to Play Void Count | Official Rules for the New Card Game | Card Games",
     description:

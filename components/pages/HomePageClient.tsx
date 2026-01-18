@@ -1,16 +1,33 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { WaitlistSection } from "@/components/home/WaitlistSection";
-import { CardCarousel } from "@/components/home/CardCarousel";
 import { HeroSection } from "@/components/home/HeroSection";
-import { KickstarterSection } from "@/components/home/KickstarterSection";
 import { StickyCTA } from "@/components/ui/StickyCTA";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+
+// Dynamically import components below the fold to reduce unused JS and initial payload
+const CardCarousel = dynamic(() => import("@/components/home/CardCarousel").then(mod => mod.CardCarousel), {
+  loading: () => <div className="min-h-[400px]" />,
+  ssr: true
+});
+
+const KickstarterSection = dynamic(() => import("@/components/home/KickstarterSection").then(mod => mod.KickstarterSection), {
+  loading: () => <div className="min-h-[300px]" />,
+  ssr: true
+});
+
+const WaitlistSection = dynamic(() => import("@/components/home/WaitlistSection").then(mod => mod.WaitlistSection), {
+  loading: () => <div className="min-h-[400px]" />,
+  ssr: true
+});
+
+const SiteFooter = dynamic(() => import("@/components/layout/SiteFooter").then(mod => mod.SiteFooter), {
+  ssr: true
+});
 
 gsap.registerPlugin(ScrollTrigger);
 

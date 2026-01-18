@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     "strategic card games",
     "card game for adults",
     "card game for families",
-    "competitive card game",
+    "    competitive card game",
   ],
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://voidcount.com/" },
   openGraph: {
     title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends",
     description:

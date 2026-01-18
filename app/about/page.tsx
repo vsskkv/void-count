@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "best new card game",
     "card game 2026",
   ],
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "https://voidcount.com/about" },
   openGraph: {
     title: "About Void Count | The Story Behind the New Card Game | Card Games",
     description:

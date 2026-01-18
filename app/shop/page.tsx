@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "card game 2026",
     "new card games 2026",
   ],
-  alternates: { canonical: "/shop" },
+  alternates: { canonical: "https://voidcount.com/shop" },
   openGraph: {
     title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games`,
     description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2026. Pre-order this strategic card game perfect for game nights and family gatherings.`,
