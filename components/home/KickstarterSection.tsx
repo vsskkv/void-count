@@ -57,7 +57,7 @@ export const KickstarterSection = () => {
               </div>
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">👥</span>
-                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">2–6 Players</span>
+                <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">2–8 Players</span>
                 <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Ultimate Strategy</span>
               </div>
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">

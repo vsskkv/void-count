@@ -17,7 +17,7 @@ const FAQ_DATA = [
   },
   {
     question: "How many players can play?",
-    answer: "Void Count is designed for 2–6 players. It works great as a tight 1v1 duel or a chaotic party game with more players."
+    answer: "Void Count is designed for 2–8 players. It works great as a tight 1v1 duel or a chaotic party game with more players."
   },
   {
     question: "How long does a game take?",
@@ -49,7 +49,7 @@ const FAQ_DATA = [
   },
   {
     question: "Can I play with just 2 players?",
-    answer: "Yes! Void Count works excellently with 2 players, creating intense strategic duels. The game scales well from 2 to 6 players, each player count offering a different dynamic."
+    answer: "Yes! Void Count works excellently with 2 players, creating intense strategic duels. The game scales well from 2 to 8 players, each player count offering a different dynamic."
   },
   {
     question: "What's included in the game?",

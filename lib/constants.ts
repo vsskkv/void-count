@@ -8,7 +8,7 @@ export const CONTACT_EMAIL = "hello@voidcount.com";
 
 // Game Information
 export const MIN_PLAYERS = 2;
-export const MAX_PLAYERS = 6;
+export const MAX_PLAYERS = 8;
 export const MIN_AGE = 7;
 export const TOTAL_CARDS = 116;
 export const CARDS_PER_PLAYER = 8;

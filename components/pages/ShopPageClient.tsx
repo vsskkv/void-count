@@ -34,7 +34,7 @@ export default function ShopPageClient() {
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
               The complete 116-card deck. Includes rulebook, tokens, and everything
-              you need for 2–6 players. Perfect for game nights, parties, and
+              you need for 2–8 players. Perfect for game nights, parties, and
               strategic cosmic battles.
             </p>
 

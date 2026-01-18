@@ -101,7 +101,7 @@ export default function HomePageClient() {
 
       {/* SEO-Optimized H1 - Visible but subtle */}
       <h1 className="sr-only">
-        Void Count: New Card Game 2024 | Strategic Card Game for Family & Friends | Best New Card Games | Card Games
+        Void Count: New Card Game 2026 | Strategic Card Game for Family & Friends | Best New Card Games | Card Games
       </h1>
     </main>
   );

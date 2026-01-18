@@ -189,7 +189,7 @@ export const CardCarousel = () => {
           <span>DECK</span>
         </h2>
         <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
-          Discover the cards from Void Count, one of the best new card games launching in 2024
+          Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 relative z-30" role="tablist" aria-label="Card categories">
@@ -257,7 +257,7 @@ export const CardCarousel = () => {
           <span>DECK</span>
         </h2>
         <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
-          Discover the cards from Void Count, one of the best new card games launching in 2024
+          Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
         {/* Category Tabs */}
