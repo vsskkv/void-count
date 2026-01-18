@@ -108,7 +108,7 @@ export const DrawPileVisual = () => {
       <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900">
         <img 
           src="/Back V1.png" 
-          alt="Void Count card back" 
+          alt="Void Count strategic card game deck - Draw Pile" 
           className="w-full h-full object-cover"
           width={128}
           height={192}
@@ -120,7 +120,7 @@ export const DrawPileVisual = () => {
       <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10 bg-slate-900">
         <img 
           src="/Back V1.png" 
-          alt="Void Count card back" 
+          alt="Void Count card being drawn - Strategic gameplay" 
           className="w-full h-full object-cover"
           width={128}
           height={192}

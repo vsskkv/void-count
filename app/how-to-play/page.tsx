@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Play Void Count | Official Rules for the New Card Game | Card Games | Strategy Card Game",
   description:
-    "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game perfect for game nights, family gatherings, and competitive play. Discover why it's one of the best new card games. Easy to learn card game rules for 2-8 players.",
+    "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game perfect for game nights, family gatherings, and competitive play. Discover why it's one of the best new card games. Easy to learn card game rules for 2-8 players. Launching on Kickstarter in 2026.",
   keywords: [
     "how to play card game",
     "card game rules",
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     "card game for beginners",
     "strategic card game rules",
     "best new card game rules",
+    "card game 2026",
   ],
   alternates: { canonical: "/how-to-play" },
   openGraph: {

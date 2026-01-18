@@ -6,7 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: `Contact Us | ${SITE_NAME} | New Card Game Support | Card Games`,
-  description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions about this strategic card game? Want to collaborate or provide feedback? We'd love to hear from you! Reach out about this innovative card game.`,
+  description: `Contact ${SITE_NAME}, the new card game launching in 2026. Have questions about this strategic card game? Want to collaborate or provide feedback? We'd love to hear from you! Reach out about this innovative card game.`,
   keywords: [
     "contact card game",
     "new card game contact",
@@ -15,16 +15,18 @@ export const metadata: Metadata = {
     "card game inquiries",
     "card games contact",
     "new card games support",
+    "card game 2026",
+    "new card games 2026",
   ],
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact Us | ${SITE_NAME} | New Card Game Support`,
-    description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions about this strategic card game? We'd love to hear from you!`,
+    description: `Contact ${SITE_NAME}, the new card game launching in 2026. Have questions about this strategic card game? We'd love to hear from you!`,
     url: "/contact",
   },
   twitter: {
     title: `Contact Us | ${SITE_NAME} | New Card Game Support`,
-    description: `Contact ${SITE_NAME}, the new card game launching in 2024. Have questions? We'd love to hear from you!`,
+    description: `Contact ${SITE_NAME}, the new card game launching in 2026. Have questions? We'd love to hear from you!`,
   },
 };
 

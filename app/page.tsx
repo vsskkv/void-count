@@ -3,7 +3,7 @@ import HomePageClient from "@/components/pages/HomePageClient";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Void Count™ | New Card Game 2024 | Card Games | Strategic Card Game for Family & Friends | Kickstarter",
+  title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends | Kickstarter",
   description:
     "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play. Perfect for game nights, family gatherings, and board game fans. Join the fun on Kickstarter soon! This innovative card game offers fast-paced gameplay, strategic depth, and endless replayability. Whether you're looking for a new card game for your collection or the perfect gift for board game enthusiasts, Void Count delivers an unforgettable gaming experience.",
   keywords: [
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     "sabotage card game",
     "bluffing card game",
     "best new card game",
-    "card game 2024",
-    "new card games 2024",
+    "card game 2026",
+    "new card games 2026",
     "strategic card games",
     "card game for adults",
     "card game for families",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Void Count™ | New Card Game 2024 | Card Games | Strategic Card Game for Family & Friends",
+    title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends",
     description:
       "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play. Perfect for game nights and family gatherings. A must-have addition to any card game collection.",
     url: "/",
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: "/void-count-logo.png",
         width: 1200,
         height: 630,
-        alt: "Void Count - New Strategic Card Game",
+        alt: "Void Count - New Strategic Card Game 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Void Count™ | New Card Game 2024 | Card Games | Strategic Card Game",
+    title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game",
     description:
       "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play.",
     images: ["/void-count-logo.png"],

@@ -17,15 +17,15 @@ const FAQ_DATA = [
   },
   {
     question: "How many players can play?",
-    answer: "Void Count is designed for 2–8 players. It works great as a tight 1v1 duel or a chaotic party game with more players."
+    answer: "Void Count is designed for 2–8 players, making it one of the best new card games for both small groups and large parties. It works great as a tight 1v1 duel or a chaotic party game."
   },
   {
     question: "How long does a game take?",
-    answer: "Rounds are fast and intense. The overall game length depends on player strategy and sabotage levels, typically ranging from quick rounds to extended strategic battles."
+    answer: "Rounds are fast-paced and intense, typically lasting 5-10 minutes. The overall game length depends on player strategy and sabotage levels, making it perfect for quick game nights."
   },
   {
     question: "What age is this game suitable for?",
-    answer: "Void Count is suitable for ages 7 and up. The rules are simple enough for younger players, while the strategic depth appeals to adults. Perfect for family game nights."
+    answer: "Void Count is suitable for ages 7 and up. The rules are simple enough for younger players, while the deep strategy appeals to adults. It's a perfect family card game gift."
   },
   {
     question: "Is it easy to learn?",
@@ -87,6 +87,14 @@ const FAQ_DATA = [
     question: "How do Power cards affect gameplay?",
     answer: "Power cards are the heart of Void Count's strategy. They allow you to disrupt opponents' plans, protect yourself, or manipulate your own hand. Using them at the right moment can turn the tide of any round."
   },
+  {
+    question: "What is the next evolution of strategic card games?",
+    answer: "Void Count represents a meticulous strategic experience that combines the best elements of classic card games with innovative mechanics. As one of the most anticipated new card games of 2026, it offers a unique blend of risk management, psychological bluffing, and tactical sabotage."
+  },
+  {
+    question: "Why choose Void Count for your next game night?",
+    answer: "Void Count provides endless replayability with its dynamic deck mechanics and player-driven chaos. It's the perfect choice for both intimate 1v1 duels and large party settings (up to 8 players). Plus, it features stunning cosmic artwork and high-quality card stock, making it a premium card game gift."
+  }
 ];
 
 export const FAQSection = () => {

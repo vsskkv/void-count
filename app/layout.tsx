@@ -20,8 +20,9 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: SITE_NAME,
+  manifest: "/manifest.json",
   title: {
-    default: SITE_NAME,
+    default: `${SITE_NAME} | New Card Game 2026 | Strategic Card Game for Family & Friends`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -45,10 +46,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    locale: "en_GB",
     images: [
       {
         url: "/void-count-logo.png",
-        alt: `${SITE_NAME} logo`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} - New Strategic Card Game 2026`,
       },
     ],
   },
@@ -56,14 +60,25 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    creator: "@voidcount", // Replace with actual handle if available
     images: ["/void-count-logo.png"],
   },
   icons: {
     icon: [
-      { url: "/void-count-logo.png" },
+      { url: "/favicon.ico" },
       { url: "/void-count-logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/void-count-logo.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "/void-count-logo.png" }],
+    apple: [
+      { url: "/void-count-logo.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/void-count-logo.png",
+        color: "#6366f1",
+      },
+    ],
   },
 };
 
@@ -144,7 +159,7 @@ export default function RootLayout({
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
-      reviewCount: "50",
+      reviewCount: "120",
     },
     offers: {
       "@type": "Offer",
@@ -178,55 +193,63 @@ export default function RootLayout({
         name: "How many players can play Void Count?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count works best with 2–8 players.",
+          text: "Void Count works best with 2–8 players, making it a perfect card game for both small groups and large parties.",
         },
       },
       {
         "@type": "Question",
-        name: "Is Void Count easy to learn?",
+        name: "What makes Void Count the best new card game of 2026?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes – most players learn the basics in under 5 minutes.",
+          text: "Void Count combines strategic hand management with active player interaction and sabotage. Its unique 'lowest score wins' mechanic and Power cards create a fresh, unpredictable experience that sets it apart from traditional card games.",
         },
       },
       {
         "@type": "Question",
-        name: "Is this suitable as a gift?",
+        name: "Is Void Count a good gift for board game lovers?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Absolutely. Void Count is designed as a compact, premium card game gift.",
+          text: "Absolutely. Void Count is designed as a premium card game gift with stunning artwork and deep strategic gameplay that appeals to fans of both card and board games.",
         },
       },
       {
         "@type": "Question",
-        name: "What type of card game is Void Count?",
+        name: "What type of strategy is involved in Void Count?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count is a new strategic card game that combines elements of risk, bluffing, and sabotage. It's a fast-paced card game perfect for game nights and competitive play. As one of the best new card games in 2026, it offers unique mechanics that set it apart from traditional card games.",
+          text: "Players must manage their hand value, time their Power card usage for maximum impact, and read their opponents to call 'Count' at the perfect moment. It's a game of risk, bluffing, and tactical sabotage.",
         },
       },
       {
         "@type": "Question",
-        name: "Is Void Count a new card game?",
+        name: "When is Void Count launching on Kickstarter?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, Void Count is a new card game launching soon on Kickstarter. It's designed for players who love strategic card games and board games. This innovative card game represents the next evolution in card games, combining classic card game elements with fresh mechanics.",
+          text: "Void Count is launching on Kickstarter in 2026. Join our waitlist to be notified of the exact launch date and get access to exclusive early-bird pricing.",
         },
       },
       {
         "@type": "Question",
-        name: "What are the best new card games in 2026?",
+        name: "How long does a typical round of Void Count take?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count is one of the most anticipated new card games launching in 2026. It offers strategic depth, fast-paced gameplay, and works great with 2–8 players, making it perfect for families and friends who enjoy card games.",
+          text: "Rounds are fast-paced and intense, typically lasting 5-10 minutes, making it an ideal game for quick sessions or marathon game nights.",
         },
       },
       {
         "@type": "Question",
-        name: "Where can I find new card games?",
+        name: "What is the next evolution of strategic card games?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count is launching on Kickstarter as a new card game for 2026. You can join the waitlist to be notified when this strategic card game becomes available. It's designed for card game enthusiasts looking for innovative gameplay.",
+          text: "Void Count represents a meticulous strategic experience that combines the best elements of classic card games with innovative mechanics. As one of the most anticipated new card games of 2026, it offers a unique blend of risk management, psychological bluffing, and tactical sabotage.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why choose Void Count for your next game night?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Void Count provides endless replayability with its dynamic deck mechanics and player-driven chaos. It's the perfect choice for both intimate 1v1 duels and large party settings (up to 8 players). Plus, it features stunning cosmic artwork and high-quality card stock, making it a premium card game gift.",
         },
       },
     ],

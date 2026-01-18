@@ -56,8 +56,8 @@ export const WaitlistSection = () => {
             <span className="text-indigo-400">KICKSTARTER.</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
-            Be the first to know when this new card game launches. <br className="hidden sm:block" />
-            Join the waitlist for Void Count and be ready for the next round of this exciting strategic card game.
+            Be the first to know when this <strong>new card game</strong> launches. <br className="hidden sm:block" />
+            Join the waitlist for Void Count and be ready for the next round of this exciting <strong>strategic card game</strong>.
           </p>
         </div>
 

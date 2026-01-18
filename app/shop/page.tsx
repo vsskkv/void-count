@@ -4,7 +4,7 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games | Kickstarter`,
-  description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2024. Pre-order this strategic card game perfect for game nights and family gatherings. Join the waitlist for early bird pricing on one of the best new card games.`,
+  description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2026. Pre-order this strategic card game perfect for game nights and family gatherings. Join the waitlist for early bird pricing on one of the best new card games.`,
   keywords: [
     "buy card game",
     "new card game shop",
@@ -15,16 +15,18 @@ export const metadata: Metadata = {
     "new card games for sale",
     "strategic card game purchase",
     "Kickstarter card game",
+    "card game 2026",
+    "new card games 2026",
   ],
   alternates: { canonical: "/shop" },
   openGraph: {
     title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games`,
-    description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2024. Pre-order this strategic card game perfect for game nights and family gatherings.`,
+    description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2026. Pre-order this strategic card game perfect for game nights and family gatherings.`,
     url: "/shop",
   },
   twitter: {
     title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games`,
-    description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2024. Pre-order this strategic card game.`,
+    description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2026. Pre-order this strategic card game.`,
   },
 };
 

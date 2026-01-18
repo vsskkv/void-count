@@ -46,7 +46,7 @@ export const KickstarterSection = () => {
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 font-bold italic mb-6 sm:mb-8 lg:mb-10 leading-tight max-w-2xl mx-auto lg:mx-0">
-              Get ready for the first edition of Void Count, the new card game launching on Kickstarter. Join the list to secure early bird pricing and exclusive playtest invites for this exciting strategic card game.
+              Get ready for the first edition of Void Count, the <strong>best new card game of 2026</strong> launching on Kickstarter. Join the list to secure early bird pricing and exclusive playtest invites for this exciting <strong>strategic card game</strong>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">

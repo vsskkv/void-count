@@ -6,7 +6,7 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `FAQ | ${SITE_NAME} | New Card Game Questions | Card Games`,
-  description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2024. Learn about this strategic card game, gameplay, player count, and more. Everything you need to know about one of the best new card games.`,
+  description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2026. Learn about this strategic card game, gameplay, player count, and more. Everything you need to know about one of the best new card games.`,
   keywords: [
     "card game FAQ",
     "new card game questions",
@@ -17,16 +17,18 @@ export const metadata: Metadata = {
     "new card games FAQ",
     "best new card game FAQ",
     "card game information",
+    "card game 2026",
+    "new card games 2026",
   ],
   alternates: { canonical: "/faq" },
   openGraph: {
     title: `FAQ | ${SITE_NAME} | New Card Game Questions | Card Games`,
-    description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2024. Learn about this strategic card game, gameplay, and more.`,
+    description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2026. Learn about this strategic card game, gameplay, and more.`,
     url: "/faq",
   },
   twitter: {
     title: `FAQ | ${SITE_NAME} | New Card Game Questions`,
-    description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2024. Learn about this strategic card game and more.`,
+    description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2026. Learn about this strategic card game and more.`,
   },
 };
 

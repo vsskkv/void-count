@@ -45,9 +45,11 @@ Expected:
 ### 1. Meta Tags Verification
 
 #### Homepage (`/`)
-- ✅ Title: "Void Count™ | New Card Game 2024 | Card Games | Strategic Card Game for Family & Friends | Kickstarter"
+- ✅ Title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends | Kickstarter"
 - ✅ Description: Contains "new card game", "card games", "strategic card game"
 - ✅ Keywords: Includes "card game", "new card game", "card games", "new card games"
+- ✅ Images: Includes alt text with "card game 2026"
+- ✅ OpenGraph: Includes "New Strategic Card Game 2026" in alt text
 
 #### About Page (`/about`)
 - ✅ Title: "About Void Count | The Story Behind the New Card Game | Card Games | Card Game for Family"
@@ -119,9 +121,10 @@ Expected:
 
 ### 6. Image Alt Text Test
 
-- ✅ Logo: "Void Count - New Strategic Card Game Logo | Card Game 2024"
+- ✅ Logo: "Void Count - New Strategic Card Game Logo | Card Game 2026"
 - ✅ Card images: Include "card game" in descriptions
 - ✅ All images have descriptive alt text
+- ✅ OpenGraph image alt: "Void Count - New Strategic Card Game 2026"
 
 ### 7. Open Graph & Twitter Cards
 
@@ -231,7 +234,7 @@ find out -name "*.html" -exec head -50 {} \;
 ### Keyword Rankings (Long-term)
 - "new card game" - Should rank within 6-12 months with consistent content
 - "card games" - Competitive term, may take longer
-- Long-tail keywords like "new strategic card game 2024" - Should rank sooner
+- Long-tail keywords like "new strategic card game 2026" - Should rank sooner
 
 ### Search Visibility
 - Homepage should appear for branded searches immediately
