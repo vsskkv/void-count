@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
 export const SiteHeader = () => {
@@ -68,13 +69,21 @@ export const SiteHeader = () => {
         ref={headerRef}
         className="relative w-full p-3 sm:p-4 md:p-6 flex justify-between items-center border-b border-slate-900 bg-slate-950/80 backdrop-blur-md z-50 pointer-events-auto"
       >
-        <div className="text-base sm:text-lg md:text-2xl font-extrabold tracking-wider">
+        <div className="flex items-center">
           <Link 
             href="/" 
-            className="text-white hover:text-indigo-400 transition-colors whitespace-nowrap"
+            className="flex items-center group"
             onClick={() => setIsMenuOpen(false)}
           >
-            VOID COUNT
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12">
+              <Image
+                src="/Logo BG Removed.png"
+                alt="Void Count Logo"
+                fill
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+                priority
+              />
+            </div>
           </Link>
         </div>
         
