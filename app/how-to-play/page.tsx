@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function HowToPlayPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
+    <main className="min-h-screen bg-transparent text-slate-50 overflow-x-hidden">
       <SiteHeader />
 
       {/* Coming Soon Section */}

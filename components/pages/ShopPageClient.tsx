@@ -8,7 +8,7 @@ import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export default function ShopPageClient() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
+    <main className="min-h-screen bg-transparent text-slate-50 flex flex-col">
       <SiteHeader />
 
       <div className="flex-1 flex flex-col items-center justify-center pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6">

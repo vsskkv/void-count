@@ -66,7 +66,7 @@ export const SiteHeader = () => {
     <>
       <header 
         ref={headerRef}
-        className="relative w-full p-3 sm:p-4 md:p-6 flex justify-between items-center border-b border-slate-800/50 bg-slate-950/50 backdrop-blur-md z-50 pointer-events-auto"
+        className="relative w-full p-3 sm:p-4 md:p-6 flex justify-between items-center border-b border-slate-900 bg-slate-950/80 backdrop-blur-md z-50 pointer-events-auto"
       >
         <div className="text-base sm:text-lg md:text-2xl font-extrabold tracking-wider">
           <Link 

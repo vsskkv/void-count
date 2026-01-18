@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
+    <main className="min-h-screen bg-transparent text-slate-50 overflow-x-hidden">
       <SiteHeader />
 
       <div className="pt-20 sm:pt-24 md:pt-32 lg:pt-48 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">

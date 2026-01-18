@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
+    <main className="min-h-screen bg-transparent text-slate-50 flex flex-col">
       <SiteHeader />
       <div className="flex-1 pt-24 pb-16">
         <FAQSection />

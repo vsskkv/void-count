@@ -10,14 +10,25 @@ import { CardCarousel } from "@/components/home/CardCarousel";
 import { HeroSection } from "@/components/home/HeroSection";
 import { KickstarterSection } from "@/components/home/KickstarterSection";
 import { StickyCTA } from "@/components/ui/StickyCTA";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePageClient() {
   const mainRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (!mainRef.current) return;
+    if (!mainRef.current || !prefersReducedMotion) return;
+    const sections = mainRef.current.querySelectorAll<HTMLElement>(".content-section");
+    sections.forEach((section) => {
+      section.style.opacity = "1";
+      section.style.transform = "none";
+    });
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!mainRef.current || prefersReducedMotion) return;
 
     // Detect mobile to optimize animations
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -57,10 +68,10 @@ export default function HomePageClient() {
       // Clean up ScrollTriggers created in this context only
       // Don't kill all triggers as other components may be using them
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
-    <main ref={mainRef} className="relative bg-slate-950 overflow-x-hidden">
+    <main ref={mainRef} className="relative bg-transparent overflow-x-hidden">
       {/* Header - Fixed */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <SiteHeader />
@@ -72,22 +83,18 @@ export default function HomePageClient() {
       {/* 2. Card Carousel Section (Manual wheel deck gallery) */}
       <CardCarousel />
 
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col overflow-x-hidden">
-        {/* 3. Kickstarter Coming Soon */}
-        <div className="content-section overflow-x-hidden">
-          <KickstarterSection />
-        </div>
-
-        {/* 4. Waitlist - Now Joining Kickstarter */}
-        <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden">
-          <WaitlistSection />
-        </div>
-
-        {/* Footer */}
-        <div className="mt-auto">
-          <SiteFooter />
-        </div>
+      {/* 3. Kickstarter Coming Soon */}
+      <div className="content-section overflow-x-hidden">
+        <KickstarterSection />
       </div>
+
+      {/* 4. Waitlist - Now Joining Kickstarter */}
+      <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden">
+        <WaitlistSection />
+      </div>
+
+      {/* Footer */}
+      <SiteFooter />
 
       {/* Sticky CTA */}
       <StickyCTA />

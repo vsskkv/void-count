@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { GameCard } from "@/components/3d/GameCard";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 type CardCategory = "Power" | "10 point";
 
@@ -27,6 +28,8 @@ export const CardCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<CardCategory | "All">("All");
   const [wheelRotation, setWheelRotation] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const allowMotion = !prefersReducedMotion;
 
   const filteredCards = activeCategory === "All" 
     ? CARD_DATA 
@@ -48,6 +51,7 @@ export const CardCarousel = () => {
 
   // Update card flips and scaling based on wheel rotation
   useEffect(() => {
+    if (!allowMotion) return;
     if (!carouselRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -109,9 +113,10 @@ export const CardCarousel = () => {
     }, carouselRef);
 
     return () => ctx.revert();
-  }, [wheelRotation, angleStep, totalCards]);
+  }, [wheelRotation, angleStep, totalCards, allowMotion]);
 
   useEffect(() => {
+    if (!allowMotion) return;
     if (!carouselRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -146,9 +151,10 @@ export const CardCarousel = () => {
     }, carouselRef);
 
     return () => ctx.revert();
-  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile]);
+  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile, allowMotion]);
 
   const rotate = (direction: 1 | -1) => {
+    if (!allowMotion) return;
     if (isAnimating || !carouselRef.current) return;
     setIsAnimating(true);
 
@@ -173,8 +179,75 @@ export const CardCarousel = () => {
     });
   };
 
+  const reducedMotionLayout = (
+    <section className="relative bg-transparent py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.08),transparent_70%)] pointer-events-none" />
+      <div className="w-full text-center z-20 mb-6 sm:mb-8 md:mb-10 relative">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase italic mb-4 sm:mb-6 md:mb-8 md:scale-y-110 text-center flex flex-wrap justify-center gap-2 sm:gap-4">
+          <span>EXPLORE THE</span>
+          <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">CARD GAME</span>
+          <span>DECK</span>
+        </h2>
+        <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
+          Discover the cards from Void Count, one of the best new card games launching in 2024
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 relative z-30" role="tablist" aria-label="Card categories">
+          {["All", ...CATEGORIES].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat as CardCategory | "All");
+                setCurrentIndex(0);
+              }}
+              role="tab"
+              aria-selected={activeCategory === cat}
+              className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
+                activeCategory === cat 
+                  ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_12px_rgba(79,70,229,0.3)]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 relative z-20">
+        {filteredCards.map((card) => (
+          <div
+            key={`${activeCategory}-${card.id}`}
+            className="rounded-2xl border border-slate-800 bg-white/5 p-3 sm:p-4 flex flex-col items-center gap-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          >
+            <div className="w-full aspect-[2.5/3.5] overflow-hidden rounded-xl bg-slate-900/70">
+              <img
+                src={card.front}
+                alt={`${card.name} card from Void Count new card game`}
+                className="w-full h-full object-cover"
+                width={320}
+                height={448}
+                loading="lazy"
+                decoding="async"
+                sizes="(min-width: 1024px) 200px, (min-width: 768px) 160px, 45vw"
+              />
+            </div>
+            <div className="text-center space-y-1">
+              <p className="text-white font-black uppercase tracking-tight text-xs sm:text-sm">{card.name}</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">{card.category}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+
+  if (prefersReducedMotion) {
+    return reducedMotionLayout;
+  }
+
   return (
-    <section className="relative min-h-[80svh] sm:min-h-[90svh] md:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16 md:py-24 px-4 sm:px-6">
+    <section className="relative min-h-[80svh] sm:min-h-[90svh] md:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-transparent py-12 sm:py-16 md:py-24 px-4 sm:px-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_70%)] pointer-events-none" />
       
       <div className="w-full text-center z-20 mb-6 sm:mb-8 md:mb-12">
@@ -202,7 +275,7 @@ export const CardCarousel = () => {
               className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeCategory === cat 
                   ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
-                  : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+                  : "bg-white/5 border-slate-800 text-slate-400 hover:border-slate-700"
               }`}
             >
               {cat}

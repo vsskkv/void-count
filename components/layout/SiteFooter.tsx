@@ -3,7 +3,7 @@ import { SITE_VERSION } from '@/lib/site';
 
 export const SiteFooter = () => {
   return (
-    <footer className="w-full py-8 sm:py-10 md:py-12 px-4 sm:px-6 text-center text-slate-300 text-xs sm:text-sm relative z-50">
+    <footer className="w-full py-8 sm:py-10 md:py-12 px-4 sm:px-6 text-center text-slate-300 text-xs sm:text-sm relative z-50 bg-transparent">
       <div className="max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4">

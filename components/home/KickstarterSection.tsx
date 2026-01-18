@@ -7,7 +7,7 @@ import { WAITLIST_FORM_ID } from "@/lib/constants";
 
 export const KickstarterSection = () => {
   return (
-    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-950 overflow-hidden">
+    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent overflow-hidden">
       {/* Background radial effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.1),transparent_70%)] pointer-events-none" />
       
@@ -16,7 +16,7 @@ export const KickstarterSection = () => {
           {/* Left: Product Mock Placeholder */}
           <div className="order-2 lg:order-1 relative group">
             <div className="absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
-            <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
+            <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-slate-800 flex items-center justify-center overflow-hidden shadow-2xl">
               <div className="flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-6">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center animate-pulse">
                   <span className="text-3xl sm:text-4xl lg:text-6xl italic font-black text-indigo-400">∅</span>
@@ -50,22 +50,22 @@ export const KickstarterSection = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">
-              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎴</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">116 Cards</span>
                 <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Premium Stock</span>
               </div>
-              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">👥</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">2–6 Players</span>
                 <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Ultimate Strategy</span>
               </div>
-              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">⚡</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Fast Pace</span>
                 <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Rapid Rounds</span>
               </div>
-              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎨</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Premium Art</span>
                 <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Custom Design</span>

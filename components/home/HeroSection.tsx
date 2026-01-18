@@ -1,38 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { scrollToElement } from "@/lib/utils";
 import { WAITLIST_FORM_ID } from "@/lib/constants";
-
-interface Particle {
-  id: number;
-  top: string;
-  left: string;
-  duration: string;
-  delay: string;
-}
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLDivElement | null>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  // Initialize particles on client only to avoid hydration mismatch
-  useEffect(() => {
-    const newParticles = [...Array(20)].map((_, i) => ({
-      id: i,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      duration: `${3 + Math.random() * 4}s`,
-      delay: `${Math.random() * 5}s`,
-    }));
-    setParticles(newParticles);
-  }, []);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const allowMotion = !prefersReducedMotion;
 
   useEffect(() => {
-    if (!containerRef.current || !logoRef.current) return;
+    if (!containerRef.current || !logoRef.current || prefersReducedMotion) return;
 
     const logo = logoRef.current;
 
@@ -62,63 +44,16 @@ export const HeroSection = () => {
         repeat: -1,
         yoyo: true,
       });
-
-      // Subtle light ray pulse
-      gsap.to(".light-rays", {
-        opacity: 0.7,
-        duration: 5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // Fade in particles once generated
-      gsap.from(".particle-field", {
-        opacity: 0,
-        duration: 2,
-        ease: "power1.out",
-      });
     }, containerRef);
 
     return () => ctx.revert();
-  }, [particles]); // Re-run when particles are ready to animate them
+  }, [prefersReducedMotion]);
 
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-12 flex flex-col items-center justify-center min-h-[750px] md:min-h-[90vh]"
+      className="relative overflow-hidden px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-12 flex flex-col items-center justify-center min-h-[750px] md:min-h-[90vh] bg-transparent"
     >
-      {/* --- BACKGROUND LAYERS --- */}
-      
-      {/* 1. Base Gradient - Deep Black with subtle dark indigo tint */}
-      <div className="pointer-events-none absolute inset-0 bg-[#000005]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#0a0a2e_0%,#000000_100%)] opacity-100" />
-      
-      {/* 2. Moving Void Nebula/Vortex - Higher Opacity for more color */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.2)_0%,transparent_60%)] blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,rgba(168,85,247,0.08)_25%,transparent_50%,rgba(79,70,229,0.08)_75%,transparent_100%)] animate-[spin_120s_linear_infinite] opacity-90" />
-
-      {/* 3. God Rays / Light Beams - Stronger visibility */}
-      <div className="light-rays pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-60 flex items-center justify-center">
-        <div className="absolute w-[800px] h-[800px] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(139,92,246,0.2)_20deg,transparent_40deg,rgba(79,70,229,0.2)_180deg,transparent_200deg,rgba(168,85,247,0.2)_320deg,transparent_360deg)] animate-[spin_60s_linear_infinite]" />
-      </div>
-
-      {/* 4. Particle Field (Floating Dust/Sparks) - Higher visibility */}
-      <div className="particle-field pointer-events-none absolute inset-0 overflow-hidden">
-        {particles.map((p) => (
-          <div
-            key={p.id}
-            className="absolute w-1.5 h-1.5 bg-indigo-300 rounded-full blur-[1px] opacity-60 animate-pulse"
-            style={{
-              top: p.top,
-              left: p.left,
-              animationDuration: p.duration,
-              animationDelay: p.delay,
-            }}
-          />
-        ))}
-      </div>
-
       {/* --- CONTENT --- */}
       <div className="relative w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12">
         {/* Card Asset Section */}
@@ -140,6 +75,8 @@ export const HeroSection = () => {
               height={320}
               loading="eager"
               decoding="async"
+              fetchpriority="high"
+              sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 220px"
             />
             
             {/* Dynamic Card Highlight (Sheen) */}

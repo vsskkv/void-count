@@ -25,6 +25,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     ref
   ) => {
     const isHero = variant === "hero";
+    const imageLoading: "eager" | "lazy" = isHero ? "eager" : "lazy";
+    const fetchPriority: "high" | "low" | "auto" = isHero ? "high" : "auto";
     const [frontError, setFrontError] = useState(false);
     const [backError, setBackError] = useState(false);
 
@@ -56,8 +58,9 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     src={frontSrc}
                     alt={frontAlt}
                     draggable={false}
-                    loading="eager"
+                  loading={imageLoading}
                     decoding="async"
+                  fetchPriority={fetchPriority}
                     onError={() => setFrontError(true)}
                   />
                   <div className={styles.neonBorder} />
@@ -95,8 +98,9 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     src={backSrc}
                     alt="Void Count card game card back - New card game"
                     draggable={false}
-                    loading="lazy"
+                  loading="lazy"
                     decoding="async"
+                  fetchPriority="auto"
                     onError={() => setBackError(true)}
                   />
                   <div className={styles.neonBorder} />

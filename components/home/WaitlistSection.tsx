@@ -44,9 +44,9 @@ export const WaitlistSection = () => {
   return (
     <section
       id={WAITLIST_FORM_ID}
-      className="content-section min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20 pointer-events-auto px-4 sm:px-6"
+      className="content-section min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20 pointer-events-auto px-4 sm:px-6 bg-transparent"
     >
-      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] border border-indigo-500/40 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-indigo-500/60 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
+      <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] border border-slate-800 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-slate-700 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
         <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50 pointer-events-none" />
 
@@ -64,6 +64,7 @@ export const WaitlistSection = () => {
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 sm:gap-4 max-w-lg mx-auto w-full relative z-10"
+          aria-busy={isSubmitting}
         >
           {/* Honeypot - hidden from users */}
           <input
@@ -84,6 +85,7 @@ export const WaitlistSection = () => {
             onChange={(e) => setFullName(e.target.value)}
             autoComplete="name"
             maxLength={120}
+            name="fullName"
             className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
           />
           
@@ -95,6 +97,7 @@ export const WaitlistSection = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
+            name="email"
               className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
             />
             <PrimaryButton
@@ -108,15 +111,17 @@ export const WaitlistSection = () => {
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mt-2">
             No spam. Unsubscribe anytime.
           </p>
-          {message && (
-            <p className={`text-sm font-bold ${
-              message.includes("You're on the list") || message.includes("list")
-                ? "text-emerald-400"
-                : "text-rose-400"
-            }`}>
-              {message}
-            </p>
-          )}
+          <div role="status" aria-live="polite">
+            {message && (
+              <p className={`text-sm font-bold ${
+                message.includes("You're on the list") || message.includes("list")
+                  ? "text-emerald-400"
+                  : "text-rose-400"
+              }`}>
+                {message}
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </section>

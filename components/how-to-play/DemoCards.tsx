@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 
 export const DemoCard = ({ 
   value, 
@@ -70,9 +71,10 @@ export const DemoCard = ({
 
 export const DrawPileVisual = () => {
   const deckRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
   
   useEffect(() => {
-    if(!deckRef.current) return;
+    if(!deckRef.current || prefersReducedMotion) return;
     
     // Detect mobile to optimize animations
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -98,7 +100,7 @@ export const DrawPileVisual = () => {
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
@@ -132,9 +134,10 @@ export const DrawPileVisual = () => {
 
 export const PowerCardVisual = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     useEffect(() => {
-        if(!containerRef.current) return;
+        if(!containerRef.current || prefersReducedMotion) return;
         
         // Detect mobile to optimize animations
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -164,7 +167,7 @@ export const PowerCardVisual = () => {
             // Just set initial state on mobile
             gsap.set(cards, { y: 0, opacity: 1 });
         }
-    }, []);
+    }, [prefersReducedMotion]);
 
     return (
         <div ref={containerRef} className="flex flex-wrap gap-3 sm:gap-4 justify-center">

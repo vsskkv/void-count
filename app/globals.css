@@ -22,7 +22,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
 }
 
 html,
@@ -45,7 +46,6 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
-  
 }
 
 @keyframes slideDown {
@@ -81,26 +81,41 @@ video {
   button[type="submit"] {
     min-height: 44px; /* iOS recommended touch target */
   }
-  
+
   /* Prevent overflow issues on mobile */
   section, 
   main {
     overflow-x: hidden;
     position: relative;
   }
-  
+
   /* Reduce text transform complexity on mobile - use less aggressive scaling */
   h1[class*="scale-y-110"]:not([class*="md:scale-y-110"]),
   h2[class*="scale-y-110"]:not([class*="md:scale-y-110"]) {
     transform: scaleY(1.03); /* Less aggressive on mobile, only if not md-specific */
   }
-  
+
   /* Prevent horizontal overflow on mobile */
   main,
   section,
   div[class*="content-section"] {
     overflow-x: hidden;
     max-width: 100vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .light-rays {
+    animation: none !important;
   }
 }
 

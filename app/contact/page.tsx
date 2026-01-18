@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
+    <main className="min-h-screen bg-transparent text-slate-50 flex flex-col">
       <SiteHeader />
       <div className="flex-1 flex items-center justify-center pt-24 pb-16 px-4 md:px-6">
         <div className="max-w-2xl w-full text-center">

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { VoidParticles } from "@/components/ui/VoidParticles";
+import { CosmicBackground } from "@/components/ui/CosmicBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -266,8 +268,12 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-        <div className="min-h-screen flex flex-col bg-[radial-gradient(circle_at_top,#1d2540_0,transparent_55%),radial-gradient(circle_at_bottom,#020617_0,transparent_55%)]">
-          {children}
+        <div className="min-h-screen flex flex-col relative">
+          <CosmicBackground />
+          <VoidParticles />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            {children}
+          </div>
         </div>
       </body>
     </html>

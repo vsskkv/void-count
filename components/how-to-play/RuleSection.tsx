@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,9 +25,20 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (!sectionRef.current) return;
+
+    if (prefersReducedMotion) {
+      if (contentRef.current) {
+        gsap.set(contentRef.current, { opacity: 1, x: 0 });
+      }
+      if (visualRef.current) {
+        gsap.set(visualRef.current, { opacity: 1, scale: 1 });
+      }
+      return;
+    }
 
     // Detect mobile to optimize animations
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -70,7 +82,7 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
       ctx.revert();
       // Context revert already cleans up ScrollTriggers created in this context
     };
-  }, [alignment]);
+  }, [alignment, prefersReducedMotion]);
 
   return (
     <section

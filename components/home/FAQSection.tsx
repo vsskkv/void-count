@@ -93,7 +93,7 @@ export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-950">
+    <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tighter uppercase italic leading-[0.85] sm:leading-[0.8] mb-4 sm:mb-6 md:scale-y-110 px-2">
@@ -105,7 +105,7 @@ export const FAQSection = () => {
           {FAQ_DATA.map((item, index) => (
             <div 
               key={index}
-              className="rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 overflow-hidden transition-all hover:border-white/20"
+              className="rounded-xl sm:rounded-2xl bg-white/5 border border-slate-800 overflow-hidden transition-all hover:border-slate-700"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
