@@ -86,7 +86,7 @@ export const WaitlistSection = () => {
             autoComplete="name"
             maxLength={120}
             name="fullName"
-            className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
           />
           
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
@@ -98,7 +98,7 @@ export const WaitlistSection = () => {
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
             name="email"
-              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
+              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-all text-base sm:text-lg"
             />
             <PrimaryButton
               type="submit"
@@ -108,7 +108,7 @@ export const WaitlistSection = () => {
               {isSubmitting ? "Joining..." : "Join the Waiting List"}
             </PrimaryButton>
           </div>
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mt-2">
+          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest text-center mt-2">
             No spam. Unsubscribe anytime.
           </p>
           <div role="status" aria-live="polite">

@@ -22,7 +22,6 @@ export const HeroSection = () => {
       // 1. Initial Entry Animations
       gsap.from(".hero-logo-img", {
         scale: 0.85,
-        opacity: 0,
         duration: 1.2,
         ease: "power3.out",
       });
@@ -57,7 +56,7 @@ export const HeroSection = () => {
       {/* --- CONTENT --- */}
       <div className="relative w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12">
         {/* Card Asset Section */}
-        <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center items-center py-4">
+        <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center items-center py-4 opacity-100">
           {/* Intense Core Glow - Vibrant and strong contrast */}
           <div className="absolute w-72 h-72 bg-indigo-600/40 blur-[100px] rounded-full animate-pulse" />
           <div className="absolute w-48 h-48 bg-purple-500/30 blur-[60px] rounded-full" />
@@ -74,7 +73,7 @@ export const HeroSection = () => {
               width={320}
               height={320}
               loading="eager"
-              decoding="async"
+              decoding="sync"
               fetchPriority="high"
               sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 220px"
             />
@@ -95,7 +94,7 @@ export const HeroSection = () => {
           </PrimaryButton>
           <PrimaryButton
             variant="secondary"
-            className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-indigo-400/20 hover:border-indigo-400/40 hover:bg-indigo-900/20 font-semibold transition-all duration-300 opacity-60 cursor-not-allowed"
+            className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-indigo-400/30 hover:border-indigo-400/50 hover:bg-indigo-900/20 font-semibold transition-all duration-300 opacity-80 cursor-not-allowed"
             disabled
           >
             How to Play (Coming Soon)

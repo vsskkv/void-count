@@ -188,7 +188,7 @@ export const CardCarousel = () => {
           <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">CARD GAME</span>
           <span>DECK</span>
         </h2>
-        <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
+        <p className="text-slate-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
           Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
@@ -205,7 +205,7 @@ export const CardCarousel = () => {
               className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeCategory === cat 
                   ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_12px_rgba(79,70,229,0.3)]" 
-                  : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20"
+                  : "bg-white/5 border-white/10 text-slate-300 hover:border-white/20"
               }`}
             >
               {cat}
@@ -227,14 +227,14 @@ export const CardCarousel = () => {
                 className="w-full h-full object-cover"
                 width={320}
                 height={448}
-                loading="lazy"
+                loading={currentIndex === CARD_DATA.indexOf(card) ? "eager" : "lazy"}
                 decoding="async"
                 sizes="(min-width: 1024px) 200px, (min-width: 768px) 160px, 45vw"
               />
             </div>
             <div className="text-center space-y-1">
               <p className="text-white font-black uppercase tracking-tight text-xs sm:text-sm">{card.name}</p>
-              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">{card.category}</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-300 font-bold">{card.category}</p>
             </div>
           </div>
         ))}
@@ -256,7 +256,7 @@ export const CardCarousel = () => {
           <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">CARD GAME</span>
           <span>DECK</span>
         </h2>
-        <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
+        <p className="text-slate-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
           Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
@@ -275,7 +275,7 @@ export const CardCarousel = () => {
               className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeCategory === cat 
                   ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
-                  : "bg-white/5 border-slate-800 text-slate-400 hover:border-slate-700"
+                  : "bg-white/5 border-slate-800 text-slate-300 hover:border-slate-700"
               }`}
             >
               {cat}

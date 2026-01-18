@@ -27,6 +27,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     const isHero = variant === "hero";
     const imageLoading: "eager" | "lazy" = isHero ? "eager" : "lazy";
     const fetchPriority: "high" | "low" | "auto" = isHero ? "high" : "auto";
+    const decoding: "async" | "sync" | "auto" = isHero ? "sync" : "async";
     const [frontError, setFrontError] = useState(false);
     const [backError, setBackError] = useState(false);
 
@@ -59,7 +60,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
                     alt={frontAlt}
                     draggable={false}
                   loading={imageLoading}
-                    decoding="async"
+                    decoding={decoding}
                   fetchPriority={fetchPriority}
                     onError={() => setFrontError(true)}
                   />

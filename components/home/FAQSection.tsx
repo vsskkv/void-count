@@ -133,7 +133,7 @@ export const FAQSection = () => {
                   openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="p-4 sm:p-5 md:p-6 pt-0 pb-4 sm:pb-5 md:pb-6 text-sm sm:text-base text-slate-400 font-medium leading-relaxed italic">
+                <div className="p-4 sm:p-5 md:p-6 pt-0 pb-4 sm:pb-5 md:pb-6 text-sm sm:text-base text-slate-300 font-medium leading-relaxed italic">
                   {item.answer}
                 </div>
               </div>

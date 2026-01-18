@@ -92,7 +92,7 @@ export const SiteHeader = () => {
           <Link href="/about" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
             ABOUT
           </Link>
-          <span className="text-slate-500 cursor-not-allowed whitespace-nowrap uppercase tracking-tighter opacity-60">
+          <span className="text-slate-400 cursor-not-allowed whitespace-nowrap uppercase tracking-tighter opacity-70">
             HOW TO PLAY (COMING SOON)
           </span>
           <Link href="/faq" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
@@ -164,7 +164,7 @@ export const SiteHeader = () => {
                 ABOUT
               </Link>
               <span
-                className="text-sm font-black text-slate-500 opacity-60 cursor-not-allowed uppercase tracking-tighter py-4 px-6 border-b border-slate-800/50 min-h-[48px] flex items-center"
+                className="text-sm font-black text-slate-400 opacity-70 cursor-not-allowed uppercase tracking-tighter py-4 px-6 border-b border-slate-800/50 min-h-[48px] flex items-center"
               >
                 HOW TO PLAY (COMING SOON)
               </span>

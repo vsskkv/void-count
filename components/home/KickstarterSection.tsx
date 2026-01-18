@@ -25,7 +25,7 @@ export const KickstarterSection = () => {
                   <p className="text-white font-black uppercase italic tracking-tighter text-2xl sm:text-3xl lg:text-4xl">
                     Base Deck
                   </p>
-                  <p className="text-slate-400 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs mt-1">
+                  <p className="text-slate-300 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs mt-1">
                     Coming Soon to Kickstarter
                   </p>
                 </div>
@@ -53,22 +53,22 @@ export const KickstarterSection = () => {
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎴</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">116 Cards</span>
-                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Premium Stock</span>
+                <span className="block text-slate-300 text-[10px] sm:text-xs font-black uppercase tracking-widest">Premium Stock</span>
               </div>
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">👥</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">2–8 Players</span>
-                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Ultimate Strategy</span>
+                <span className="block text-slate-300 text-[10px] sm:text-xs font-black uppercase tracking-widest">Ultimate Strategy</span>
               </div>
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">⚡</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Fast Pace</span>
-                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Rapid Rounds</span>
+                <span className="block text-slate-300 text-[10px] sm:text-xs font-black uppercase tracking-widest">Rapid Rounds</span>
               </div>
               <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-slate-800 hover:bg-white/10 transition-colors">
                 <span className="block text-2xl mb-2">🎨</span>
                 <span className="block text-white font-black uppercase text-sm sm:text-base mb-1 italic">Premium Art</span>
-                <span className="block text-slate-500 text-[10px] sm:text-xs font-black uppercase tracking-widest">Custom Design</span>
+                <span className="block text-slate-300 text-[10px] sm:text-xs font-black uppercase tracking-widest">Custom Design</span>
               </div>
             </div>
 

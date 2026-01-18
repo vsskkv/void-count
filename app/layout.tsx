@@ -63,6 +63,13 @@ export const metadata: Metadata = {
     creator: "@voidcount", // Replace with actual handle if available
     images: ["/void-count-logo.png"],
   },
+  other: {
+    "content-security-policy": "upgrade-insecure-requests; block-all-mixed-content;",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "x-xss-protection": "1; mode=block",
+    "referrer-policy": "strict-origin-when-cross-origin",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },

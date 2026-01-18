@@ -72,7 +72,7 @@ export const StickyCTA = () => {
           <p className="text-white font-black uppercase italic tracking-tight leading-none mb-1">
             Launching Soon on Kickstarter
           </p>
-          <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+          <p className="text-slate-300 text-[10px] font-bold uppercase tracking-widest">
             Join the waiting list for launch-day updates
           </p>
         </div>
