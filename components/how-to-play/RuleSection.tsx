@@ -55,7 +55,7 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
           start: "top 90%",
           toggleActions: "play none none reverse",
           once: isMobile, // Only animate once on mobile for better performance
-          invalidateOnRefresh: true,
+          invalidateOnRefresh: !isMobile,
         },
       });
 
@@ -72,7 +72,7 @@ export const RuleSection: React.FC<RuleSectionProps> = ({
             start: "top 90%",
             toggleActions: "play none none reverse",
             once: isMobile,
-            invalidateOnRefresh: true,
+            invalidateOnRefresh: !isMobile,
           },
         });
       }

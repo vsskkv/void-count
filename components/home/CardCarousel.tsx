@@ -39,10 +39,22 @@ export const CardCarousel = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    let timeoutId: NodeJS.Timeout;
+    const checkMobile = () => {
+      // Use a small delay to avoid excessive state updates during smooth resizing (like address bar)
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const mobile = window.innerWidth < 768;
+        setIsMobile((prev) => (prev !== mobile ? mobile : prev));
+      }, 100);
+    };
+    
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   // Increased radius on mobile to show more of adjacent cards

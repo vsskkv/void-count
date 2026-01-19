@@ -275,7 +275,6 @@ export default function RootLayout({
     <html lang="en-GB">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-950 text-slate-50`}
-        suppressHydrationWarning
       >
         {allJsonLd.map((jsonLd, i) => (
           <script

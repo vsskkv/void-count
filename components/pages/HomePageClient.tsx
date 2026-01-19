@@ -68,11 +68,12 @@ export default function HomePageClient() {
             duration: 0.8,
             scrollTrigger: {
               trigger: section,
-              start: "top 95%", // Trigger earlier on mobile
+              start: isMobile ? "top 90%" : "top 95%", // Adjusted for mobile
               end: "top 70%",
               scrub: isMobile ? false : 1,
               toggleActions: "play none none reverse",
-              invalidateOnRefresh: true,
+              // Disable invalidateOnRefresh on mobile to prevent resize loop/performance issues
+              invalidateOnRefresh: !isMobile,
               once: isMobile, 
             },
           }
@@ -83,7 +84,6 @@ export default function HomePageClient() {
     return () => {
       ctx.revert();
       // Clean up ScrollTriggers created in this context only
-      // Don't kill all triggers as other components may be using them
     };
   }, [prefersReducedMotion]);
 
