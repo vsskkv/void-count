@@ -29,7 +29,10 @@ const SiteFooter = dynamic(() => import("@/components/layout/SiteFooter").then(m
   ssr: true
 });
 
-gsap.registerPlugin(ScrollTrigger);
+// Register ScrollTrigger plugin once at module level
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function HomePageClient() {
   const mainRef = useRef<HTMLDivElement>(null);

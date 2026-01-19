@@ -5,7 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
-gsap.registerPlugin(ScrollTrigger);
+// Register ScrollTrigger plugin once (safe to call multiple times)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface RuleSectionProps {
   title: string;

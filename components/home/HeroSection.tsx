@@ -57,9 +57,9 @@ export const HeroSection = () => {
       <div className="relative w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12">
         {/* Card Asset Section */}
         <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center items-center py-4 opacity-100">
-          {/* Intense Core Glow - Vibrant and strong contrast */}
-          <div className="absolute w-72 h-72 bg-indigo-600/40 blur-[100px] rounded-full animate-pulse" />
-          <div className="absolute w-48 h-48 bg-purple-500/30 blur-[60px] rounded-full" />
+          {/* Intense Core Glow - Disabled heavy blur on mobile to prevent crashes */}
+          <div className="hidden md:block absolute w-72 h-72 bg-indigo-600/40 blur-[100px] rounded-full animate-pulse" />
+          <div className="hidden md:block absolute w-48 h-48 bg-purple-500/30 blur-[60px] rounded-full" />
           
           {/* The Card */}
           <div className="relative z-10">
