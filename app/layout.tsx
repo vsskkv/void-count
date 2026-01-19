@@ -2,13 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
-import dynamic from "next/dynamic";
 import { CosmicBackground } from "@/components/ui/CosmicBackground";
-
-// Lazy load VoidParticles - not critical for initial render
-const VoidParticles = dynamic(() => import("@/components/ui/VoidParticles").then(mod => mod.VoidParticles), {
-  ssr: false, // Particles are client-only
-});
+import { VoidParticles } from "@/components/ui/VoidParticles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
