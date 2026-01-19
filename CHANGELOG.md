@@ -2,6 +2,22 @@
 
 All notable changes to the Void Count website will be documented in this file.
 
+## [1.2.1] - 2026-01-19
+
+### 🔴 Critical Fixes
+- **Fixed waitlist form submission** - Changed from API route to direct Supabase client call
+- **Fixed static export compatibility** - Waitlist now works with static site generation
+- Added client-side email validation
+- Improved error handling and user feedback
+
+### 🔧 Technical Changes
+- Updated `WaitlistSection.tsx` to use `supabaseBrowserClient()` directly
+- Removed dependency on `/api/waitlist` route (doesn't work with static exports)
+- Added proper error handling for Supabase connection issues
+- Maintained honeypot spam protection
+
+---
+
 ## [1.2.0] - 2026-01-19
 
 ### 🔴 Critical Fixes
