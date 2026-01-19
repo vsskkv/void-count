@@ -2,11 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { HeroSection } from "@/components/home/HeroSection";
-import { StickyCTA } from "@/components/ui/StickyCTA";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 // Dynamically import components below the fold to reduce unused JS and initial payload
@@ -29,10 +26,10 @@ const SiteFooter = dynamic(() => import("@/components/layout/SiteFooter").then(m
   ssr: true
 });
 
-// Register ScrollTrigger plugin once at module level
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// Lazy load StickyCTA - only appears after scroll
+const StickyCTA = dynamic(() => import("@/components/ui/StickyCTA").then(mod => mod.StickyCTA), {
+  ssr: false, // No need to SSR - it's scroll-dependent
+});
 
 export default function HomePageClient() {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -50,44 +47,56 @@ export default function HomePageClient() {
   useEffect(() => {
     if (!mainRef.current || prefersReducedMotion) return;
 
-    // Detect mobile to optimize animations
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
-    const ctx = gsap.context(() => {
-      // On mobile, we only animate if the device is reasonably powerful
-      // or if we have fewer elements to track.
-      const sections = gsap.utils.toArray<HTMLElement>(".content-section");
+    // Lazy load GSAP only when animations are needed
+    Promise.all([
+      import("gsap"),
+      import("gsap/ScrollTrigger")
+    ]).then(([gsapModule, scrollTriggerModule]) => {
+      const gsap = gsapModule.default;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
       
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          {
-            opacity: 0,
-            y: isMobile ? 15 : 30, // Subtle movement on mobile
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: section,
-              start: isMobile ? "top 90%" : "top 95%", // Adjusted for mobile
-              end: "top 70%",
-              scrub: isMobile ? false : 1,
-              toggleActions: "play none none reverse",
-              // Disable invalidateOnRefresh on mobile to prevent resize loop/performance issues
-              invalidateOnRefresh: !isMobile,
-              once: isMobile, 
-            },
-          }
-        );
-      });
-    }, mainRef);
+      if (typeof window !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+      }
 
-    return () => {
-      ctx.revert();
-      // Clean up ScrollTriggers created in this context only
-    };
+      // Detect mobile to optimize animations
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+      const ctx = gsap.context(() => {
+        // On mobile, we only animate if the device is reasonably powerful
+        // or if we have fewer elements to track.
+        const sections = gsap.utils.toArray<HTMLElement>(".content-section");
+        
+        sections.forEach((section) => {
+          gsap.fromTo(
+            section,
+            {
+              opacity: 0,
+              y: isMobile ? 15 : 30, // Subtle movement on mobile
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: section,
+                start: isMobile ? "top 90%" : "top 95%", // Adjusted for mobile
+                end: "top 70%",
+                scrub: isMobile ? false : 1,
+                toggleActions: "play none none reverse",
+                // Disable invalidateOnRefresh on mobile to prevent resize loop/performance issues
+                invalidateOnRefresh: !isMobile,
+                once: isMobile, 
+              },
+            }
+          );
+        });
+      }, mainRef);
+
+      return () => {
+        ctx.revert();
+      };
+    });
   }, [prefersReducedMotion]);
 
   return (

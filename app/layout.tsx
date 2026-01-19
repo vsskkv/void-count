@@ -2,8 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
-import { VoidParticles } from "@/components/ui/VoidParticles";
+import dynamic from "next/dynamic";
 import { CosmicBackground } from "@/components/ui/CosmicBackground";
+
+// Lazy load VoidParticles - not critical for initial render
+const VoidParticles = dynamic(() => import("@/components/ui/VoidParticles").then(mod => mod.VoidParticles), {
+  ssr: false, // Particles are client-only
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -277,6 +282,15 @@ export default function RootLayout({
 
   return (
     <html lang="en-GB">
+      <head>
+        {/* Preconnect to external resources for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload critical hero image for faster LCP */}
+        <link rel="preload" href="/back-v2.webp" as="image" type="image/webp" />
+        {/* Preload logo for header */}
+        <link rel="preload" href="/void-count-logo.webp" as="image" type="image/webp" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-950 text-slate-50`}
       >

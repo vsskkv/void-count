@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { scrollToElement } from "@/lib/utils";
 import { WAITLIST_FORM_ID } from "@/lib/constants";
@@ -16,36 +15,41 @@ export const HeroSection = () => {
   useEffect(() => {
     if (!containerRef.current || !logoRef.current || prefersReducedMotion) return;
 
-    const logo = logoRef.current;
+    // Lazy load GSAP for hero animations
+    import("gsap").then((gsapModule) => {
+      const gsap = gsapModule.default;
+      const logo = logoRef.current;
+      if (!logo) return;
 
-    const ctx = gsap.context(() => {
-      // 1. Initial Entry Animations
-      gsap.from(".hero-logo-img", {
-        scale: 0.85,
-        duration: 1.2,
-        ease: "power3.out",
-      });
+      const ctx = gsap.context(() => {
+        // 1. Initial Entry Animations
+        gsap.from(".hero-logo-img", {
+          scale: 0.85,
+          duration: 1.2,
+          ease: "power3.out",
+        });
 
-      gsap.from(".hero-cta", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.6,
-        ease: "power3.out",
-      });
+        gsap.from(".hero-cta", {
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          delay: 0.6,
+          ease: "power3.out",
+        });
 
-      // 2. Continuous Atmospheric Animations
-      // Gentle floating
-      gsap.to(logo, {
-        y: -15,
-        duration: 4,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-    }, containerRef);
+        // 2. Continuous Atmospheric Animations
+        // Gentle floating
+        gsap.to(logo, {
+          y: -15,
+          duration: 4,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      }, containerRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, [prefersReducedMotion]);
 
   return (

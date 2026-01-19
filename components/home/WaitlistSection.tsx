@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { WAITLIST_FORM_ID } from '@/lib/constants';
-
-type ApiResponse = { ok: boolean; message: string };
+import { supabaseBrowserClient } from '@/lib/supabaseClient';
 
 export const WaitlistSection = () => {
   const [email, setEmail] = useState('');
@@ -14,27 +13,64 @@ export const WaitlistSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
+  function normalizeEmail(email: string): string {
+    return email.trim().toLowerCase();
+  }
+
+  function isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, fullName, source, hp }),
+      // Bot trap: if honeypot is filled, pretend success
+      if (hp && hp.trim().length > 0) {
+        setMessage("You're on the list!");
+        setEmail('');
+        setFullName('');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const normalizedEmail = normalizeEmail(email);
+
+      // Validate email
+      if (!normalizedEmail || !isValidEmail(normalizedEmail)) {
+        setMessage("Please enter a valid email address.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Call Supabase directly from client (works with static export)
+      const supabase = supabaseBrowserClient();
+      
+      const { error } = await supabase.from("waitlist_signups").insert({
+        email: normalizedEmail,
+        full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
+        source: source || 'website',
       });
 
-      const data = (await response.json()) as ApiResponse;
-
-      setMessage(data.message);
-
-      if (data.ok) {
+      if (error) {
+        // Duplicate email (unique constraint) -> treat as success
+        if (error.code === '23505') {
+          setMessage("You're already on the list!");
+          setEmail('');
+          setFullName('');
+        } else {
+          console.error('Waitlist submission error:', error);
+          setMessage("Could not add you right now. Please try again.");
+        }
+      } else {
+        setMessage("You're on the list!");
         setEmail('');
         setFullName('');
       }
-    } catch {
+    } catch (error) {
+      console.error('Waitlist submission error:', error);
       setMessage("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
