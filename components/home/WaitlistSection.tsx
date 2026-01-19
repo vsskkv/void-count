@@ -45,33 +45,60 @@ export const WaitlistSection = () => {
         return;
       }
 
+      // Check if Supabase environment variables are configured
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
+        console.error('Supabase environment variables not configured');
+        setMessage("Configuration error. Please contact support.");
+        setIsSubmitting(false);
+        return;
+      }
+
       // Call Supabase directly from client (works with static export)
-      const supabase = supabaseBrowserClient();
+      let supabase;
+      try {
+        supabase = supabaseBrowserClient();
+      } catch (initError) {
+        console.error('Failed to initialize Supabase:', initError);
+        setMessage("Configuration error. Please contact support.");
+        setIsSubmitting(false);
+        return;
+      }
       
-      const { error } = await supabase.from("waitlist_signups").insert({
+      const { data, error } = await supabase.from("waitlist_signups").insert({
         email: normalizedEmail,
         full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
         source: source || 'website',
       });
 
       if (error) {
+        console.error('Supabase insert error:', error);
         // Duplicate email (unique constraint) -> treat as success
-        if (error.code === '23505') {
+        if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
           setMessage("You're already on the list!");
           setEmail('');
           setFullName('');
+        } else if (error.message?.includes('permission') || error.message?.includes('RLS')) {
+          setMessage("Permission denied. Please check Supabase configuration.");
+        } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
+          setMessage("Network error. Please check your connection and try again.");
         } else {
-          console.error('Waitlist submission error:', error);
-          setMessage("Could not add you right now. Please try again.");
+          setMessage(`Error: ${error.message || "Could not add you right now. Please try again."}`);
         }
       } else {
         setMessage("You're on the list!");
         setEmail('');
         setFullName('');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Waitlist submission error:', error);
-      setMessage("Something went wrong. Please try again.");
+      // Provide more helpful error messages
+      if (error?.message?.includes('Missing environment variable')) {
+        setMessage("Configuration error. Please contact support.");
+      } else if (error?.message?.includes('fetch')) {
+        setMessage("Network error. Please check your connection and try again.");
+      } else {
+        setMessage(`Something went wrong: ${error?.message || "Please try again."}`);
+      }
     } finally {
       setIsSubmitting(false);
     }
