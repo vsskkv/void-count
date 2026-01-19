@@ -183,13 +183,13 @@ export const CountCallVisual = () => {
   return (
     <div className="flex gap-2 items-end">
        <div className="animate-bounce">
-          <DemoCard src="/One v1.png" label="1 Point" />
+          <DemoCard src="/one-v1.webp" label="1 Point" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.1s' }}>
-          <DemoCard src="/Two v1.png" label="2 Points" />
+          <DemoCard src="/two-v1.webp" label="2 Points" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
-          <DemoCard src="/Four v1.png" label="4 Points" />
+          <DemoCard src="/four-v1.webp" label="4 Points" />
        </div>
        <div className="ml-4 flex flex-col justify-center h-48">
           <span className="text-4xl font-bold text-white">= 7</span>

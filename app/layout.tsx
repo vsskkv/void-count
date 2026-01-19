@@ -8,11 +8,15 @@ import { CosmicBackground } from "@/components/ui/CosmicBackground";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Prevent invisible text flash (FOIT)
+  preload: true, // Preload primary font
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Don't preload secondary font
 });
 
 const siteUrl = getSiteUrl();
