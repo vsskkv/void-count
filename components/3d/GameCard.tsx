@@ -18,8 +18,8 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     {
       className = "",
       variant = "standard",
-      frontSrc = "/Void v1.png",
-      backSrc = "/Back V1.png",
+      frontSrc = "/void-v1.webp",
+      backSrc = "/back-v2.webp",
       frontAlt = "Void Count new card game card - Strategic card game",
       manualRef,
       loading,
@@ -35,7 +35,7 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
 
     // Front image logic
     const showFrontImage = frontSrc && !frontError;
-    // Back image logic - defaults to Back V1.png
+    // Back image logic - defaults to back-v2.webp
     const showBackImage = backSrc && !backError;
 
     const containerClasses =

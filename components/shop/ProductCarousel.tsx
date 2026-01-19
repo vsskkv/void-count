@@ -16,9 +16,9 @@ export const ProductCarousel = () => {
   // Preload images for smoother transitions
   useEffect(() => {
     const frontImg = new Image();
-    frontImg.src = '/Void v1.png';
+    frontImg.src = '/void-v1.webp';
     const backImg = new Image();
-    backImg.src = '/Back V1.png';
+    backImg.src = '/back-v2.webp';
   }, []);
 
   const scrollPrev = useCallback(() => {

@@ -64,7 +64,7 @@ export const HeroSection = () => {
           {/* The Card */}
           <div className="relative z-10">
             <img 
-              src="/Back v2.png" 
+              src="/back-v2.webp" 
               alt="Void Count Card Back - New Strategic Card Game | Card Game 2026" 
               className="block mx-auto w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] h-auto object-contain drop-shadow-[0_30px_70px_rgba(0,0,0,1)]"
               style={{ 

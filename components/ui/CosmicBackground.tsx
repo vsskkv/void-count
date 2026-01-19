@@ -5,6 +5,9 @@ import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 export const CosmicBackground = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const allowMotion = !prefersReducedMotion;
+  
+  // Detect mobile to simplify background
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -12,23 +15,27 @@ export const CosmicBackground = () => {
       <div className="absolute inset-0 bg-[#000005]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#0a0a2e_0%,#000000_100%)]" />
       
-      {/* 2. Global Nebula Glows */}
+      {/* 2. Global Nebula Glows - Reduced on mobile */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_60%)] blur-3xl opacity-50" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1)_0%,transparent_60%)] blur-3xl opacity-50" />
+      {!isMobile && (
+        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1)_0%,transparent_60%)] blur-3xl opacity-50" />
+      )}
 
-      {/* 3. Moving Atmospheric Vortex (Centered globally) */}
-      <div
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,rgba(168,85,247,0.05)_25%,transparent_50%,rgba(79,70,229,0.05)_75%,transparent_100%)] opacity-60 ${
-          allowMotion ? "animate-[spin_180s_linear_infinite]" : ""
-        }`}
-        aria-hidden="true"
-      />
+      {/* 3. Moving Atmospheric Vortex - Disabled on mobile to save GPU memory */}
+      {!isMobile && (
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_0%,rgba(168,85,247,0.05)_25%,transparent_50%,rgba(79,70,229,0.05)_75%,transparent_100%)] opacity-60 ${
+            allowMotion ? "animate-[spin_180s_linear_infinite]" : ""
+          }`}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* 4. Subtle Light Rays */}
+      {/* 4. Subtle Light Rays - Simplified on mobile */}
       <div className="absolute inset-0 opacity-30 flex items-center justify-center">
         <div
           className={`absolute w-[1200px] h-[1200px] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(139,92,246,0.1)_20deg,transparent_40deg,rgba(79,70,229,0.1)_180deg,transparent_200deg,rgba(168,85,247,0.1)_320deg,transparent_360deg)] ${
-            allowMotion ? "animate-[spin_120s_linear_infinite]" : ""
+            allowMotion && !isMobile ? "animate-[spin_120s_linear_infinite]" : ""
           }`}
         />
       </div>

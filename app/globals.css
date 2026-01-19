@@ -31,8 +31,6 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  /* Prevent iOS bounce scrolling issues */
-  overscroll-behavior-y: none;
   /* Better mobile scrolling performance */
   -webkit-overflow-scrolling: touch;
   /* Prevent layout shifts */

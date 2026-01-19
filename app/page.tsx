@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/void-count-logo.png",
+        url: "/void-count-logo.webp",
         width: 1200,
         height: 630,
         alt: "Void Count - New Strategic Card Game 2026",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game",
     description:
       "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play.",
-    images: ["/void-count-logo.png"],
+    images: ["/void-count-logo.webp"],
   },
 };
 

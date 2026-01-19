@@ -51,14 +51,16 @@ export default function HomePageClient() {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
-      // Animate content sections entering
+      // On mobile, we only animate if the device is reasonably powerful
+      // or if we have fewer elements to track.
       const sections = gsap.utils.toArray<HTMLElement>(".content-section");
+      
       sections.forEach((section) => {
         gsap.fromTo(
           section,
           {
             opacity: 0,
-            y: 30,
+            y: isMobile ? 15 : 30, // Subtle movement on mobile
           },
           {
             opacity: 1,
@@ -66,14 +68,12 @@ export default function HomePageClient() {
             duration: 0.8,
             scrollTrigger: {
               trigger: section,
-              start: "top 90%",
-              end: "top 60%",
-              // Disable scrub on mobile for better performance
+              start: "top 95%", // Trigger earlier on mobile
+              end: "top 70%",
               scrub: isMobile ? false : 1,
               toggleActions: "play none none reverse",
-              // Optimize for mobile
               invalidateOnRefresh: true,
-              once: isMobile, // Only animate once on mobile
+              once: isMobile, 
             },
           }
         );

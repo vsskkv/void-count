@@ -107,7 +107,7 @@ export const DrawPileVisual = () => {
       {/* Deck */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900">
         <img 
-          src="/Back V1.png" 
+          src="/back-v2.webp" 
           alt="Void Count strategic card game deck - Draw Pile" 
           className="w-full h-full object-cover"
           width={128}
@@ -119,7 +119,7 @@ export const DrawPileVisual = () => {
       {/* Top Card (Animated) */}
       <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10 bg-slate-900">
         <img 
-          src="/Back V1.png" 
+          src="/back-v2.webp" 
           alt="Void Count card being drawn - Strategic gameplay" 
           className="w-full h-full object-cover"
           width={128}
@@ -171,10 +171,10 @@ export const PowerCardVisual = () => {
 
     return (
         <div ref={containerRef} className="flex flex-wrap gap-3 sm:gap-4 justify-center">
-            <DemoCard src="/Take Two v1.png" label="Take Two" />
-            <DemoCard src="/Toss v1.png" label="Toss" />
-            <DemoCard src="/Sabotage v1.png" label="Sabotage" />
-            <DemoCard src="/Double Your Hand v1.png" label="Double Your Hand" />
+            <DemoCard src="/take-two-v1.webp" label="Take Two" />
+            <DemoCard src="/toss-v1.webp" label="Toss" />
+            <DemoCard src="/sabotage-v1.webp" label="Sabotage" />
+            <DemoCard src="/double-your-hand-v1.webp" label="Double Your Hand" />
         </div>
     );
 };

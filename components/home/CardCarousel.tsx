@@ -8,14 +8,14 @@ import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 type CardCategory = "Power" | "10 point";
 
 const CARD_DATA = [
-  { id: "toss", front: "/Toss v1.png", name: "Toss", category: "Power" as CardCategory },
-  { id: "sabotage", front: "/Sabotage v1.png", name: "Sabotage", category: "Power" as CardCategory },
-  { id: "take-two", front: "/Take Two v1.png", name: "Take Two", category: "Power" as CardCategory },
-  { id: "double", front: "/Double Your Hand v1.png", name: "Double Up", category: "Power" as CardCategory },
-  { id: "blue-glacier", front: "/Blue Glacier v1.png", name: "Blue Glacier", category: "10 point" as CardCategory },
-  { id: "desert", front: "/Desert Horizon v1.png", name: "Desert Horizon", category: "10 point" as CardCategory },
-  { id: "toxic", front: "/Toxic Swamp v1.png", name: "Toxic Swamp", category: "10 point" as CardCategory },
-  { id: "volcanix", front: "/Volcanix Lava v1.png", name: "Volcanix Lava", category: "10 point" as CardCategory },
+  { id: "toss", front: "/toss-v1.webp", name: "Toss", category: "Power" as CardCategory },
+  { id: "sabotage", front: "/sabotage-v1.webp", name: "Sabotage", category: "Power" as CardCategory },
+  { id: "take-two", front: "/take-two-v1.webp", name: "Take Two", category: "Power" as CardCategory },
+  { id: "double", front: "/double-your-hand-v1.webp", name: "Double Up", category: "Power" as CardCategory },
+  { id: "blue-glacier", front: "/blue-glacier-v1.webp", name: "Blue Glacier", category: "10 point" as CardCategory },
+  { id: "desert", front: "/desert-horizon-v1.webp", name: "Desert Horizon", category: "10 point" as CardCategory },
+  { id: "toxic", front: "/toxic-swamp-v1.webp", name: "Toxic Swamp", category: "10 point" as CardCategory },
+  { id: "volcanix", front: "/volcanix-lava-v1.webp", name: "Volcanix Lava", category: "10 point" as CardCategory },
 ];
 
 const CATEGORIES: CardCategory[] = ["Power", "10 point"];
@@ -308,7 +308,7 @@ export const CardCarousel = () => {
                 <GameCard
                   variant="standard"
                   frontSrc={card.front}
-                  backSrc="/Back V1.png"
+                  backSrc="/back-v2.webp"
                   frontAlt={`${card.name} card from Void Count new card game`}
                   className="w-full h-full pointer-events-none select-none"
                   manualRef={(el) => { cardInnerRefs.current[i] = el; }}

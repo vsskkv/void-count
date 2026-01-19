@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     locale: "en_GB",
     images: [
       {
-        url: "/void-count-logo.png",
+        url: "/void-count-logo.webp",
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} - New Strategic Card Game 2026`,
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     creator: "@voidcount", // Replace with actual handle if available
-    images: ["/void-count-logo.png"],
+    images: ["/void-count-logo.webp"],
   },
   other: {
     "content-security-policy": "upgrade-insecure-requests; block-all-mixed-content;",
@@ -73,16 +73,16 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/void-count-logo.png", sizes: "32x32", type: "image/png" },
-      { url: "/void-count-logo.png", sizes: "16x16", type: "image/png" },
+      { url: "/void-count-logo.webp", sizes: "32x32", type: "image/webp" },
+      { url: "/void-count-logo.webp", sizes: "16x16", type: "image/webp" },
     ],
     apple: [
-      { url: "/void-count-logo.png", sizes: "180x180", type: "image/png" },
+      { url: "/void-count-logo.webp", sizes: "180x180", type: "image/webp" },
     ],
     other: [
       {
         rel: "mask-icon",
-        url: "/void-count-logo.png",
+        url: "/void-count-logo.webp",
         color: "#6366f1",
       },
     ],
@@ -106,7 +106,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: SITE_NAME,
     url: siteUrl,
-    logo: `${siteUrl}/void-count-logo.png`,
+    logo: `${siteUrl}/void-count-logo.webp`,
   };
 
   const websiteJsonLd = {
@@ -121,7 +121,7 @@ export default function RootLayout({
     "@type": "Product",
     name: "Void Count",
     description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. The perfect gift for family and friends who love board games and strategy. Launching soon on Kickstarter.",
-    image: `${siteUrl}/void-count-logo.png`,
+    image: `${siteUrl}/void-count-logo.webp`,
     category: "Card Game",
     brand: {
       "@type": "Brand",
@@ -145,7 +145,7 @@ export default function RootLayout({
     "@type": "BoardGame",
     name: "Void Count",
     description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. The perfect gift for board game lovers. One of the best new card games launching in 2026.",
-    image: `${siteUrl}/void-count-logo.png`,
+    image: `${siteUrl}/void-count-logo.webp`,
     brand: {
       "@type": "Brand",
       name: "Void Count",

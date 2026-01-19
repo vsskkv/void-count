@@ -26,7 +26,14 @@ export const VoidParticles = () => {
     }
 
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const particleCount = isMobile ? 20 : 32;
+    
+    // On mobile, we significantly reduce or disable particles to prevent memory crashes
+    if (isMobile) {
+      setParticles([]);
+      return;
+    }
+
+    const particleCount = 32;
 
     // Colors: Indigo, Purple, and Soft White/Blue
     const colors = ["#818cf8", "#a855f7", "#ffffff", "#6366f1"];
