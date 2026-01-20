@@ -1,15 +1,28 @@
 // @ts-nocheck - This is a Cloudflare Pages Function, not Next.js code
 /**
  * Cloudflare Pages Function for handling waitlist submissions with Supabase
- * This will work with your static export when deployed to Cloudflare Pages
  * 
- * NOTE: This file is excluded from Next.js TypeScript compilation.
- * It's only used when deployed to Cloudflare Pages.
+ * Environment variables needed in Cloudflare Pages:
+ * - SUPABASE_URL
+ * - SUPABASE_ANON_KEY
  */
 
 export const onRequestPost = async (context) => {
+  // Enable CORS
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  // Handle preflight
+  if (context.request.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
   try {
-    const { email, fullName, source } = await context.request.json();
+    const body = await context.request.json();
+    const { email, fullName, source } = body;
 
     // Validate email
     if (!email || typeof email !== 'string' || !email.includes('@')) {
@@ -17,7 +30,7 @@ export const onRequestPost = async (context) => {
         JSON.stringify({ success: false, message: 'Invalid email address' }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         }
       );
     }
@@ -25,20 +38,23 @@ export const onRequestPost = async (context) => {
     const normalizedEmail = email.trim().toLowerCase();
 
     // Get Supabase credentials from Cloudflare environment variables
-    // Cloudflare Pages Functions can access env vars set in Cloudflare Dashboard
-    // Use SUPABASE_URL and SUPABASE_ANON_KEY (or NEXT_PUBLIC_* variants)
-    const supabaseUrl = context.env?.SUPABASE_URL || context.env?.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = context.env?.SUPABASE_ANON_KEY || context.env?.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || context.env?.SUPABASE_KEY;
+    const supabaseUrl = context.env.SUPABASE_URL;
+    const supabaseKey = context.env.SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
+      console.error('Missing Supabase env vars:', {
+        url: !!supabaseUrl,
+        key: !!supabaseKey,
+        allEnvKeys: Object.keys(context.env || {}),
+      });
       return new Response(
         JSON.stringify({ 
           success: false, 
-          message: 'Supabase configuration missing. Please connect Supabase integration in Cloudflare Dashboard (Workers & Pages → Your Project → Settings → Integrations → Supabase) or set SUPABASE_URL and SUPABASE_KEY environment variables.' 
+          message: 'Server configuration error. Please set SUPABASE_URL and SUPABASE_ANON_KEY in Cloudflare Pages environment variables.' 
         }),
         {
           status: 500,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         }
       );
     }
@@ -47,48 +63,59 @@ export const onRequestPost = async (context) => {
     const { createClient } = await import('@supabase/supabase-js');
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const { data, error } = await supabase.from('waitlist_signups').insert({
-      email: normalizedEmail,
-      full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
-      source: source || 'website',
-    });
+    // Insert into waitlist_signups table
+    // Table schema: id (uuid), email (text), full_name (text), source (text), created_at (timestamptz)
+    const { data, error } = await supabase
+      .from('waitlist_signups')
+      .insert({
+        email: normalizedEmail,
+        full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
+        source: source || 'website',
+      })
+      .select();
 
     if (error) {
-      // Duplicate email (unique constraint) -> treat as success
+      console.error('Supabase error:', {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+      });
+
+      // Duplicate email (unique constraint violation - code 23505)
       if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
         return new Response(
           JSON.stringify({ success: true, message: "You're already on the list!" }),
           {
             status: 200,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           }
         );
       }
 
-      // Permission/RLS error
-      if (error.message?.includes('permission') || error.message?.includes('RLS') || error.message?.includes('row-level security')) {
+      // RLS/permission error (code 42501)
+      if (error.code === '42501' || error.message?.includes('permission') || error.message?.includes('RLS') || error.message?.includes('row-level security')) {
         return new Response(
           JSON.stringify({ 
             success: false, 
-            message: 'Database permission error. Please check Supabase RLS policies allow anonymous inserts.' 
+            message: 'Permission denied. Please check Supabase RLS policies allow anonymous inserts on waitlist_signups table.' 
           }),
           {
             status: 403,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           }
         );
       }
 
-      // Other Supabase errors
-      console.error('Supabase insert error:', error);
+      // Other errors
       return new Response(
         JSON.stringify({ 
           success: false, 
-          message: `Database error: ${error.message || 'Could not add you right now. Please try again.'}` 
+          message: `Error: ${error.message || 'Could not add you right now. Please try again.'}` 
         }),
         {
           status: 500,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         }
       );
     }
@@ -98,7 +125,7 @@ export const onRequestPost = async (context) => {
       JSON.stringify({ success: true, message: "You're on the list!" }),
       {
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     );
   } catch (error) {
@@ -110,7 +137,7 @@ export const onRequestPost = async (context) => {
       }),
       {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     );
   }
