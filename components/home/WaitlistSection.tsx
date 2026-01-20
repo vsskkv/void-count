@@ -45,49 +45,47 @@ export const WaitlistSection = () => {
         return;
       }
 
-      // Check if Supabase environment variables are configured
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
-        console.error('Supabase environment variables not configured');
-        setMessage("Configuration error. Please contact support.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      // Call Supabase directly from client (works with static export)
-      let supabase;
+      // Use Cloudflare Pages Function to access Supabase
+      // The function can use environment variables even though static assets can't
       try {
-        supabase = supabaseBrowserClient();
-      } catch (initError) {
-        console.error('Failed to initialize Supabase:', initError);
-        setMessage("Configuration error. Please contact support.");
-        setIsSubmitting(false);
-        return;
-      }
-      
-      const { data, error } = await supabase.from("waitlist_signups").insert({
-        email: normalizedEmail,
-        full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
-        source: source || 'website',
-      });
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: normalizedEmail,
+            fullName: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
+            source: source || 'website',
+          }),
+        });
 
-      if (error) {
-        console.error('Supabase insert error:', error);
-        // Duplicate email (unique constraint) -> treat as success
-        if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
-          setMessage("You're already on the list!");
+        const data = await response.json();
+
+        if (!response.ok) {
+          // Handle error response
+          if (data.message) {
+            setMessage(data.message);
+          } else if (data.error) {
+            setMessage(data.error);
+          } else {
+            setMessage("Could not add you right now. Please try again.");
+          }
+        } else {
+          // Success
+          if (data.message) {
+            setMessage(data.message);
+          } else {
+            setMessage("You're on the list!");
+          }
           setEmail('');
           setFullName('');
-        } else if (error.message?.includes('permission') || error.message?.includes('RLS')) {
-          setMessage("Permission denied. Please check Supabase configuration.");
-        } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
+        }
+      } catch (fetchError: any) {
+        console.error('Waitlist submission error:', fetchError);
+        if (fetchError.message?.includes('fetch')) {
           setMessage("Network error. Please check your connection and try again.");
         } else {
-          setMessage(`Error: ${error.message || "Could not add you right now. Please try again."}`);
+          setMessage("Something went wrong. Please try again.");
         }
-      } else {
-        setMessage("You're on the list!");
-        setEmail('');
-        setFullName('');
       }
     } catch (error: any) {
       console.error('Waitlist submission error:', error);
