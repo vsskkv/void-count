@@ -49,14 +49,18 @@ export const WaitlistSection = () => {
       try {
         // Check if Supabase environment variables are available
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        // Support both naming conventions
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || 
+                                process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
         if (!supabaseUrl || !supabaseAnonKey) {
           console.error('Missing Supabase env vars:', {
             url: !!supabaseUrl,
             key: !!supabaseAnonKey,
+            publishableKey: !!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
+            anonKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
           });
-          setMessage("Configuration error. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Cloudflare Pages environment variables and rebuild.");
+          setMessage("Configuration error. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY in Cloudflare Pages environment variables and rebuild.");
           setIsSubmitting(false);
           return;
         }

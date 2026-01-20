@@ -10,16 +10,19 @@ import { createClient } from "@supabase/supabase-js";
 export const supabaseBrowserClient = () => {
   // Next.js requires NEXT_PUBLIC_ prefix for browser-accessible env vars
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
-                          process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
+  // Support both naming conventions
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || 
+                          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
     console.error('Missing Supabase environment variables:', {
       url: supabaseUrl ? 'Set' : 'Missing',
       key: supabaseAnonKey ? 'Set' : 'Missing',
+      publishableKey: !!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
+      anonKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     });
     throw new Error(
-      'Missing Supabase configuration. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your environment variables.'
+      'Missing Supabase configuration. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY in your environment variables.'
     );
   }
 
