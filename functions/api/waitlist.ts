@@ -24,16 +24,17 @@ export const onRequestPost = async (context) => {
 
     const normalizedEmail = email.trim().toLowerCase();
 
-    // Get Supabase credentials from environment variables
-    // Cloudflare Pages Functions can access env vars even though static assets can't
-    const supabaseUrl = context.env?.NEXT_PUBLIC_SUPABASE_URL || context.env?.SUPABASE_URL;
-    const supabaseKey = context.env?.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || context.env?.SUPABASE_ANON_KEY;
+    // Get Supabase credentials from Cloudflare environment variables
+    // Cloudflare Pages Functions can access env vars set in Cloudflare Dashboard
+    // Use SUPABASE_URL and SUPABASE_ANON_KEY (or NEXT_PUBLIC_* variants)
+    const supabaseUrl = context.env?.SUPABASE_URL || context.env?.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = context.env?.SUPABASE_ANON_KEY || context.env?.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || context.env?.SUPABASE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          message: 'Supabase configuration missing. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY in Cloudflare Pages Functions environment variables.' 
+          message: 'Supabase configuration missing. Please connect Supabase integration in Cloudflare Dashboard (Workers & Pages → Your Project → Settings → Integrations → Supabase) or set SUPABASE_URL and SUPABASE_KEY environment variables.' 
         }),
         {
           status: 500,
