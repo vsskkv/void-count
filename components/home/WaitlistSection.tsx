@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { WAITLIST_FORM_ID } from '@/lib/constants';
-import { supabaseBrowserClient } from '@/lib/supabaseClient';
 
 export const WaitlistSection = () => {
   const [email, setEmail] = useState('');
@@ -45,46 +44,70 @@ export const WaitlistSection = () => {
         return;
       }
 
-      // Use Cloudflare Pages Function to access Supabase
-      // The function can use environment variables even though static assets can't
+      // Use Supabase directly from browser (works with static exports)
+      // Requires NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY set at build time
       try {
-        const response = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
+        // Check if Supabase environment variables are available
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+          console.error('Missing Supabase env vars:', {
+            url: !!supabaseUrl,
+            key: !!supabaseAnonKey,
+          });
+          setMessage("Configuration error. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Cloudflare Pages environment variables and rebuild.");
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Import and use Supabase client
+        const { createClient } = await import('@supabase/supabase-js');
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        // Insert into waitlist_signups table
+        const { data, error } = await supabase
+          .from('waitlist_signups')
+          .insert({
             email: normalizedEmail,
-            fullName: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
+            full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
             source: source || 'website',
-          }),
-        });
+          })
+          .select();
 
-        const data = await response.json();
+        if (error) {
+          console.error('Supabase error:', {
+            code: error.code,
+            message: error.message,
+            details: error.details,
+          });
 
-        if (!response.ok) {
-          // Handle error response
-          if (data.message) {
-            setMessage(data.message);
-          } else if (data.error) {
-            setMessage(data.error);
-          } else {
-            setMessage("Could not add you right now. Please try again.");
+          // Duplicate email (unique constraint)
+          if (error.code === '23505' || error.message?.includes('duplicate') || error.message?.includes('unique')) {
+            setMessage("You're already on the list!");
+            setEmail('');
+            setFullName('');
+          } 
+          // RLS/permission error
+          else if (error.code === '42501' || error.message?.includes('permission') || error.message?.includes('RLS') || error.message?.includes('row-level security')) {
+            setMessage("Permission denied. Please check Supabase RLS policies allow anonymous inserts.");
+          } 
+          // Other errors
+          else {
+            setMessage(`Error: ${error.message || 'Could not add you right now. Please try again.'}`);
           }
         } else {
           // Success
-          if (data.message) {
-            setMessage(data.message);
-          } else {
-            setMessage("You're on the list!");
-          }
+          setMessage("You're on the list!");
           setEmail('');
           setFullName('');
         }
-      } catch (fetchError: any) {
-        console.error('Waitlist submission error:', fetchError);
-        if (fetchError.message?.includes('fetch')) {
-          setMessage("Network error. Please check your connection and try again.");
+      } catch (error: any) {
+        console.error('Waitlist submission error:', error);
+        if (error.message?.includes('Missing environment variable')) {
+          setMessage("Configuration error. Please set environment variables and rebuild.");
         } else {
-          setMessage("Something went wrong. Please try again.");
+          setMessage(`Error: ${error.message || "Something went wrong. Please try again."}`);
         }
       }
     } catch (error: any) {
