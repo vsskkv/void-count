@@ -65,14 +65,13 @@ export const onRequestPost = async (context) => {
 
     // Insert into waitlist_signups table
     // Table schema: id (uuid), email (text), full_name (text), source (text), created_at (timestamptz)
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('waitlist_signups')
       .insert({
         email: normalizedEmail,
         full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
         source: source || 'website',
-      })
-      .select();
+      });
 
     if (error) {
       console.error('Supabase error:', {
