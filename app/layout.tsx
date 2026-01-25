@@ -7,6 +7,7 @@ import { CosmicBackground } from "@/components/ui/CosmicBackground";
 import { VoidParticles } from "@/components/ui/VoidParticles";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -326,7 +327,9 @@ export default function RootLayout({
             <CosmicBackground />
             <VoidParticles />
             <div className="relative z-10 flex flex-col min-h-screen">
-              <AnalyticsTracker />
+              <Suspense fallback={null}>
+                <AnalyticsTracker />
+              </Suspense>
               {children}
             </div>
           </div>
