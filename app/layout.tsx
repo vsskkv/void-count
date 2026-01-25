@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = getSiteUrl();
 const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-6HZ6M40QBK";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-6H4Z6M4QBK";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
