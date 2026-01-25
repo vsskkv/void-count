@@ -5,6 +5,14 @@ import { PrimaryButton } from "@/components/ui/PrimaryButton";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+function normaliseEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export function ContactForm() {
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,22 +30,74 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.ok) {
+      // Bot trap: if honeypot is filled, pretend success
+      if (formData.hp && formData.hp.trim().length > 0) {
         setFormStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "", hp: "" });
-      } else {
-        setFormStatus("error");
-        setErrorMessage(data.message || "Something went wrong. Please try again.");
+        return;
       }
-    } catch (error) {
+
+      const email = normaliseEmail(formData.email);
+      if (!email || !isValidEmail(email)) {
+        setFormStatus("error");
+        setErrorMessage("Please enter a valid email address.");
+        return;
+      }
+      const name = formData.name?.trim();
+      if (!name || name.length === 0) {
+        setFormStatus("error");
+        setErrorMessage("Please enter your name.");
+        return;
+      }
+      const subject = formData.subject?.trim();
+      if (!subject || subject.length === 0) {
+        setFormStatus("error");
+        setErrorMessage("Please enter a subject.");
+        return;
+      }
+      const message = formData.message?.trim();
+      if (!message || message.length === 0) {
+        setFormStatus("error");
+        setErrorMessage("Please enter a message.");
+        return;
+      }
+
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseAnonKey =
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+      if (!supabaseUrl || !supabaseAnonKey) {
+        setFormStatus("error");
+        setErrorMessage("Configuration error. Please try again later or email hello@voidcount.com.");
+        return;
+      }
+
+      const { createClient } = await import("@supabase/supabase-js");
+      const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: name.slice(0, 120),
+        email: email.slice(0, 255),
+        subject: subject.slice(0, 200),
+        message: message.slice(0, 5000),
+      });
+
+      if (error) {
+        console.error("Contact Supabase error:", error);
+        if (error.code === "42501" || error.message?.includes("permission") || error.message?.includes("RLS")) {
+          setErrorMessage("Unable to send right now. Please email hello@voidcount.com.");
+        } else {
+          setErrorMessage(error.message || "Could not send your message. Please try again or email hello@voidcount.com.");
+        }
+        setFormStatus("error");
+        return;
+      }
+
+      setFormStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "", hp: "" });
+    } catch (err) {
+      console.error("Contact form error:", err);
       setFormStatus("error");
       setErrorMessage("Network error. Please check your connection and try again.");
     }

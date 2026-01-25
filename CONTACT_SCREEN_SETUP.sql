@@ -1,5 +1,6 @@
--- Contact screen: RLS and permissions for contact_submissions
--- Run this in the Supabase SQL Editor so the /contact form can submit.
+-- Contact form: table + RLS for contact_submissions
+-- Run this in Supabase → SQL Editor so the /contact form works.
+-- (This is separate from waitlist_signups; contact uses contact_submissions.)
 
 -- 1. Create table if it doesn't exist yet
 CREATE TABLE IF NOT EXISTS public.contact_submissions (
