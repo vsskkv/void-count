@@ -2,6 +2,26 @@
 
 All notable changes to the Void Count website will be documented in this file.
 
+## [1.4.0] - 2026-01-25
+
+### ✉️ New
+- Added a full **Contact Us** form on `/contact` (name, email, subject, message) with honeypot spam protection.
+- Added `/api/contact` endpoint to store submissions in Supabase (`contact_submissions`).
+
+### 📈 SEO
+- Removed `/shop` from `sitemap.xml`.
+- Blocked `/shop` crawling via `robots.txt` and added `noindex` to the Shop page to prevent indexing.
+
+### 📱 Mobile Stability (Critical)
+- Made `CardCarousel` **mobile-safe by default** (static grid on mobile; 3D/GSAP only on desktop).
+- Reduced mobile GPU load by disabling heavy blur/animated effects on mobile in key sections (Sticky CTA + Kickstarter visuals).
+- Added a global `ErrorBoundary` so crashes fail gracefully instead of white screens/reload loops.
+
+### 🧼 DX / Console
+- Suppressed expected hydration warnings on animated/root elements to keep the console clean during dev.
+
+---
+
 ## [1.2.1] - 2026-01-19
 
 ### 🔴 Critical Fixes
@@ -79,7 +99,7 @@ All notable changes to the Void Count website will be documented in this file.
 
 ### Medium Priority
 - [ ] Add bundle analyzer for monitoring
-- [ ] Implement error boundaries
+- [x] Implement error boundaries
 - [ ] Add touch gesture support to CardCarousel
 
 ### Low Priority
