@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { CosmicBackground } from "@/components/ui/CosmicBackground";
 import { VoidParticles } from "@/components/ui/VoidParticles";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +23,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = getSiteUrl();
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-6HZ6M40QBK";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -291,6 +295,24 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-950 text-slate-50`}
         suppressHydrationWarning
       >
+        {/* Google tag (gtag.js) - loads on every page */}
+        {process.env.NODE_ENV === "production" && GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-gtag" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
+
         {allJsonLd.map((jsonLd, i) => (
           <script
             key={i}
@@ -304,6 +326,7 @@ export default function RootLayout({
             <CosmicBackground />
             <VoidParticles />
             <div className="relative z-10 flex flex-col min-h-screen">
+              <AnalyticsTracker />
               {children}
             </div>
           </div>
