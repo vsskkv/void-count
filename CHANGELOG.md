@@ -2,6 +2,19 @@
 
 All notable changes to the Void Count website will be documented in this file.
 
+## [1.4.1] - 2026-01-25
+
+### 📊 Analytics & GTM
+- **Google Tag Manager (GTM-P7H5NRLN)** installed site-wide: script in `<head>` (as high as possible) and noscript fallback immediately after `<body>`.
+- Analytics extended to all pages: `AnalyticsTracker` now pushes `page_view` (and `page_path` / `page_location`) to `dataLayer` for GTM, and continues to send to gtag/GA when loaded.
+
+### 🔍 SEO
+- All page canonicals now use `getSiteUrl()` (consistent across staging/production and env-based URLs).
+- Root layout defaults: added `keywords` for better crawlability.
+- Home page: fixed keyword typo (“competitive card game”) and canonical URL.
+
+---
+
 ## [1.4.0] - 2026-01-25
 
 ### ✉️ New

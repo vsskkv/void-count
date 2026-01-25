@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, getSiteUrl } from "@/lib/site";
 import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "card game 2026",
     "new card games 2026",
   ],
-  alternates: { canonical: "https://voidcount.com/contact" },
+  alternates: { canonical: `${getSiteUrl()}/contact` },
   openGraph: {
     title: `Contact Us | ${SITE_NAME} | New Card Game Support`,
     description: `Contact ${SITE_NAME}, the new card game launching in 2026. Have questions about this strategic card game? We'd love to hear from you!`,

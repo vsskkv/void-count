@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { getSiteUrl } from "@/lib/site";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     "best new card game rules",
     "card game 2026",
   ],
-  alternates: { canonical: "https://voidcount.com/how-to-play" },
+  alternates: { canonical: `${getSiteUrl()}/how-to-play` },
   openGraph: {
     title: "How to Play Void Count | Official Rules for the New Card Game | Card Games",
     description:

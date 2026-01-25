@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE_VERSION } from '@/lib/site';
+import { VersionLabel } from '@/components/layout/VersionLabel';
 
 export const SiteFooter = () => {
   return (
@@ -29,9 +29,7 @@ export const SiteFooter = () => {
         </div>
         <div>
           <p className="text-xs sm:text-sm text-slate-300">&copy; 2026 Void Count. All rights reserved.</p>
-          <p className="mt-1 text-slate-400 text-[9px] sm:text-[10px] uppercase tracking-widest font-medium">
-            Version {SITE_VERSION}
-          </p>
+          <VersionLabel />
           <p className="mt-2 text-slate-400 text-[10px] sm:text-xs">
             Made by <a href="https://vikramsinghkainth.com/venture-consultancy/" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Venture Consultancy</a>
           </p>

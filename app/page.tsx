@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import HomePageClient from "@/components/pages/HomePageClient";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends | Kickstarter",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     "strategic card games",
     "card game for adults",
     "card game for families",
-    "    competitive card game",
+    "competitive card game",
   ],
-  alternates: { canonical: "https://voidcount.com/" },
+  alternates: { canonical: `${getSiteUrl()}/` },
   openGraph: {
     title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends",
     description:

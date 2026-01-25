@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ShopPageClient from "@/components/pages/ShopPageClient";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games | Kickstarter`,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  alternates: { canonical: "https://voidcount.com/shop" },
+  alternates: { canonical: `${getSiteUrl()}/shop` },
   openGraph: {
     title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games`,
     description: `Shop ${SITE_NAME}, the new card game launching on Kickstarter in 2026. Pre-order this strategic card game perfect for game nights and family gatherings.`,

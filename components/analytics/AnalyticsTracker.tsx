@@ -19,15 +19,22 @@ export function AnalyticsTracker() {
 
   useEffect(() => {
     if (!pathname || typeof window === "undefined") return;
-    if (!window.gtag || !GA_MEASUREMENT_ID) return;
 
-    // Build full path including query string
     const search = searchParams?.toString();
     const page_path = search ? `${pathname}?${search}` : pathname;
 
-    window.gtag("config", GA_MEASUREMENT_ID, {
+    // Push to GTM dataLayer (used by Google Tag Manager on all pages)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view",
       page_path,
+      page_location: typeof window !== "undefined" ? window.location.href : "",
     });
+
+    // Also send to gtag/GA if loaded (e.g. via GTM or existing script)
+    if (window.gtag && GA_MEASUREMENT_ID) {
+      window.gtag("config", GA_MEASUREMENT_ID, { page_path });
+    }
   }, [pathname, searchParams]);
 
   return null;

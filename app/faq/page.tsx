@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FAQSection } from "@/components/home/FAQSection";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `FAQ | ${SITE_NAME} | New Card Game Questions | Card Games`,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "card game 2026",
     "new card games 2026",
   ],
-  alternates: { canonical: "https://voidcount.com/faq" },
+  alternates: { canonical: `${getSiteUrl()}/faq` },
   openGraph: {
     title: `FAQ | ${SITE_NAME} | New Card Game Questions | Card Games`,
     description: `Find answers to common questions about ${SITE_NAME}, the new card game launching in 2026. Learn about this strategic card game, gameplay, and more.`,

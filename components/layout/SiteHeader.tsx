@@ -98,6 +98,9 @@ export const SiteHeader = () => {
           <Link href="/faq" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
             FAQ
           </Link>
+          <Link href="/contact" className="text-purple-400 hover:text-purple-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
+            CONTACT
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -174,9 +177,19 @@ export const SiteHeader = () => {
                   e.stopPropagation();
                   setIsMenuOpen(false);
                 }}
-                className="text-sm font-black text-slate-300 hover:text-white hover:bg-slate-800/50 active:bg-slate-800/70 transition-colors uppercase tracking-tighter py-4 px-6 min-h-[48px] flex items-center touch-manipulation cursor-pointer"
+                className="text-sm font-black text-slate-300 hover:text-white hover:bg-slate-800/50 active:bg-slate-800/70 transition-colors uppercase tracking-tighter py-4 px-6 border-b border-slate-800/50 min-h-[48px] flex items-center touch-manipulation cursor-pointer"
               >
                 FAQ
+              </Link>
+              <Link
+                href="/contact"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuOpen(false);
+                }}
+                className="text-sm font-black text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 active:bg-purple-500/20 transition-colors uppercase tracking-tighter py-4 px-6 min-h-[48px] flex items-center touch-manipulation cursor-pointer"
+              >
+                CONTACT
               </Link>
             </div>
           </nav>
