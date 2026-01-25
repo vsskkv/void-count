@@ -47,7 +47,22 @@ export default function HomePageClient() {
   useEffect(() => {
     if (!mainRef.current || prefersReducedMotion) return;
 
-    // Lazy load GSAP only when animations are needed
+    // Detect mobile FIRST to avoid loading heavy animations
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    // On mobile, skip animations entirely to prevent crashes
+    if (isMobile) {
+      // Ensure content is visible on mobile (in case CSS fails)
+      const sections = mainRef.current.querySelectorAll<HTMLElement>(".content-section");
+      sections.forEach((section) => {
+        section.style.opacity = "1";
+        section.style.transform = "none";
+      });
+      return;
+    }
+
+    // Desktop only: Lazy load GSAP for scroll animations
+    // Initial styles are set via CSS (.content-section class) to prevent hydration mismatch
     Promise.all([
       import("gsap"),
       import("gsap/ScrollTrigger")
@@ -59,34 +74,23 @@ export default function HomePageClient() {
         gsap.registerPlugin(ScrollTrigger);
       }
 
-      // Detect mobile to optimize animations
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
       const ctx = gsap.context(() => {
-        // On mobile, we only animate if the device is reasonably powerful
-        // or if we have fewer elements to track.
         const sections = gsap.utils.toArray<HTMLElement>(".content-section");
         
         sections.forEach((section) => {
-          gsap.fromTo(
+          gsap.to(
             section,
-            {
-              opacity: 0,
-              y: isMobile ? 15 : 30, // Subtle movement on mobile
-            },
             {
               opacity: 1,
               y: 0,
               duration: 0.8,
               scrollTrigger: {
                 trigger: section,
-                start: isMobile ? "top 90%" : "top 95%", // Adjusted for mobile
+                start: "top 95%",
                 end: "top 70%",
-                scrub: isMobile ? false : 1,
+                scrub: 1,
                 toggleActions: "play none none reverse",
-                // Disable invalidateOnRefresh on mobile to prevent resize loop/performance issues
-                invalidateOnRefresh: !isMobile,
-                once: isMobile, 
+                invalidateOnRefresh: true,
               },
             }
           );
@@ -96,6 +100,14 @@ export default function HomePageClient() {
       return () => {
         ctx.revert();
       };
+    }).catch((error) => {
+      // If GSAP fails to load, show content anyway
+      console.error("GSAP failed to load:", error);
+      const sections = mainRef.current?.querySelectorAll<HTMLElement>(".content-section");
+      sections?.forEach((section) => {
+        section.style.opacity = "1";
+        section.style.transform = "none";
+      });
     });
   }, [prefersReducedMotion]);
 
@@ -113,12 +125,12 @@ export default function HomePageClient() {
       <CardCarousel />
 
       {/* 3. Kickstarter Coming Soon */}
-      <div className="content-section overflow-x-hidden">
+      <div className="content-section overflow-x-hidden" suppressHydrationWarning>
         <KickstarterSection />
       </div>
 
       {/* 4. Waitlist - Now Joining Kickstarter */}
-      <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden">
+      <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden" suppressHydrationWarning>
         <WaitlistSection />
       </div>
 

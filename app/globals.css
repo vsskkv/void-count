@@ -95,6 +95,24 @@ video {
   }
 }
 
+/* Initial state for GSAP scroll animations - prevents hydration mismatch */
+/* ONLY apply on desktop to prevent white screen on mobile if GSAP fails */
+@media (min-width: 768px) {
+  .content-section {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+/* Mobile: Always show content immediately (safer, prevents crashes) */
+@media (max-width: 767px) {
+  .content-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* If reduced motion is preferred, show immediately */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -107,6 +125,11 @@ video {
 
   .light-rays {
     animation: none !important;
+  }
+
+  .content-section {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

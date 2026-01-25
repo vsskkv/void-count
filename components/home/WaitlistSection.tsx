@@ -132,6 +132,7 @@ export const WaitlistSection = () => {
     <section
       id={WAITLIST_FORM_ID}
       className="content-section min-h-[60vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20 pointer-events-auto px-4 sm:px-6 bg-transparent"
+      suppressHydrationWarning
     >
       <div className="max-w-3xl w-full backdrop-blur-md bg-indigo-950/40 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] border border-slate-800 shadow-[0_0_80px_rgba(79,70,229,0.3)] relative overflow-hidden hover:border-slate-700 hover:shadow-[0_0_100px_rgba(79,70,229,0.4)] transition-all duration-500">
         <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 pointer-events-none" />

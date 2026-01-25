@@ -4,6 +4,7 @@ import "./globals.css";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { CosmicBackground } from "@/components/ui/CosmicBackground";
 import { VoidParticles } from "@/components/ui/VoidParticles";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -288,6 +289,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-950 text-slate-50`}
+        suppressHydrationWarning
       >
         {allJsonLd.map((jsonLd, i) => (
           <script
@@ -297,13 +299,15 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
         ))}
-        <div className="min-h-screen flex flex-col relative">
-          <CosmicBackground />
-          <VoidParticles />
-          <div className="relative z-10 flex flex-col min-h-screen">
-            {children}
+        <ErrorBoundary>
+          <div className="min-h-screen flex flex-col relative">
+            <CosmicBackground />
+            <VoidParticles />
+            <div className="relative z-10 flex flex-col min-h-screen">
+              {children}
+            </div>
           </div>
-        </div>
+        </ErrorBoundary>
       </body>
     </html>
   );

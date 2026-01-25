@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     "card game 2026",
     "new card games 2026",
   ],
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: { canonical: "https://voidcount.com/shop" },
   openGraph: {
     title: `Shop | ${SITE_NAME} | Buy New Card Game | Card Games`,
