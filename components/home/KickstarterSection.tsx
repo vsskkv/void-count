@@ -15,10 +15,12 @@ export const KickstarterSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left: Product Mock Placeholder */}
           <div className="order-2 lg:order-1 relative group">
-            <div className="absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
+            {/* Heavy blur can crash mobile Safari; only enable on md+ */}
+            <div className="hidden md:block absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
             <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-slate-800 flex items-center justify-center overflow-hidden shadow-2xl">
               <div className="flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center animate-pulse">
+                {/* Disable pulse animation on mobile for stability */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center md:animate-pulse">
                   <span className="text-3xl sm:text-4xl lg:text-6xl italic font-black text-indigo-400">∅</span>
                 </div>
                 <div className="text-center px-2 sm:px-4">

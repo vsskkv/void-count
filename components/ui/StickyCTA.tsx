@@ -67,7 +67,7 @@ export const StickyCTA = () => {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >
-      <div className="max-w-4xl mx-auto bg-slate-900/90 backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-4 sm:p-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-4xl mx-auto bg-slate-900/95 md:bg-slate-900/90 md:backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-4 sm:p-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <p className="text-white font-black uppercase italic tracking-tight leading-none mb-1">
             Launching Soon on Kickstarter

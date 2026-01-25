@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GameCard } from "@/components/3d/GameCard";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
@@ -24,6 +23,7 @@ export const CardCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const cardContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cardInnerRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const gsapRef = useRef<any>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<CardCategory | "All">("All");
@@ -31,31 +31,54 @@ export const CardCarousel = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const allowMotion = !prefersReducedMotion;
 
-  const filteredCards = activeCategory === "All" 
-    ? CARD_DATA 
-    : CARD_DATA.filter(c => c.category === activeCategory);
+  const filteredCards = useMemo(
+    () =>
+      activeCategory === "All"
+        ? CARD_DATA
+        : CARD_DATA.filter((c) => c.category === activeCategory),
+    [activeCategory]
+  );
 
   const totalCards = filteredCards.length;
-  const [isMobile, setIsMobile] = useState(false);
+  // Mobile-safe by default (prevents iOS Safari crash loops)
+  // Desktop "enhanced" mode is enabled after mount.
+  const [isMobile, setIsMobile] = useState(true);
+  const [isEnhanced, setIsEnhanced] = useState(false);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    if (typeof window === "undefined") return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
     const checkMobile = () => {
-      // Use a small delay to avoid excessive state updates during smooth resizing (like address bar)
-      clearTimeout(timeoutId);
+      // Address bar show/hide on mobile can spam resize; debounce it.
+      if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         const mobile = window.innerWidth < 768;
-        setIsMobile((prev) => (prev !== mobile ? mobile : prev));
-      }, 100);
+        setIsMobile(mobile);
+      }, 150);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile, { passive: true } as any);
+
     return () => {
-      window.removeEventListener('resize', checkMobile);
-      clearTimeout(timeoutId);
+      window.removeEventListener("resize", checkMobile as any);
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
+
+  // Enable enhanced 3D carousel ONLY on desktop (and only if motion is allowed).
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setIsEnhanced(false);
+      return;
+    }
+    if (typeof window === "undefined") return;
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+    setIsEnhanced(!mobile);
+  }, [prefersReducedMotion]);
 
   // Increased radius on mobile to show more of adjacent cards
   const radius = isMobile ? 220 : 700; 
@@ -63,9 +86,11 @@ export const CardCarousel = () => {
 
   // Update card flips and scaling based on wheel rotation
   useEffect(() => {
-    if (!allowMotion) return;
+    if (!allowMotion || !isEnhanced) return;
     if (!carouselRef.current) return;
+    if (!gsapRef.current) return;
 
+    const gsap = gsapRef.current;
     const ctx = gsap.context(() => {
       cardInnerRefs.current.forEach((inner, i) => {
         if (!inner) return;
@@ -125,48 +150,64 @@ export const CardCarousel = () => {
     }, carouselRef);
 
     return () => ctx.revert();
-  }, [wheelRotation, angleStep, totalCards, allowMotion]);
+  }, [wheelRotation, angleStep, totalCards, allowMotion, isEnhanced, isMobile]);
 
   useEffect(() => {
-    if (!allowMotion) return;
+    if (!allowMotion || !isEnhanced) return;
     if (!carouselRef.current) return;
 
-    const ctx = gsap.context(() => {
-      // POSITION CARDS IN A 3D CIRCLE
-      cardContainerRefs.current.forEach((container, i) => {
-        if (!container) return;
-        
-        const angle = angleStep * i;
-        const x = Math.sin(angle) * radius;
-        const z = Math.cos(angle) * radius;
-        
-        // Face the cards OUTWARD
-        const rotationY = (angle * 180) / Math.PI;
+    let cancelled = false;
 
-        gsap.set(container, {
-          x,
-          z,
-          rotateY: rotationY,
-          // Disable force3D on mobile for better performance
+    (async () => {
+      // Lazy-load GSAP only when needed (desktop only)
+      const { default: gsap } = await import("gsap");
+      if (cancelled) return;
+      gsapRef.current = gsap;
+
+      const ctx = gsap.context(() => {
+        // POSITION CARDS IN A 3D CIRCLE
+        cardContainerRefs.current.forEach((container, i) => {
+          if (!container) return;
+
+          const angle = angleStep * i;
+          const x = Math.sin(angle) * radius;
+          const z = Math.cos(angle) * radius;
+
+          // Face the cards OUTWARD
+          const rotationY = (angle * 180) / Math.PI;
+
+          gsap.set(container, {
+            x,
+            z,
+            rotateY: rotationY,
+            // Disable force3D on mobile for better performance
+            force3D: !isMobile,
+          });
+        });
+
+        // Align wheel so current index is at the front
+        const initialWheelRotation = currentIndex * -(360 / totalCards);
+        gsap.set(carouselRef.current, {
+          rotationY: initialWheelRotation,
+          // Disable force3D on mobile
           force3D: !isMobile,
         });
-      });
+        setWheelRotation(initialWheelRotation);
+      }, carouselRef);
 
-      // Align wheel so current index is at the front
-      const initialWheelRotation = currentIndex * -(360 / totalCards);
-      gsap.set(carouselRef.current, { 
-        rotationY: initialWheelRotation,
-        // Disable force3D on mobile
-        force3D: !isMobile,
-      });
-      setWheelRotation(initialWheelRotation);
-    }, carouselRef);
+      return () => ctx.revert();
+    })();
 
-    return () => ctx.revert();
-  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile, allowMotion]);
+    return () => {
+      cancelled = true;
+    };
+  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile, allowMotion, isEnhanced]);
 
   const rotate = (direction: 1 | -1) => {
     if (!allowMotion) return;
+    if (!isEnhanced) return;
+    const gsap = gsapRef.current;
+    if (!gsap) return;
     if (isAnimating || !carouselRef.current) return;
     setIsAnimating(true);
 
@@ -254,7 +295,8 @@ export const CardCarousel = () => {
     </section>
   );
 
-  if (prefersReducedMotion) {
+  // Mobile: always use the safe grid layout (prevents Safari white-screen crash loops)
+  if (prefersReducedMotion || isMobile || !isEnhanced) {
     return reducedMotionLayout;
   }
 
