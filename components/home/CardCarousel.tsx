@@ -1,43 +1,33 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GameCard } from "@/components/3d/GameCard";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
-type CardCategory = "Power" | "10 point";
-
 const CARD_DATA = [
-  { id: "toss", front: "/toss-v1.webp", name: "Toss", category: "Power" as CardCategory },
-  { id: "sabotage", front: "/sabotage-v1.webp", name: "Sabotage", category: "Power" as CardCategory },
-  { id: "take-two", front: "/take-two-v1.webp", name: "Take Two", category: "Power" as CardCategory },
-  { id: "double", front: "/double-your-hand-v1.webp", name: "Double Up", category: "Power" as CardCategory },
-  { id: "blue-glacier", front: "/blue-glacier-v1.webp", name: "Blue Glacier", category: "10 point" as CardCategory },
-  { id: "desert", front: "/desert-horizon-v1.webp", name: "Desert Horizon", category: "10 point" as CardCategory },
-  { id: "toxic", front: "/toxic-swamp-v1.webp", name: "Toxic Swamp", category: "10 point" as CardCategory },
-  { id: "volcanix", front: "/volcanix-lava-v1.webp", name: "Volcanix Lava", category: "10 point" as CardCategory },
+  { id: "toss", front: "/toss-v1.webp", name: "Toss", category: "Power" },
+  { id: "sabotage", front: "/sabotage-v1.webp", name: "Sabotage", category: "Power" },
+  { id: "take-two", front: "/take-two-v1.webp", name: "Take Two", category: "Power" },
+  { id: "double", front: "/double-your-hand-v1.webp", name: "Double Up", category: "Power" },
+  { id: "blue-glacier", front: "/blue-glacier-v1.webp", name: "Blue Glacier", category: "10 point" },
+  { id: "desert", front: "/desert-horizon-v1.webp", name: "Desert Horizon", category: "10 point" },
+  { id: "toxic", front: "/toxic-swamp-v1.webp", name: "Toxic Swamp", category: "10 point" },
+  { id: "volcanix", front: "/volcanix-lava-v1.webp", name: "Volcanix Lava", category: "10 point" },
 ];
-
-const CATEGORIES: CardCategory[] = ["Power", "10 point"];
 
 export const CardCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const cardContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cardInnerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const gsapRef = useRef<any>(null);
+  const wheelRotationRef = useRef(0);
+  const currentIndexRef = useRef(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<CardCategory | "All">("All");
-  const [wheelRotation, setWheelRotation] = useState(0);
   const prefersReducedMotion = usePrefersReducedMotion();
   const allowMotion = !prefersReducedMotion;
 
-  const filteredCards = useMemo(
-    () =>
-      activeCategory === "All"
-        ? CARD_DATA
-        : CARD_DATA.filter((c) => c.category === activeCategory),
-    [activeCategory]
-  );
+  const filteredCards = useMemo(() => CARD_DATA, []);
 
   const totalCards = filteredCards.length;
   // Mobile-safe by default (prevents iOS Safari crash loops)
@@ -84,67 +74,49 @@ export const CardCarousel = () => {
   const radius = isMobile ? 220 : 700; 
   const angleStep = (2 * Math.PI) / totalCards;
 
-  // Update card flips and scaling based on wheel rotation
-  useEffect(() => {
-    if (!allowMotion || !isEnhanced) return;
-    if (!carouselRef.current) return;
-    if (!gsapRef.current) return;
+  const updateCardVisuals = useCallback(
+    (wheelRotation: number) => {
+      if (!allowMotion || !isEnhanced) return;
+      const gsap = gsapRef.current;
+      if (!gsap) return;
 
-    const gsap = gsapRef.current;
-    const ctx = gsap.context(() => {
       cardInnerRefs.current.forEach((inner, i) => {
         if (!inner) return;
-        
-        // Calculate each card's absolute rotation
+
         const cardBaseAngle = angleStep * i;
         const cardBaseRotation = (cardBaseAngle * 180) / Math.PI;
         let absoluteRotation = wheelRotation + cardBaseRotation;
-        
-        // Normalize to 0-360 range
         absoluteRotation = ((absoluteRotation % 360) + 360) % 360;
-        
-        // If card is facing away (between 90-270 degrees), flip it to show back
-        const shouldFlip = absoluteRotation > 90 && absoluteRotation < 270;
-        const flipRotation = shouldFlip ? 180 : 0;
 
+        const shouldFlip = absoluteRotation > 90 && absoluteRotation < 270;
         gsap.set(inner, {
-          rotateY: flipRotation,
-          // Disable force3D on mobile for better performance
+          rotateY: shouldFlip ? 180 : 0,
           force3D: !isMobile,
         });
       });
 
-      // Update card scaling - all cards fully opaque, only scale changes
       cardContainerRefs.current.forEach((container, i) => {
         if (!container) return;
-        
+
         const cardBaseAngle = angleStep * i;
         const cardBaseRotation = (cardBaseAngle * 180) / Math.PI;
         let absoluteRotation = wheelRotation + cardBaseRotation;
-        
-        // Normalize to 0-360 range
         absoluteRotation = ((absoluteRotation % 360) + 360) % 360;
-        
-        // Calculate distance from front (0 degrees)
-        // Distance is the minimum angle to get to 0 or 360
+
         let distanceFromFront = absoluteRotation;
         if (distanceFromFront > 180) {
           distanceFromFront = 360 - distanceFromFront;
         }
-        
-        // Scale based on distance from front
-        // More generous scaling on mobile to keep adjacent cards visible
-        const normalizedDistance = distanceFromFront / 180; // 0 to 1
-        const maxScale = isMobile ? 1.2 : 1.5;
-        const minScale = isMobile ? 0.5 : 0.62;
-        const scale = minScale + ((maxScale - minScale) * Math.cos(normalizedDistance * Math.PI / 2));
 
-        // Hide rear-hemisphere cards so they don't appear as duplicate cards under foreground cards.
+        const normalizedDistance = distanceFromFront / 180;
+        const maxScale = isMobile ? 1.2 : 1.48;
+        const minScale = isMobile ? 0.5 : 0.62;
+        const scale = minScale + ((maxScale - minScale) * Math.cos((normalizedDistance * Math.PI) / 2));
+
         const isRearHemisphere = absoluteRotation > 90 && absoluteRotation < 270;
-        const baseOpacity = 0.22 + (0.78 * Math.cos(normalizedDistance * Math.PI / 2));
+        const baseOpacity = 0.18 + (0.82 * Math.cos((normalizedDistance * Math.PI) / 2));
         const opacity = isRearHemisphere ? 0 : baseOpacity;
 
-        // Force stacking order by depth; front cards always paint above distant cards.
         const depthOrder = Math.round((1 - normalizedDistance) * 1000);
         const zIndex = isRearHemisphere ? depthOrder - 1000 : depthOrder;
 
@@ -152,14 +124,12 @@ export const CardCarousel = () => {
           scale,
           opacity,
           zIndex,
-          // Disable force3D on mobile for better performance
           force3D: !isMobile,
         });
       });
-    }, carouselRef);
-
-    return () => ctx.revert();
-  }, [wheelRotation, angleStep, totalCards, allowMotion, isEnhanced, isMobile]);
+    },
+    [allowMotion, isEnhanced, angleStep, isMobile]
+  );
 
   useEffect(() => {
     if (!allowMotion || !isEnhanced) return;
@@ -195,13 +165,14 @@ export const CardCarousel = () => {
         });
 
         // Align wheel so current index is at the front
-        const initialWheelRotation = currentIndex * -(360 / totalCards);
+        const initialWheelRotation = currentIndexRef.current * -(360 / totalCards);
         gsap.set(carouselRef.current, {
           rotationY: initialWheelRotation,
           // Disable force3D on mobile
           force3D: !isMobile,
         });
-        setWheelRotation(initialWheelRotation);
+        wheelRotationRef.current = initialWheelRotation;
+        updateCardVisuals(initialWheelRotation);
       }, carouselRef);
 
       return () => ctx.revert();
@@ -210,7 +181,7 @@ export const CardCarousel = () => {
     return () => {
       cancelled = true;
     };
-  }, [radius, angleStep, filteredCards, currentIndex, totalCards, isMobile, allowMotion, isEnhanced]);
+  }, [radius, angleStep, filteredCards, totalCards, isMobile, allowMotion, isEnhanced, updateCardVisuals]);
 
   const rotate = (direction: 1 | -1) => {
     if (!allowMotion) return;
@@ -220,8 +191,8 @@ export const CardCarousel = () => {
     if (isAnimating || !carouselRef.current) return;
     setIsAnimating(true);
 
-    const nextIndex = (currentIndex + direction + totalCards) % totalCards;
-    const currentWheelRotation = gsap.getProperty(carouselRef.current, "rotationY") as number;
+    const nextIndex = (currentIndexRef.current + direction + totalCards) % totalCards;
+    const currentWheelRotation = wheelRotationRef.current;
     const targetRotation = currentWheelRotation + (direction * -(360 / totalCards));
 
     gsap.to(carouselRef.current, {
@@ -229,13 +200,17 @@ export const CardCarousel = () => {
       duration: isMobile ? 0.8 : 1.2, // Faster on mobile
       ease: isMobile ? "power2.inOut" : "power3.inOut", // Simpler easing on mobile
       force3D: !isMobile, // Disable force3D on mobile
+      overwrite: "auto",
       onUpdate: () => {
         const currentRot = gsap.getProperty(carouselRef.current, "rotationY") as number;
-        setWheelRotation(currentRot);
+        wheelRotationRef.current = currentRot;
+        updateCardVisuals(currentRot);
       },
       onComplete: () => {
+        currentIndexRef.current = nextIndex;
         setCurrentIndex(nextIndex);
-        setWheelRotation(targetRotation);
+        wheelRotationRef.current = targetRotation;
+        updateCardVisuals(targetRotation);
         setIsAnimating(false);
       },
     });
@@ -254,32 +229,12 @@ export const CardCarousel = () => {
           Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 relative z-30" role="tablist" aria-label="Card categories">
-          {["All", ...CATEGORIES].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat as CardCategory | "All");
-                setCurrentIndex(0);
-              }}
-              role="tab"
-              aria-selected={activeCategory === cat}
-              className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
-                activeCategory === cat 
-                  ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_12px_rgba(79,70,229,0.3)]" 
-                  : "bg-white/5 border-white/10 text-slate-300 hover:border-white/20"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 relative z-20">
-        {filteredCards.map((card) => (
+        {filteredCards.map((card, i) => (
           <div
-            key={`${activeCategory}-${card.id}`}
+            key={card.id}
             className="rounded-2xl border border-slate-800 bg-white/5 p-3 sm:p-4 flex flex-col items-center gap-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
           >
             <div className="w-full aspect-[2.5/3.5] overflow-hidden rounded-xl bg-slate-900/70">
@@ -289,7 +244,7 @@ export const CardCarousel = () => {
                 className="w-full h-full object-cover"
                 width={320}
                 height={448}
-                loading={currentIndex === CARD_DATA.indexOf(card) ? "eager" : "lazy"}
+                loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
                 sizes="(min-width: 1024px) 200px, (min-width: 768px) 160px, 45vw"
               />
@@ -312,6 +267,7 @@ export const CardCarousel = () => {
   return (
     <section className="relative min-h-[80svh] sm:min-h-[90svh] md:min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-transparent py-12 sm:py-16 md:py-24 px-4 sm:px-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_70%)] pointer-events-none" />
+      <div className="absolute left-1/2 top-[58%] -translate-x-1/2 w-[580px] h-[180px] bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.25)_0%,rgba(99,102,241,0.12)_35%,transparent_75%)] blur-2xl pointer-events-none" aria-hidden="true" />
       
       <div className="w-full text-center z-20 mb-6 sm:mb-8 md:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white tracking-tighter uppercase italic mb-4 sm:mb-6 md:mb-8 md:scale-y-110 text-center flex flex-wrap justify-center gap-2 sm:gap-4">
@@ -323,28 +279,6 @@ export const CardCarousel = () => {
           Discover the cards from Void Count, one of the best new card games launching in 2026
         </p>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-12 relative z-30" role="tablist" aria-label="Card categories">
-          {["All", ...CATEGORIES].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat as CardCategory | "All");
-                setCurrentIndex(0);
-                if (carouselRef.current) gsap.set(carouselRef.current, { rotationY: 0 });
-              }}
-              role="tab"
-              aria-selected={activeCategory === cat}
-              className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
-                activeCategory === cat 
-                  ? "bg-indigo-600 border-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)]" 
-                  : "bg-white/5 border-slate-800 text-slate-300 hover:border-slate-700"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="w-full max-w-7xl relative flex items-center justify-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible">
@@ -359,7 +293,7 @@ export const CardCarousel = () => {
           >
             {filteredCards.map((card, i) => (
               <div
-                key={`${activeCategory}-${card.id}`}
+                key={card.id}
                 ref={(el) => { cardContainerRefs.current[i] = el; }}
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{
@@ -419,6 +353,7 @@ export const CardCarousel = () => {
           )}
         </div>
       </div>
+
     </section>
   );
 };
