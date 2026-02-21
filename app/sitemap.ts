@@ -27,8 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${siteUrl}/settling-debates`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     { url: `${siteUrl}/contact`, lastModified, changeFrequency: "yearly", priority: 0.5 },
   ];
 }
-
-

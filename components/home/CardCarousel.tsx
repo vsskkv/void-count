@@ -136,13 +136,22 @@ export const CardCarousel = () => {
         // More generous scaling on mobile to keep adjacent cards visible
         const normalizedDistance = distanceFromFront / 180; // 0 to 1
         const maxScale = isMobile ? 1.2 : 1.5;
-        const minScale = isMobile ? 0.65 : 0.8;
+        const minScale = isMobile ? 0.5 : 0.62;
         const scale = minScale + ((maxScale - minScale) * Math.cos(normalizedDistance * Math.PI / 2));
-        
-        // All cards fully opaque - no transparency
+
+        // Hide rear-hemisphere cards so they don't appear as duplicate cards under foreground cards.
+        const isRearHemisphere = absoluteRotation > 90 && absoluteRotation < 270;
+        const baseOpacity = 0.22 + (0.78 * Math.cos(normalizedDistance * Math.PI / 2));
+        const opacity = isRearHemisphere ? 0 : baseOpacity;
+
+        // Force stacking order by depth; front cards always paint above distant cards.
+        const depthOrder = Math.round((1 - normalizedDistance) * 1000);
+        const zIndex = isRearHemisphere ? depthOrder - 1000 : depthOrder;
+
         gsap.set(container, {
           scale,
-          opacity: 1,
+          opacity,
+          zIndex,
           // Disable force3D on mobile for better performance
           force3D: !isMobile,
         });

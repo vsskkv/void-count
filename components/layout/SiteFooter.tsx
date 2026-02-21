@@ -11,6 +11,7 @@ export const SiteFooter = () => {
             <Link href="/about" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">ABOUT</Link>
             <span className="text-slate-400 opacity-70 cursor-not-allowed font-bold tracking-widest text-[10px] sm:text-xs uppercase">HOW TO PLAY (COMING SOON)</span>
             <Link href="/faq" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">FAQ</Link>
+            <Link href="/settling-debates" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">SETTLING DEBATES</Link>
           </div>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             <a href="https://www.instagram.com/voidcountltd?igsh=dHh1bWV5c216YXJ1&utm_source=qr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-purple-300 transition-colors uppercase tracking-widest text-[9px] sm:text-[10px] font-black group">

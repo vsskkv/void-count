@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE_NAME, getSiteUrl } from "@/lib/site";
-import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { MAX_PLAYERS, MIN_PLAYERS, WAITLIST_FORM_ID } from "@/lib/constants";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About Void Count | The Story Behind the New Card Game | Card Games | Card Game for Family",
@@ -34,50 +37,161 @@ export const metadata: Metadata = {
   },
 };
 
+const STORY_STEPS = [
+  {
+    title: "Prototype Nights",
+    body: "Void Count started during long game nights where we tested round pacing, bluff windows, and sabotage timing until every turn felt tense and fun.",
+  },
+  {
+    title: "Rules That Stay Fast",
+    body: "We kept the rules lightweight on purpose. The goal was simple: make setup quick, decisions sharp, and every table argument easy to settle.",
+  },
+  {
+    title: "Built for Replayability",
+    body: "Power cards, hand management, and shifting momentum make each round play differently. Players can learn quickly and still discover depth over time.",
+  },
+] as const;
+
+const GAME_PILLARS = [
+  {
+    title: "Social Strategy",
+    body: "Every decision creates pressure at the table. You are reading opponents, timing your cards, and deciding when to call Count.",
+  },
+  {
+    title: "Controlled Chaos",
+    body: "Power cards can flip momentum fast, but skilled players still shape outcomes through risk management and hand control.",
+  },
+  {
+    title: "Quick Rounds",
+    body: "Rounds stay tight and energetic so players can run it back instantly. It works for short sessions and longer game nights.",
+  },
+] as const;
+
+const SHOWCASE_CARDS = [
+  { src: "/sabotage-v1.webp", alt: "Void Count Sabotage card", className: styles.cardOne },
+  { src: "/toss-v1.webp", alt: "Void Count Toss card", className: styles.cardTwo },
+  { src: "/take-two-v1.webp", alt: "Void Count Take Two card", className: styles.cardThree },
+  { src: "/double-your-hand-v1.webp", alt: "Void Count Double Your Hand card", className: styles.cardFour },
+] as const;
+
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-transparent text-slate-50 overflow-x-hidden">
+    <main className={`min-h-screen bg-transparent text-slate-50 overflow-x-hidden ${styles.pageShell}`}>
       <SiteHeader />
 
-      <div className="pt-20 sm:pt-24 md:pt-32 lg:pt-48 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        {/* How it all started */}
-        <section className="mb-12 sm:mb-16 md:mb-20 lg:mb-32 text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 text-white tracking-tighter uppercase italic leading-[0.9] md:scale-y-110">
-            How it all started
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed font-medium">
-            Void Count brings people together. The initial idea grew through countless game nights, late-night play sessions, and the shared belief that the best new card games are easy to learn but hard to master.
-          </p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed font-medium mt-4 sm:mt-6">
-            What started as a fun concept during weekend game sessions became something special—a game that anyone could pick up in minutes, whether you're a seasoned strategist or just looking for a good time with friends.
-          </p>
+      <div className="relative pt-24 sm:pt-28 md:pt-36 lg:pt-44 pb-14 sm:pb-16 md:pb-24 px-4 sm:px-6">
+        <div className={`${styles.glowOrb} ${styles.glowOrbTop}`} aria-hidden="true" />
+        <div className={`${styles.glowOrb} ${styles.glowOrbBottom}`} aria-hidden="true" />
+
+        <section className="max-w-6xl mx-auto mb-12 sm:mb-14 md:mb-16">
+          <div className={`${styles.heroPanel} grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.2fr_0.8fr]`}>
+            <div>
+              <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-4">
+                The Story Behind The Game
+              </p>
+              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase italic tracking-tighter leading-[0.85] ${styles.titleFlux}`}>
+                About
+                <span className="block">Void Count</span>
+              </h1>
+              <p className="mt-5 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl">
+                We built Void Count to create loud, high-stakes table moments with clean rules and deep decision-making. It is fast to learn, competitive to master, and designed to keep friends asking for one more round.
+              </p>
+              <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+                <span className={`${styles.badgePulse} inline-flex items-center rounded-full border border-indigo-400/40 bg-indigo-500/15 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.14em] text-indigo-200 font-semibold`}>
+                  {MIN_PLAYERS}-{MAX_PLAYERS} Players
+                </span>
+                <span className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-900/70 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-slate-200 font-semibold">
+                  Strategic + Social
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.cardScene} aria-hidden="true">
+              <div className={styles.cardHalo} />
+              {SHOWCASE_CARDS.map((card, index) => (
+                <div key={card.src} className={`${styles.showcaseCard} ${card.className}`}>
+                  <Image
+                    src={card.src}
+                    alt={card.alt}
+                    width={190}
+                    height={266}
+                    className="w-full h-auto object-contain"
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
-        {/* Our Game */}
-        <section className="mb-12 sm:mb-16 md:mb-20 lg:mb-32 text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 text-white tracking-tighter uppercase italic leading-[0.9] md:scale-y-110">
-            Our Game
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed font-medium">
-            We don't make entertaining games. We make games that make the people you're playing with more entertaining! 
-          </p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed font-medium mt-4 sm:mt-6">
-            Void Count is quick to learn, endlessly replayable, and packed with those <span className="italic text-indigo-400">"just one more round"</span> moments. Every draw is a gamble. Every Power card can turn the tables. Every round is a new chance to outplay your friends.
-          </p>
+        <section className="max-w-6xl mx-auto mb-12 sm:mb-14 md:mb-16">
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase italic tracking-tight text-white">
+              How It Took Shape
+            </h2>
+          </div>
+          <ol className="grid gap-4 sm:gap-5 md:grid-cols-3">
+            {STORY_STEPS.map((item, index) => (
+              <li key={item.title}>
+                <article
+                  className={`${styles.storyCard} h-full p-5 sm:p-6`}
+                  style={{ animationDelay: `${140 + index * 110}ms` }}
+                >
+                  <span className={styles.storyNumber}>{index + 1}</span>
+                  <h3 className="mt-4 text-base sm:text-lg font-black uppercase tracking-wide text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                    {item.body}
+                  </p>
+                </article>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        {/* Call to Action */}
-        <section className="text-center pt-8 sm:pt-12">
-          <a
-            href={`/#${WAITLIST_FORM_ID}`}
-            className="inline-block w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-lg sm:text-xl md:text-2xl font-black px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl uppercase italic tracking-tighter shadow-[0_20px_50px_rgba(79,70,229,0.5)] transform hover:scale-105 transition-all mb-4 sm:mb-6"
-          >
-            Join the Waiting List
-          </a>
-          <div className="text-slate-500 text-xs sm:text-sm mt-3 sm:mt-4 opacity-60">
-            <span className="cursor-not-allowed">
-              Learn How to Play (Coming Soon) →
-            </span>
+        <section className="max-w-6xl mx-auto mb-12 sm:mb-14 md:mb-16">
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase italic tracking-tight text-white">
+              Our Game Philosophy
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
+            {GAME_PILLARS.map((pillar) => (
+              <article key={pillar.title} className={`${styles.pillarCard} p-5 sm:p-6`}>
+                <h3 className="text-base sm:text-lg font-black uppercase tracking-wide text-white">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                  {pillar.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-5xl mx-auto">
+          <div className={`${styles.ctaPanel} p-6 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl`}>
+            <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-4">
+              Join The Launch
+            </p>
+            <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl">
+              Be first to hear launch updates, early offers, and new rules content. If your table likes strategic chaos, you are exactly who we built this for.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href={`/#${WAITLIST_FORM_ID}`}
+                className="inline-flex items-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
+              >
+                Join Waiting List
+              </Link>
+              <Link
+                href="/settling-debates"
+                className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-950/70 text-slate-200 hover:text-white hover:border-slate-400 text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
+              >
+                View Settling Debates
+              </Link>
+            </div>
           </div>
         </section>
       </div>
