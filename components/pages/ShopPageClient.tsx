@@ -18,7 +18,7 @@ export default function ShopPageClient() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-5xl w-full items-center">
           <div className="flex justify-center relative order-2 md:order-1">
-            <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full -z-10 scale-75" />
+            <div className="hidden md:block absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full -z-10 scale-75" />
             <ProductCarousel />
           </div>
 
@@ -68,5 +68,4 @@ export default function ShopPageClient() {
     </main>
   );
 }
-
 

@@ -48,8 +48,8 @@ export default function HomePageClient() {
     if (!mainRef.current || prefersReducedMotion) return;
 
     // Detect mobile FIRST to avoid loading heavy animations
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     // On mobile, skip animations entirely to prevent crashes
     if (isMobile) {
       // Ensure content is visible on mobile (in case CSS fails)
@@ -61,22 +61,27 @@ export default function HomePageClient() {
       return;
     }
 
+    let isCancelled = false;
+    let gsapContext: { revert: () => void } | null = null;
+
     // Desktop only: Lazy load GSAP for scroll animations
     // Initial styles are set via CSS (.content-section class) to prevent hydration mismatch
     Promise.all([
       import("gsap"),
       import("gsap/ScrollTrigger")
     ]).then(([gsapModule, scrollTriggerModule]) => {
+      if (isCancelled) return;
+
       const gsap = gsapModule.default;
       const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
-      
-      if (typeof window !== 'undefined') {
+
+      if (typeof window !== "undefined") {
         gsap.registerPlugin(ScrollTrigger);
       }
 
-      const ctx = gsap.context(() => {
+      gsapContext = gsap.context(() => {
         const sections = gsap.utils.toArray<HTMLElement>(".content-section");
-        
+
         sections.forEach((section) => {
           gsap.to(
             section,
@@ -96,11 +101,9 @@ export default function HomePageClient() {
           );
         });
       }, mainRef);
-
-      return () => {
-        ctx.revert();
-      };
     }).catch((error) => {
+      if (isCancelled) return;
+
       // If GSAP fails to load, show content anyway
       console.error("GSAP failed to load:", error);
       const sections = mainRef.current?.querySelectorAll<HTMLElement>(".content-section");
@@ -109,6 +112,11 @@ export default function HomePageClient() {
         section.style.transform = "none";
       });
     });
+
+    return () => {
+      isCancelled = true;
+      gsapContext?.revert();
+    };
   }, [prefersReducedMotion]);
 
   return (

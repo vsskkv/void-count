@@ -5,14 +5,14 @@ import { GameCard } from "@/components/3d/GameCard";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 const CARD_DATA = [
-  { id: "toss", front: "/toss-v1.webp", name: "Toss", category: "Power" },
-  { id: "sabotage", front: "/sabotage-v1.webp", name: "Sabotage", category: "Power" },
-  { id: "take-two", front: "/take-two-v1.webp", name: "Take Two", category: "Power" },
-  { id: "double", front: "/double-your-hand-v1.webp", name: "Double Up", category: "Power" },
-  { id: "blue-glacier", front: "/blue-glacier-v1.webp", name: "Blue Glacier", category: "10 point" },
-  { id: "desert", front: "/desert-horizon-v1.webp", name: "Desert Horizon", category: "10 point" },
-  { id: "toxic", front: "/toxic-swamp-v1.webp", name: "Toxic Swamp", category: "10 point" },
-  { id: "volcanix", front: "/volcanix-lava-v1.webp", name: "Volcanix Lava", category: "10 point" },
+  { id: "toss", front: "/optimized/toss-v1.jpg", name: "Toss", category: "Power" },
+  { id: "sabotage", front: "/optimized/sabotage-v1.jpg", name: "Sabotage", category: "Power" },
+  { id: "take-two", front: "/optimized/take-two-v1.jpg", name: "Take Two", category: "Power" },
+  { id: "double", front: "/optimized/double-your-hand-v1.jpg", name: "Double Up", category: "Power" },
+  { id: "blue-glacier", front: "/optimized/blue-glacier-v1.jpg", name: "Blue Glacier", category: "10 point" },
+  { id: "desert", front: "/optimized/desert-horizon-v1.jpg", name: "Desert Horizon", category: "10 point" },
+  { id: "toxic", front: "/optimized/toxic-swamp-v1.jpg", name: "Toxic Swamp", category: "10 point" },
+  { id: "volcanix", front: "/optimized/volcanix-lava-v1.jpg", name: "Volcanix Lava", category: "10 point" },
 ];
 
 export const CardCarousel = () => {
@@ -305,7 +305,7 @@ export const CardCarousel = () => {
                 <GameCard
                   variant="standard"
                   frontSrc={card.front}
-                  backSrc="/back-v2.webp"
+                  backSrc="/optimized/back-v2.jpg"
                   frontAlt={`${card.name} card from Void Count new card game`}
                   className="w-full h-full pointer-events-none select-none"
                   manualRef={(el) => { cardInnerRefs.current[i] = el; }}

@@ -46,10 +46,10 @@ const SETTLING_DEBATES = [
 ] as const;
 
 const SHOWCASE_CARDS = [
-  { src: "/sabotage-v1.webp", alt: "Void Count Sabotage card", className: styles.deckCardOne },
-  { src: "/toss-v1.webp", alt: "Void Count Toss card", className: styles.deckCardTwo },
-  { src: "/take-two-v1.webp", alt: "Void Count Take Two card", className: styles.deckCardThree },
-  { src: "/double-your-hand-v1.webp", alt: "Void Count Double Your Hand card", className: styles.deckCardFour },
+  { src: "/optimized/sabotage-v1.jpg", alt: "Void Count Sabotage card", className: styles.deckCardOne },
+  { src: "/optimized/toss-v1.jpg", alt: "Void Count Toss card", className: styles.deckCardTwo },
+  { src: "/optimized/take-two-v1.jpg", alt: "Void Count Take Two card", className: styles.deckCardThree },
+  { src: "/optimized/double-your-hand-v1.jpg", alt: "Void Count Double Your Hand card", className: styles.deckCardFour },
 ] as const;
 
 export const metadata: Metadata = {

@@ -11,9 +11,9 @@ export const CosmicBackground = () => {
       {/* 1. Base Deep Space Layer */}
       <div className="absolute inset-0 bg-[#000005]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#0a0a2e_0%,#000000_100%)]" />
-      
-      {/* 2. Global Nebula Glows - Reduced on mobile via CSS */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_60%)] blur-3xl opacity-50" />
+
+      {/* 2. Global Nebula Glows - tone down on mobile to avoid GPU spikes */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_60%)] blur-xl md:blur-3xl opacity-35 md:opacity-50" />
       <div className="hidden md:block absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-full aspect-square bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1)_0%,transparent_60%)] blur-3xl opacity-50" />
 
       {/* 3. Moving Atmospheric Vortex - Disabled on mobile via CSS to save GPU memory */}

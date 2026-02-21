@@ -158,9 +158,9 @@ const CATEGORY_ORDER = [
 type FAQCategory = (typeof CATEGORY_ORDER)[number];
 
 const SHOWCASE_CARDS = [
-  { src: "/sabotage-v1.webp", alt: "Void Count Sabotage card", className: styles.cardOne },
-  { src: "/toss-v1.webp", alt: "Void Count Toss card", className: styles.cardTwo },
-  { src: "/take-two-v1.webp", alt: "Void Count Take Two card", className: styles.cardThree },
+  { src: "/optimized/sabotage-v1.jpg", alt: "Void Count Sabotage card", className: styles.cardOne },
+  { src: "/optimized/toss-v1.jpg", alt: "Void Count Toss card", className: styles.cardTwo },
+  { src: "/optimized/take-two-v1.jpg", alt: "Void Count Take Two card", className: styles.cardThree },
 ] as const;
 
 function toFaqId(question: string): string {

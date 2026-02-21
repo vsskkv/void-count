@@ -311,7 +311,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Preload critical hero image for faster LCP */}
-        <link rel="preload" href="/back-v2.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/optimized/back-v2.jpg" as="image" type="image/jpeg" />
         {/* Preload logo for header */}
         <link rel="preload" href="/void-count-logo.webp" as="image" type="image/webp" />
       </head>
