@@ -92,9 +92,9 @@ export const SiteHeader = () => {
           <Link href="/about" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
             ABOUT
           </Link>
-          <span className="text-slate-400 cursor-not-allowed whitespace-nowrap uppercase tracking-tighter opacity-70">
-            HOW TO PLAY (COMING SOON)
-          </span>
+          <Link href="/how-to-play" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
+            HOW TO PLAY
+          </Link>
           <Link href="/faq" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all whitespace-nowrap uppercase tracking-tighter">
             FAQ
           </Link>
@@ -169,11 +169,16 @@ export const SiteHeader = () => {
               >
                 ABOUT
               </Link>
-              <span
-                className="text-sm font-black text-slate-400 opacity-70 cursor-not-allowed uppercase tracking-tighter py-4 px-6 border-b border-slate-800/50 min-h-[48px] flex items-center"
+              <Link
+                href="/how-to-play"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuOpen(false);
+                }}
+                className="text-sm font-black text-slate-300 hover:text-white hover:bg-slate-800/50 active:bg-slate-800/70 transition-colors uppercase tracking-tighter py-4 px-6 border-b border-slate-800/50 min-h-[48px] flex items-center touch-manipulation cursor-pointer"
               >
-                HOW TO PLAY (COMING SOON)
-              </span>
+                HOW TO PLAY
+              </Link>
               <Link
                 href="/faq"
                 onClick={(e) => {

@@ -9,7 +9,7 @@ export const SiteFooter = () => {
           <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-4">
             <Link href="/" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">HOME</Link>
             <Link href="/about" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">ABOUT</Link>
-            <span className="text-slate-400 opacity-70 cursor-not-allowed font-bold tracking-widest text-[10px] sm:text-xs uppercase">HOW TO PLAY (COMING SOON)</span>
+            <Link href="/how-to-play" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">HOW TO PLAY</Link>
             <Link href="/faq" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">FAQ</Link>
             <Link href="/settling-debates" className="hover:text-white transition-colors font-bold tracking-widest text-[10px] sm:text-xs uppercase">SETTLING DEBATES</Link>
           </div>

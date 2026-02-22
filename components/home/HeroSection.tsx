@@ -98,10 +98,10 @@ export const HeroSection = () => {
           </PrimaryButton>
           <PrimaryButton
             variant="secondary"
-            className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-indigo-400/30 hover:border-indigo-400/50 hover:bg-indigo-900/20 font-semibold transition-all duration-300 opacity-80 cursor-not-allowed"
-            disabled
+            href="/how-to-play"
+            className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl border-2 border-indigo-400/45 hover:border-indigo-300 hover:bg-indigo-900/35 text-indigo-100 font-semibold transition-all duration-300 hover:scale-105"
           >
-            How to Play (Coming Soon)
+            How to Play
           </PrimaryButton>
         </div>
       </div>
