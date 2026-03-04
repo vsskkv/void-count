@@ -138,9 +138,9 @@ export default function HomePageClient() {
       {/* Sticky CTA */}
       <StickyCTA />
 
-      {/* SEO-Optimized H1 - Visible but subtle */}
+      {/* Accessible page heading for semantic SEO */}
       <h1 className="sr-only">
-        Void Count: Now Live on Kickstarter | Strategic Card Game for Family and Friends
+        Void Count is a strategic card game on Kickstarter.
       </h1>
     </main>
   );

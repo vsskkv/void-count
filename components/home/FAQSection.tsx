@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./FAQSection.module.css";
 import { KICKSTARTER_URL, MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
 
@@ -29,7 +29,7 @@ const FAQ_DATA = [
     category: "Gameplay",
     question: "How many players can play?",
     answer:
-      "Void Count is designed for 2–8 players, making it one of the best new card games for both small groups and large parties. It works great as a tight 1v1 duel or a chaotic party game.",
+      "Void Count is designed for 2-8 players and works for both small groups and larger tables. It plays well as a tight 1v1 duel or a chaotic party game.",
   },
   {
     category: "Gameplay",
@@ -41,7 +41,7 @@ const FAQ_DATA = [
     category: "Gameplay",
     question: "What age is this game suitable for?",
     answer:
-      "Void Count is suitable for ages 7 and up. The rules are simple enough for younger players, while the deep strategy appeals to adults. It's a perfect family card game gift.",
+      "Void Count is suitable for ages 7 and up. The rules are simple enough for younger players, while the strategic decisions still appeal to adults.",
   },
   {
     category: "Gameplay",
@@ -89,13 +89,13 @@ const FAQ_DATA = [
     category: "Availability",
     question: "Will you ship internationally?",
     answer:
-      "Yes, we plan to offer international shipping through our Kickstarter campaign. Exact shipping rates and regions will be announced closer to launch.",
+      "Yes, we plan to offer international shipping through Kickstarter. Shipping regions and rates are listed on the campaign page.",
   },
   {
     category: "Availability",
     question: "When will the game be delivered?",
     answer:
-      "Delivery timelines will be confirmed during the Kickstarter campaign. We'll keep all backers updated throughout the production and shipping process.",
+      "Delivery timelines are posted in the Kickstarter reward details and campaign updates. We keep backers updated throughout production and shipping.",
   },
   {
     category: "Launch",
@@ -132,18 +132,6 @@ const FAQ_DATA = [
     question: "How do Power cards affect gameplay?",
     answer:
       "Power cards are the heart of Void Count's strategy. They allow you to disrupt opponents' plans, protect yourself, or manipulate your own hand. Using them at the right moment can turn the tide of any round.",
-  },
-  {
-    category: "Gameplay",
-    question: "What is the next evolution of strategic card games?",
-    answer:
-      "Void Count represents a meticulous strategic experience that combines the best elements of classic card games with innovative mechanics. As one of the most anticipated new card games of 2026, it offers a unique blend of risk management, psychological bluffing, and tactical sabotage.",
-  },
-  {
-    category: "Gameplay",
-    question: "Why choose Void Count for your next game night?",
-    answer:
-      "Void Count provides endless replayability with its dynamic deck mechanics and player-driven chaos. It's the perfect choice for both intimate 1v1 duels and large party settings (up to 8 players). Plus, it features stunning cosmic artwork and high-quality card stock, making it a premium card game gift.",
   },
 ] as const;
 
@@ -194,11 +182,10 @@ export const FAQSection = () => {
     return FAQ_DATA.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
-  useEffect(() => {
-    if (!filteredFaq.some((item) => item.question === openQuestion)) {
-      setOpenQuestion(filteredFaq[0]?.question ?? null);
-    }
-  }, [filteredFaq, openQuestion]);
+  const currentOpenQuestion =
+    openQuestion && filteredFaq.some((item) => item.question === openQuestion)
+      ? openQuestion
+      : (filteredFaq[0]?.question ?? null);
 
   return (
     <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent overflow-x-hidden">
@@ -211,10 +198,10 @@ export const FAQSection = () => {
             <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-4">
               Everything You Need To Know
             </p>
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase italic tracking-tighter leading-[0.85] ${styles.titleFlux}`}>
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase italic tracking-tighter leading-[0.85] ${styles.titleFlux}`}>
               Frequently Asked
               <span className="block">Questions</span>
-            </h2>
+            </h1>
             <p className="mt-5 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl">
               Fast answers on gameplay, launch details, cards, and delivery. Use category filters to jump straight to what you need.
             </p>
@@ -275,7 +262,7 @@ export const FAQSection = () => {
             const faqId = toFaqId(item.question);
             const answerId = `faq-answer-${faqId}`;
             const questionId = `faq-question-${faqId}`;
-            const isOpen = openQuestion === item.question;
+            const isOpen = currentOpenQuestion === item.question;
 
             return (
               <article
