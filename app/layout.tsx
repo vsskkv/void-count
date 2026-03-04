@@ -28,6 +28,8 @@ const geistMono = Geist_Mono({
 const siteUrl = getSiteUrl();
 const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-6H4Z6M4QBK";
+const TIKTOK_PIXEL_ID =
+  process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID || "D6K98M3C77U9T6VFJUKG";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -189,6 +191,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','${GTM_ID}');`,
           }}
         />
+        {process.env.NODE_ENV === "production" && TIKTOK_PIXEL_ID ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `!function (w, d, t) {
+  w.TiktokAnalyticsObject = t;
+  var ttq = w[t] = w[t] || [];
+  ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"];
+  ttq.setAndDefer = function (target, method) {
+    target[method] = function () {
+      target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+    };
+  };
+  for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+  ttq.instance = function (id) {
+    var e = ttq._i[id] || [];
+    for (var n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+    return e;
+  };
+  ttq.load = function (id, opts) {
+    var src = "https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i = ttq._i || {};
+    ttq._i[id] = [];
+    ttq._i[id]._u = src;
+    ttq._t = ttq._t || {};
+    ttq._t[id] = +new Date();
+    ttq._o = ttq._o || {};
+    ttq._o[id] = opts || {};
+    var script = d.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = src + "?sdkid=" + id + "&lib=" + t;
+    var firstScript = d.getElementsByTagName("script")[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
+  };
+
+  ttq.load("${TIKTOK_PIXEL_ID}");
+  ttq.page();
+}(window, document, "ttq");`,
+            }}
+          />
+        ) : null}
         {/* Preconnect to external resources for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
