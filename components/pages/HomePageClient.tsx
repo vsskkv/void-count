@@ -17,11 +17,6 @@ const KickstarterSection = dynamic(() => import("@/components/home/KickstarterSe
   ssr: true
 });
 
-const WaitlistSection = dynamic(() => import("@/components/home/WaitlistSection").then(mod => mod.WaitlistSection), {
-  loading: () => <div className="min-h-[400px]" />,
-  ssr: true
-});
-
 const SiteFooter = dynamic(() => import("@/components/layout/SiteFooter").then(mod => mod.SiteFooter), {
   ssr: true
 });
@@ -132,14 +127,9 @@ export default function HomePageClient() {
       {/* 2. Card Carousel Section (Manual wheel deck gallery) */}
       <CardCarousel />
 
-      {/* 3. Kickstarter Coming Soon */}
+      {/* 3. Kickstarter Campaign */}
       <div className="content-section overflow-x-hidden" suppressHydrationWarning>
         <KickstarterSection />
-      </div>
-
-      {/* 4. Waitlist - Now Joining Kickstarter */}
-      <div className="content-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-x-hidden" suppressHydrationWarning>
-        <WaitlistSection />
       </div>
 
       {/* Footer */}
@@ -150,7 +140,7 @@ export default function HomePageClient() {
 
       {/* SEO-Optimized H1 - Visible but subtle */}
       <h1 className="sr-only">
-        Void Count: New Card Game 2026 | Strategic Card Game for Family & Friends | Best New Card Games | Card Games
+        Void Count: Now Live on Kickstarter | Strategic Card Game for Family and Friends
       </h1>
     </main>
   );

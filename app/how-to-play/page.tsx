@@ -5,41 +5,42 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { DemoCard, DrawPileVisual, PowerCardVisual } from "@/components/how-to-play/DemoCards";
 import { RuleSection } from "@/components/how-to-play/RuleSection";
-import { TurnFlow } from "@/components/how-to-play/TurnFlow";
-import { CARDS_PER_PLAYER, MAX_PLAYERS, MIN_PLAYERS, TOTAL_CARDS, WAITLIST_FORM_ID } from "@/lib/constants";
+import {
+  CARDS_PER_PLAYER,
+  HOW_TO_PLAY_VIDEO_URL,
+  KICKSTARTER_URL,
+  MAX_PLAYERS,
+  MIN_PLAYERS,
+  TOTAL_CARDS,
+} from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site";
 import styles from "./how-to-play.module.css";
 
 export const metadata: Metadata = {
-  title: "How to Play Void Count | Official Rules for the New Card Game | Card Games | Strategy Card Game",
+  title: "How to Play Void Count | Official Rules and Setup",
   description:
     "Learn how to play Void Count with the official gameplay guide. Set up in minutes, understand turn flow, use Power Cards correctly, and score every round with confidence. A fast strategic card game for 2-8 players.",
   keywords: [
-    "how to play card game",
-    "card game rules",
-    "new card game rules",
-    "strategy card game rules",
-    "Void Count rules",
-    "card game instructions",
-    "new card game how to play",
-    "card games",
-    "new card games",
-    "card game for beginners",
+    "how to play void count",
+    "void count rules",
+    "void count setup",
     "strategic card game rules",
-    "best new card game rules",
-    "card game 2026",
+    "card game instructions",
+    "card game scoring rules",
+    "2-8 player card game",
+    "kickstarter card game rules",
   ],
   alternates: { canonical: `${getSiteUrl()}/how-to-play` },
   openGraph: {
-    title: "How to Play Void Count | Official Rules for the New Card Game | Card Games",
+    title: "How to Play Void Count | Official Rules and Setup",
     description:
-      "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game. Easy to learn card game rules for 2-8 players.",
+      "Learn how to play Void Count with official setup, turn flow, power card, and scoring rules.",
     url: "/how-to-play",
   },
   twitter: {
-    title: "How to Play Void Count | Official Rules for the New Card Game | Card Games",
+    title: "How to Play Void Count | Official Rules and Setup",
     description:
-      "Learn how to play Void Count, a new card game that combines strategy, sabotage, and fast-paced action. Complete rules for this strategic card game.",
+      "Official Void Count rules covering setup, turn flow, power cards, and scoring.",
   },
 };
 
@@ -56,11 +57,11 @@ const SETUP_STEPS = [
   },
   {
     title: "Create the center",
-    body: "Place the remaining deck in the middle and flip one card to start the Open Pile.",
+    body: "Place the remaining deck in the middle and flip one card to start the Discard Pile.",
   },
   {
-    title: "Choose first player",
-    body: "Pick who starts and continue clockwise for the round.",
+    title: "Start with dealer's left",
+    body: "The player to the dealer's left begins, then play continues clockwise for the round.",
   },
   {
     title: "Play fast",
@@ -74,10 +75,45 @@ const QUICK_RULINGS = [
   "If a player ties the caller, tied players score 1 and caller scores 0.",
   "No player can score over 25 points in one round.",
   "A player cannot use a Power Card on themselves.",
-  "If Draw Deck runs out, reshuffle the Open Pile.",
+  "If Draw Deck runs out, reshuffle the Discard Pile.",
 ] as const;
 
+const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
+  ? KICKSTARTER_URL
+  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
+
+const getYouTubeEmbedUrl = (input: string): string | null => {
+  const value = input.trim();
+  if (!value) {
+    return null;
+  }
+
+  // Support direct video ID
+  if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+    return `https://www.youtube.com/embed/${value}?rel=0&modestbranding=1`;
+  }
+
+  // Support common YouTube URL shapes
+  const patterns = [
+    /youtu\.be\/([A-Za-z0-9_-]{11})/,
+    /youtube\.com\/watch\?v=([A-Za-z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/,
+    /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = value.match(pattern);
+    if (match?.[1]) {
+      return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
+    }
+  }
+
+  return null;
+};
+
 export default function HowToPlayPage() {
+  const youtubeEmbedUrl = getYouTubeEmbedUrl(HOW_TO_PLAY_VIDEO_URL);
+
   return (
     <main className={`min-h-screen bg-transparent text-slate-50 overflow-x-hidden ${styles.pageShell}`}>
       <SiteHeader />
@@ -112,12 +148,14 @@ export default function HowToPlayPage() {
               </div>
 
               <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
-                <Link
-                  href={`/#${WAITLIST_FORM_ID}`}
+                <a
+                  href={KICKSTARTER_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
                 >
-                  Join Waiting List
-                </Link>
+                  Back On <span className="text-[#05ce78]">Kickstarter</span>
+                </a>
                 <Link
                   href="/settling-debates"
                   className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-950/70 text-slate-200 hover:text-white hover:border-slate-400 text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
@@ -174,8 +212,39 @@ export default function HowToPlayPage() {
         </section>
 
         <section className="max-w-6xl mx-auto mb-12 sm:mb-14 md:mb-16">
-          <div className={`${styles.flowPanel} p-4 sm:p-5 md:p-6 rounded-2xl md:rounded-3xl`}>
-            <TurnFlow />
+          <div className={`${styles.videoPanel} p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl`}>
+            <div className="mb-4 sm:mb-5">
+              <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-3">
+                Video Guide
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase italic tracking-tight text-white">
+                Watch How To Play
+              </h2>
+            </div>
+
+            {youtubeEmbedUrl ? (
+              <div className={styles.videoFrameWrap}>
+                <iframe
+                  src={youtubeEmbedUrl}
+                  title="How to Play Void Count Video Guide"
+                  className={styles.videoFrame}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <div className={styles.videoPlaceholder}>
+                <p className="text-slate-100 text-sm sm:text-base md:text-lg font-semibold">
+                  How-to-play video coming soon.
+                </p>
+                <p className="text-slate-300 text-xs sm:text-sm mt-2">
+                  Add your YouTube link in <code className="text-indigo-200">/lib/constants.ts</code> as
+                  <code className="text-indigo-200"> HOW_TO_PLAY_VIDEO_URL</code> and it will auto-embed here.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -185,7 +254,7 @@ export default function HowToPlayPage() {
             icon={<span className={styles.sectionBadge}>01</span>}
             description={
               <>
-                <p>On your turn, pull from the Draw Deck or Open Pile, then make your best move for hand control.</p>
+                <p>On your turn, pull from the Draw Deck or Discard Pile, then make your best move for hand control.</p>
                 <p>Smart turns are about pressure and timing, not just raw card value.</p>
               </>
             }
@@ -252,7 +321,7 @@ export default function HowToPlayPage() {
               Keep The Table Moving
             </p>
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl">
-              Start with this guide, then use Settling Debates for edge cases and FAQ for fast answers. You can also join the waiting list for launch updates and rules refinements.
+              Start with this guide, then use Settling Debates for edge cases and FAQ for fast answers. If you are ready to play, back Void Count on <span className="text-[#05ce78]">Kickstarter</span>.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

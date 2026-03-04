@@ -21,11 +21,11 @@ const SETTLING_DEBATES = [
   },
   {
     title: "Draw Deck Refill",
-    body: "If the Draw Deck runs out, reshuffle the Open Pile and use it as the new Draw Deck.",
+    body: "If the Draw Deck runs out, reshuffle the Discard Pile and use it as the new Draw Deck.",
   },
   {
     title: "Last Card Edge Case",
-    body: "If a player's last card is Toss or Sabotage, place the Power Card on the Open Pile and draw one card from the Draw Deck.",
+    body: "If a player's last card is Toss, place the Power Card on the Discard Pile and draw one card from the Draw Deck. If a player's last card is Sabotage, place the card on the Discard Pile, draw one card from the Draw Deck, and give that drawn card to a chosen other player.",
   },
   {
     title: "No Empty-Hand Turn Start",
@@ -40,8 +40,8 @@ const SETTLING_DEBATES = [
     body: "Power Cards hold a point value after 'Count' is called. If the Count Caller is holding a Power Card, they receive a 20 point penalty and score 0 is given to the player or tied players with the lowest score.",
   },
   {
-    title: "Matching Open-Pile Power Card",
-    body: "If the Power Card picked from the Open Pile is the same as one a player already possesses, it can be played.",
+    title: "Matching Discard-Pile Power Card",
+    body: "If the Power Card picked from the Discard Pile is the same as one a player already possesses, it can be played.",
   },
 ] as const;
 

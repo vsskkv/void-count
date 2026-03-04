@@ -14,6 +14,7 @@ const geistSans = Geist({
   subsets: ["latin"],
   display: "swap", // Prevent invisible text flash (FOIT)
   preload: true, // Preload primary font
+  fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
 const geistMono = Geist_Mono({
@@ -21,6 +22,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
   preload: false, // Don't preload secondary font
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 const siteUrl = getSiteUrl();
@@ -32,20 +34,21 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   manifest: "/manifest.json",
   title: {
-    default: `${SITE_NAME} | New Card Game 2026 | Strategic Card Game for Family & Friends`,
+    default: `${SITE_NAME} | Live on Kickstarter | Strategic Card Game`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "card game",
-    "new card game",
+    "void count",
+    "void count card game",
+    "void count kickstarter",
+    "kickstarter card game",
     "strategic card game",
-    "card games",
-    "Void Count",
-    "card game 2026",
-    "Kickstarter card game",
     "family card game",
     "party card game",
+    "2-8 player card game",
+    "bluffing card game",
+    "sabotage card game",
   ],
   alternates: {
     canonical: siteUrl,
@@ -67,13 +70,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    locale: "en_GB",
+    locale: "en_US",
     images: [
       {
         url: "/void-count-logo.webp",
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - New Strategic Card Game 2026`,
+        alt: `${SITE_NAME} - Strategic Card Game Live on Kickstarter`,
       },
     ],
   },
@@ -141,7 +144,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Void Count",
-    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. The perfect gift for family and friends who love board games and strategy. Launching soon on Kickstarter.",
+    description: "Void Count is a strategic card game of risk, bluffing, and sabotage. The campaign is live on Kickstarter.",
     image: `${siteUrl}/void-count-logo.webp`,
     category: "Card Game",
     brand: {
@@ -150,7 +153,7 @@ export default function RootLayout({
     },
     offers: {
       "@type": "Offer",
-      url: siteUrl,
+      url: `${siteUrl}/kickstarter`,
       availability: "https://schema.org/PreOrder",
       price: "0.00",
       priceCurrency: "GBP",
@@ -165,7 +168,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "BoardGame",
     name: "Void Count",
-    description: "Void Count is a new strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. The perfect gift for board game lovers. One of the best new card games launching in 2026.",
+    description: "Void Count is a strategic card game of risk, bluffing, and sabotage. A fast-paced card game perfect for family game nights, parties, and competitive play. Now live on Kickstarter.",
     image: `${siteUrl}/void-count-logo.webp`,
     brand: {
       "@type": "Brand",
@@ -183,20 +186,15 @@ export default function RootLayout({
       "@type": "Thing",
       name: "Card Game",
     },
-    category: ["Card Game", "Strategy Game", "Party Game", "Family Game", "New Card Game", "Card Games", "Strategic Card Game"],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "120",
-    },
+    category: ["Card Game", "Strategy Game", "Party Game", "Family Game", "Strategic Card Game"],
     offers: {
       "@type": "Offer",
-      url: siteUrl,
+      url: `${siteUrl}/kickstarter`,
       availability: "https://schema.org/PreOrder",
       price: "0.00",
       priceCurrency: "GBP",
     },
-    keywords: "card game, new card game, strategic card game, card games, new card games, strategy card game, family card game, party card game, best new card game, card game 2026, new card games 2026",
+    keywords: "void count, strategic card game, kickstarter card game, family card game, party card game, bluffing card game, sabotage card game",
   };
 
   const breadcrumbJsonLd = {
@@ -226,7 +224,7 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What makes Void Count the best new card game of 2026?",
+        name: "What makes Void Count stand out from other card games?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Void Count combines strategic hand management with active player interaction and sabotage. Its unique 'lowest score wins' mechanic and Power cards create a fresh, unpredictable experience that sets it apart from traditional card games.",
@@ -250,10 +248,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "When is Void Count launching on Kickstarter?",
+        name: "Is Void Count live on Kickstarter?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count is launching on Kickstarter in 2026. Join our waitlist to be notified of the exact launch date and get access to exclusive early-bird pricing.",
+          text: "Yes. Void Count is live on Kickstarter now. Visit the campaign page to back the project and choose your reward tier.",
         },
       },
       {
@@ -269,7 +267,7 @@ export default function RootLayout({
         name: "What is the next evolution of strategic card games?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Void Count represents a meticulous strategic experience that combines the best elements of classic card games with innovative mechanics. As one of the most anticipated new card games of 2026, it offers a unique blend of risk management, psychological bluffing, and tactical sabotage.",
+          text: "Void Count combines the best elements of classic card games with modern mechanics. It offers a unique blend of risk management, psychological bluffing, and tactical sabotage.",
         },
       },
       {
@@ -295,7 +293,7 @@ export default function RootLayout({
   const GTM_ID = "GTM-P7H5NRLN";
 
   return (
-    <html lang="en-GB">
+    <html lang="en-US">
       <head>
         {/* Google Tag Manager - as high in head as possible */}
         <script

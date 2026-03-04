@@ -4,26 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import styles from "./FAQSection.module.css";
-import { MAX_PLAYERS, MIN_PLAYERS, WAITLIST_FORM_ID } from "@/lib/constants";
+import { KICKSTARTER_URL, MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
 
 const FAQ_DATA = [
   {
     category: "Launch",
-    question: "When is the Kickstarter launching?",
+    question: "Is Void Count live on Kickstarter?",
     answer:
-      "We're in the final stages of playtesting. Join the waiting list to get the exact launch date and early-bird discounts.",
+      "Yes. Void Count is live on Kickstarter right now, and backing the campaign directly helps fund production and delivery.",
   },
   {
     category: "Launch",
-    question: "How do I join the waiting list?",
+    question: "Where can I back Void Count?",
     answer:
-      "Simply scroll to the bottom of our homepage and enter your email address. You'll receive updates about the Kickstarter launch, early-bird pricing, and exclusive playtest invitations.",
+      "Use any Back on Kickstarter button on the site to open the campaign page and choose your reward tier.",
   },
   {
     category: "Launch",
-    question: "What will I get by joining the waiting list?",
+    question: "Why back on Kickstarter?",
     answer:
-      "Early access to the Kickstarter campaign, exclusive early-bird pricing, first access to playtest invitations, and updates on game development progress.",
+      "Backers help us fund the first print run and unlock stretch goals, while securing campaign rewards through Kickstarter.",
   },
   {
     category: "Gameplay",
@@ -101,13 +101,13 @@ const FAQ_DATA = [
     category: "Launch",
     question: "Can I play the game before it's released?",
     answer:
-      "We occasionally host playtest sessions for members of our waiting list. Join the list to be notified about upcoming playtesting opportunities and events.",
+      "We occasionally host playtest sessions. Follow the Kickstarter campaign updates and social channels for announcements.",
   },
   {
     category: "Launch",
     question: "Will there be expansions or additional cards?",
     answer:
-      "We're always exploring new ideas and card designs. Future expansions will depend on community feedback and interest. Join the waiting list to stay informed about future content.",
+      "We're always exploring new ideas and card designs. Future expansions will depend on campaign momentum and community feedback.",
   },
   {
     category: "Gameplay",
@@ -156,6 +156,10 @@ const CATEGORY_ORDER = [
 ] as const;
 
 type FAQCategory = (typeof CATEGORY_ORDER)[number];
+
+const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
+  ? KICKSTARTER_URL
+  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 const SHOWCASE_CARDS = [
   { src: "/optimized/sabotage-v1.jpg", alt: "Void Count Sabotage card", className: styles.cardOne },
@@ -221,12 +225,14 @@ export const FAQSection = () => {
               <span className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-900/70 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-slate-200 font-semibold">
                 {MIN_PLAYERS}-{MAX_PLAYERS} Players
               </span>
-              <Link
-                href={`/#${WAITLIST_FORM_ID}`}
+              <a
+                href={KICKSTARTER_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full border border-indigo-400/45 bg-slate-900/70 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-indigo-200 font-semibold hover:border-indigo-300 hover:text-white transition-colors"
               >
-                Join Waitlist
-              </Link>
+                Back on <span className="text-[#05ce78]">Kickstarter</span>
+              </a>
             </div>
           </div>
 

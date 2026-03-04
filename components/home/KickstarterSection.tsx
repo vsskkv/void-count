@@ -1,11 +1,15 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { scrollToElement } from "@/lib/utils";
-import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { KICKSTARTER_URL } from "@/lib/constants";
 
 export const KickstarterSection = () => {
+  const kickstarterUrl = /^https?:\/\//i.test(KICKSTARTER_URL)
+    ? KICKSTARTER_URL
+    : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
+
   return (
     <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent overflow-hidden">
       {/* Background radial effects */}
@@ -18,24 +22,17 @@ export const KickstarterSection = () => {
             {/* Heavy blur can crash mobile Safari; only enable on md+ */}
             <div className="hidden md:block absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
             <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-slate-800 flex items-center justify-center overflow-hidden shadow-2xl">
-              <div className="flex flex-col items-center gap-4 sm:gap-6 p-4 sm:p-6">
-                {/* Disable pulse animation on mobile for stability */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-indigo-600/20 rounded-full flex items-center justify-center md:animate-pulse">
-                  <span className="text-3xl sm:text-4xl lg:text-6xl italic font-black text-indigo-400">∅</span>
-                </div>
-                <div className="text-center px-2 sm:px-4">
-                  <p className="text-white font-black uppercase italic tracking-tighter text-2xl sm:text-3xl lg:text-4xl">
-                    Base Deck
-                  </p>
-                  <p className="text-slate-300 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs mt-1">
-                    Coming Soon to Kickstarter
-                  </p>
-                </div>
-              </div>
+              <Image
+                src="/Card%20Box.jpg"
+                alt="Void Count base deck box"
+                fill
+                className="object-cover object-center scale-[1.18] sm:scale-[1.14]"
+                sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 90vw"
+              />
               
               {/* Teaser Badges */}
               <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-indigo-600 text-white text-[8px] sm:text-[10px] font-black uppercase px-2 sm:px-4 py-1 sm:py-2 rounded-full shadow-lg tracking-[0.15em] sm:tracking-[0.2em] transform rotate-12">
-                Launch Edition
+                Live Campaign
               </div>
             </div>
           </div>
@@ -43,12 +40,12 @@ export const KickstarterSection = () => {
           {/* Right: Content */}
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tighter uppercase italic leading-[0.8] sm:leading-[0.9] md:scale-y-110">
-              KICKSTARTER <br className="hidden sm:block" />
-              <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">IS COMING</span>
+              <span className="text-[#05ce78]">KICKSTARTER</span> <br className="hidden sm:block" />
+              <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">IS LIVE</span>
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 font-bold italic mb-6 sm:mb-8 lg:mb-10 leading-tight max-w-2xl mx-auto lg:mx-0">
-              Get ready for the first edition of Void Count, the <strong>best new card game of 2026</strong> launching on Kickstarter. Join the list to secure early bird pricing and exclusive playtest invites for this exciting <strong>strategic card game</strong>.
+              Void Count is now live on <span className="text-[#05ce78]">Kickstarter</span>. Back the campaign today to help bring the first edition to every table and secure campaign rewards for this <strong>strategic card game</strong>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">
@@ -76,9 +73,12 @@ export const KickstarterSection = () => {
 
             <PrimaryButton 
               className="w-full text-lg sm:text-xl font-black px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
-              onClick={() => scrollToElement(WAITLIST_FORM_ID)}
+              onClick={() => {
+                if (typeof window === "undefined" || !kickstarterUrl) return;
+                window.open(kickstarterUrl, "_blank", "noopener,noreferrer");
+              }}
             >
-              Notify Me at Launch
+              Back Void Count on <span className="text-[#05ce78]">Kickstarter</span>
             </PrimaryButton>
           </div>
         </div>

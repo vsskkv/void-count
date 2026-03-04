@@ -3,37 +3,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SITE_NAME, getSiteUrl } from "@/lib/site";
-import { MAX_PLAYERS, MIN_PLAYERS, WAITLIST_FORM_ID } from "@/lib/constants";
+import { getSiteUrl } from "@/lib/site";
+import { KICKSTARTER_URL, MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-  title: "About Void Count | The Story Behind the New Card Game | Card Games | Card Game for Family",
+  title: "About Void Count | Story and Design Philosophy",
   description:
-    "Discover the origins of Void Count, a new card game built for social sabotage and laughs. Learn about this strategic card game and why it's the perfect gift for board game lovers, family game nights, and Kickstarter fans. One of the best new card games launching in 2026.",
+    "Discover the origins of Void Count, a strategic card game built for social sabotage and laughs. Learn why it is a standout game night pick and now live on Kickstarter.",
   keywords: [
-    "about card game",
-    "new card game story",
+    "about void count",
+    "void count story",
+    "void count game design",
     "card game creators",
     "strategic card game history",
-    "Void Count creators",
     "card game development",
-    "card games",
-    "new card games",
-    "best new card game",
-    "card game 2026",
+    "kickstarter card game",
+    "tabletop card game",
   ],
   alternates: { canonical: `${getSiteUrl()}/about` },
   openGraph: {
-    title: "About Void Count | The Story Behind the New Card Game | Card Games",
+    title: "About Void Count | Story and Design Philosophy",
     description:
-      "Discover the origins of Void Count, a new card game built for social sabotage and laughs. Learn about this strategic card game and why it's perfect for board game lovers and family game nights.",
+      "Discover how Void Count was designed for sabotage, bluffing, and replayable table moments.",
     url: "/about",
   },
   twitter: {
-    title: "About Void Count | The Story Behind the New Card Game",
+    title: "About Void Count | Story and Design Philosophy",
     description:
-      "Discover the origins of Void Count, a new card game built for social sabotage and laughs. Learn about this strategic card game.",
+      "Discover how Void Count was designed for sabotage, bluffing, and replayable table moments.",
   },
 };
 
@@ -73,6 +71,10 @@ const SHOWCASE_CARDS = [
   { src: "/optimized/take-two-v1.jpg", alt: "Void Count Take Two card", className: styles.cardThree },
   { src: "/optimized/double-your-hand-v1.jpg", alt: "Void Count Double Your Hand card", className: styles.cardFour },
 ] as const;
+
+const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
+  ? KICKSTARTER_URL
+  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 export default function AboutPage() {
   return (
@@ -173,18 +175,20 @@ export default function AboutPage() {
         <section className="max-w-5xl mx-auto">
           <div className={`${styles.ctaPanel} p-6 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl`}>
             <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-4">
-              Join The Launch
+              Campaign Is Live
             </p>
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl">
-              Be first to hear launch updates, early offers, and new rules content. If your table likes strategic chaos, you are exactly who we built this for.
+              Back Void Count on <span className="text-[#05ce78]">Kickstarter</span> to help us bring the first edition to tables worldwide. If your table likes strategic chaos, you are exactly who we built this for.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href={`/#${WAITLIST_FORM_ID}`}
+              <a
+                href={KICKSTARTER_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
               >
-                Join Waiting List
-              </Link>
+                Back On <span className="text-[#05ce78]">Kickstarter</span>
+              </a>
               <Link
                 href="/settling-debates"
                 className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-950/70 text-slate-200 hover:text-white hover:border-slate-400 text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"

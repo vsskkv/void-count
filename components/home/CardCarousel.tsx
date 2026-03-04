@@ -226,7 +226,7 @@ export const CardCarousel = () => {
           <span>DECK</span>
         </h2>
         <p className="text-slate-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
-          Discover the cards from Void Count, one of the best new card games launching in 2026
+          Discover the cards from Void Count, now live on <span className="text-[#05ce78]">Kickstarter</span>
         </p>
 
       </div>
@@ -276,7 +276,7 @@ export const CardCarousel = () => {
           <span>DECK</span>
         </h2>
         <p className="text-slate-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 mb-4">
-          Discover the cards from Void Count, one of the best new card games launching in 2026
+          Discover the cards from Void Count, now live on <span className="text-[#05ce78]">Kickstarter</span>
         </p>
 
       </div>

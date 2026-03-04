@@ -1,38 +1,32 @@
 import type { Metadata } from "next";
 import HomePageClient from "@/components/pages/HomePageClient";
-import { SITE_DESCRIPTION, SITE_NAME, getSiteUrl } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends | Kickstarter",
+  title: "Void Count™ | Now Live on Kickstarter | Strategic Card Game for Family & Friends",
   description:
-    "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play. Perfect for game nights, family gatherings, and board game fans. Join the fun on Kickstarter soon! This innovative card game offers fast-paced gameplay, strategic depth, and endless replayability. Whether you're looking for a new card game for your collection or the perfect gift for board game enthusiasts, Void Count delivers an unforgettable gaming experience.",
+    "Void Count is a strategic card game of sabotage, bluffing, and laughs. The campaign is now live on Kickstarter. Back the project to support production and bring this fast-paced game to your table.",
   keywords: [
-    "card game",
-    "new card game",
-    "card games",
-    "new card games",
+    "void count",
+    "void count card game",
+    "void count kickstarter",
+    "kickstarter card game",
     "strategic card game",
     "strategy card game",
     "family card game",
     "party card game",
     "board game",
     "tabletop game",
-    "Kickstarter card game",
     "sabotage card game",
     "bluffing card game",
-    "best new card game",
-    "card game 2026",
-    "new card games 2026",
-    "strategic card games",
     "card game for adults",
-    "card game for families",
     "competitive card game",
   ],
   alternates: { canonical: `${getSiteUrl()}/` },
   openGraph: {
-    title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game for Family & Friends",
+    title: "Void Count™ | Now Live on Kickstarter | Strategic Card Game",
     description:
-      "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play. Perfect for game nights and family gatherings. A must-have addition to any card game collection.",
+      "Void Count is now live on Kickstarter. Back this strategic card game built for competitive play, family game nights, and social chaos.",
     url: "/",
     type: "website",
     images: [
@@ -40,15 +34,15 @@ export const metadata: Metadata = {
         url: "/void-count-logo.webp",
         width: 1200,
         height: 630,
-        alt: "Void Count - New Strategic Card Game 2026",
+        alt: "Void Count - Strategic Card Game Live on Kickstarter",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Void Count™ | New Card Game 2026 | Card Games | Strategic Card Game",
+    title: "Void Count™ | Now Live on Kickstarter | Strategic Card Game",
     description:
-      "Void Count is a new card game that combines strategy, sabotage, and laughs. Discover the newest strategic card game built for competitive play.",
+      "Void Count is now live on Kickstarter. Back this strategic card game built for sabotage, bluffing, and replayable game nights.",
     images: ["/void-count-logo.webp"],
   },
 };

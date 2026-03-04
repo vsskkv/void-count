@@ -2,15 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { scrollToElement } from "@/lib/utils";
-import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { KICKSTARTER_URL } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const allowMotion = !prefersReducedMotion;
+  const kickstarterUrl = /^https?:\/\//i.test(KICKSTARTER_URL)
+    ? KICKSTARTER_URL
+    : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
   useEffect(() => {
     if (!containerRef.current || !logoRef.current || prefersReducedMotion) return;
@@ -91,9 +92,14 @@ export const HeroSection = () => {
         <div className="hero-cta flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto">
           <PrimaryButton
             className="group w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white text-base sm:text-lg md:text-xl font-bold px-10 sm:px-12 py-4 sm:py-5 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
-            onClick={() => scrollToElement(WAITLIST_FORM_ID)}
+            onClick={() => {
+              if (typeof window === "undefined" || !kickstarterUrl) return;
+              window.open(kickstarterUrl, "_blank", "noopener,noreferrer");
+            }}
           >
-            <span className="relative z-10">Join Waiting List</span>
+            <span className="relative z-10">
+              Back On <span className="text-[#05ce78]">Kickstarter</span>
+            </span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
           </PrimaryButton>
           <PrimaryButton

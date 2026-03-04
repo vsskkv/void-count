@@ -192,12 +192,41 @@
   animation: numberPulse 2.3s ease-in-out infinite;
 }
 
-.flowPanel {
-  border: 1px solid rgba(129, 140, 248, 0.22);
+.videoPanel {
+  position: relative;
+  border: 1px solid rgba(129, 140, 248, 0.26);
   background:
-    linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.86)),
-    radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.16), transparent 54%);
-  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.48);
+    linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.88)),
+    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.17), transparent 52%);
+  box-shadow: 0 20px 44px rgba(2, 6, 23, 0.5);
+  overflow: hidden;
+}
+
+.videoFrameWrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: #020617;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoPlaceholder {
+  border: 1px dashed rgba(129, 140, 248, 0.45);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.62)),
+    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.14), transparent 52%);
 }
 
 .sectionBadge {

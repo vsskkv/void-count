@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import NextImage from 'next/image';
 import { GameCard } from '@/components/3d/GameCard';
 
 export const ProductCarousel = () => {
@@ -19,6 +20,8 @@ export const ProductCarousel = () => {
     frontImg.src = '/optimized/void-v1.jpg';
     const backImg = new Image();
     backImg.src = '/optimized/back-v2.jpg';
+    const boxImg = new Image();
+    boxImg.src = '/Card%20Box.jpg';
   }, []);
 
   const scrollPrev = useCallback(() => {
@@ -51,8 +54,13 @@ export const ProductCarousel = () => {
           {/* Slide 3: Box Placeholder */}
           <div className="flex-[0_0_100%] min-w-0 pl-4 flex justify-center">
              <div className="w-64 h-96 rounded-2xl border border-slate-700 bg-slate-900 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.2),transparent_70%)]" />
-                <span className="text-slate-500 font-bold uppercase tracking-widest">Box Art</span>
+                <NextImage
+                  src="/Card%20Box.jpg"
+                  alt="Void Count box art"
+                  fill
+                  className="object-cover object-center scale-110"
+                  sizes="256px"
+                />
              </div>
           </div>
         </div>
@@ -76,8 +84,4 @@ export const ProductCarousel = () => {
     </div>
   );
 };
-
-
-
-
 

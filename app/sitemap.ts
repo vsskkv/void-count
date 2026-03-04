@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/`, lastModified, changeFrequency: "weekly", priority: 1 },
     {
+      url: `${siteUrl}/kickstarter`,
+      lastModified,
+      changeFrequency: "daily",
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/about`,
       lastModified,
       changeFrequency: "monthly",

@@ -1,10 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ProductCarousel } from "@/components/shop/ProductCarousel";
-import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { KICKSTARTER_URL } from "@/lib/constants";
+
+const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
+  ? KICKSTARTER_URL
+  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 export default function ShopPageClient() {
   return (
@@ -28,7 +31,7 @@ export default function ShopPageClient() {
                 Void Count: Base Deck
               </h2>
               <p className="text-indigo-400 font-medium tracking-wider uppercase text-xs sm:text-sm">
-                First Edition • Kickstarter Release
+                First Edition • <span className="text-[#05ce78]">Kickstarter</span> Release
               </p>
             </div>
 
@@ -50,14 +53,16 @@ export default function ShopPageClient() {
             </div>
 
             <div className="pt-2 sm:pt-4">
-              <Link
-                href={`/#${WAITLIST_FORM_ID}`}
+              <a
+                href={KICKSTARTER_HREF}
                 className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl transition-all text-base sm:text-lg inline-block text-center"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Join the Waiting List
-              </Link>
+                Back on <span className="text-[#05ce78]">Kickstarter</span>
+              </a>
               <p className="mt-3 sm:mt-4 text-xs text-slate-500">
-                The shop is opening soon. Join the waiting list to be first in line.
+                Campaign rewards are available now on <span className="text-[#05ce78]">Kickstarter</span>.
               </p>
             </div>
           </div>
@@ -68,4 +73,3 @@ export default function ShopPageClient() {
     </main>
   );
 }
-

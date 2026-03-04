@@ -2,12 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { PrimaryButton } from "./PrimaryButton";
-import { scrollToElement } from "@/lib/utils";
-import { WAITLIST_FORM_ID } from "@/lib/constants";
+import { KICKSTARTER_URL } from "@/lib/constants";
 
 export const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+  const kickstarterUrl = /^https?:\/\//i.test(KICKSTARTER_URL)
+    ? KICKSTARTER_URL
+    : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
   useEffect(() => {
     // Check if user has already dismissed the CTA (with error handling for SSR/localStorage)
@@ -70,19 +72,22 @@ export const StickyCTA = () => {
       <div className="max-w-4xl mx-auto bg-slate-900/95 md:bg-slate-900/90 md:backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-4 sm:p-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <p className="text-white font-black uppercase italic tracking-tight leading-none mb-1">
-            Launching Soon on Kickstarter
+            Now Live on <span className="text-[#05ce78]">Kickstarter</span>
           </p>
           <p className="text-slate-300 text-[10px] font-bold uppercase tracking-widest">
-            Join the waiting list for launch-day updates
+            Back the campaign and help us fund production
           </p>
         </div>
 
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <PrimaryButton
-            onClick={() => scrollToElement(WAITLIST_FORM_ID)}
+            onClick={() => {
+              if (typeof window === "undefined" || !kickstarterUrl) return;
+              window.open(kickstarterUrl, "_blank", "noopener,noreferrer");
+            }}
             className="flex-1 sm:flex-none py-3 px-6 text-sm font-black whitespace-nowrap shadow-none uppercase italic"
           >
-            Join the Waiting List
+            Back Now
           </PrimaryButton>
           <button
             onClick={handleDismiss}

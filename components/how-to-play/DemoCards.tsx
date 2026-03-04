@@ -23,12 +23,12 @@ export const DemoCard = ({
     return (
       <div 
         ref={cardRef}
-        className="relative w-32 h-48 rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105 bg-slate-900"
+        className="relative w-32 h-48 rounded-xl overflow-hidden transform transition-transform hover:scale-105 bg-slate-950"
       >
         <img 
           src={src} 
           alt={label ? `Void Count strategic card game – ${label}` : "Void Count card"} 
-          className="w-full h-full object-cover"
+          className="block w-full h-full object-cover rounded-[inherit] bg-slate-950"
           width={128}
           height={192}
           loading="lazy"

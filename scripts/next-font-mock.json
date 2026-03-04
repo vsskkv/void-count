@@ -1,0 +1,6 @@
+{
+  "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap": "@font-face{font-family:'__Geist_Fallback_000000';src:local('Arial');font-style:normal;font-weight:400;font-display:swap;}",
+  "https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap": "@font-face{font-family:'__Geist_Fallback_000000';src:local('Arial');font-style:normal;font-weight:400;font-display:swap;}",
+  "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap": "@font-face{font-family:'__GeistMono_Fallback_000000';src:local('Courier New');font-style:normal;font-weight:400;font-display:swap;}",
+  "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap": "@font-face{font-family:'__GeistMono_Fallback_000000';src:local('Courier New');font-style:normal;font-weight:400;font-display:swap;}"
+}

@@ -1,7 +1,7 @@
 export const SITE_NAME = "Void Count";
-export const SITE_VERSION = "1.7.0";
+export const SITE_VERSION = "2.0.0";
 export const SITE_DESCRIPTION =
-  "Void Count is a fast-paced strategic card game full of sabotage, bluffing and clever play. The perfect new card game to play with friends and family, and an ideal gift for board game lovers.";
+  "Void Count is a strategic card game of sabotage, bluffing, and hand management for 2-8 players. Back the live Kickstarter campaign.";
 
 /**
  * Used for absolute URLs in SEO metadata (OpenGraph/Twitter/sitemap).
@@ -16,4 +16,3 @@ export function getSiteUrl(): string {
     "https://voidcount.com";
   return raw.replace(/\/+$/, "");
 }
-
