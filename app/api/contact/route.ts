@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 type ContactRequestBody = {
   name?: string;
@@ -97,7 +98,7 @@ export async function POST(request: Request) {
   if (error) {
     console.error("Supabase error:", error);
     return NextResponse.json(
-      { ok: false, message: "Could not send your message right now. Please try again or email us directly at hello@voidcount.com." },
+      { ok: false, message: `Could not send your message right now. Please try again or email us directly at ${CONTACT_EMAIL}.` },
       { status: 500 }
     );
   }

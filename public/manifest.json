@@ -1,22 +1,17 @@
 {
-  "name": "Void Count - New Strategic Card Game 2026",
-  "short_name": "Void Count",
-  "description": "Void Count is a new strategic card game of risk, bluffing, and sabotage. Perfect for game nights and family gatherings.",
+  "name": "Vikram & Chinese Wedding",
+  "short_name": "V&C Wedding",
+  "description": "A private wedding portal for the Singh and Kaur families with side-specific RSVP access.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#020617",
+  "background_color": "#060912",
+  "theme_color": "#0b1020",
   "icons": [
     {
-      "src": "/void-count-logo.webp",
-      "sizes": "192x192",
-      "type": "image/webp",
+      "src": "/wedding-monogram.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/void-count-logo.webp",
-      "sizes": "512x512",
-      "type": "image/webp"
     }
   ]
 }

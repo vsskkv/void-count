@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-6H4Z6M4QBK";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 declare global {
   interface Window {

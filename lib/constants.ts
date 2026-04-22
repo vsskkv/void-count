@@ -7,7 +7,8 @@ export const KICKSTARTER_URL =
 export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby9CyMcfd44Vuop8bnM1sDm8omPLZ7yiQeI_Yuh7AvPU8r4gTGmQLRQ_Ze7hd8-f39Odw/exec";
 
 // Contact Information
-export const CONTACT_EMAIL = "hello@voidcount.com";
+export const CONTACT_EMAIL = "info@voidcount.com";
+export const CONTACT_PHONE = "075078728828";
 
 // Game Information
 export const MIN_PLAYERS = 2;

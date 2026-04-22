@@ -218,12 +218,12 @@ export default function KickstarterCampaignPage() {
                 <div className="absolute left-1/2 top-1/2 w-[82%] -translate-x-1/2 -translate-y-1/2">
                   <div className={styles.floatC}>
                     <Image
-                      src="/optimized/void-v1.jpg"
-                      alt="Void Count card game preview"
-                      width={440}
-                      height={630}
+                      src="/Card%20Box%20Background%20Removed.png"
+                      alt="Void Count base deck box"
+                      width={540}
+                      height={720}
                       priority
-                      className="w-full h-auto object-contain rounded-3xl shadow-[0_35px_90px_rgba(0,0,0,0.85)] border border-indigo-500/20"
+                      className="w-full h-auto object-contain shadow-[0_35px_90px_rgba(0,0,0,0.85)]"
                     />
                   </div>
                 </div>

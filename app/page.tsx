@@ -1,36 +1,28 @@
 import type { Metadata } from "next";
-import HomePageClient from "@/components/pages/HomePageClient";
+import { WeddingLandingClient } from "@/components/wedding/WeddingLandingClient";
 import { getSiteUrl } from "@/lib/site";
+import { WEDDING_SITE_TITLE } from "@/lib/weddingData";
 
 export const metadata: Metadata = {
-  title: "Void Count | Strategic Card Game on Kickstarter",
+  title: WEDDING_SITE_TITLE,
   description:
-    "Void Count is a fast strategic card game for 2-8 players. Manage your hand, bluff opponents, and call Count at the right moment. Back the campaign on Kickstarter.",
+    "Private blue and red wedding portals for the Singh and Kaur families, with side-specific event RSVP flows.",
   alternates: { canonical: `${getSiteUrl()}/` },
   openGraph: {
-    title: "Void Count | Strategic Card Game on Kickstarter",
+    title: WEDDING_SITE_TITLE,
     description:
-      "A fast strategic card game for 2-8 players. Bluff, sabotage, and keep the lowest score to win.",
+      "Choose the Singh side or the Kaur side and enter the private wedding portal.",
     url: "/",
     type: "website",
-    images: [
-      {
-        url: "/void-count-logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "Void Count - Strategic Card Game Live on Kickstarter",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Void Count | Strategic Card Game on Kickstarter",
+    title: WEDDING_SITE_TITLE,
     description:
-      "A fast strategic card game for 2-8 players where the lowest score wins.",
-    images: ["/void-count-logo.webp"],
+      "Choose the Singh side or the Kaur side and enter the private wedding portal.",
   },
 };
 
 export default function HomePage() {
-  return <HomePageClient />;
+  return <WeddingLandingClient />;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { KICKSTARTER_URL } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
@@ -60,31 +61,30 @@ export const HeroSection = () => {
     >
       {/* --- CONTENT --- */}
       <div className="relative w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12">
-        {/* Card Asset Section */}
+        {/* Product Box Section */}
         <div ref={logoRef} className="hero-logo-img select-none group relative w-full flex justify-center items-center py-4 opacity-100">
           {/* Intense Core Glow - Disabled heavy blur on mobile to prevent crashes */}
           <div className="hidden md:block absolute w-72 h-72 bg-indigo-600/40 blur-[100px] rounded-full animate-pulse" />
           <div className="hidden md:block absolute w-48 h-48 bg-purple-500/30 blur-[60px] rounded-full" />
           
-          {/* The Card */}
-          <div className="relative z-10">
-            <img 
-              src="/optimized/back-v2.jpg" 
-              alt="Void Count Card Back - New Strategic Card Game | Card Game 2026" 
-              className="block mx-auto w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] h-auto object-contain drop-shadow-[0_30px_70px_rgba(0,0,0,1)] rounded-3xl"
-              style={{ 
-                filter: 'drop-shadow(0 0 50px rgba(99, 102, 241, 0.5))',
-              }}
-              width={320}
-              height={320}
-              loading="eager"
-              decoding="sync"
-              fetchPriority="high"
-              sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 220px"
+          {/* The Box */}
+          <div
+            className="relative z-10 h-[280px] w-[220px] sm:h-[340px] sm:w-[260px] md:h-[420px] md:w-[320px] lg:h-[500px] lg:w-[380px] overflow-hidden rounded-[2rem] border border-slate-800/70 bg-slate-950/40 shadow-[0_30px_70px_rgba(0,0,0,0.95)]"
+            style={{
+              filter: "drop-shadow(0 0 50px rgba(99, 102, 241, 0.45))",
+            }}
+          >
+            <Image
+              src="/Card%20Box.jpg"
+              alt="Void Count base deck box"
+              fill
+              priority
+              className="object-cover object-center scale-[1.14]"
+              sizes="(min-width: 1024px) 380px, (min-width: 768px) 320px, 260px"
             />
-            
+
             {/* Dynamic Card Highlight (Sheen) */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[2rem]" />
           </div>
         </div>
 

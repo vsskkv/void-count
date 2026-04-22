@@ -4,41 +4,22 @@ import { getSiteUrl } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = getSiteUrl() || "https://voidcount.com";
+  const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
   return [
     { url: `${siteUrl}/`, lastModified, changeFrequency: "weekly", priority: 1 },
     {
-      url: `${siteUrl}/kickstarter`,
+      url: `${siteUrl}/singh-side`,
       lastModified,
-      changeFrequency: "daily",
-      priority: 0.95,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
-      url: `${siteUrl}/about`,
+      url: `${siteUrl}/kaur-side`,
       lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
-    {
-      url: `${siteUrl}/how-to-play`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/faq`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/settling-debates`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    { url: `${siteUrl}/contact`, lastModified, changeFrequency: "yearly", priority: 0.5 },
   ];
 }

@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -69,7 +70,7 @@ export function ContactForm() {
 
       if (!supabaseUrl || !supabaseAnonKey) {
         setFormStatus("error");
-        setErrorMessage("Configuration error. Please try again later or email hello@voidcount.com.");
+        setErrorMessage(`Configuration error. Please try again later or email ${CONTACT_EMAIL}.`);
         return;
       }
 
@@ -86,9 +87,9 @@ export function ContactForm() {
       if (error) {
         console.error("Contact Supabase error:", error);
         if (error.code === "42501" || error.message?.includes("permission") || error.message?.includes("RLS")) {
-          setErrorMessage("Unable to send right now. Please email hello@voidcount.com.");
+          setErrorMessage(`Unable to send right now. Please email ${CONTACT_EMAIL}.`);
         } else {
-          setErrorMessage(error.message || "Could not send your message. Please try again or email hello@voidcount.com.");
+          setErrorMessage(error.message || `Could not send your message. Please try again or email ${CONTACT_EMAIL}.`);
         }
         setFormStatus("error");
         return;
