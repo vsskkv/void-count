@@ -1,7 +1,7 @@
-export const SITE_NAME = "Vikram & Chinese Wedding";
-export const SITE_VERSION = "3.0.0";
+export const SITE_NAME = "Void Count";
+export const SITE_VERSION = "2.0.0";
 export const SITE_DESCRIPTION =
-  "A split wedding portal for the Singh and Kaur families, with private entry screens and side-specific RSVP moments.";
+  "Void Count is a fast, social strategy card game for 2-8 players where the lowest score wins.";
 
 /**
  * Used for absolute URLs in metadata. Set NEXT_PUBLIC_SITE_URL in production.

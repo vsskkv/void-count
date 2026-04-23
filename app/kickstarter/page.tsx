@@ -218,7 +218,7 @@ export default function KickstarterCampaignPage() {
                 <div className="absolute left-1/2 top-1/2 w-[82%] -translate-x-1/2 -translate-y-1/2">
                   <div className={styles.floatC}>
                     <Image
-                      src="/Card%20Box%20Background%20Removed.png"
+                      src="/optimized/card-box-cutout.png"
                       alt="Void Count base deck box"
                       width={540}
                       height={720}

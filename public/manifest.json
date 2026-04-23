@@ -1,16 +1,16 @@
 {
-  "name": "Vikram & Chinese Wedding",
-  "short_name": "V&C Wedding",
-  "description": "A private wedding portal for the Singh and Kaur families with side-specific RSVP access.",
+  "name": "Void Count",
+  "short_name": "Void Count",
+  "description": "A fast, social strategy card game for 2-8 players where the lowest score wins.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#060912",
-  "theme_color": "#0b1020",
+  "background_color": "#020617",
+  "theme_color": "#4f46e5",
   "icons": [
     {
-      "src": "/wedding-monogram.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/void-count-logo.webp",
+      "sizes": "1024x1024",
+      "type": "image/webp",
       "purpose": "any maskable"
     }
   ]

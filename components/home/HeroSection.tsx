@@ -75,7 +75,7 @@ export const HeroSection = () => {
             }}
           >
             <Image
-              src="/Card%20Box.jpg"
+              src="/optimized/card-box.jpg"
               alt="Void Count base deck box"
               fill
               priority

@@ -7,19 +7,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
-  return [
-    { url: `${siteUrl}/`, lastModified, changeFrequency: "weekly", priority: 1 },
-    {
-      url: `${siteUrl}/singh-side`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/kaur-side`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-  ];
+  const routes = [
+    { path: "/", priority: 1 },
+    { path: "/kickstarter", priority: 0.95 },
+    { path: "/how-to-play", priority: 0.9 },
+    { path: "/about", priority: 0.75 },
+    { path: "/settling-debates", priority: 0.7 },
+    { path: "/faq", priority: 0.65 },
+    { path: "/contact", priority: 0.5 },
+  ] as const;
+
+  return routes.map(({ path, priority }) => ({
+    url: `${siteUrl}${path === "/" ? "" : path}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority,
+  }));
 }

@@ -1,28 +1,47 @@
 import type { Metadata } from "next";
-import { WeddingLandingClient } from "@/components/wedding/WeddingLandingClient";
+import HomePageClient from "@/components/pages/HomePageClient";
 import { getSiteUrl } from "@/lib/site";
-import { WEDDING_SITE_TITLE } from "@/lib/weddingData";
 
 export const metadata: Metadata = {
-  title: WEDDING_SITE_TITLE,
+  title: {
+    absolute: "Void Count | Strategic Card Game on Kickstarter",
+  },
   description:
-    "Private blue and red wedding portals for the Singh and Kaur families, with side-specific event RSVP flows.",
+    "Void Count is a fast, social strategy card game for 2-8 players where the lowest score wins. Back the live Kickstarter campaign and bring strategic chaos to game night.",
+  keywords: [
+    "Void Count",
+    "strategic card game",
+    "Kickstarter card game",
+    "2-8 player card game",
+    "party strategy game",
+    "social card game",
+    "game night card game",
+  ],
   alternates: { canonical: `${getSiteUrl()}/` },
   openGraph: {
-    title: WEDDING_SITE_TITLE,
+    title: "Void Count | Strategic Card Game on Kickstarter",
     description:
-      "Choose the Singh side or the Kaur side and enter the private wedding portal.",
+      "Back Void Count on Kickstarter: a fast social strategy card game where the lowest score wins.",
     url: "/",
     type: "website",
+    images: [
+      {
+        url: "/void-count-logo.webp",
+        width: 1024,
+        height: 1024,
+        alt: "Void Count logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: WEDDING_SITE_TITLE,
+    title: "Void Count | Strategic Card Game on Kickstarter",
     description:
-      "Choose the Singh side or the Kaur side and enter the private wedding portal.",
+      "Back Void Count on Kickstarter: a fast social strategy card game where the lowest score wins.",
+    images: ["/void-count-logo.webp"],
   },
 };
 
 export default function HomePage() {
-  return <WeddingLandingClient />;
+  return <HomePageClient />;
 }

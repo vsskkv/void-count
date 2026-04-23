@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
 import "./globals.css";
@@ -13,14 +13,6 @@ const geistSans = Geist({
   display: "swap",
   preload: true,
   fallback: ["system-ui", "-apple-system", "sans-serif"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  preload: false,
-  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 const siteUrl = getSiteUrl();
@@ -56,7 +48,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: [{ url: "/wedding-monogram.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/void-count-logo.webp", type: "image/webp" }],
+    apple: [{ url: "/void-count-logo.webp", type: "image/webp" }],
   },
 };
 
@@ -83,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased`}
+        className={`${geistSans.variable} min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased`}
         suppressHydrationWarning
       >
         {gaMeasurementId ? (

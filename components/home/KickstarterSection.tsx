@@ -23,7 +23,7 @@ export const KickstarterSection = () => {
             <div className="hidden md:block absolute -inset-2 sm:-inset-4 bg-indigo-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-all duration-700" />
             <div className="relative aspect-video sm:aspect-square lg:aspect-square bg-slate-900 rounded-2xl sm:rounded-[2.5rem] border border-slate-800 flex items-center justify-center overflow-hidden shadow-2xl">
               <Image
-                src="/Card%20Box.jpg"
+                src="/optimized/card-box.jpg"
                 alt="Void Count base deck box"
                 fill
                 className="object-cover object-center scale-[1.18] sm:scale-[1.14]"

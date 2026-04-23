@@ -21,7 +21,7 @@ export const ProductCarousel = () => {
     const backImg = new Image();
     backImg.src = '/optimized/back-v2.jpg';
     const boxImg = new Image();
-    boxImg.src = '/Card%20Box.jpg';
+    boxImg.src = '/optimized/card-box.jpg';
   }, []);
 
   const scrollPrev = useCallback(() => {
@@ -55,7 +55,7 @@ export const ProductCarousel = () => {
           <div className="flex-[0_0_100%] min-w-0 pl-4 flex justify-center">
              <div className="w-64 h-96 rounded-2xl border border-slate-700 bg-slate-900 flex items-center justify-center relative overflow-hidden">
                 <NextImage
-                  src="/Card%20Box.jpg"
+                  src="/optimized/card-box.jpg"
                   alt="Void Count box art"
                   fill
                   className="object-cover object-center scale-110"
@@ -84,4 +84,3 @@ export const ProductCarousel = () => {
     </div>
   );
 };
-
