@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Void Count | Strategic Card Game on Kickstarter",
   },
   description:
-    "Void Count is a fast, social strategy card game for 2-8 players where the lowest score wins. Back the live Kickstarter campaign and bring strategic chaos to game night.",
+    "Void Count is the strategy card game where the lowest score wins. Use power cards, sabotage opponents, and call Count at the perfect moment. Back the live Kickstarter campaign and bring the first edition to game night.",
   keywords: [
     "Void Count",
     "strategic card game",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Void Count | Strategic Card Game on Kickstarter",
     description:
-      "Back Void Count on Kickstarter: a fast social strategy card game where the lowest score wins.",
+      "Back Void Count on Kickstarter: the strategy card game where the lowest score wins.",
     url: "/",
     type: "website",
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Void Count | Strategic Card Game on Kickstarter",
     description:
-      "Back Void Count on Kickstarter: a fast social strategy card game where the lowest score wins.",
+      "Back Void Count on Kickstarter: the strategy card game where the lowest score wins.",
     images: ["/void-count-logo.webp"],
   },
 };

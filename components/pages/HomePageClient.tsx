@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { HeroSection } from "@/components/home/HeroSection";
+import { BoxRevealSection } from "@/components/home/BoxRevealSection";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 // Dynamically import components below the fold to reduce unused JS and initial payload
@@ -124,10 +125,13 @@ export default function HomePageClient() {
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Card Carousel Section (Manual wheel deck gallery) */}
+      {/* 2. Box Reveal - scroll to open the box and see the cards */}
+      <BoxRevealSection />
+
+      {/* 3. Card Carousel Section (Manual wheel deck gallery) */}
       <CardCarousel />
 
-      {/* 3. Kickstarter Campaign */}
+      {/* 4. Kickstarter Campaign */}
       <div className="content-section overflow-x-hidden" suppressHydrationWarning>
         <KickstarterSection />
       </div>
