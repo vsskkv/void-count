@@ -4,26 +4,26 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import styles from "./FAQSection.module.css";
-import { KICKSTARTER_URL, MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
+import { MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
 
 const FAQ_DATA = [
   {
     category: "Launch",
-    question: "Is Void Count live on Kickstarter?",
+    question: "Is Void Count still on Kickstarter?",
     answer:
-      "Yes. Void Count is live on Kickstarter right now, and backing the campaign directly helps fund production and delivery.",
+      "No. The Void Count Kickstarter campaign is now over, and the game will be launching soon with more availability updates on the way.",
   },
   {
     category: "Launch",
-    question: "Where can I back Void Count?",
+    question: "Where can I get Void Count?",
     answer:
-      "Use any Back on Kickstarter button on the site to open the campaign page and choose your reward tier.",
+      "Void Count is not available to buy on the site yet. The Kickstarter is over, and we will share launch details as soon as the first edition is ready.",
   },
   {
     category: "Launch",
-    question: "Why back on Kickstarter?",
+    question: "What happens after Kickstarter?",
     answer:
-      "Backers help us fund the first print run and unlock stretch goals, while securing campaign rewards through Kickstarter.",
+      "We are moving from campaign mode into launch preparation. That means production, availability, shipping details, and launch updates will come next.",
   },
   {
     category: "Gameplay",
@@ -65,7 +65,7 @@ const FAQ_DATA = [
     category: "Cards",
     question: "What are 10-point cards?",
     answer:
-      "10-point cards represent different environments (like Blue Glacier, Desert Horizon, Toxic Swamp, Volcanix Lava). Each adds 10 points to your hand value, so avoiding them is crucial to winning.",
+      "10-point cards represent different environments (like Blue Glacier, Desert Horizon, Toxic Swamp, Volcanic Lava). Each adds 10 points to your hand value, so avoiding them is crucial to winning.",
   },
   {
     category: "Gameplay",
@@ -83,25 +83,25 @@ const FAQ_DATA = [
     category: "Availability",
     question: "What's included in the game?",
     answer:
-      "The Kickstarter edition will include a full deck of Void Count cards, including Power cards and 10-point environment cards, along with the official rulebook.",
+      "The first edition will include a full deck of Void Count cards, including Power cards and 10-point environment cards, along with the official rulebook.",
   },
   {
     category: "Availability",
     question: "Will you ship internationally?",
     answer:
-      "Yes, we plan to offer international shipping through Kickstarter. Shipping regions and rates are listed on the campaign page.",
+      "We plan to support international shipping where possible. Shipping regions and rates will be confirmed closer to launch.",
   },
   {
     category: "Availability",
     question: "When will the game be delivered?",
     answer:
-      "Delivery timelines are posted in the Kickstarter reward details and campaign updates. We keep backers updated throughout production and shipping.",
+      "Delivery timelines will be shared as launch plans are confirmed. We will keep supporters updated throughout production and shipping.",
   },
   {
     category: "Launch",
     question: "Can I play the game before it's released?",
     answer:
-      "We occasionally host playtest sessions. Follow the Kickstarter campaign updates and social channels for announcements.",
+      "We occasionally host playtest sessions. Follow our site and social channels for launch announcements and playtest opportunities.",
   },
   {
     category: "Launch",
@@ -125,7 +125,7 @@ const FAQ_DATA = [
     category: "Availability",
     question: "Can I buy Void Count in stores?",
     answer:
-      "Initially, Void Count will be available through our Kickstarter campaign. Retail distribution will depend on the success of the campaign and community demand.",
+      "Not yet. Void Count will be launching soon, and retail distribution will depend on launch plans and community demand.",
   },
   {
     category: "Cards",
@@ -144,10 +144,6 @@ const CATEGORY_ORDER = [
 ] as const;
 
 type FAQCategory = (typeof CATEGORY_ORDER)[number];
-
-const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
-  ? KICKSTARTER_URL
-  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 const SHOWCASE_CARDS = [
   { src: "/optimized/sabotage-v1.jpg", alt: "Void Count Sabotage card", className: styles.cardOne },
@@ -212,14 +208,12 @@ export const FAQSection = () => {
               <span className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-900/70 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-slate-200 font-semibold">
                 {MIN_PLAYERS}-{MAX_PLAYERS} Players
               </span>
-              <a
-                href={KICKSTARTER_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center rounded-full border border-indigo-400/45 bg-slate-900/70 px-4 py-2 text-xs sm:text-sm uppercase tracking-[0.12em] text-indigo-200 font-semibold hover:border-indigo-300 hover:text-white transition-colors"
               >
-                Back on <span className="text-[#05ce78]">Kickstarter</span>
-              </a>
+                Launching <span className="text-[#05ce78]">Soon</span>
+              </Link>
             </div>
           </div>
 

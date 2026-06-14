@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
@@ -25,14 +26,13 @@ export const DemoCard = ({
         ref={cardRef}
         className="relative w-32 h-48 rounded-xl overflow-hidden transform transition-transform hover:scale-105 bg-slate-950"
       >
-        <img 
+        <Image 
           src={src} 
           alt={label ? `Void Count strategic card game – ${label}` : "Void Count card"} 
+          fill
           className="block w-full h-full object-cover rounded-[inherit] bg-slate-950"
-          width={128}
-          height={192}
+          sizes="128px"
           loading="lazy"
-          decoding="async"
         />
       </div>
     );
@@ -106,26 +106,24 @@ export const DrawPileVisual = () => {
     <div ref={deckRef} className="relative w-64 h-48 flex items-center justify-center">
       {/* Deck */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900">
-        <img 
+        <Image 
           src="/optimized/back-v2.jpg" 
           alt="Void Count strategic card game deck - Draw Pile" 
+          fill
           className="w-full h-full object-cover"
-          width={128}
-          height={192}
+          sizes="128px"
           loading="lazy"
-          decoding="async"
         />
       </div>
       {/* Top Card (Animated) */}
       <div className="top-card absolute left-8 top-1/2 -translate-y-1/2 w-32 h-48 rounded-xl overflow-hidden shadow-xl border border-white/10 z-10 bg-slate-900">
-        <img 
+        <Image 
           src="/optimized/back-v2.jpg" 
           alt="Void Count card being drawn - Strategic gameplay" 
+          fill
           className="w-full h-full object-cover"
-          width={128}
-          height={192}
+          sizes="128px"
           loading="lazy"
-          decoding="async"
         />
       </div>
     </div>
@@ -183,13 +181,13 @@ export const CountCallVisual = () => {
   return (
     <div className="flex gap-2 items-end">
        <div className="animate-bounce">
-          <DemoCard src="/one-v1.webp" label="1 Point" />
+          <DemoCard src="/One v1.png" label="1 Point" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.1s' }}>
-          <DemoCard src="/two-v1.webp" label="2 Points" />
+          <DemoCard src="/Two v1.png" label="2 Points" />
        </div>
        <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
-          <DemoCard src="/four-v1.webp" label="4 Points" />
+          <DemoCard src="/Four v1.png" label="4 Points" />
        </div>
        <div className="ml-4 flex flex-col justify-center h-48">
           <span className="text-4xl font-bold text-white">= 7</span>

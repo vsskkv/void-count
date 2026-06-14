@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useState } from "react";
+import Image from "next/image";
 import styles from "./GameCard.module.css";
 
 interface GameCardProps {
@@ -30,6 +31,9 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
     const imageLoading: "eager" | "lazy" = loading || (isHero ? "eager" : "lazy");
     const fetchPriority: "high" | "low" | "auto" = isHero ? "high" : "auto";
     const decoding: "async" | "sync" | "auto" = isHero ? "sync" : "async";
+    const imageSizes = isHero
+      ? "(min-width: 768px) 54vh, 85vw"
+      : "(min-width: 768px) 280px, 140px";
     const [frontError, setFrontError] = useState(false);
     const [backError, setBackError] = useState(false);
 
@@ -56,14 +60,16 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
             <div className={`${styles.face} ${styles.front}`}>
               {showFrontImage ? (
                 <>
-                  <img
+                  <Image
                     className={styles.image}
                     src={frontSrc}
                     alt={frontAlt}
+                    fill
+                    sizes={imageSizes}
                     draggable={false}
-                  loading={imageLoading}
+                    loading={imageLoading}
                     decoding={decoding}
-                  fetchPriority={fetchPriority}
+                    fetchPriority={fetchPriority}
                     onError={() => setFrontError(true)}
                   />
                   <div className={styles.neonBorder} />
@@ -96,14 +102,16 @@ export const GameCard = forwardRef<HTMLDivElement, GameCardProps>(
             <div className={`${styles.face} ${styles.back}`}>
               {showBackImage ? (
                 <>
-                  <img
+                  <Image
                     className={styles.image}
                     src={backSrc}
                     alt="Void Count card game card back - New card game"
+                    fill
+                    sizes={imageSizes}
                     draggable={false}
-                  loading="lazy"
+                    loading="lazy"
                     decoding="async"
-                  fetchPriority="auto"
+                    fetchPriority="auto"
                     onError={() => setBackError(true)}
                   />
                   <div className={styles.neonBorder} />

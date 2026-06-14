@@ -8,8 +8,12 @@ const GA_MEASUREMENT_ID =
 
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    gtag?: (
+      command: "config",
+      measurementId: string,
+      config?: Record<string, unknown>
+    ) => void;
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 

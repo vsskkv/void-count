@@ -7,10 +7,10 @@ import { WAITLIST_FORM_ID } from '@/lib/constants';
 export const WaitlistSection = () => {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
-  const [source, setSource] = useState('website');
   const [hp, setHp] = useState(''); // honeypot
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const source = 'website';
 
   function normalizeEmail(email: string): string {
     return email.trim().toLowerCase();
@@ -18,6 +18,10 @@ export const WaitlistSection = () => {
 
   function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function getErrorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : "Something went wrong. Please try again.";
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,23 +109,25 @@ export const WaitlistSection = () => {
           setEmail('');
           setFullName('');
         }
-      } catch (error: any) {
+      } catch (error) {
         console.error('Waitlist submission error:', error);
-        if (error.message?.includes('Missing environment variable')) {
+        const errorMessage = getErrorMessage(error);
+        if (errorMessage.includes('Missing environment variable')) {
           setMessage("Configuration error. Please set environment variables and rebuild.");
         } else {
-          setMessage(`Error: ${error.message || "Something went wrong. Please try again."}`);
+          setMessage(`Error: ${errorMessage}`);
         }
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Waitlist submission error:', error);
+      const errorMessage = getErrorMessage(error);
       // Provide more helpful error messages
-      if (error?.message?.includes('Missing environment variable')) {
+      if (errorMessage.includes('Missing environment variable')) {
         setMessage("Configuration error. Please contact support.");
-      } else if (error?.message?.includes('fetch')) {
+      } else if (errorMessage.includes('fetch')) {
         setMessage("Network error. Please check your connection and try again.");
       } else {
-        setMessage(`Something went wrong: ${error?.message || "Please try again."}`);
+        setMessage(`Something went wrong: ${errorMessage}`);
       }
     } finally {
       setIsSubmitting(false);
@@ -141,7 +147,7 @@ export const WaitlistSection = () => {
         <div className="mb-6 sm:mb-8 px-2 relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tighter uppercase italic leading-[0.9] sm:leading-[0.85] md:leading-[0.8] md:scale-y-110">
             JOIN THE <br />
-            <span className="text-indigo-400">KICKSTARTER.</span>
+            <span className="text-indigo-400">LAUNCH LIST.</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 text-slate-200 font-bold max-w-2xl mx-auto leading-tight italic">
             Be the first to know when this <strong>new card game</strong> launches. <br className="hidden sm:block" />

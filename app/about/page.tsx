@@ -4,13 +4,13 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { getSiteUrl } from "@/lib/site";
-import { KICKSTARTER_URL, MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
+import { MAX_PLAYERS, MIN_PLAYERS } from "@/lib/constants";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About Void Count | Story and Design Philosophy",
   description:
-    "Discover the origins of Void Count, a strategic card game built for social sabotage and laughs. Learn why it is a standout game night pick and now live on Kickstarter.",
+    "Discover the origins of Void Count, a strategic card game built for social sabotage and laughs. The Kickstarter is now over, and the game will be launching soon.",
   keywords: [
     "about void count",
     "void count story",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "card game creators",
     "strategic card game history",
     "card game development",
-    "kickstarter card game",
+    "launching soon card game",
     "tabletop card game",
   ],
   alternates: { canonical: `${getSiteUrl()}/about` },
@@ -71,10 +71,6 @@ const SHOWCASE_CARDS = [
   { src: "/optimized/take-two-v1.jpg", alt: "Void Count Take Two card", className: styles.cardThree },
   { src: "/optimized/double-your-hand-v1.jpg", alt: "Void Count Double Your Hand card", className: styles.cardFour },
 ] as const;
-
-const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
-  ? KICKSTARTER_URL
-  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 export default function AboutPage() {
   return (
@@ -175,20 +171,18 @@ export default function AboutPage() {
         <section className="max-w-5xl mx-auto">
           <div className={`${styles.ctaPanel} p-6 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl`}>
             <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold mb-4">
-              Campaign Is Live
+              Kickstarter Is Over
             </p>
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl">
-              Back Void Count on <span className="text-[#05ce78]">Kickstarter</span> to help us bring the first edition to tables worldwide. If your table likes strategic chaos, you are exactly who we built this for.
+              The <span className="text-[#05ce78]">Kickstarter</span> campaign is now over, and Void Count will be launching soon. If your table likes strategic chaos, you are exactly who we built this for.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={KICKSTARTER_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
               >
-                Back On <span className="text-[#05ce78]">Kickstarter</span>
-              </a>
+                Launching <span className="text-[#05ce78]">Soon</span>
+              </Link>
               <Link
                 href="/settling-debates"
                 className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-950/70 text-slate-200 hover:text-white hover:border-slate-400 text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"

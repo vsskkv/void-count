@@ -2,23 +2,27 @@
 
 import React, { useState, useEffect } from "react";
 import { PrimaryButton } from "./PrimaryButton";
-import { KICKSTARTER_URL } from "@/lib/constants";
 
 export const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
-  const kickstarterUrl = /^https?:\/\//i.test(KICKSTARTER_URL)
-    ? KICKSTARTER_URL
-    : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
   useEffect(() => {
+    let animationFrameId: number | null = null;
+
     // Check if user has already dismissed the CTA (with error handling for SSR/localStorage)
     try {
       if (typeof window !== 'undefined') {
         const dismissed = localStorage.getItem("void-count-cta-dismissed");
         if (dismissed) {
-          setIsDismissed(true);
-          return;
+          animationFrameId = window.requestAnimationFrame(() => {
+            setIsDismissed(true);
+          });
+          return () => {
+            if (animationFrameId !== null) {
+              window.cancelAnimationFrame(animationFrameId);
+            }
+          };
         }
       }
     } catch (error) {
@@ -45,7 +49,12 @@ export const StickyCTA = () => {
     if (typeof window !== 'undefined') {
       // Use passive listener for better performance
       window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleScroll);
+      return () => {
+        if (animationFrameId !== null) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+        window.removeEventListener("scroll", handleScroll);
+      };
     }
   }, []);
 
@@ -72,22 +81,19 @@ export const StickyCTA = () => {
       <div className="max-w-4xl mx-auto bg-slate-900/95 md:bg-slate-900/90 md:backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-4 sm:p-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <p className="text-white font-black uppercase italic tracking-tight leading-none mb-1">
-            Now Live on <span className="text-[#05ce78]">Kickstarter</span>
+            <span className="text-[#05ce78]">Kickstarter</span> is now over
           </p>
           <p className="text-slate-300 text-[10px] font-bold uppercase tracking-widest">
-            Back the campaign and help us fund production
+            Void Count will be launching soon
           </p>
         </div>
 
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <PrimaryButton
-            onClick={() => {
-              if (typeof window === "undefined" || !kickstarterUrl) return;
-              window.open(kickstarterUrl, "_blank", "noopener,noreferrer");
-            }}
+            href="/contact"
             className="flex-1 sm:flex-none py-3 px-6 text-sm font-black whitespace-nowrap shadow-none uppercase italic"
           >
-            Back Now
+            Launch Updates
           </PrimaryButton>
           <button
             onClick={handleDismiss}

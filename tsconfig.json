@@ -31,7 +31,12 @@
     "**/*.mts"
   ],
   "exclude": [
+    ".agents",
+    ".claude",
+    ".codex",
     "node_modules",
+    "node_modules.nosync",
+    "out",
     "functions",
     "functions/**/*"
   ]

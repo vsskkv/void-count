@@ -6,25 +6,25 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { SITE_NAME, getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Void Count FAQ | Gameplay, Rewards, and Shipping`,
-  description: `Find answers to common questions about ${SITE_NAME}, now live on Kickstarter. Learn about gameplay, player count, campaign rewards, delivery, and more.`,
+  title: `Void Count FAQ | Gameplay, Launch, and Shipping`,
+  description: `Find answers to common questions about ${SITE_NAME}. The Kickstarter campaign is now over, and Void Count will be launching soon.`,
   keywords: [
     "void count faq",
-    "void count kickstarter faq",
+    "void count launch faq",
     "card game help",
     "strategic card game questions",
-    "kickstarter campaign rewards",
+    "card game launch updates",
     "card game shipping faq",
   ],
   alternates: { canonical: `${getSiteUrl()}/faq` },
   openGraph: {
-    title: `Void Count FAQ | Gameplay, Rewards, and Shipping`,
-    description: `Find answers to common questions about ${SITE_NAME}, now live on Kickstarter. Learn about gameplay, campaign rewards, and more.`,
+    title: `Void Count FAQ | Gameplay, Launch, and Shipping`,
+    description: `Find answers to common questions about ${SITE_NAME}. The Kickstarter is now over, and the game will be launching soon.`,
     url: "/faq",
   },
   twitter: {
-    title: `Void Count FAQ | Gameplay, Rewards, and Shipping`,
-    description: `Find answers to common questions about ${SITE_NAME}, now live on Kickstarter.`,
+    title: `Void Count FAQ | Gameplay, Launch, and Shipping`,
+    description: `Find answers to common questions about ${SITE_NAME}. The Kickstarter is now over.`,
   },
 };
 
@@ -34,10 +34,10 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Is Void Count live on Kickstarter?",
+      name: "Is Void Count still on Kickstarter?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Void Count is live on Kickstarter right now, and backing the campaign directly helps fund production and delivery.",
+        text: "No. The Void Count Kickstarter campaign is now over, and the game will be launching soon with more availability updates on the way.",
       },
     },
     {
@@ -69,7 +69,7 @@ const faqJsonLd = {
       name: "Will you ship internationally?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, we plan to offer international shipping through Kickstarter. Shipping regions and rates are listed on the campaign page.",
+        text: "We plan to support international shipping where possible. Shipping regions and rates will be confirmed closer to launch.",
       },
     },
     {
@@ -77,7 +77,7 @@ const faqJsonLd = {
       name: "When will the game be delivered?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Delivery timelines are posted in the Kickstarter reward details and campaign updates. We keep backers updated throughout production and shipping.",
+        text: "Delivery timelines will be shared as launch plans are confirmed. We will keep supporters updated throughout production and shipping.",
       },
     },
   ],

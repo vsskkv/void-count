@@ -134,7 +134,7 @@ export function ContactForm() {
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
           <p className="text-slate-300">
-            Thanks for reaching out! We'll get back to you within 24-48 hours.
+            Thanks for reaching out! We&apos;ll get back to you within 24-48 hours.
           </p>
         </div>
         <button

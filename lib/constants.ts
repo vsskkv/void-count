@@ -1,6 +1,6 @@
 // External URLs
 export const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/your-checkout-link"; // Placeholder
-// Public Kickstarter pre-launch/campaign URL (set at build time)
+// Public Kickstarter campaign archive URL (set at build time when needed)
 export const KICKSTARTER_URL =
   process.env.NEXT_PUBLIC_KICKSTARTER_URL ||
   "https://www.kickstarter.com/projects/voidcount/void-count-a-strategic-card-game";

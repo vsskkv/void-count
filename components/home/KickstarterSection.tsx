@@ -1,15 +1,7 @@
-"use client";
-
-import React from "react";
 import Image from "next/image";
 import { PrimaryButton } from "@/components/ui/PrimaryButton";
-import { KICKSTARTER_URL } from "@/lib/constants";
 
 export const KickstarterSection = () => {
-  const kickstarterUrl = /^https?:\/\//i.test(KICKSTARTER_URL)
-    ? KICKSTARTER_URL
-    : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
-
   return (
     <section className="relative z-20 py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent overflow-hidden">
       {/* Background radial effects */}
@@ -32,7 +24,7 @@ export const KickstarterSection = () => {
               
               {/* Teaser Badges */}
               <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-indigo-600 text-white text-[8px] sm:text-[10px] font-black uppercase px-2 sm:px-4 py-1 sm:py-2 rounded-full shadow-lg tracking-[0.15em] sm:tracking-[0.2em] transform rotate-12">
-                Live Campaign
+                Campaign Ended
               </div>
             </div>
           </div>
@@ -41,11 +33,11 @@ export const KickstarterSection = () => {
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tighter uppercase italic leading-[0.8] sm:leading-[0.9] md:scale-y-110">
               <span className="text-[#05ce78]">KICKSTARTER</span> <br className="hidden sm:block" />
-              <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">IS LIVE</span>
+              <span className="text-indigo-500 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic">IS OVER</span>
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 font-bold italic mb-6 sm:mb-8 lg:mb-10 leading-tight max-w-2xl mx-auto lg:mx-0">
-              Void Count is now live on <span className="text-[#05ce78]">Kickstarter</span>. Back the campaign today to help bring the first edition to every table and secure campaign rewards for this <strong>strategic card game</strong>.
+              The <span className="text-[#05ce78]">Kickstarter</span> campaign is now over. We will be launching Void Count soon, with launch details and availability updates on the way.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-12">
@@ -72,13 +64,10 @@ export const KickstarterSection = () => {
             </div>
 
             <PrimaryButton 
+              href="/contact"
               className="w-full text-lg sm:text-xl font-black px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(79,70,229,0.4)] transform hover:scale-105 transition-all"
-              onClick={() => {
-                if (typeof window === "undefined" || !kickstarterUrl) return;
-                window.open(kickstarterUrl, "_blank", "noopener,noreferrer");
-              }}
             >
-              Back Void Count on <span className="text-[#05ce78]">Kickstarter</span>
+              Launching <span className="text-[#05ce78]">Soon</span>
             </PrimaryButton>
           </div>
         </div>

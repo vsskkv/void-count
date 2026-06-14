@@ -20,40 +20,59 @@ export const VoidParticles = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let animationFrameId: number | null = null;
+
     if (prefersReducedMotion) {
-      setParticles([]);
-      return;
+      animationFrameId = window.requestAnimationFrame(() => setParticles([]));
+      return () => {
+        if (animationFrameId !== null) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      };
     }
 
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    
-    // On mobile, we significantly reduce or disable particles to prevent memory crashes
+    const isMobile = window.innerWidth < 768;
+
     if (isMobile) {
-      setParticles([]);
-      return;
+      animationFrameId = window.requestAnimationFrame(() => setParticles([]));
+      return () => {
+        if (animationFrameId !== null) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      };
     }
 
-    const particleCount = 32;
+    animationFrameId = window.requestAnimationFrame(() => {
+      const particleCount = 32;
+      const colors = ["#818cf8", "#a855f7", "#ffffff", "#6366f1"];
 
-    // Colors: Indigo, Purple, and Soft White/Blue
-    const colors = ["#818cf8", "#a855f7", "#ffffff", "#6366f1"];
-    
-    const newParticles = [...Array(particleCount)].map((_, i) => ({
-      id: i,
-      size: Math.random() * 3 + 1.5, // 1.5px to 4.5px
-      color: colors[Math.floor(Math.random() * colors.length)],
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      duration: 16 + Math.random() * 24,
-      delay: Math.random() * -30,
-      drift: (Math.random() - 0.5) * (isMobile ? 80 : 140),
-    }));
-    
-    setParticles(newParticles);
+      const newParticles = [...Array(particleCount)].map((_, i) => ({
+        id: i,
+        size: Math.random() * 3 + 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: 16 + Math.random() * 24,
+        delay: Math.random() * -30,
+        drift: (Math.random() - 0.5) * 140,
+      }));
+
+      setParticles(newParticles);
+    });
+
+    return () => {
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [prefersReducedMotion]);
 
   useEffect(() => {
-    if (particles.length === 0 || prefersReducedMotion) return;
+    if (particles.length === 0 || prefersReducedMotion) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
       particles.forEach((p) => {

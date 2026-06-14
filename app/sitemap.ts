@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     { path: "/", priority: 1 },
-    { path: "/kickstarter", priority: 0.95 },
     { path: "/how-to-play", priority: 0.9 },
     { path: "/about", priority: 0.75 },
     { path: "/settling-debates", priority: 0.7 },

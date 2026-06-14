@@ -1,150 +1,27 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { HeroSection } from "@/components/home/HeroSection";
-import { BoxRevealSection } from "@/components/home/BoxRevealSection";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-
-// Dynamically import components below the fold to reduce unused JS and initial payload
-const CardCarousel = dynamic(() => import("@/components/home/CardCarousel").then(mod => mod.CardCarousel), {
-  loading: () => <div className="min-h-[400px]" />,
-  ssr: true
-});
-
-const KickstarterSection = dynamic(() => import("@/components/home/KickstarterSection").then(mod => mod.KickstarterSection), {
-  loading: () => <div className="min-h-[300px]" />,
-  ssr: true
-});
-
-const SiteFooter = dynamic(() => import("@/components/layout/SiteFooter").then(mod => mod.SiteFooter), {
-  ssr: true
-});
-
-// Lazy load StickyCTA - only appears after scroll
-const StickyCTA = dynamic(() => import("@/components/ui/StickyCTA").then(mod => mod.StickyCTA), {
-  ssr: false, // No need to SSR - it's scroll-dependent
-});
+import { CardCarousel } from "@/components/home/CardCarousel";
+import { KickstarterSection } from "@/components/home/KickstarterSection";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { StickyCTA } from "@/components/ui/StickyCTA";
 
 export default function HomePageClient() {
-  const mainRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (!mainRef.current || !prefersReducedMotion) return;
-    const sections = mainRef.current.querySelectorAll<HTMLElement>(".content-section");
-    sections.forEach((section) => {
-      section.style.opacity = "1";
-      section.style.transform = "none";
-    });
-  }, [prefersReducedMotion]);
-
-  useEffect(() => {
-    if (!mainRef.current || prefersReducedMotion) return;
-
-    // Detect mobile FIRST to avoid loading heavy animations
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-    // On mobile, skip animations entirely to prevent crashes
-    if (isMobile) {
-      // Ensure content is visible on mobile (in case CSS fails)
-      const sections = mainRef.current.querySelectorAll<HTMLElement>(".content-section");
-      sections.forEach((section) => {
-        section.style.opacity = "1";
-        section.style.transform = "none";
-      });
-      return;
-    }
-
-    let isCancelled = false;
-    let gsapContext: { revert: () => void } | null = null;
-
-    // Desktop only: Lazy load GSAP for scroll animations
-    // Initial styles are set via CSS (.content-section class) to prevent hydration mismatch
-    Promise.all([
-      import("gsap"),
-      import("gsap/ScrollTrigger")
-    ]).then(([gsapModule, scrollTriggerModule]) => {
-      if (isCancelled) return;
-
-      const gsap = gsapModule.default;
-      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
-
-      if (typeof window !== "undefined") {
-        gsap.registerPlugin(ScrollTrigger);
-      }
-
-      gsapContext = gsap.context(() => {
-        const sections = gsap.utils.toArray<HTMLElement>(".content-section");
-
-        sections.forEach((section) => {
-          gsap.to(
-            section,
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              scrollTrigger: {
-                trigger: section,
-                start: "top 95%",
-                end: "top 70%",
-                scrub: 1,
-                toggleActions: "play none none reverse",
-                invalidateOnRefresh: true,
-              },
-            }
-          );
-        });
-      }, mainRef);
-    }).catch((error) => {
-      if (isCancelled) return;
-
-      // If GSAP fails to load, show content anyway
-      console.error("GSAP failed to load:", error);
-      const sections = mainRef.current?.querySelectorAll<HTMLElement>(".content-section");
-      sections?.forEach((section) => {
-        section.style.opacity = "1";
-        section.style.transform = "none";
-      });
-    });
-
-    return () => {
-      isCancelled = true;
-      gsapContext?.revert();
-    };
-  }, [prefersReducedMotion]);
-
   return (
-    <main ref={mainRef} className="relative bg-transparent overflow-x-hidden">
-      {/* Header - Fixed */}
+    <main className="relative overflow-x-hidden bg-transparent">
       <div className="fixed top-0 left-0 right-0 z-50">
         <SiteHeader />
       </div>
 
-      {/* 1. Hero Section */}
       <HeroSection />
-
-      {/* 2. Box Reveal - scroll to open the box and see the cards */}
-      <BoxRevealSection />
-
-      {/* 3. Card Carousel Section (Manual wheel deck gallery) */}
       <CardCarousel />
-
-      {/* 4. Kickstarter Campaign */}
-      <div className="content-section overflow-x-hidden" suppressHydrationWarning>
-        <KickstarterSection />
-      </div>
-
-      {/* Footer */}
+      <KickstarterSection />
       <SiteFooter />
-
-      {/* Sticky CTA */}
       <StickyCTA />
 
-      {/* Accessible page heading for semantic SEO */}
       <h1 className="sr-only">
-        Void Count is a strategic card game on Kickstarter.
+        Void Count is a strategic card game launching soon after Kickstarter.
       </h1>
     </main>
   );

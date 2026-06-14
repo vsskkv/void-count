@@ -9,8 +9,12 @@ export default defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    ".agents/**",
+    ".claude/**",
+    ".codex/**",
     "out/**",
     "build/**",
+    "node_modules.nosync/**",
     "next-env.d.ts",
   ]),
 ]);

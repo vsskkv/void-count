@@ -75,8 +75,7 @@ export async function POST(request: Request) {
   if (error) {
     // Duplicate email (unique index) -> treat as success to avoid leaking info
     // Postgres unique violation = 23505
-    const isDuplicate = (error as any)?.code === "23505";
-    if (isDuplicate) {
+    if (error.code === "23505") {
       return NextResponse.json({ ok: true, message: "You're on the list." });
     }
 

@@ -1,4 +1,3 @@
-// @ts-nocheck - This is a Cloudflare Pages Function, not Next.js code
 /**
  * Cloudflare Pages Function for handling waitlist submissions with Supabase
  * 
@@ -7,7 +6,33 @@
  * - SUPABASE_ANON_KEY
  */
 
-export const onRequestPost = async (context) => {
+type CloudflareEnv = {
+  SUPABASE_URL?: string;
+  SUPABASE_ANON_KEY?: string;
+};
+
+type WaitlistRequestBody = {
+  email?: unknown;
+  fullName?: unknown;
+  source?: unknown;
+};
+
+type PagesFunctionContext = {
+  request: Request;
+  env: CloudflareEnv;
+};
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : 'Failed to process submission. Please try again.';
+}
+
+function getOptionalString(value: unknown): string | null {
+  return typeof value === 'string' && value.trim().length > 0
+    ? value.trim()
+    : null;
+}
+
+export const onRequestPost = async (context: PagesFunctionContext): Promise<Response> => {
   // Enable CORS
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -21,11 +46,13 @@ export const onRequestPost = async (context) => {
   }
 
   try {
-    const body = await context.request.json();
-    const { email, fullName, source } = body;
+    const body = (await context.request.json()) as WaitlistRequestBody;
+    const email = getOptionalString(body.email);
+    const fullName = getOptionalString(body.fullName);
+    const source = getOptionalString(body.source);
 
     // Validate email
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
+    if (!email || !email.includes('@')) {
       return new Response(
         JSON.stringify({ success: false, message: 'Invalid email address' }),
         {
@@ -69,7 +96,7 @@ export const onRequestPost = async (context) => {
       .from('waitlist_signups')
       .insert({
         email: normalizedEmail,
-        full_name: fullName && fullName.trim().length > 0 ? fullName.trim().slice(0, 120) : null,
+        full_name: fullName ? fullName.slice(0, 120) : null,
         source: source || 'website',
       });
 
@@ -132,7 +159,7 @@ export const onRequestPost = async (context) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: `Error: ${error.message || 'Failed to process submission. Please try again.'}`,
+        message: `Error: ${getErrorMessage(error)}`,
       }),
       {
         status: 500,

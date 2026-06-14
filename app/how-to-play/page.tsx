@@ -8,7 +8,6 @@ import { RuleSection } from "@/components/how-to-play/RuleSection";
 import {
   CARDS_PER_PLAYER,
   HOW_TO_PLAY_VIDEO_URL,
-  KICKSTARTER_URL,
   MAX_PLAYERS,
   MIN_PLAYERS,
   TOTAL_CARDS,
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
     "card game instructions",
     "card game scoring rules",
     "2-8 player card game",
-    "kickstarter card game rules",
+    "launching soon card game rules",
   ],
   alternates: { canonical: `${getSiteUrl()}/how-to-play` },
   openGraph: {
@@ -77,10 +76,6 @@ const QUICK_RULINGS = [
   "A player cannot use a Power Card on themselves.",
   "If Draw Deck runs out, reshuffle the Discard Pile.",
 ] as const;
-
-const KICKSTARTER_HREF = /^https?:\/\//i.test(KICKSTARTER_URL)
-  ? KICKSTARTER_URL
-  : `https://${KICKSTARTER_URL.replace(/^\/+/, "")}`;
 
 const getYouTubeEmbedUrl = (input: string): string | null => {
   const value = input.trim();
@@ -148,14 +143,12 @@ export default function HowToPlayPage() {
               </div>
 
               <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
-                <a
-                  href={KICKSTARTER_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="inline-flex items-center rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
                 >
-                  Back On <span className="text-[#05ce78]">Kickstarter</span>
-                </a>
+                  Launching <span className="text-[#05ce78]">Soon</span>
+                </Link>
                 <Link
                   href="/settling-debates"
                   className="inline-flex items-center rounded-full border border-slate-600/70 bg-slate-950/70 text-slate-200 hover:text-white hover:border-slate-400 text-xs sm:text-sm uppercase tracking-[0.12em] font-semibold px-4 py-2.5 transition-colors"
@@ -321,7 +314,7 @@ export default function HowToPlayPage() {
               Keep The Table Moving
             </p>
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl">
-              Start with this guide, then use Settling Debates for edge cases and FAQ for fast answers. If you are ready to play, back Void Count on <span className="text-[#05ce78]">Kickstarter</span>.
+              Start with this guide, then use Settling Debates for edge cases and FAQ for fast answers. The <span className="text-[#05ce78]">Kickstarter</span> is now over, and Void Count will be launching soon.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
